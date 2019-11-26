@@ -38,4 +38,5 @@ if __name__ == "__main__":
     ricer.generate_config('dunst/dunstrc')
     ricer.generate_config('rofi/config.rasi')
     ricer.generate_config('i3status/config')
+    ricer.generate_config('Code - OSS/User/settings.json')
     sys.exit(0)

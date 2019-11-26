@@ -1,0 +1,8 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "{{1}}",
+        "statusBar.background": "{{1}}"
+    },
+    "window.titleBarStyle": "custom",
+    "workbench.iconTheme": "vs-minimal"
+}
