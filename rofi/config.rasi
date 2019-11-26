@@ -1,0 +1,63 @@
+
+configuration {
+	show-icons:      true;
+}
+
+* {
+	background-color:   transparent;
+    background:         {{1}};
+    background-color:   {{1}};
+    text-color:         {{4}};
+    actbg:              {{4}};
+    winbg:              {{1}};
+
+	selected-normal-foreground:  @winbg;
+	normal-foreground:           @text-color;
+	selected-normal-background:  @actbg;
+
+	selected-urgent-foreground:  @background-color;
+	urgent-foreground:           @text-color;
+	selected-urgent-background:  @urgbg;
+
+	selected-active-foreground:  @winbg;
+	active-foreground:           @text-color;
+	selected-active-background:  @actbg;	
+    border-color:                @foreground;
+    spacing:                     2;
+}
+
+#window {
+	border:     0px;
+	height:     50%;
+	width:		22%;
+	children:	[mainbox];
+}
+
+#mainbox {
+	children:   [ entry,listview ];
+    padding:    10px;
+}
+
+#listview {
+    border:     0px;
+    scrollbar:  false;
+    padding:    5px 0px 0px;
+}
+
+entry {
+	expand:         false;
+	vertical-align: 1;
+	padding:        5px;
+    border-radius:  5px;
+}
+
+element selected.normal {
+	background-color: @selected-normal-background;
+	text-color:       @selected-normal-foreground;
+	border-color:	    @active-background;
+}
+
+element selected.active {
+	background-color: @selected-active-background;
+	text-color:       @selected-active-foreground;
+}
