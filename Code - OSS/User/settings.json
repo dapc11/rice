@@ -6,7 +6,8 @@
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "{{2}}",
-        "statusBar.background": "{{2}}"
+        "statusBar.background": "{{2}}",
+        "editor.background": "{{1}}"
     },
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",
