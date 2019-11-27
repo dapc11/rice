@@ -32,7 +32,7 @@ class Ricer():
             self._render_template(source, template)
 
 if __name__ == "__main__":
-    ricer = Ricer(True)
+    ricer = Ricer()
     ricer.generate_config('i3/config')
     ricer.generate_config('kitty/kitty.conf')
     ricer.generate_config('dunst/dunstrc')

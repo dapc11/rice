@@ -140,7 +140,7 @@
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
     sticky_history = yes
-    
+
     # Maximum amount of notifications kept in history
     history_length = 20
 
@@ -178,4 +178,19 @@
 
     # Context menu.
     context = ctrl+shift+period
+
+[signed_on]
+    appname = Pidgin
+    summary = "*signed on*"
+    urgency = low
+
+[signed_off]
+    appname = Pidgin
+    summary = *signed off*
+    urgency = low
+
+[says]
+    appname = Pidgin
+    summary = *says*
+    urgency = critical
 # vim: ft=cfg

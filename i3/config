@@ -39,6 +39,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec kitty
 bindsym $mod+shift+Return exec kitty emacsclient -nw
+bindsym $mod+Ctrl+Shift+Return exec kitty --session ~/.config/kitty/session
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -49,24 +50,12 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -139,6 +128,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="Firefox"] $workspace2
 assign [class="Google-chrome"] $workspace2
 for_window [class="Spotify"] move scratchpad
+for_window [class="^.*"] border pixel 1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -165,7 +155,7 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-set $Locker i3lock && sleep 1
+set $Locker i3lock -c {{2}} && sleep 1
 
 set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
@@ -185,7 +175,7 @@ bindsym $mod+p mode "$mode_system"
 
 # class                 border  background  text       indicator child_border
 client.focused          {{3}} {{3}}     {{foreground}}    {{foreground}}   {{3}}
-client.focused_inactive {{3}} {{4}}     {{foreground}}    {{3}}   {{4}}
+client.focused_inactive {{3}} {{2}}     {{foreground}}    {{3}}   {{4}}
 client.unfocused        {{3}} {{2}}     {{4}}    {{3}}   {{2}}
 client.urgent           {{3}} {{8}}     {{foreground}}    {{8}}   {{8}}
 client.placeholder      {{background}} {{background}}     {{foreground}}    {{background}}   {{1}}
@@ -199,8 +189,8 @@ bar {
     statusline {{foreground}}
     separator  {{5}}
 
-    focused_workspace  {{3}} {{3}} {{foreground}}
-    active_workspace   {{3}} {{2}} {{foreground}}
+    focused_workspace  {{4}} {{3}} {{foreground}}
+    active_workspace   {{3}} {{3}} {{foreground}}
     inactive_workspace {{3}} {{2}} {{4}}
     urgent_workspace   {{3}} {{8}} {{foreground}}
     binding_mode       {{3}} {{8}} {{foreground}}
@@ -215,14 +205,16 @@ bindcode 96 exec amixer -D pulse -q set Master toggle
 bindcode 73 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
-exec --no-startup-id emacs --daemon
-
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+b exec rofi -show window -theme ~/.config/rofi/config
-# start dmenu (a program launcher)
-bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{background}}' -sf '{{foreground}}' -sb '{{3}}' -nf '{{foreground}}' 
-
+bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{background}}' -sf '{{foreground}}' -sb '{{3}}' -nf '{{foreground}}'
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+plus scratchpad show
+bindsym $mod+l exec ~/.config/i3/rofi-powermgmt
+bindsym $mod+Shift+s exec ~/.config/i3/rofi-randr
+
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id emacs --daemon

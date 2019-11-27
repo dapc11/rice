@@ -8,8 +8,8 @@ configuration {
     background:         {{1}};
     background-color:   {{1}};
     text-color:         {{4}};
-    actbg:              {{4}};
-    winbg:              {{1}};
+    actbg:              {{3}};
+    winbg:              {{5}};
 
 	selected-normal-foreground:  @winbg;
 	normal-foreground:           @text-color;
@@ -21,7 +21,7 @@ configuration {
 
 	selected-active-foreground:  @winbg;
 	active-foreground:           @text-color;
-	selected-active-background:  @actbg;	
+	selected-active-background:  @actbg;
     border-color:                @foreground;
     spacing:                     2;
 }

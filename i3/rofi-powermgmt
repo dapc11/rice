@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+
+import os
+import subprocess as sp
+from subprocess import PIPE
+import getpass
+
+if __name__ == '__main__':
+
+    user = getpass.getuser()
+    commands = {
+        ' Exit':       'i3-msg exit',
+        ' Lock':       f'i3lock -i /home/{user}/.config/i3/lock_background.png -t',
+        ' Suspend':    'systemctl suspend',
+        ' Hibernate':  'systemctl hibernate',
+        ' Reboot':     'systemctl reboot',
+        ' Shutdown':   'systemctl poweroff',
+    }
+
+    options = commands.keys()
+    title = 'rofi-power'
+    rofi = f'rofi -dmenu -i  -theme /home/{user}/.config/rofi/power -lines 6 -p {title}'.split()
+    rofi_input = '\n'.join(x for x in options)
+
+    cp = sp.run(rofi, input=rofi_input, encoding='utf-8', stdout=PIPE, stderr=PIPE)
+    if not cp.returncode:
+        selection = cp.stdout.strip()
+        if selection in commands:
+            sp.run(commands[selection].split())
