@@ -14,7 +14,7 @@ order += "disk /"
 #order += "run_watch DHCP"
 #order += "run_watch VPNC"
 #order += "path_exists VPN"
-order += "wireless wlp1s0"
+order += "wireless {{wifi_if}}"
 order += "ethernet eth0"
 order += "battery 0"
 order += "tztime local"
@@ -28,7 +28,7 @@ volume master {
         mixer_idx = 0
 }
 
-wireless wlp1s0 {
+wireless {{wifi_if}} {
         format_up = " %essid %ip"
         format_down = " : down"
 }

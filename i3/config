@@ -194,9 +194,9 @@ mode "$mode_system" {
 bindsym $mod+p mode "$mode_system"
 
 # class                 border  background  text       indicator child_border
-client.focused          {{3}} {{3}}     {{foreground}}    {{foreground}}   {{3}}
-client.focused_inactive {{3}} {{2}}     {{foreground}}    {{3}}   {{4}}
-client.unfocused        {{3}} {{2}}     {{4}}    {{3}}   {{2}}
+client.focused          {{3}} {{3}}     {{foreground}}    {{4}}   {{3}}
+client.focused_inactive {{3}} {{2}}     {{foreground}}    {{3}}   {{2}}
+client.unfocused        {{3}} {{2}}     {{3}}    {{3}}   {{2}}
 client.urgent           {{3}} {{8}}     {{foreground}}    {{8}}   {{8}}
 client.placeholder      {{background}} {{background}}     {{foreground}}    {{background}}   {{1}}
 

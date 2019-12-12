@@ -7,7 +7,9 @@
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "{{2}}",
         "statusBar.background": "{{2}}",
-        "editor.background": "{{1}}"
+        "editor.background": "{{background}}",
+        "panel.background": "{{background}}",
+        "sideBar.background": "{{background}}"
     },
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",

@@ -27,7 +27,7 @@ configuration {
 }
 
 #window {
-	border:     0px;
+	border:     1px;
 	height:     50%;
 	width:		22%;
 	children:	[mainbox];
