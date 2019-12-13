@@ -89,15 +89,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
 set $ws10 "10"
 
 # switch to workspace
@@ -111,6 +111,11 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+for_window [workspace=$ws1] layout tabbed
+for_window [workspace=$ws2] layout tabbed
+for_window [workspace=$ws3] layout tabbed
+for_window [workspace=$ws9] layout tabbed
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -131,24 +136,23 @@ assign [class="jetbrains-idea-ce"] $ws3
 assign [class="jetbrains-pycharm-ce"] $ws3
 assign [instance="Wfica"] $ws6
 assign [class="Wfica"] $ws6
-assign [instance="subl"] $ws7
 assign [instance="libreoffice-writer"] $ws7
 assign [class="Thunar"] $ws8
 assign [class="Pidgin"] $ws9
-assign [class="Telegram"] $ws10
+assign [class="Telegram"] $ws9
 for_window [class="Evolution"] move container to workspace $ws1
 for_window [class="Firefox"] move container to workspace $ws2
 for_window [class="Google-chrome"] move container to workspace $ws2
 for_window [class="jetbrains-idea-ce"] move container to workspace $ws3
 for_window [class="jetbrains-pycharm-ce"] move container to workspace $ws3
 for_window [instance="Wfica"] move container to workspace $ws6
-for_window [instance="subl"] move container to workspace $ws7
 for_window [instance="libreoffice"] move container to workspace $ws7
 for_window [class="Thunar"] move container to workspace $ws8
 for_window [class="Pidgin"] move container to workspace $ws9
-for_window [class="Telegram"] move container to workspace $ws10
+for_window [class="Telegram"] move container to workspace $ws9
 for_window [class="Spotify"] move scratchpad
 for_window [class="^.*"] border pixel 1
+hide_edge_borders smart
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -194,11 +198,11 @@ mode "$mode_system" {
 bindsym $mod+p mode "$mode_system"
 
 # class                 border  background  text       indicator child_border
-client.focused          {{3}} {{3}}     {{foreground}}    {{4}}   {{3}}
-client.focused_inactive {{3}} {{2}}     {{foreground}}    {{3}}   {{2}}
-client.unfocused        {{3}} {{2}}     {{3}}    {{3}}   {{2}}
+client.focused          {{3}} {{3}}     {{foreground}}    {{12}}   {{4}}
+client.focused_inactive {{3}} {{3}}     {{foreground}}    {{}}   {{2}}
+client.unfocused        {{3}} {{2}}     {{4}}    {{3}}   {{2}}
 client.urgent           {{3}} {{8}}     {{foreground}}    {{8}}   {{8}}
-client.placeholder      {{background}} {{background}}     {{foreground}}    {{background}}   {{1}}
+client.placeholder      {{background}} {{background}}     {{foreground}}    {{background}}   {{2}}
 
 client.background       {{foreground}}
 
@@ -207,13 +211,13 @@ bar {
   colors {
     background {{background}}
     statusline {{foreground}}
-    separator  {{5}}
+    separator  {{foreground}}
 
-    focused_workspace  {{4}} {{3}} {{foreground}}
-    active_workspace   {{3}} {{3}} {{foreground}}
-    inactive_workspace {{3}} {{2}} {{4}}
-    urgent_workspace   {{3}} {{8}} {{foreground}}
-    binding_mode       {{3}} {{8}} {{foreground}}
+    focused_workspace  {{3}} {{3}} {{foreground}}
+    active_workspace   {{2}} {{2}} {{foreground}}
+    inactive_workspace {{background}} {{background}} {{4}}
+    urgent_workspace   {{8}} {{8}} {{foreground}}
+    binding_mode       {{3}} {{3}} {{foreground}}
   }
 }
 
