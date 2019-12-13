@@ -51,7 +51,7 @@ element_count=3
 res=$(print_menu | rofi \
     -dmenu -sep '\0' -lines "$element_count" \
     -eh "$element_height" -p '' -no-custom \
-    -format i -theme ~/.config/rofi/config)
+    -width 32 -format i -theme ~/.config/rofi/config)
 
 if [ -z "$res" ] ; then
     exit

@@ -1,10 +1,10 @@
 
 configuration {
-	show-icons:      true;
+	show-icons:         true;
+	width:				30;
 }
 
 * {
-	background-color:   transparent;
     background:         {{1}};
     background-color:   {{1}};
     text-color:         {{4}};
@@ -22,14 +22,12 @@ configuration {
 	selected-active-foreground:  @winbg;
 	active-foreground:           @text-color;
 	selected-active-background:  @actbg;
-    border-color:                @foreground;
+    border-color:                @text-color;
     spacing:                     2;
 }
 
 #window {
 	border:     1px;
-	height:     50%;
-	width:		22%;
 	children:	[mainbox];
 }
 
@@ -51,10 +49,14 @@ entry {
     border-radius:  5px;
 }
 
+element {
+	padding:		2px;
+}
+
 element selected.normal {
 	background-color: @selected-normal-background;
 	text-color:       @selected-normal-foreground;
-	border-color:	    @active-background;
+	border-color:	  @active-background;
 }
 
 element selected.active {

@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     options = commands.keys()
     title = 'rofi-power'
-    rofi = f'rofi -dmenu -i  -theme /home/{user}/.config/rofi/config -lines 6 -p {title}'.split()
+    rofi = f'rofi -dmenu -i -theme /home/{user}/.config/rofi/config -lines 6 -width 10 -p {title}'.split()
     rofi_input = '\n'.join(x for x in options)
 
     cp = sp.run(rofi, input=rofi_input, encoding='utf-8', stdout=PIPE, stderr=PIPE)
