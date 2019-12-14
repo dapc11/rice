@@ -2,14 +2,18 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
-    "terminal.external.linuxExec": "kitty zsh",
-    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "terminal.external.linuxExec": "kitty fish",
+    "terminal.integrated.shell.linux": "/usr/bin/fish",
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "{{2}}",
         "statusBar.background": "{{2}}",
+        "statusBar.foreground": "{{foreground}}",
         "editor.background": "{{background}}",
+        "editor.foreground": "{{foreground}}",
         "panel.background": "{{background}}",
-        "sideBar.background": "{{background}}"
+        "sideBar.background": "{{background}}",
+        "panel.foreground": "{{foreground}}",
+        "sideBar.foreground": "{{foreground}}"
     },
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",
