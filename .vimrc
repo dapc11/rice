@@ -1,3 +1,27 @@
+"Download plug.vim
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"                                  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+let mapleader = ","
+call plug#begin('~/.vim/plugged')
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+  nnoremap <silent> <leader>f :F<CR>
+" Open files in horizontal split
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+" Open files in vertical horizontal split
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
 
 "" statusline
 set laststatus=2
@@ -40,7 +64,7 @@ function! StatuslineGitBranch()
     lcd %:p:h
     let l:gitrevparse=system("git rev-parse --abbrev-ref HEAD")
     lcd -
-    if l:gitrevparse!~"fatal: not a git repository"
+    if l:gitrevparse!~"fatal"
       let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
     endif
   endif
