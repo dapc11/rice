@@ -1,79 +1,46 @@
-"Download plug.vim
-"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"                                  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-let mapleader = ","
+let mapleader = "\<Space>"
+" Autoinstall vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 call plug#begin('~/.vim/plugged')
-
+Plug 'klen/python-mode'
+Plug 'valloric/youcompleteme'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+let g:fzf_action = {
+  \ 'ctrl-m': 'tabedit',
+  \ 'ctrl-o': 'e',
+  \ 'ctrl-t': 'tabedit',
+  \ 'ctrl-h':  'botright split',
+  \ 'ctrl-v':  'vertical botright split' }
 
-  nnoremap <silent> <leader>f :F<CR>
-" Open files in horizontal split
-nnoremap <silent> <Leader>s :call fzf#run({
-\   'down': '40%',
-\   'sink': 'botright split' })<CR>
+nnoremap <silent> <leader><space> :FZF<CR>
+nnoremap <silent> <leader><enter> :FZF ~<CR>
 
-" Open files in vertical horizontal split
-nnoremap <silent> <Leader>v :call fzf#run({
-\   'right': winwidth('.') / 2,
-\   'sink':  'vertical botright split' })<CR>
+let g:ycm_python_interpreter_path = '~/anaconda3/bin/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+let g:airline#extensions#tabline#formatter = 'default'
+set background=dark
+let base16colorspace=256
+let g:airline_theme='wombat'
 
-"" statusline
-set laststatus=2
-set statusline=                          " left align
-set statusline+=%2*\                     " blank char
-set statusline+=%2*\%{StatuslineMode()}
-set statusline+=%2*\                     " black char
-set statusline+=%1*\ <<
-set statusline+=%1*\ %f                  " short filename
-set statusline+=%1*\ >>
-set statusline+=%=                       " right align
-set statusline+=%*
-set statusline+=%3*\%h%m%r               " file flags (help, read-only, modified)
-set statusline+=%1*\%{b:gitbranch}       " include git branch
-set statusline+=%2*\%.35F                " long filename (trimmed to 25 chars)
-set statusline+=%2*\::
-set statusline+=%2*\%l/%L\\|             " line count
-set statusline+=%2*\%y                   " file type
-hi User1 ctermbg=black ctermfg=grey guibg=black guifg=grey
-hi User2 ctermbg=green ctermfg=black guibg=green guifg=black
-hi User3 ctermbg=black ctermfg=lightgreen guibg=black guifg=lightgreen
-
-"" statusline functions
-function! StatuslineMode()
-    let l:mode=mode()
-    if l:mode==#"n"
-        return "NORMAL"
-    elseif l:mode==?"v"
-        return "VISUAL"
-    elseif l:mode==#"i"
-        return "INSERT"
-    elseif l:mode==#"R"
-        return "REPLACE"
-    endif
-endfunction
-
-function! StatuslineGitBranch()
-  let b:gitbranch=""
-  if &modifiable
-    lcd %:p:h
-    let l:gitrevparse=system("git rev-parse --abbrev-ref HEAD")
-    lcd -
-    if l:gitrevparse!~"fatal"
-      let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
-    endif
-  endif
-endfunction
-
-augroup GetGitBranch
-  autocmd!
-  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-augroup END
+map <C-n> :NERDTreeToggle<CR>
+map <C-o> :NERDTreeToggle %<CR>
 
 filetype on
 au FileType gitcommit set tw=72
