@@ -4,6 +4,7 @@ import pystache
 import json
 import os
 import sys
+import shutil
 from pathlib import Path
 import getpass
 
@@ -20,16 +21,25 @@ class Ricer():
             destination = Path('/home/{0}/.config/{1}'.format(getpass.getuser(), target))
         else:
             destination = Path('output/{0}'.format(target))
+        self._create_missing_parents(destination)
         print('Writing to {0}'.format(destination))
-        if not os.path.exists(destination.parent):
-            os.makedirs(destination.parent)
         with open(destination, 'w') as f:
             f.write(pystache.render(template, self.context))
+
+    def _create_missing_parents(self, path):
+        if not os.path.exists(path):
+            os.makedirs(path.parent)
 
     def generate_config(self, source):
         with open(source, 'r') as f:
             template = pystache.parse(f.read())
             self._render_template(source, template)
+
+    def plain_copy_config(self, source, destination):
+        path = Path(destination)
+        self._create_missing_parents(path)
+        print('Writing to {0}'.format(path))
+        shutil.copy(source, path)
 
 if __name__ == "__main__":
     ricer = Ricer(True)
@@ -41,4 +51,11 @@ if __name__ == "__main__":
     ricer.generate_config('rofi/config.rasi')
     ricer.generate_config('i3status/config')
     ricer.generate_config('Code - OSS/User/settings.json')
+    ricer.generate_config('fish/config.fish')
+    ricer.generate_config('fish/fish_variables')
+    ricer.generate_config('fish/functions/fish_prompt.fish')
+    ricer.generate_config('fish/functions/fish_user_key_bindings.fish')
+    ricer.generate_config('fish/functions/fzf_key_bindings.fish')
+    ricer.plain_copy_config('.vimrc', '/home/{0}/.vimrc'.format(getpass.getuser()))
     sys.exit(0)
+
