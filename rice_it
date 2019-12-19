@@ -51,6 +51,7 @@ if __name__ == "__main__":
     ricer.generate_config('rofi/config.rasi')
     ricer.generate_config('i3status/config')
     ricer.generate_config('Code - OSS/User/settings.json')
+    ricer.generate_config('alacritty/alacritty.yml')
     ricer.generate_config('fish/config.fish')
     ricer.generate_config('fish/fish_variables')
     ricer.generate_config('fish/functions/fish_prompt.fish')

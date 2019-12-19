@@ -108,3 +108,4 @@ noremap <Leader>Y "*y
 noremap <Leader>P "*p
 noremap <Leader>y "+y
 noremap <Leader>p "+p
+highlight Visual cterm=reverse ctermbg=NONE
