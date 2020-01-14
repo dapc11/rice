@@ -20,5 +20,6 @@
   "foreground": "#c5c8c6",
   "background": "#282828",
   "font": "Source Code Pro",
-  "wifi_if": "wlp4s0"
+  "wifi_if": "wlp4s0",
+  "shell": "/usr/bin/zsh"
 }
