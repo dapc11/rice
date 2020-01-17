@@ -33,7 +33,6 @@ nnoremap <silent> <leader><space> :FZF<CR>
 nnoremap <silent> <leader><enter> :FZF ~<CR>
 
 let g:airline#extensions#tabline#formatter = 'default'
-set background=dark
 let base16colorspace=256
 let g:airline_theme='wombat'
 
@@ -55,18 +54,6 @@ highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
 set noshowmode
 
-
-
-""" Python IDE
-let g:ycm_python_interpreter_path = '/usr/bin/python'
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 set nofoldenable    " disable folding
 nnoremap <C-J> <C-W><C-J>
@@ -91,16 +78,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 let python_highlight_all=1
 syntax on
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -108,4 +85,3 @@ noremap <Leader>Y "*y
 noremap <Leader>P "*p
 noremap <Leader>y "+y
 noremap <Leader>p "+p
-highlight Visual cterm=reverse ctermbg=NONE

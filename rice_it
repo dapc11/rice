@@ -27,7 +27,7 @@ class Ricer():
             f.write(pystache.render(template, self.context))
 
     def _create_missing_parents(self, path):
-        if not os.path.exists(path):
+        if not os.path.exists(path.parent):
             os.makedirs(path.parent)
 
     def generate_config(self, source):
