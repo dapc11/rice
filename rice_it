@@ -46,7 +46,7 @@ class Ricer():
 
 
 if __name__ == "__main__":
-    ricer = Ricer(True)
+    ricer = Ricer(False)
     #ricer.generate_config('kitty/kitty.conf')
     #ricer.generate_config('Code - OSS/User/settings.json')
     #ricer.generate_config('terminator/config')
