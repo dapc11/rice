@@ -19,7 +19,7 @@
   "17": "#a4647c",
   "foreground": "#c5c8c6",
   "background": "#282828",
-  "font": "Source Code Pro",
-  "wifi_if": "wlp4s0",
-  "shell": "/usr/bin/fish"
+  "font": "Ubuntu",
+  "wifi_if": "enp0s3",
+  "shell": "/usr/bin/zsh"
 }
