@@ -20,7 +20,7 @@ call plug#end()
 " Fuzzyfind
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-let g:fzf_action = { 'enter': 'e' }
+let g:fzf_action = { 'enter': 'e', 'ctrl-t': 'tabedit' }
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 " Theme
