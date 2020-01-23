@@ -83,5 +83,5 @@ if __name__ == "__main__":
     ricer.plain_copy_config('.tmux.conf')
     ricer.plain_copy_config('.zshrc')
     ricer.plain_copy_config('gnome-terminal_dapc_rice.sh')
-    print("If using gnome-terminal, please invoke ~/gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
+    print("If using gnome-terminal, please invoke '~/gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
     sys.exit(0)

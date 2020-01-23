@@ -21,5 +21,6 @@
   "background": "#282828",
   "font": "Ubuntu",
   "wifi_if": "enp0s3",
-  "shell": "/usr/bin/zsh"
+  "shell": "/usr/bin/zsh",
+  "terminal": "gnome-terminal"
 }
