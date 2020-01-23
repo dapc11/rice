@@ -8,11 +8,9 @@
 
 ## Getting started
 
-In order to setup dapc11 linux environment make sure that you meet the requirements. Then it's just invoking the ricer left:
+In order to setup dapc11 linux environment make sure that you meet the requirements. Then it's just invoking the ricer left.
 
-    python3 rice_it
-
-Usage:
+### Usage
 
 ```
 Usage: rice_it [-h] [--first-setup] [--overwrite]
