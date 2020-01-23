@@ -2,8 +2,8 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
-    "terminal.external.linuxExec": "kitty fish",
-    "terminal.integrated.shell.linux": "/usr/bin/fish",
+    "terminal.external.linuxExec": "gnome-terminal",
+    "terminal.integrated.shell.linux": "{{shell}}",
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "{{2}}",
         "statusBar.background": "{{2}}",
@@ -18,5 +18,5 @@
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.inheritEnv": false
+    "terminal.integrated.inheritEnv": false,
 }

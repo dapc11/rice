@@ -7,20 +7,37 @@ import sys
 import shutil
 from pathlib import Path
 import getpass
+import argparse
 
 class Ricer():
-    def __init__(self, overwrite_current=False):
-        self.overwrite_current = overwrite_current
+    def __init__(self, args):
+        self.overwrite_current = args.overwrite
+
+        if args.first_setup:
+            self._first_setup()
+
         template = 'dapc_rice.json'
         with open(template, 'r') as f:
             print("Using context: '{}'".format(os.path.abspath(template)))
             self.context = json.load(f)
 
-    def _render_template(self, target, template):
-        if self.overwrite_current:
-            destination = Path('/home/{0}/.config/{1}'.format(getpass.getuser(), target))
+    def _first_setup(self):
+        print('First rice, setting up environment')
+        for x in {'zsh', 'oh-my-zsh', }:
+            print('install {}'.format(x))
+        print('sudo apt-get install zsh')
+        print('sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+
+    def _get_destination(self, plain, target=''):
+        if self.overwrite_current and plain:
+            return Path('/home/{0}/{1}'.format(getpass.getuser(), target))
+        elif self.overwrite_current:
+            return Path('/home/{0}/.config/{1}'.format(getpass.getuser(), target))
         else:
-            destination = Path('output/{0}'.format(target))
+            return Path('output/{0}'.format(target))
+
+    def _render_template(self, target, template):
+        destination = self._get_destination(False, target)
         self._create_missing_parents(destination)
         print('Writing to {0}'.format(destination))
         with open(destination, 'w') as f:
@@ -35,35 +52,36 @@ class Ricer():
             template = pystache.parse(f.read())
             self._render_template(source, template)
 
-    def plain_copy_config(self, source, destination):
-        path = Path(destination)
-        self._create_missing_parents(path)
-        print('Writing to {0}'.format(path))
+    def plain_copy_config(self, source):
+        destination = self._get_destination(True, source)
+        self._create_missing_parents(destination)
+        print('Writing to {0}'.format(destination))
         with open(source, 'r') as f:
             template = pystache.parse(f.read())
-            with open(destination, 'w') as f:
+            with open(str(destination), 'w') as f:
                 f.write(pystache.render(template, self.context))
 
+def setup_argparser():
+    parser = argparse.ArgumentParser(prog='rice_it', description='Dapc ricer, make your environment consistent from a color perspective.')
+    parser.add_argument('--first-setup', '-fs', help='WIP: Indicate that this is the first setup, will install necessary packages to get started.', action='store_true')
+    parser.add_argument('--overwrite', '-o', help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!', action='store_true')
+    return parser
 
 if __name__ == "__main__":
-    ricer = Ricer(True)
-    #ricer.generate_config('kitty/kitty.conf')
-    #ricer.generate_config('Code - OSS/User/settings.json')
-    #ricer.generate_config('terminator/config')
-#    ricer.generate_config('alacritty/alacritty.yml')
+    parser = setup_argparser()
+    ricer = Ricer(parser.parse_args())
+
 #    ricer.generate_config('i3/config')
 #    ricer.generate_config('i3/rofi-powermgmt')
 #    ricer.generate_config('i3/rofi-randr')
 #    ricer.generate_config('dunst/dunstrc')
 #    ricer.generate_config('rofi/config.rasi')
 #    ricer.generate_config('i3status/config')
-#    ricer.generate_config('fish/config.fish')
-#    ricer.generate_config('fish/fish_variables')
-#    ricer.generate_config('fish/functions/fish_prompt.fish')
-#    ricer.generate_config('fish/functions/fish_user_key_bindings.fish')
-#    ricer.generate_config('fish/functions/fzf_key_bindings.fish')
-    ricer.plain_copy_config('.vimrc', '/home/{0}/.vimrc'.format(getpass.getuser()))
-    ricer.plain_copy_config('.tmux.conf', '/home/{0}/.tmux.conf'.format(getpass.getuser()))
-    ricer.plain_copy_config('.zshrc', '/home/{0}/.zshrc'.format(getpass.getuser()))
+    ricer.generate_config('Code - OSS/User/settings.json')
+    ricer.generate_config('Code/User/settings.json')
+    ricer.plain_copy_config('.vimrc')
+    ricer.plain_copy_config('.tmux.conf')
+    ricer.plain_copy_config('.zshrc')
+    ricer.plain_copy_config('gnome-terminal_dapc_rice.sh')
+    print("If using gnome-terminal, please invoke ~/gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
     sys.exit(0)
-

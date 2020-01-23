@@ -1,24 +1,28 @@
 # Dapc11 Ricer
 
-## TODO
+## Prerequisites
 
-### Intellij Dotfile
-TODO
+- python3
+- pip3
+- pystache (pip3 install pystache)
 
-### Zsh -> fish
+## Getting started
 
-    sudo apt-add-repository ppa:fish-shell/release-2
-    sudo apt-get update
-    sudo apt-get install fish
+In order to setup dapc11 linux environment make sure that you meet the requirements. Then it's just invoking the ricer left:
 
-    > which
-    /usr/bin/fish
-    > chsh -s /usr/bin/fish
+    python3 rice_it
 
-    mkdir -p ~/.config/fish
-    vim ~/.config/fish/config.fish
-    set -g -x PATH /usr/local/bin $PATH
+Usage:
 
-Launch webserver to config:
+```
+Usage: rice_it [-h] [--first-setup] [--overwrite]
 
-    fish_config
+Dapc ricer, make your environment consistent from a color perspective.
+
+optional arguments:
+  -h, --help          show this help message and exit
+  --first-setup, -fs  WIP: Indicate that this is the first setup, will install
+                      necessary packages to get started.
+  --overwrite, -o     Make rice_it overwrite existing dotfiles in your home
+                      directory, use with caution!
+```

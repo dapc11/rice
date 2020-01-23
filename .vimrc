@@ -1,7 +1,4 @@
 let mapleader = "\<Space>"
-set background=dark
-let base16colorspace=256
-set termguicolors
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -14,7 +11,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'chriskempson/base16-vim'
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -24,11 +20,11 @@ call plug#end()
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_action = { 'enter': 'e' }
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 " Theme
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='base16'
-colorscheme base16-ocean
+let g:airline_theme='angr'
 
 filetype on
 au FileType gitcommit set tw=72
@@ -44,7 +40,6 @@ set expandtab
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
 set noshowmode
-
 set nofoldenable    " disable folding
 
 " Movement
@@ -63,8 +58,6 @@ noremap <Leader>Y "*y
 noremap <Leader>P "*p
 noremap <Leader>y "+y
 noremap <Leader>p "+p
-"nnoremap <silent> <leader><space> :FZF<CR>
-nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 " NERDTree
 map <C-t> :NERDTreeToggle<CR>
@@ -80,13 +73,13 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 au BufNewFile,BufRead *.js, *.html, *.css, *.json, *.yaml
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
 
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
 
 let python_highlight_all=1
