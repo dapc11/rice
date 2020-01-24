@@ -7,9 +7,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
 Plug 'klen/python-mode'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
@@ -22,7 +24,7 @@ call plug#end()
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_action = { 'enter': 'e', 'ctrl-t': 'tabedit' }
-nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 " Theme
 let g:airline#extensions#tabline#formatter = 'default'
