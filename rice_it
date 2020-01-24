@@ -9,6 +9,7 @@ from pathlib import Path
 import getpass
 import argparse
 
+
 class Ricer():
     def __init__(self, args):
         self.overwrite_current = args.overwrite
@@ -32,7 +33,8 @@ class Ricer():
         if self.overwrite_current and plain:
             return Path('/home/{0}/{1}'.format(getpass.getuser(), target))
         elif self.overwrite_current:
-            return Path('/home/{0}/.config/{1}'.format(getpass.getuser(), target))
+            return Path(
+                '/home/{0}/.config/{1}'.format(getpass.getuser(), target))
         else:
             return Path('output/{0}'.format(target))
 
@@ -61,11 +63,22 @@ class Ricer():
             with open(str(destination), 'w') as f:
                 f.write(pystache.render(template, self.context))
 
+
 def setup_argparser():
-    parser = argparse.ArgumentParser(prog='rice_it', description='Dapc ricer, make your environment consistent from a color perspective.')
-    parser.add_argument('--first-setup', '-fs', help='WIP: Indicate that this is the first setup, will install necessary packages to get started.', action='store_true')
-    parser.add_argument('--overwrite', '-o', help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!', action='store_true')
+    parser = argparse.ArgumentParser(
+        prog='rice_it',
+        description='Dapc ricer, make your environment consistent from a color perspective.')
+    parser.add_argument(
+        '--first-setup',
+        '-fs',
+        help='WIP: Indicate that this is the first setup, will install necessary packages to get started.',
+        action='store_true')
+    parser.add_argument(
+        '--overwrite', '-o',
+        help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
+        action='store_true')
     return parser
+
 
 if __name__ == "__main__":
     parser = setup_argparser()
@@ -82,5 +95,5 @@ if __name__ == "__main__":
     ricer.plain_copy_config('.tmux.conf')
     ricer.plain_copy_config('.zshrc')
     ricer.plain_copy_config('gnome-terminal_dapc_rice.sh')
-    print("If using gnome-terminal, please invoke '~/gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
+    print("If using gnome-terminal, please invoke 'gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
     sys.exit(0)
