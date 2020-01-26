@@ -1,5 +1,6 @@
-let mapleader = "\<Space>"
+let mapleader = "\<Space>"  " make <space> be the leader key
 set background=dark
+
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -7,43 +8,35 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'klen/python-mode'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'preservim/nerdcommenter'          " Comment multiline
+Plug 'jiangmiao/auto-pairs'             " Auto pair (), {}, [], ''
+Plug 'scrooloose/nerdtree'              " Nerdtree, explore files
+Plug 'airblade/vim-gitgutter'           " Show modified lines in git repos
+Plug 'vim-airline/vim-airline'          " Statusline
+Plug 'vim-airline/vim-airline-themes'   " Statusline themes
+Plug 'terryma/vim-multiple-cursors'     " Multiline editing, ctrl+n and i for insert
 " Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzyfinder, space+f and find away!
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Fuzzyfind
-let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_action = { 'enter': 'e', 'ctrl-t': 'tabedit' }
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 " Theme
-let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_theme='angr'
 
 filetype on
 au FileType gitcommit set tw=72
-set t_Co=16
 set mouse=r
 filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
+set tabstop=4       " show existing tab with 4 spaces width
+set shiftwidth=4    " when indenting with '>', use 4 spaces width
+set expandtab       " On pressing tab, insert 4 spaces
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
-set noshowmode
 set nofoldenable    " disable folding
 
 " Movement
@@ -57,7 +50,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Copy to clipboard
+" Copy to clipboard, requires vim-gtk
 noremap <Leader>Y "*y
 noremap <Leader>P "*p
 noremap <Leader>y "+y
@@ -66,7 +59,7 @@ noremap <Leader>p "+p
 " NERDTree
 map <C-t> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif " Open nerdtree if vim is opened without file
 
 " Python syntax
 au BufNewFile,BufRead *.py
