@@ -81,3 +81,4 @@ set encoding=utf-8
 
 let python_highlight_all=1
 syntax on
+set noshowmode " Disable mode showage
