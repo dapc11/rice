@@ -22,5 +22,5 @@
   "font": "Ubuntu",
   "wifi_if": "enp0s3",
   "shell": "/usr/bin/zsh",
-  "terminal": "gnome-terminal"
+  "terminal": "kitty"
 }

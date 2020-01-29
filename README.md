@@ -24,3 +24,15 @@ optional arguments:
   --overwrite, -o     Make rice_it overwrite existing dotfiles in your home
                       directory, use with caution!
 ```
+
+## Dependencies
+
+- fonts-font-awesome
+- rofi
+- dconf-cli
+- uuid-runtime
+- xsel
+- xclip
+- vim-gtk
+- tmux (optional)
+- kitty (optional)
