@@ -201,29 +201,29 @@ colors:
   # If only text is unset the cell text color will remain the same.
   selection:
     text: '{{background}}'
-    background: '{{5}}'
+    background: '{{five}}'
 
   # Normal colors
   normal:
-    black:   '{{0}}'
-    red:     '{{8}}'
-    green:   '{{11}}'
-    yellow:  '{{10}}'
-    blue:    '{{13}}'
-    magenta: '{{17}}'
-    cyan:    '{{12}}'
-    white:   '{{6}}'
+    black:   '{{zero}}'
+    red:     '{{eight}}'
+    green:   '{{eleven}}'
+    yellow:  '{{ten}}'
+    blue:    '{{thirteen}}'
+    magenta: '{{seventeen}}'
+    cyan:    '{{twelve}}'
+    white:   '{{six}}'
 
   # Bright colors
   bright:
-    black:   '{{1}}'
-    red:     '{{8}}'
-    green:   '{{11}}'
-    yellow:  '{{16}}'
-    blue:    '{{13}}'
-    magenta: '{{14}}'
-    cyan:    '{{12}}'
-    white:   '{{7}}'
+    black:   '{{one}}'
+    red:     '{{eight}}'
+    green:   '{{eleven}}'
+    yellow:  '{{fourteen}}'
+    blue:    '{{thirteen}}'
+    magenta: '{{fourteen}}'
+    cyan:    '{{twelve}}'
+    white:   '{{seven}}'
 
   # Dim colors
   #
@@ -273,7 +273,7 @@ colors:
 visual_bell:
   animation: EaseOutExpo
   duration: 0
-  color: '{{7}}'
+  color: '{{seven}}'
 
 # Background opacity
 #

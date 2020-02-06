@@ -1,15 +1,15 @@
 
 configuration {
-	show-icons:         true;
-	width:				30;
+	show-icons:  true;
+	width:       30;
 }
 
 * {
-    background:         {{1}};
-    background-color:   {{1}};
-    text-color:         {{4}};
-    actbg:              {{3}};
-    winbg:              {{5}};
+    background:        {{one}};
+    background-color:  {{one}};
+    text-color:        {{four}};
+    actbg:             {{three}};
+    winbg:             {{five}};
 
 	selected-normal-foreground:  @winbg;
 	normal-foreground:           @text-color;
@@ -27,13 +27,13 @@ configuration {
 }
 
 #window {
-	border:     1px;
-	children:	[mainbox];
+	border:    1px;
+	children:  [mainbox];
 }
 
 #mainbox {
-	children:   [ entry,listview ];
-    padding:    10px;
+	children:  [ entry,listview ];
+    padding:   10px;
 }
 
 #listview {
@@ -43,23 +43,23 @@ configuration {
 }
 
 entry {
-	expand:         false;
-	vertical-align: 1;
-	padding:        5px;
-    border-radius:  5px;
+	expand:          false;
+	vertical-align:  1;
+	padding:         5px;
+    border-radius:   5px;
 }
 
 element {
-	padding:		2px;
+	padding:  2px;
 }
 
 element selected.normal {
-	background-color: @selected-normal-background;
-	text-color:       @selected-normal-foreground;
-	border-color:	  @active-background;
+	background-color:  @selected-normal-background;
+	text-color:        @selected-normal-foreground;
+	border-color:      @active-background;
 }
 
 element selected.active {
-	background-color: @selected-active-background;
-	text-color:       @selected-active-foreground;
+	background-color:  @selected-active-background;
+	text-color:        @selected-active-foreground;
 }

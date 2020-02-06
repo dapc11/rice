@@ -4,7 +4,7 @@
 
 - python3
 - pip3
-- pystache (pip3 install pystache)
+- jinja2 (pip3 install jinja2)
 
 ## Getting started
 
