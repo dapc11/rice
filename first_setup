@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo -e "\n\tUpdating packages"
+echo "----------------------------------------------------"
+sudo apt-get update
+
+echo -e "\n\tCleaning up old packages"
+echo "----------------------------------------------------"
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+echo -e "\n\tInstalling packages"
+echo "----------------------------------------------------"
+sudo apt-get install \
+    build-essential \
+    dkms \
+    fonts-font-awesome \
+    zsh \
+    dconf-cli \
+    uuid-runtime \
+    python3 \
+    python3-pip \
+    curl \
+    git \
+    xsel \
+    xclip \
+    vim \
+    vim-gtk \
+    tmux \
+    kitty \
+    i3 \
+    rofi
+
+sudo snap install code --classic
+pip3 install --user --requirement requirements.txt
+
+echo -e "\n\tInstalling Oh-My-Zsh"
+echo "----------------------------------------------------"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+echo -e "\n\tGenerating dotfiles"
+echo "----------------------------------------------------"
+python3 rice_it -o
+chmod +x /home/${USER}/gnome-terminal_dapc_rice.sh
+/home/${USER}/gnome-terminal_dapc_rice.sh

@@ -2,11 +2,14 @@
 
 ## Getting started
 
-In order to setup dapc11 linux environment make sure that you meet the requirements. Then it's just invoking the ricer left.
+Make __first_setup__ executable and invoke it as following in order to setuo your environment:
 
 ```bash
-pip install --user --requirement requirements.txt
+chmod +x first_setup
+./first_setup
 ```
+
+One can at any time after first setup invoke __rice_it__ in order to re-generate dotfiles, see below for usage.
 
 ### Usage
 
@@ -22,15 +25,3 @@ optional arguments:
   --overwrite, -o     Make rice_it overwrite existing dotfiles in your home
                       directory, use with caution!
 ```
-
-## Dependencies
-
-- fonts-font-awesome
-- rofi
-- dconf-cli
-- uuid-runtime
-- xsel
-- xclip
-- vim-gtk
-- tmux (optional)
-- kitty (optional)
