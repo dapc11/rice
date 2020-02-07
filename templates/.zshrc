@@ -3,7 +3,7 @@ user_home="/home/${USER}"
 export TERM="xterm-256color"
 export ZSH="${user_home}/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="{{zsh_theme}}"
 
 # see 'man strftime' for details.
 HIST_STAMPS="mm/dd/yyyy"
@@ -55,7 +55,7 @@ alias ducks="du -cks * | sort -rn | head"
 bindkey "\E[1~" beginning-of-line
 bindkey "\E[4~" end-of-line
 
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-if [ /usr/local/bin/helm ]; then source <(helm completion zsh); fi
+if [ -e /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+if [ -e /usr/local/bin/helm ]; then source <(helm completion zsh); fi
 set -g hist_ignore_dups
 setopt HIST_FIND_NO_DUPS

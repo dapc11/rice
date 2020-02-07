@@ -7,6 +7,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
+import subprocess
 
 import jinja2
 
@@ -22,6 +23,11 @@ class Ricer():
         with open(template, 'r') as f:
             print("Using context: '{}'".format(os.path.abspath(template)))
             self.context = json.load(f)
+        try:
+            self.context['wifi_if'] = subprocess.check_output(
+                "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
+        except subprocess.CalledProcessError as e:
+            print('Could not determine active network interface.')
 
     def _get_destination(self, plain, template, target):
         if self.overwrite_current:
@@ -75,6 +81,7 @@ if __name__ == "__main__":
     ricer.render_template('.vimrc', plain=True, target='/home/{0}/{1}')
     ricer.render_template('.tmux.conf', plain=True, target='/home/{0}/{1}')
     ricer.render_template('.zshrc', plain=True, target='/home/{0}/{1}')
-    ricer.render_template('gnome-terminal_dapc_rice.sh', plain=True, target='/home/{0}/{1}')
+    ricer.render_template('gnome-terminal_dapc_rice.sh',
+                          plain=True, target='/home/{0}/{1}')
     print("If using gnome-terminal, please invoke 'gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
     sys.exit(0)

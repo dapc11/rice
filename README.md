@@ -1,14 +1,12 @@
 # Dapc11 Ricer
 
-## Prerequisites
-
-- python3
-- pip3
-- jinja2 (pip3 install jinja2)
-
 ## Getting started
 
 In order to setup dapc11 linux environment make sure that you meet the requirements. Then it's just invoking the ricer left.
+
+```bash
+pip install --user --requirement requirements.txt
+```
 
 ### Usage
 

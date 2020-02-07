@@ -20,7 +20,7 @@
   "foreground": "#c5c8c6",
   "background": "#282828",
   "font": "Ubuntu",
-  "wifi_if": "wlp1s0",
   "shell": "/usr/bin/zsh",
-  "terminal": "gnome-terminal"
+  "terminal": "gnome-terminal",
+  "zsh_theme": "afowler"
 }
