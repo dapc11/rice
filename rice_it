@@ -71,6 +71,7 @@ if __name__ == "__main__":
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('i3status/config')
     ricer.render_template('Code/User/settings.json')
+    ricer.render_template('Code - OSS/User/settings.json')
     ricer.render_template('.vimrc', plain=True, target='/home/{0}/{1}')
     ricer.render_template('.tmux.conf', plain=True, target='/home/{0}/{1}')
     ricer.render_template('.zshrc', plain=True, target='/home/{0}/{1}')

@@ -14,7 +14,7 @@ internal=$(xrandr|grep primary|cut -d' ' -f1)
 
 external_off() {
 cat <<EOF
-Undocked
+1. undocked
 ┏━━━━┓          External monitor disabled - $ext
 ┃    ┃          External monitor disabled - $ext2
 ┗━━━━┛          Internal monitor enabled  - $internal
@@ -22,7 +22,7 @@ EOF
 }
 internal_off() {
 cat <<EOF
-Docked
+2. docked
 ┏━━━━┓ ┏━━━━┓   External monitor enabled  - $ext
 ┃    ┃ ┃    ┃   External monitor enabled  - $ext2
 ┗━━━━┛ ┗━━━━┛   Internal monitor disabled - $internal
@@ -30,7 +30,7 @@ EOF
 }
 presentation() {
 cat <<EOF
-Presentation
+3. presentation
 ┏━━━━┓ ┏━━━━┓   External monitor enabled - $ext3
 ┃    ┃ ┃    ┃   Internal monitor enabled - $internal
 ┗━━━━┛ ┗━━━━┛
