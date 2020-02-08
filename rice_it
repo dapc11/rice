@@ -14,23 +14,28 @@ import jinja2
 
 class Ricer():
     def __init__(self, args):
-        self.overwrite_current = args.overwrite
+        self.should_overwrite = args.overwrite
 
         templateLoader = jinja2.FileSystemLoader(searchpath="./templates/")
         self.env = jinja2.Environment(loader=templateLoader)
+        self.context = self._get_context()
+        self._determine_network_inferface()
 
+    def _get_context(self):
         template = 'dapc_rice.json'
         with open(template, 'r') as f:
             print("Using context: '{}'".format(os.path.abspath(template)))
-            self.context = json.load(f)
+            return json.load(f)
+
+    def _determine_network_inferface(self):
         try:
             self.context['wifi_if'] = subprocess.check_output(
                 "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
         except subprocess.CalledProcessError as e:
             print('Could not determine active network interface.')
 
-    def _get_destination(self, plain, template, target):
-        if self.overwrite_current:
+    def _get_destination(self, template, target):
+        if self.should_overwrite:
             return Path(target.format(getpass.getuser(), template))
         else:
             return Path('output/{0}'.format(template))
@@ -39,8 +44,8 @@ class Ricer():
         if not os.path.exists(path.parent):
             os.makedirs(path.parent)
 
-    def render_template(self, template, plain=False, target='/home/{0}/.config/{1}/'):
-        destination = self._get_destination(plain, template, target)
+    def render_template(self, template, target='/home/{0}/.config/{1}/'):
+        destination = self._get_destination(template, target)
         self._create_missing_parents(destination)
 
         t = self.env.get_template(template)
@@ -78,10 +83,9 @@ if __name__ == "__main__":
     ricer.render_template('i3status/config')
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code - OSS/User/settings.json')
-    ricer.render_template('.vimrc', plain=True, target='/home/{0}/{1}')
-    ricer.render_template('.tmux.conf', plain=True, target='/home/{0}/{1}')
-    ricer.render_template('.zshrc', plain=True, target='/home/{0}/{1}')
-    ricer.render_template('gnome-terminal_dapc_rice.sh',
-                          plain=True, target='/home/{0}/{1}')
+    ricer.render_template('.vimrc', '/home/{0}/{1}')
+    ricer.render_template('.tmux.conf', '/home/{0}/{1}')
+    ricer.render_template('.zshrc', '/home/{0}/{1}')
+    ricer.render_template('gnome-terminal_dapc_rice.sh', '/home/{0}/{1}')
     print("If using gnome-terminal, please invoke 'gnome-terminal_dapc_rice.sh' in order to setup a profile. Don't forget to set it as default.")
     sys.exit(0)
