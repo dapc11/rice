@@ -59,3 +59,8 @@ if [ -e /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 if [ -e /usr/local/bin/helm ]; then source <(helm completion zsh); fi
 set -g hist_ignore_dups
 setopt HIST_FIND_NO_DUPS
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")$reset_color"
+PROMPT='%{${fg[green]}%}%3~$(git_prompt_info)%(?.$fg[green].$fg[red])%{ $%} %{$reset_color%}'
+RPROMPT='%{$FG[059]%}!%!%{$reset_color%}'
