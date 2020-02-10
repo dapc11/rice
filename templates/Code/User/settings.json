@@ -1,10 +1,12 @@
 {
     "editor.suggestSelection": "first",
+    "editor.rulers": [80,120],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
     "terminal.external.linuxExec": "{{terminal}}",
     "terminal.integrated.shell.linux": "{{shell}}",
     "workbench.colorCustomizations": {
+        "editorRuler.foreground": "{{two}}",
         "titleBar.activeBackground": "{{two}}",
         "statusBar.background": "{{two}}",
         "statusBar.foreground": "{{foreground}}",
