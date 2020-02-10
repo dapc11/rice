@@ -57,8 +57,11 @@ bindkey "\E[4~" end-of-line
 
 if [ -e /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 if [ -e /usr/local/bin/helm ]; then source <(helm completion zsh); fi
-set -g hist_ignore_dups
+
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+set -g hist_ignore_dups
+
 function git_prompt_info() {
   local ref
   if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
@@ -70,5 +73,7 @@ function git_prompt_info() {
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%(?..%{$fg[red]%})> %{$reset_color%}'
-RPROMPT='%{$FG[059]%}!%!%{$reset_color%}'
+PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%(?..%{$fg[red]%})› %{$reset_color%}'
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+
+RPROMPT='%{$FG[059]%}!%!%{$reset_color%} ${return_code}'
