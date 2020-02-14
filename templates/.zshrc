@@ -187,6 +187,15 @@ fshow_preview() {
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
+ftag_preview() {
+  local tags target
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(git --no-pager tag | fzf --no-hscroll --no-multi -n 2 --ansi --preview="git --no-pager log -150 --color=always --oneline '{1}..HEAD'") || return
+  git checkout $(awk '{print $1}' <<<"$target" )
+}
+
+
 # Select a docker container to start and attach to
 function da() {
   local cid
