@@ -15,6 +15,7 @@ Plug 'airblade/vim-gitgutter'           " Show modified lines in git repos
 Plug 'vim-airline/vim-airline'          " Statusline
 Plug 'vim-airline/vim-airline-themes'   " Statusline themes
 Plug 'terryma/vim-multiple-cursors'     " Multiline editing, ctrl+n and i for insert
+Plug 'yuttie/comfortable-motion.vim'    " Comfortable scrolling (scroll with Ctrl + d/u)
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzyfinder, space+f and find away!
 Plug 'junegunn/fzf.vim'
