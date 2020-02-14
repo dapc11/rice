@@ -74,17 +74,17 @@ function git_prompt_info() {
 function conda_env()
 {
     if [ -n $(command -v conda) ]; then
-        local conda="🅒 $(command conda env list | grep \* | cut -d" " -f1)"
+        local conda="🅒 $(command conda info | grep "active environment" | cut -d" " -f9)"
         echo "%{$FG[059]%}${conda}%{$reset_color%}"
     fi
 }
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%(?..%{$fg[red]%})› %{$reset_color%}'
+PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info) %{$FG[059]%}$(conda_env)%{$reset_color%} %(?..%{$fg[red]%})› %{$reset_color%}'
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-RPROMPT='${return_code} %{$FG[059]%}$(conda_env)%{$reset_color%}'
+RPROMPT='${return_code}'
 
 ########################## fzf
 # fbr - checkout git branch
