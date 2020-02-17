@@ -81,8 +81,6 @@ function conda_env()
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info) %{$FG[059]%}$(conda_env)%{$reset_color%} %(?..%{$fg[red]%})› %{$reset_color%}'
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 RPROMPT='${return_code}'
 
@@ -217,3 +215,7 @@ function drm() {
 
   [ -n "$cid" ] && docker rm "$cid"
 }
+PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info) %{$FG[059]%}$(conda_env) %{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+
+RPROMPT='${return_code} '

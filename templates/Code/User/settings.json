@@ -6,9 +6,9 @@
     "terminal.external.linuxExec": "{{terminal}}",
     "terminal.integrated.shell.linux": "{{shell}}",
     "workbench.colorCustomizations": {
-        "editorRuler.foreground": "{{two}}",
-        "titleBar.activeBackground": "{{two}}",
-        "statusBar.background": "{{two}}",
+        "editorRuler.foreground": "{{black03}}",
+        "titleBar.activeBackground": "{{black03}}",
+        "statusBar.background": "{{black03}}",
         "statusBar.foreground": "{{foreground}}",
         "editor.background": "{{background}}",
         "editor.foreground": "{{foreground}}",

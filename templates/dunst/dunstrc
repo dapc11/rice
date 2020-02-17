@@ -1,18 +1,18 @@
 [urgency_low]
-    background = "{{two}}"
-    foreground = "{{five}}"
+    background = "{{black03}}"
+    foreground = "{{white03}}"
     timeout = 10
 [urgency_normal]
-    background = "{{two}}"
-   foreground = "{{five}}"
+    background = "{{black03}}"
+   foreground = "{{white03}}"
     timeout = 10
 [urgency_critical]
-    background = "{{two}}"
-   foreground = "{{eight}}"
-    frame_color = "{{eight}}"
+    background = "{{black03}}"
+   foreground = "{{red}}"
+    frame_color = "{{red}}"
     timeout = 0
 [global]
-    frame_color = "{{five}}"
+    frame_color = "{{white03}}"
     # Which monitor should the notifications be displayed on.
     monitor = 0
 

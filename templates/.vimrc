@@ -1,5 +1,4 @@
 let mapleader = "\<Space>"  " make <space> be the leader key
-set background=dark
 
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -25,9 +24,6 @@ call plug#end()
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_action = { 'enter': 'e', 'ctrl-t': 'tabedit' }
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-
-" Theme
-let g:airline_theme='angr'
 
 filetype on
 au FileType gitcommit set tw=72
@@ -81,5 +77,10 @@ au BufNewFile, BufRead *.js, *.html, *.css, *.json, *.yaml
 set encoding=utf-8
 
 let python_highlight_all=1
-syntax on
+
 set noshowmode " Disable mode showage
+
+"""""""""""""""""" THEME
+colorscheme base16-eighties
+let g:airline_theme='base16_ocean'
+set background=dark

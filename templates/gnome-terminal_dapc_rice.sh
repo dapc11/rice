@@ -58,7 +58,7 @@ if which "$DCONF" > /dev/null 2>&1; then
 
         # update profile values with theme options
         dset visible-name "'$PROFILE_NAME'"
-        dset palette "['{{background}}', '{{eight}}', '{{eleven}}', '{{ten}}', '{{thirteen}}', '{{fifteen}}', '{{twelve}}', '{{foreground}}', '{{three}}', '{{eight}}', '{{eleven}}', '{{ten}}', '{{thirteen}}', '{{fifteen}}', '{{twelve}}', '{{seven}}']"
+        dset palette "['{{background}}', '{{red}}', '{{green}}', '{{yellow}}', '{{blue}}', '{{brown}}', '{{cyan}}', '{{foreground}}', '{{black04}}', '{{red}}', '{{green}}', '{{black03}}', '{{blue}}', '{{brown}}', '{{cyan}}', '{{white01}}']"
         dset background-color "'{{background}}'"
         dset foreground-color "'{{foreground}}'"
         dset bold-color "'{{foreground}}'"
@@ -108,7 +108,7 @@ glist_append() {
 glist_append string /apps/gnome-terminal/global/profile_list "$PROFILE_SLUG"
 
 gset string visible_name "$PROFILE_NAME"
-gset string palette "{{background}}:{{eight}}:{{eleven}}:{{ten}}:{{thirteen}}:{{fifteen}}:{{twelve}}:{{foreground}}:{{three}}:{{eight}}:{{eleven}}:{{ten}}:{{thirteen}}:{{fifteen}}:{{twelve}}:{{seven}}"
+gset string palette "{{background}}:{{red}}:{{green}}:{{yellow}}:{{blue}}:{{brown}}:{{cyan}}:{{foreground}}:{{black04}}:{{red}}:{{green}}:{{black03}}:{{blue}}:{{brown}}:{{cyan}}:{{white01}}"
 gset string background_color "{{background}}"
 gset string foreground_color "{{foreground}}"
 gset string bold_color "{{foreground}}"
