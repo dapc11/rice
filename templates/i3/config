@@ -177,7 +177,7 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-set $Locker i3lock -c {{black03}} && sleep 1
+set $Locker i3lock -c {{base02}} && sleep 1
 
 set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
@@ -195,27 +195,28 @@ mode "$mode_system" {
 
 bindsym $mod+p mode "$mode_system"
 
-# class                 border  background  text       indicator child_border
-client.focused          {{black04}} {{black04}}     {{foreground}}    {{cyan}}   {{black05}}
-client.focused_inactive {{black04}} {{black04}}     {{foreground}}    {{black04}}   {{black03}}
-client.unfocused        {{black04}} {{black03}}     {{black05}}    {{black03}}   {{black03}}
-client.urgent           {{black04}} {{red}}     {{foreground}}    {{red}}   {{red}}
-client.placeholder      {{background}} {{background}}     {{foreground}}    {{background}}   {{black03}}
+# class                 border     background     text          indicator    child_border
+client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
+client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
+client.unfocused        {{base03}} {{base01}}     {{base04}}    {{base02}}   {{base02}}
+client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
+client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
 
-client.background       {{foreground}}
+client.background       {{base05}}
 
 bar {
   status_command i3status
   colors {
-    background {{background}}
-    statusline {{foreground}}
-    separator  {{foreground}}
+    background            {{base01}}
+    statusline            {{base05}}
+    separator             {{base05}}
 
-    focused_workspace  {{black04}} {{black04}} {{foreground}}
-    active_workspace   {{black03}} {{black03}} {{foreground}}
-    inactive_workspace {{background}} {{background}} {{black05}}
-    urgent_workspace   {{red}} {{red}} {{foreground}}
-    binding_mode       {{black04}} {{black04}} {{foreground}}
+#                         border       background    text
+    focused_workspace     {{base03}}   {{base03}}    {{base05}}
+    active_workspace      {{base02}}   {{base02}}    {{base05}}
+    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
+    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
+    binding_mode          {{base03}}   {{base03}}    {{base05}}
   }
 }
 
@@ -229,7 +230,7 @@ bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+b exec rofi -show window -theme ~/.config/rofi/config
-bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{background}}' -sf '{{foreground}}' -sb '{{black04}}' -nf '{{foreground}}'
+bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base00}}' -sf '{{base05}}' -sb '{{base03}}' -nf '{{base05}}'
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Ctrl+greater move workspace to output right
@@ -244,3 +245,4 @@ bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --r
 
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id emacs --daemon
+exec --no-startup-id xsetroot -solid "{{base00}}"

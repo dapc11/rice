@@ -175,8 +175,8 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '{{background}}'
-    foreground: '{{foreground}}'
+    background: '{{base00}}'
+    foreground: '{{base05}}'
 
     # Bright and dim foreground colors
     #
@@ -200,30 +200,30 @@ colors:
   # background is unset, selection color will be the inverse of the cell colors.
   # If only text is unset the cell text color will remain the same.
   selection:
-    text: '{{background}}'
-    background: '{{white03}}'
+    text: '{{base00}}'
+    background: '{{base05}}'
 
   # Normal colors
   normal:
-    black:   '{{black01}}'
-    red:     '{{red}}'
-    green:   '{{green}}'
-    yellow:  '{{yellow}}'
-    blue:    '{{blue}}'
-    magenta: '{{magenta}}'
-    cyan:    '{{cyan}}'
-    white:   '{{white02}}'
+    black:   '{{base00}}'
+    red:     '{{base08}}'
+    green:   '{{base0B}}'
+    yellow:  '{{base0A}}'
+    blue:    '{{base0D}}'
+    magenta: '{{base0E}}'
+    cyan:    '{{base0B}}'
+    white:   '{{base06}}'
 
   # Bright colors
   bright:
-    black:   '{{black02}}'
-    red:     '{{red}}'
-    green:   '{{green}}'
-    yellow:  '{{yellow_bright}}'
-    blue:    '{{blue}}'
-    magenta: '{{magenta_bright}}'
-    cyan:    '{{cyan}}'
-    white:   '{{white01}}'
+    black:   '{{base01}}'
+    red:     '{{base08}}'
+    green:   '{{base0B}}'
+    yellow:  '{{base0A}}'
+    blue:    '{{base0D}}'
+    magenta: '{{base0E}}'
+    cyan:    '{{base0B}}'
+    white:   '{{base07}}'
 
   # Dim colors
   #
@@ -273,7 +273,7 @@ colors:
 visual_bell:
   animation: EaseOutExpo
   duration: 0
-  color: '{{white01}}'
+  color: '{{base07}}'
 
 # Background opacity
 #
