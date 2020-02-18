@@ -74,6 +74,13 @@ au BufNewFile, BufRead *.js, *.html, *.css, *.json, *.yaml
     \ set softtabstop=2
     \ set shiftwidth=2
 
+" XML syntax
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
+
+
 set encoding=utf-8
 
 let python_highlight_all=1
