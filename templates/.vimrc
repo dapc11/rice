@@ -84,3 +84,4 @@ set noshowmode " Disable mode showage
 colorscheme base16-eighties
 let g:airline_theme='base16_ocean'
 set background=dark
+highlight Visual cterm=NONE ctermbg=235 ctermfg=NONE guibg=NONE
