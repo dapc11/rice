@@ -75,7 +75,7 @@ function conda_env()
 {
     if [ -n $(command -v conda) ]; then
         local conda="🅒 $(command conda info | grep "active environment" | cut -d" " -f9)"
-        echo "%{$FG[066]%}${conda}%{$reset_color%}"
+        echo "%{$FG[003]%}${conda}%{$reset_color%}"
     fi
 }
 

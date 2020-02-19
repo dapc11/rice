@@ -81,7 +81,7 @@ let python_highlight_all=1
 set noshowmode " Disable mode showage
 
 """""""""""""""""" THEME
-colorscheme base16-eighties
-let g:airline_theme='base16_ocean'
+let g:airline_theme='base16_default'
+colorscheme base16-default-dark
 set background=dark
-highlight Visual cterm=NONE ctermbg=235 ctermfg=NONE guibg=NONE
+highlight Visual cterm=NONE ctermbg=237 ctermfg=NONE guibg=NONE
