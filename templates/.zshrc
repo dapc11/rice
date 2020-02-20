@@ -215,7 +215,7 @@ function drm() {
 
   [ -n "$cid" ] && docker rm "$cid"
 }
-PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info) %{$FG[059]%}$(conda_env) %{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
+PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 RPROMPT='${return_code} '
