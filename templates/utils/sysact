@@ -9,8 +9,9 @@ if __name__ == '__main__':
 
     user = getpass.getuser()
     commands = {
-        ' Exit':       'i3-msg exit',
-        ' Lock':       f'i3lock -c {{base02}} -t',
+        ' Exit':       'kill -TERM $(pidof -s DWM)',
+        '♻ Renew dwm':  'kill -HUP $(pidof -s DWM)',
+        ' Lock':       'slock',
         ' Suspend':    'systemctl suspend',
         ' Hibernate':  'systemctl hibernate',
         ' Reboot':     'systemctl reboot',

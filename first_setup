@@ -28,6 +28,7 @@ sudo pacman -Sy
     vim \
     vim-gtk \
     tmux \
+    slock \
     rofi
 
 pip3 install --user --requirement requirements.txt
