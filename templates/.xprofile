@@ -3,9 +3,18 @@
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
-# This file's true location is in ~/.config/xprofile and a link exists to it in
-# ~/.xprofile. If you do not use a DM, you may remove the link to it to have a
-# cleaner home.
+
+function __volume {
+	echo " $(amixer get Master | grep -o '\[[0-9]\+%\]' | sed 's/[^0-9]*//g;1q')"
+}
+
+function __battery {
+	echo "  $(cat /sys/class/power_supply/BAT0/capacity)%"
+}
+
+function __date {
+	echo "$(date +%F\ %T\ %Z)"
+}
 
 # Fix Gnome Apps Slow  Start due to failing services
 # Add this when you include flatpak in your system
@@ -21,6 +30,6 @@ unclutter &		# Remove mouse when idle
 
 # Statusbar
 while true; do
-	xsetroot -name "|  $(cat /sys/class/power_supply/BAT0/capacity)% | $(date +%F\ %T\ %Z)"
+	xsetroot -name "| $(__volume) | $(__battery) | $(__date)"
         sleep 1s
 done &
