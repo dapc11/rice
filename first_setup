@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo -e "\n\tUpdating packages"
-echo "----------------------------------------------------"
+#echo -e "\n\tUpdating packages"
+#echo "----------------------------------------------------"
 #sudo apt-get update
-sudo pacman -U
 
 #echo -e "\n\tCleaning up old packages"
 #echo "----------------------------------------------------"
@@ -41,5 +40,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo -e "\n\tGenerating dotfiles"
 echo "----------------------------------------------------"
 python3 rice_it -o
-#chmod +x /home/${USER}/gnome-terminal_dapc_rice.sh
-#/home/${USER}/gnome-terminal_dapc_rice.sh
+
+echo -e "\n\tSetting up Suckless"
+echo "----------------------------------------------------"
+git clone https://github.com/dapc11/dwm.git
+git clone https://github.com/dapc11/st.git
+
+cd dwm
+sudo make clean install
+cd ../st
+sudo make clean install
+cd -
+xrdb -merge ~/.Xresources
+echo -e "\nDone"
+exit 0

@@ -332,3 +332,7 @@ ASALocalRun/
 .ropeproject/
 .vscode/
 *code-workspace
+
+
+dwm/
+st/

@@ -17,7 +17,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 conda="${user_home}/anaconda3/bin/conda"

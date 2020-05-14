@@ -17,6 +17,9 @@
   "base0F": "#a16946",
   "font": "Ubuntu",
   "shell": "/usr/bin/zsh",
-  "terminal": "kitty",
+  "terminal": "st",
+  "browser": "firefox",
+  "editor": "vim",
+  "keymap": "se",
   "zsh_theme": "afowler"
 }
