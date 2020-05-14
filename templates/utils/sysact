@@ -4,13 +4,18 @@ import os
 import subprocess as sp
 from subprocess import PIPE
 import getpass
+from subprocess import check_output
+
+def get_pid(name):
+    return check_output(["pidof", "-s", name])
 
 if __name__ == '__main__':
 
     user = getpass.getuser()
+    dwm_pid = get_pid("dwm").decode("utf-8")
     commands = {
-        ' Exit':       'kill -TERM $(pidof -s DWM)',
-        '♻ Renew dwm':  'kill -HUP $(pidof -s DWM)',
+        ' Exit':       "kill -TERM {}".format(dwm_pid),
+        '♻ Renew dwm':  "kill -HUP {}".format(dwm_pid),
         ' Lock':       'slock',
         ' Suspend':    'systemctl suspend',
         ' Hibernate':  'systemctl hibernate',
