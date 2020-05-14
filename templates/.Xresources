@@ -14,7 +14,7 @@ XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-*background:             {{base01}}
+*background:             {{base02}}
 *foreground:             {{base06}}
 *fading:                 8
 *fadeColor:              {{base00}}
@@ -25,7 +25,7 @@ XTerm*selectToClipboard: true
 !! black dark/light
 *color0:                 {{base00}}
 !! border color dwm
-*color8:                 {{base04}}
+*color8:                 {{base03}}
 
 !! red dark/light
 *color1:                 {{base08}}
