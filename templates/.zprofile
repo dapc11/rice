@@ -15,7 +15,7 @@ export LESSHISTFILE="-"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
 # Other program settings:
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export FZF_DEFAULT_OPTS="--layout=reverse"
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
