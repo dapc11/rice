@@ -48,7 +48,8 @@ export EDITOR="$VISUAL"
 # Aliases
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head"
-
+alias fzf_history="history | fzf"
+alias fzf_find="find . | fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Enable Home & End in tmux xterm-256color
 bindkey "\E[1~" beginning-of-line
