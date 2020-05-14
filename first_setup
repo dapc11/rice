@@ -16,6 +16,7 @@ sudo pacman -Sy
     build-essential \
     dkms \
     fonts-font-awesome \
+    ttf-font-awesome \
     zsh \
     dconf-cli \
     uuid-runtime \
@@ -31,6 +32,7 @@ sudo pacman -Sy
     slock \
     ranger \
     python-ueberzug \
+    fzf \
     rofi
 
 pip3 install --user --requirement requirements.txt
