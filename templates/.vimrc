@@ -1,4 +1,4 @@
-let mapleader = "\<Space>"  " make <space> be the leader key
+let mapleader =","
 
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -7,88 +7,80 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdcommenter'          " Comment multiline
-Plug 'jiangmiao/auto-pairs'             " Auto pair (), {}, [], ''
-Plug 'scrooloose/nerdtree'              " Nerdtree, explore files
-Plug 'airblade/vim-gitgutter'           " Show modified lines in git repos
-Plug 'vim-airline/vim-airline'          " Statusline
-Plug 'vim-airline/vim-airline-themes'   " Statusline themes
-Plug 'terryma/vim-multiple-cursors'     " Multiline editing, ctrl+n and i for insert
-Plug 'yuttie/comfortable-motion.vim'    " Comfortable scrolling (scroll with Ctrl + d/u)
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzyfinder, space+f and find away!
-Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+Plug 'ap/vim-css-color'
 call plug#end()
 
-" Fuzzyfind
-let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-let g:fzf_action = { 'enter': 'e', 'ctrl-t': 'tabedit' }
-nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+set bg=light
+set go=a
+set mouse=a
+set nohlsearch
+set clipboard+=unnamedplus
 
-filetype on
-au FileType gitcommit set tw=72
-set mouse=r
-filetype plugin indent on
-set tabstop=4       " show existing tab with 4 spaces width
-set shiftwidth=4    " when indenting with '>', use 4 spaces width
-set expandtab       " On pressing tab, insert 4 spaces
-highlight RedundantSpaces ctermbg=red guibg=red
-match RedundantSpaces /\s\+$/
-set nofoldenable    " disable folding
+" Some basics:
+	nnoremap c "_c
+	set nocompatible
+	filetype plugin on
+	syntax on
+	set encoding=utf-8
+	set number relativenumber
+	let g:airline_theme='monochrome'
+" Enable autocompletion:
+	set wildmode=longest,list,full
+" Disables automatic commenting on newline:
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Movement
-" ctrl + W = jump to next window
-" ctrl + H = left
-" ctrl + J = Down
-" ctrl + K = Up
-" ctrl + L = Right
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" Goyo plugin makes text more readable when writing prose:
+	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
-" Copy to clipboard, requires vim-gtk
-noremap <Leader>Y "*y
-noremap <Leader>P "*p
-noremap <Leader>y "+y
-noremap <Leader>p "+p
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+	set splitbelow splitright
 
-" NERDTree
-map <C-t> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif " Open nerdtree if vim is opened without file
+" Nerd tree
+	map <leader>n :NERDTreeToggle<CR>
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Python syntax
-au BufNewFile, BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
 
-au BufNewFile, BufRead *.js, *.html, *.css, *.json, *.yaml
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+" Replace ex mode with gq
+	map Q gq
 
-" XML syntax
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
+" Check file in shellcheck:
+	map <leader>s :!clear && shellcheck %<CR>
 
+" Replace all is aliased to S.
+	nnoremap S :%s//g<Left><Left>
 
-set encoding=utf-8
+" Compile document, be it groff/LaTeX/markdown/etc.
+	map <leader>c :w! \| !compiler <c-r>%<CR>
 
-let python_highlight_all=1
+" Open corresponding .pdf/.html or preview
+	map <leader>p :!opout <c-r>%<CR><CR>
 
-set noshowmode " Disable mode showage
+" Runs a script that cleans out tex build files whenever I close out of a .tex file.
+	autocmd VimLeave *.tex !texclear %
 
-"""""""""""""""""" THEME
-let g:airline_theme='base16_default'
-colorscheme base16-default-dark
-set background=dark
-highlight Visual cterm=NONE ctermbg=237 ctermfg=NONE guibg=NONE
+" Save file as sudo on files that require root permission
+	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+	autocmd BufWritePre * %s/\s\+$//e
+	autocmd BufWritepre * %s/\n\+\%$//e
+
+" When shortcut files are updated, renew bash and ranger configs with new material:
+	autocmd BufWritePost files,directories !shortcuts
+
+" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
+if &diff
+    highlight! link DiffText MatchParen
+endif
