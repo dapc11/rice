@@ -1,5 +1,7 @@
 # Dapc11 Ricer
 
+Setup dapc11 environment with Dwm as window manager.
+
 ## Getting started
 
 Make __first_setup__ executable and invoke it as following in order to setuo your environment:
