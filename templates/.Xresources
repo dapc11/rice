@@ -14,7 +14,7 @@ XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-*background:             {{base02}}
+*background:             {{base01}}
 *foreground:             {{base06}}
 *fading:                 8
 *fadeColor:              {{base00}}
