@@ -33,6 +33,7 @@ sudo pacman -Sy
     ranger \
     python-ueberzug \
     fzf \
+    feh \
     rofi
 
 pip3 install --user --requirement requirements.txt
@@ -55,7 +56,9 @@ cd dwm
 sudo make clean install
 cd ../st
 sudo make clean install
-cd -
+cd ..
 xrdb -merge ~/.Xresources
+
+
 echo -e "\nDone"
 exit 0
