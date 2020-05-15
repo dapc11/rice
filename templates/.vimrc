@@ -15,9 +15,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
-set bg=light
+set bg=dark
 set go=a
 set mouse=a
 set nohlsearch
@@ -30,7 +31,10 @@ set clipboard+=unnamedplus
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
-	let g:airline_theme='monochrome'
+	let base16colorspace=256  " Access colors present in 256 colorspace
+	set termguicolors
+	let g:airline_theme='base16'
+	colorscheme base16-oceanicnext
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
