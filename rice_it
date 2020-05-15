@@ -11,7 +11,6 @@ import subprocess
 
 import jinja2
 
-
 class Ricer():
     def __init__(self, args):
         self.should_overwrite = args.overwrite

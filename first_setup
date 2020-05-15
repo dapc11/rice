@@ -34,6 +34,7 @@ sudo pacman -Sy
     python-ueberzug \
     fzf \
     feh \
+    cmake \
     rofi
 
 pip3 install --user --requirement requirements.txt
@@ -59,6 +60,8 @@ sudo make clean install
 cd ..
 xrdb -merge ~/.Xresources
 
-
+echo -e "\nSetup Vim - YouCompleteMe by running: \n
+cd ~/.vim/plugged/youcompleteme
+python3 install.py --all"
 echo -e "\nDone"
 exit 0
