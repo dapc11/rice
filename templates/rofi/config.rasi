@@ -1,38 +1,38 @@
 
 configuration {
-	show-icons:  true;
-	width:       30;
+    show-icons:  true;
+    width:       30;
 }
 
 * {
-    background:        {{base01}};
-    background-color:  {{base01}};
+    background:        {{base00}};
+    background-color:  {{base00}};
     text-color:        {{base04}};
     actbg:             {{base03}};
     winbg:             {{base05}};
 
-	selected-normal-foreground:  @winbg;
-	normal-foreground:           @text-color;
-	selected-normal-background:  @actbg;
+    selected-normal-foreground:  @winbg;
+    normal-foreground:           @text-color;
+    selected-normal-background:  @actbg;
 
-	selected-urgent-foreground:  @background-color;
-	urgent-foreground:           @text-color;
-	selected-urgent-background:  @urgbg;
+    selected-urgent-foreground:  @background-color;
+    urgent-foreground:           @text-color;
+    selected-urgent-background:  @urgbg;
 
-	selected-active-foreground:  @winbg;
-	active-foreground:           @text-color;
-	selected-active-background:  @actbg;
+    selected-active-foreground:  @winbg;
+    active-foreground:           @text-color;
+    selected-active-background:  @actbg;
     border-color:                @text-color;
     spacing:                     2;
 }
 
 #window {
-	border:    1px;
-	children:  [mainbox];
+    border:    1px;
+    children:  [mainbox];
 }
 
 #mainbox {
-	children:  [ entry,listview ];
+    children:  [ entry,listview ];
     padding:   10px;
 }
 
@@ -43,23 +43,23 @@ configuration {
 }
 
 entry {
-	expand:          false;
-	vertical-align:  1;
-	padding:         5px;
+    expand:          false;
+    vertical-align:  1;
+    padding:         5px;
     border-radius:   5px;
 }
 
 element {
-	padding:  2px;
+    padding:  2px;
 }
 
 element selected.normal {
-	background-color:  @selected-normal-background;
-	text-color:        @selected-normal-foreground;
-	border-color:      @active-background;
+    background-color:  @selected-normal-background;
+    text-color:        @selected-normal-foreground;
+    border-color:      @active-background;
 }
 
 element selected.active {
-	background-color:  @selected-active-background;
-	text-color:        @selected-active-foreground;
+    background-color:  @selected-active-background;
+    text-color:        @selected-active-foreground;
 }

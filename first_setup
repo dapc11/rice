@@ -12,8 +12,7 @@
 echo -e "\n\tInstalling packages"
 echo "----------------------------------------------------"
 #sudo apt-get install \
-sudo pacman -Sy
-    build-essential \
+sudo pacman -Sy build-essential \
     dkms \
     fonts-font-awesome \
     ttf-font-awesome \
@@ -50,6 +49,7 @@ python3 rice_it -o
 
 echo -e "\n\tSetting up Suckless"
 echo "----------------------------------------------------"
+rm -rf dwm st
 git clone https://github.com/dapc11/dwm.git
 git clone https://github.com/dapc11/st.git
 
