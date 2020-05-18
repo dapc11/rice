@@ -11,11 +11,12 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'valloric/youcompleteme'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 set bg=dark
@@ -33,8 +34,9 @@ set clipboard+=unnamedplus
     set number relativenumber
     let base16colorspace=256  " Access colors present in 256 colorspace
     set termguicolors
-    let g:airline_theme='base16'
+ "   let g:airline_theme='base16'
     colorscheme base16-oceanicnext
+    colorscheme gruvbox
     set tabstop     =4
     set softtabstop =4
     set shiftwidth  =4
