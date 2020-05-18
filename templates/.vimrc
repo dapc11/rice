@@ -13,6 +13,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'valloric/youcompleteme'
@@ -27,6 +28,20 @@ set clipboard+=unnamedplus
 
 " Some basics:
     nnoremap c "_c
+    set hidden
+    set noerrorbells
+    set tabstop=4 softtabstop=4
+    set shiftwidth=4
+    set expandtab
+    set smartindent
+    set nu
+    set nowrap
+    set smartcase
+    set noswapfile
+    set nobackup
+    set undodir=~/.vim/undodir
+    set undofile
+    set incsearch
     set nocompatible
     filetype plugin on
     syntax on
@@ -34,13 +49,17 @@ set clipboard+=unnamedplus
     set number relativenumber
     let base16colorspace=256  " Access colors present in 256 colorspace
     set termguicolors
+
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+    nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
+    nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
+    nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+
  "   let g:airline_theme='base16'
     colorscheme base16-oceanicnext
     colorscheme gruvbox
-    set tabstop     =4
-    set softtabstop =4
-    set shiftwidth  =4
-    set expandtab
 
 " Enable autocompletion:
     set wildmode=longest,list,full
@@ -86,3 +105,12 @@ set clipboard+=unnamedplus
 if &diff
     highlight! link DiffText MatchParen
 endif
+
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+autocmd BufWritePre * :call TrimWhitespace()
