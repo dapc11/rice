@@ -12,29 +12,32 @@
 echo -e "\n\tInstalling packages"
 echo "----------------------------------------------------"
 #sudo apt-get install \
-sudo pacman -Sy build-essential \
+sudo pacman -Sy \
     dkms \
-    fonts-font-awesome \
     ttf-font-awesome \
     zsh \
-    dconf-cli \
-    uuid-runtime \
     python3 \
-    python3-pip \
     curl \
     git \
     xsel \
     xclip \
     vim \
-    vim-gtk \
     tmux \
     slock \
     ranger \
     python-ueberzug \
     fzf \
-    feh \
     cmake \
-    rofi
+    rofi \
+    picom \
+    nitrogen
+    #feh \
+    #vim-gtk \
+    #python3-pip \
+    #dconf-cli \
+    #uuid-runtime \
+    #fonts-font-awesome \
+    #build-essential \
 
 pip3 install --user --requirement requirements.txt
 
@@ -59,6 +62,7 @@ cd ../st
 sudo make clean install
 cd ..
 xrdb -merge ~/.Xresources
+nitrogen --random --set-zoom-fill /usr/share/backgrounds
 
 echo -e "\nSetup Vim - YouCompleteMe by running: \n
 cd ~/.vim/plugged/youcompleteme
