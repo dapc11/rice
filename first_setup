@@ -30,6 +30,9 @@ sudo pacman -Sy \
     cmake \
     rofi \
     picom \
+    xorg-xsetroot \
+    xorg-setxkbmap \
+    dmenu \
     nitrogen
     #feh \
     #vim-gtk \
