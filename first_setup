@@ -32,6 +32,7 @@ sudo pacman -Sy \
     picom \
     xorg-xsetroot \
     xorg-setxkbmap \
+    unclutter \
     dmenu \
     nitrogen
     #feh \
