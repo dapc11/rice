@@ -35,5 +35,5 @@ unclutter &                         # Remove mouse when idle
 # Statusbar
 while true; do
     xsetroot -name "$(__wifi) | $(__volume) | $(__battery) | $(__date)"
-    sleep 1s
+    sleep 5s
 done &
