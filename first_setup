@@ -33,6 +33,8 @@ sudo pacman -Sy \
     xorg-xsetroot \
     xorg-setxkbmap \
     unclutter \
+    ack \
+    the_silver_searcher \
     dmenu \
     nitrogen
     #feh \
