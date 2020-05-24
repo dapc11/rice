@@ -11,6 +11,8 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vim-airline/vim-airline'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -62,6 +64,11 @@ noremap <Leader>p "+p
     nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
     nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
     nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_key_invoke_completion = '<c-j>'
+    let g:ycm_complete_in_strings = 1
 
  "   let g:airline_theme='base16'
     colorscheme base16-oceanicnext
@@ -106,6 +113,34 @@ noremap <Leader>p "+p
 
 " When shortcut files are updated, renew bash and ranger configs with new material:
     autocmd BufWritePost files,directories !shortcuts
+
+" fzf
+    let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+    nnoremap <silent> <leader>f :Files<CR>
+    nnoremap <silent> <leader>a :Buffers<CR>
+    nnoremap <silent> <leader>A :Windows<CR>
+    nnoremap <silent> <leader>l :BLines<CR>
+    nnoremap <silent> <leader>o :BTags<CR>
+    nnoremap <silent> <leader>O :Tags<CR>
+    nnoremap <silent> <leader>? :History<CR>
+
+" fugitive
+
+    let g:fugitive_git_executable = 'LANG=en_US.UTF-8 git'
+
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    nnoremap <silent> <leader>gE :Gedit<space>
+    nnoremap <silent> <leader>gr :Gread<CR>
+    nnoremap <silent> <leader>gR :Gread<space>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>gW :Gwrite!<CR>
+    nnoremap <silent> <leader>gq :Gwq<CR>
+    nnoremap <silent> <leader>gQ :Gwq!<CR>
 
 " Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
 if &diff

@@ -44,6 +44,7 @@ export MAVEN_OPTS="-Xms256m -Xmx512m"
 export PATH=$M2:$PATH
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export FZF_DEFAULT_COMMAND="find -L -not -path '*/.git/*'"
 
 # Aliases
 alias sshk="ssh -o ServerAliveInterval=60"
