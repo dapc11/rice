@@ -27,10 +27,10 @@ set nohlsearch
 set clipboard+=unnamedplus
 
 " Requires gvim
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
+noremap <Leader>Y "*y
+noremap <Leader>P "*p
+noremap <Leader>y "+y
+noremap <Leader>p "+p
 
 " Some basics:
     nnoremap c "_c
