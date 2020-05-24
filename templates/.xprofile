@@ -31,6 +31,7 @@ xrdb -merge $HOME/.Xresources &     # Uncomment to use Xresources colors/setting
 xsetkbmap se &                      # Set keyboard layout to swedish
 xset r rate 300 50 &                # Speed xrate up
 unclutter &                         # Remove mouse when idle
+ntpdate ntp.ubuntu.com &
 
 # Statusbar
 while true; do

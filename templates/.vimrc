@@ -113,4 +113,11 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+fun! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfun
+
+autocmd VimEnter * call StartUp()
 autocmd BufWritePre * :call TrimWhitespace()
