@@ -26,6 +26,12 @@ set mouse=a
 set nohlsearch
 set clipboard+=unnamedplus
 
+" Requires gvim
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
 " Some basics:
     nnoremap c "_c
     set hidden

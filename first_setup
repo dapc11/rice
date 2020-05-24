@@ -21,7 +21,7 @@ sudo pacman -Sy \
     git \
     xsel \
     xclip \
-    vim \
+    gvim \
     tmux \
     slock \
     ranger \
