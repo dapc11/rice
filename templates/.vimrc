@@ -86,6 +86,7 @@ noremap <Leader>p "+p
     set splitbelow splitright
 
 " Nerd tree
+    map <leader>r :NERDTreeFind<cr>
     map <leader>n :NERDTreeToggle<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -116,8 +117,8 @@ noremap <Leader>p "+p
 
 " fzf
     let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-
-    nnoremap <silent> <leader>f :Files<CR>
+    nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+    nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
     nnoremap <silent> <leader>a :Buffers<CR>
     nnoremap <silent> <leader>A :Windows<CR>
     nnoremap <silent> <leader>l :BLines<CR>
