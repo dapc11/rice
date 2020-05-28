@@ -1,10 +1,10 @@
-Xft.dpi:       		 96
-Xft.antialias: 		 true
-Xft.hinting:   		 true
-Xft.rgba:      		 rgb
-Xft.autohint:  		 false
-Xft.hintstyle: 		 hintslight
-Xft.lcdfilter: 		 lcddefault
+Xft.dpi:       		     96
+Xft.antialias: 		     true
+Xft.hinting:   		     true
+Xft.rgba:      		     rgb
+Xft.autohint:  		     false
+Xft.hintstyle: 		     hintslight
+Xft.lcdfilter: 		     lcddefault
 
 XTerm*background:        {{base00}}
 XTerm*foreground:        {{base06}}
@@ -56,5 +56,5 @@ XTerm*selectToClipboard: true
 *color7:                 {{base05}}
 *color15:                {{base07}}
 
-Xcursor.theme: 		 xcursor-breeze
+Xcursor.theme: 		     xcursor-breeze
 Xcursor.size:            0
