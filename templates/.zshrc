@@ -1,7 +1,6 @@
 user_home="/home/${USER}"
 plugins=(
     git
-    wd
 )
 
 export TERM="xterm-256color"
@@ -53,6 +52,17 @@ alias fzf_find="find . | fzf"
 alias fzf_ps="ps -ef | fzf"
 
 # Utils
+bookmark_file="$HOME/.local/bookmarks"
+function bookmark_add {
+    mkdir -p $HOME/.local
+    touch $bookmark_file
+    grep -qF -- "$1" "$bookmark_file" || echo "$1" >> "$bookmark_file"
+}
+
+function bookmark {
+    cd $(cat $bookmark_file | fzf)
+}
+
 function fzf_branches {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
