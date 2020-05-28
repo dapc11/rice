@@ -53,7 +53,7 @@ alias fzf_find="find . | fzf"
 alias fzf_ps="ps -ef | fzf"
 
 # Utils
-function fzf_branches() {
+function fzf_branches {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   branch=$(echo "$branches" |
@@ -61,7 +61,7 @@ function fzf_branches() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-function fzf_checkout() {
+function fzf_checkout {
   local tags branches target
   branches=$(
     git --no-pager branch --all \
@@ -76,7 +76,7 @@ function fzf_checkout() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
-function fzf_show() {
+function fzf_show {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -87,7 +87,7 @@ function fzf_show() {
 FZF-EOF"
 }
 
-function fzf_checkout_commit() {
+function fzf_checkout_commit {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
@@ -104,7 +104,7 @@ function fzf_show_preview {
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
-function fzf_tag_preview() {
+function fzf_tag_preview {
   local tags target
   tags=$(
     git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
@@ -112,23 +112,36 @@ function fzf_tag_preview() {
   git checkout $(awk '{print $1}' <<<"$target" )
 }
 
-function fzf_docker_attach() {
+function fzf_docker_attach {
   local cid
   cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker start "$cid" && docker exec -it "$cid" bash
 }
 
-function fzf_docker_stop() {
+function fzf_docker_stop {
   local cid
   cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker stop "$cid"
 }
 
-function fzf_docker_rm() {
+function fzf_docker_rm {
   local cid
   cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker rm "$cid"
+}
+
+function fzf_tmux_kill {
+    local sessions
+    sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
+    local i
+    for i in "${(f@)sessions}"
+    do
+        [[ $i =~ '([^:]*):.*' ]] && {
+            echo "Killing $match[1]"
+            tmux kill-session -t "$match[1]"
+        }
+    done
 }
