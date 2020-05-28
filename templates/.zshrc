@@ -1,39 +1,11 @@
 user_home="/home/${USER}"
+plugins=(
+    git
+    wd
+)
 
 export TERM="xterm-256color"
 export ZSH="${user_home}/.oh-my-zsh"
-
-ZSH_THEME="{{zsh_theme}}"
-
-# see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
-
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
- git
- wd
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-conda="${user_home}/anaconda3/bin/conda"
-__conda_setup="$(${conda} 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${user_home}/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "${user_home}/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="${user_home}/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-unset conda
-# <<< conda initialize <<<
-
 export PATH=${user_home}/software/jdk1.8.0_221/bin:$PATH
 export PATH=${user_home}/.local/share/JetBrains/Toolbox/bin:$PATH
 export PATH=${user_home}/bin:$PATH
@@ -46,23 +18,8 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-# Aliases
-alias sshk="ssh -o ServerAliveInterval=60"
-alias ducks="du -cks * | sort -rn | head"
-alias fzf_history="history | fzf"
-alias fzf_find="find . | fzf"
-alias fzf_ps="ps -ef | fzf"
+source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Enable Home & End in tmux xterm-256color
-bindkey "\E[1~" beginning-of-line
-bindkey "\E[4~" end-of-line
-
-if [ -e /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-if [ -e /usr/local/bin/helm ]; then source <(helm completion zsh); fi
-
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-set -g hist_ignore_dups
 
 function git_prompt_info() {
   local ref
@@ -73,39 +30,30 @@ function git_prompt_info() {
   fi
 }
 
-function conda_env()
-{
-    if [ -n $(command -v conda) ]; then
-        local conda="🅒 $(command conda info | grep "active environment" | cut -d" " -f9)"
-        echo "%{$FG[003]%}${conda}%{$reset_color%}"
-    fi
-}
-
+ZSH_THEME="{{zsh_theme}}"
+HIST_STAMPS="mm/dd/yyyy"
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
+RPROMPT='${return_code} '
 
-RPROMPT='${return_code}'
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+set -g hist_ignore_dups
+# Enable Home & End in tmux xterm-256color
+bindkey "\E[1~" beginning-of-line
+bindkey "\E[4~" end-of-line
 
-########################## fzf
-# fbr - checkout git branch
-fbr() {
-  local branches branch
-  branches=$(git --no-pager branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
-}
+# Aliases
+alias sshk="ssh -o ServerAliveInterval=60"
+alias ducks="du -cks * | sort -rn | head"
+alias fzf_history="history | fzf"
+alias fzf_find="find . | fzf"
+alias fzf_ps="ps -ef | fzf"
 
-# fbr - checkout git branch (including remote branches)
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fbr() {
+# Utils
+function fzf_branches() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   branch=$(echo "$branches" |
@@ -113,8 +61,7 @@ fbr() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# fco - checkout git branch/tag
-fco() {
+function fzf_checkout() {
   local tags branches target
   branches=$(
     git --no-pager branch --all \
@@ -129,7 +76,7 @@ fco() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
-fshow() {
+function fzf_show() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -140,7 +87,7 @@ fshow() {
 FZF-EOF"
 }
 
-fcoc() {
+function fzf_checkout_commit() {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
@@ -148,37 +95,7 @@ fcoc() {
 }
 
 
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-fco_preview() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
-  git checkout $(awk '{print $2}' <<<"$target" )
-}
-
-alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
-_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always %'"
-
-# fcoc_preview - checkout git commit with previews
-fcoc_preview() {
-  local commit
-  commit=$( glNoGraph |
-    fzf --no-sort --reverse --tiebreak=index --no-multi \
-        --ansi --preview="$_viewGitLogLine" ) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
-}
-
-# fshow_preview - git commit browser with previews
-fshow_preview() {
+function fzf_show_preview {
     glNoGraph |
         fzf --no-sort --reverse --tiebreak=index --no-multi \
             --ansi --preview="$_viewGitLogLine" \
@@ -187,7 +104,7 @@ fshow_preview() {
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
-ftag_preview() {
+function fzf_tag_preview() {
   local tags target
   tags=$(
     git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
@@ -195,29 +112,23 @@ ftag_preview() {
   git checkout $(awk '{print $1}' <<<"$target" )
 }
 
-
-# Select a docker container to start and attach to
-function da() {
+function fzf_docker_attach() {
   local cid
   cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker start "$cid" && docker exec -it "$cid" bash
 }
-# Select a running docker container to stop
-function ds() {
+
+function fzf_docker_stop() {
   local cid
   cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker stop "$cid"
 }
-# Select a docker container to remove
-function drm() {
+
+function fzf_docker_rm() {
   local cid
   cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker rm "$cid"
 }
-PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-
-RPROMPT='${return_code} '
