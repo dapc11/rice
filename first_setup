@@ -9,6 +9,10 @@
 #sudo apt-get autoremove
 #sudo apt-get autoclean
 
+#echo -e "\n\tPrepare Alacritty"
+#echo "----------------------------------------------------"
+#sudo add-apt-repository ppa:mmstick76/alacritty
+
 echo -e "\n\tInstalling packages"
 echo "----------------------------------------------------"
 #sudo apt-get install \
@@ -36,7 +40,8 @@ sudo pacman -Sy \
     ack \
     the_silver_searcher \
     dmenu \
-    nitrogen
+    nitrogen \
+    alacritty
     #feh \
     #vim-gtk \
     #python3-pip \
@@ -60,12 +65,12 @@ echo -e "\n\tSetting up Suckless"
 echo "----------------------------------------------------"
 rm -rf dwm st
 git clone https://github.com/dapc11/dwm.git
-git clone https://github.com/dapc11/st.git
+#it clone https://github.com/dapc11/st.git
 
 cd dwm
 sudo make clean install
-cd ../st
-sudo make clean install
+#d ../st
+#udo make clean install
 cd ..
 xrdb -merge ~/.Xresources
 nitrogen --random --set-zoom-fill /usr/share/backgrounds

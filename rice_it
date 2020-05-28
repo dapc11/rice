@@ -80,6 +80,7 @@ def setup_argparser():
 if __name__ == "__main__":
     parser = setup_argparser()
     ricer = Ricer(parser.parse_args())
+    ricer.render_template('alacritty/alacritty.yml')
     ricer.render_template('dunst/dunstrc')
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('ranger/rc.conf')
