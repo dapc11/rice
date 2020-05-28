@@ -133,6 +133,19 @@ function fzf_docker_rm {
   [ -n "$cid" ] && docker rm "$cid"
 }
 
+function fzf_tmux_attach {
+    local sessions
+    sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
+    local i
+    for i in "${(f@)sessions}"
+    do
+        [[ $i =~ '([^:]*):.*' ]] && {
+            echo "Attaching to $match[1]"
+            tmux attach-session -t "$match[1]"
+        }
+    done
+}
+
 function fzf_tmux_kill {
     local sessions
     sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
