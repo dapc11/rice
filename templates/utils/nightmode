@@ -1,0 +1,15 @@
+#!/bin/sh
+
+STATUS_FILE="$HOME/.nightmode_status"
+
+[ -e $STATUS_FILE ] || touch $STATUS_FILE
+
+STATUS=$(cat $STATUS_FILE)
+night_mode() {
+    xrandr --output eDP1 --gamma $1 --brightness $2
+    echo $3 > $STATUS_FILE
+}
+case $STATUS in
+  on) night_mode 1:1:1 1.0 off ;;
+  *) night_mode 1:0.7:0.2 0.7 on ;;
+esac

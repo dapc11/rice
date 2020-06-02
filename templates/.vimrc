@@ -7,14 +7,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'valloric/youcompleteme'
@@ -62,12 +60,13 @@ noremap <Leader>p "+p
 
     nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
     nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-    nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+    nmap <leader>q <plug>(YCMHover)
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_seed_identifiers_with_syntax = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_key_invoke_completion = '<c-j>'
     let g:ycm_complete_in_strings = 1
+    let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 
  "   let g:airline_theme='base16'
     colorscheme base16-oceanicnext
@@ -94,6 +93,9 @@ noremap <Leader>p "+p
     map <C-j> <C-w>j
     map <C-k> <C-w>k
     map <C-l> <C-w>l
+
+" Commenting
+    map <C-_> gcc<CR>
 
 " Replace ex mode with gq
     map Q gq
