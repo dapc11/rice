@@ -8,15 +8,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
-Plug 'ap/vim-css-color'
-Plug 'chriskempson/base16-vim'
 Plug 'valloric/youcompleteme'
+Plug 'ap/vim-css-color'
+Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 set bg=dark
@@ -127,22 +127,8 @@ noremap <Leader>p "+p
     nnoremap <silent> <leader>O :Tags<CR>
     nnoremap <silent> <leader>? :History<CR>
 
-" fugitive
-
-    let g:fugitive_git_executable = 'LANG=en_US.UTF-8 git'
-
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    nnoremap <silent> <leader>gE :Gedit<space>
-    nnoremap <silent> <leader>gr :Gread<CR>
-    nnoremap <silent> <leader>gR :Gread<space>
-    nnoremap <silent> <leader>gw :Gwrite<CR>
-    nnoremap <silent> <leader>gW :Gwrite!<CR>
-    nnoremap <silent> <leader>gq :Gwq<CR>
-    nnoremap <silent> <leader>gQ :Gwq!<CR>
+" UndoTree
+    nnoremap <leader>u :UndotreeShow<CR>
 
 " Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
 if &diff
