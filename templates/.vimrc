@@ -122,8 +122,8 @@ autocmd BufWritePost files,directories !shortcuts
 
 " fzf
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nnoremap <silent> <expr> <Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF ~\<cr>"
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>A :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
