@@ -88,6 +88,8 @@ noremap <Leader>p "+p
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
     let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
     let g:nerdtree_tabs_focus_on_files=1
+    let g:NERDTreeMapOpenInTab=''
+    let NERDTreeQuitOnOpen=1
 
 " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
