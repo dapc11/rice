@@ -127,6 +127,15 @@ noremap <Leader>p "+p
     nnoremap <silent> <leader>o :BTags<CR>
     nnoremap <silent> <leader>O :Tags<CR>
     nnoremap <silent> <leader>? :History<CR>
+    set wildmode=list:longest,list:full
+    set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+    " The Silver Searcher
+    if executable('ag')
+      let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+      set grepprg=ag\ --nogroup\ --nocolor
+    endif
 
 " UndoTree
     nnoremap <leader>u :UndotreeShow<CR>
@@ -137,7 +146,7 @@ noremap <Leader>p "+p
     nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
-    nnoremap <leader>. :lcd %:p:h<CRif !exists('g:airline_powerline_fonts')>
+    nnoremap <leader>. :lcd %:p:h<CR>
 
 
 " Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
