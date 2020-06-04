@@ -104,9 +104,6 @@ map <C-_> gcc
 " Replace ex mode with gq
 map Q gq
 
-" Check file in shellcheck:
-map <leader>s :!clear && shellcheck %<CR>
-
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
 
