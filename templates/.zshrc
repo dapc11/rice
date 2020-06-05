@@ -5,14 +5,7 @@ plugins=(
 
 export TERM="xterm-256color"
 export ZSH="${user_home}/.oh-my-zsh"
-export PATH=${user_home}/software/jdk1.8.0_221/bin:$PATH
-export PATH=${user_home}/.local/share/JetBrains/Toolbox/bin:$PATH
 export PATH=${user_home}/bin:$PATH
-export JAVA_HOME=${user_home}/software/jdk1.8.0_221
-export M2_HOME=${user_home}/software/apache-maven-3.6.1
-export M2=$M2_HOME/bin
-export MAVEN_OPTS="-Xms256m -Xmx512m"
-export PATH=$M2:$PATH
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'

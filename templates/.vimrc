@@ -28,7 +28,7 @@ noremap <Leader>P "*p<CR>
 noremap <Leader>y "+y<CR>
 noremap <Leader>p "+p<CR>
 
-noremap <leader>X :!python3 rice_it -o<CR><CR>
+noremap <leader>X :!python3 rice_it -o<CR>
 noremap <leader>R :silent source ~/.vimrc<CR>
 
 " Some basics:
