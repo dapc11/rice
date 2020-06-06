@@ -1,15 +1,20 @@
 #!/bin/sh
 
-STATUS_FILE="$HOME/.nightmode_status"
+STATUS_FILE="${HOME}/.local/.nightmode_status"
 
-[ -e $STATUS_FILE ] || touch $STATUS_FILE
+[ -e ${STATUS_FILE} ] || touch ${STATUS_FILE}
 
-STATUS=$(cat $STATUS_FILE)
+STATUS=$(cat ${STATUS_FILE})
+
 night_mode() {
-    xrandr --output eDP1 --gamma $1 --brightness $2
-    echo $3 > $STATUS_FILE
+    for output in $(xrandr | grep -w connected | cut -d" " -f1); do
+        xrandr --output ${output} --gamma $1 --brightness $2
+    done
+
+    echo $3 > ${STATUS_FILE}
 }
-case $STATUS in
+
+case ${STATUS} in
   on) night_mode 1:1:1 1.0 off ;;
   *) night_mode 1:0.7:0.2 0.7 on ;;
 esac
