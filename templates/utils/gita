@@ -1,0 +1,20 @@
+#!/bin/sh
+
+repositories=$(ag -o --hidden --ignore ".oh-my-zsh" --ignore ".fzf" --ignore ".vim" -g "/\.git/" ~ | sed "s/\.git.*//g" | uniq)
+
+function echo_meta {
+    local repository=$1
+    local padding='##########'
+
+    basename=$(basename ${repository})
+    basename_len=$(echo "$basename" | wc -c)
+    printf "%s %s %s\n" ${padding} ${basename} "${padding:$basename_len}"
+    printf "Absolute path: %s\n" "$(realpath ${repository})"
+}
+
+for repository in ${repositories}; do
+    [ -z $first ] || echo ""
+    first=1
+    echo_meta $repository
+    git --git-dir "${repository}/.git" --work-tree "${repository}" $@
+done

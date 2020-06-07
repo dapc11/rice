@@ -74,7 +74,7 @@ sudo make clean install
 cd ..
 xrdb -merge ~/.Xresources
 nitrogen --random --set-zoom-fill /usr/share/backgrounds
-chmod +x ~/.local/bin/nightmode ~/.local/bin/sysact
+chmod +x ~/.local/bin/nightmode ~/.local/bin/sysact ~/.local/bin/gita
 
 echo -e "\nSetup Vim - YouCompleteMe by running: \n
 cd ~/.vim/plugged/youcompleteme
