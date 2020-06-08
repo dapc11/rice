@@ -22,5 +22,6 @@
   "editor": "vim",
   "keymap": "se",
   "zsh_theme": "afowler",
-  "vim_theme": "dark"
+  "vim_theme": "dark",
+  "gtk_theme": "Adwaita-dark"
 }

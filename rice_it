@@ -96,6 +96,7 @@ if __name__ == "__main__":
     ricer.render_template('picom/picom.conf')
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code - OSS/User/settings.json')
+    ricer.render_template('gtk-3.0/settings.ini')
     ricer.render_template('.vimrc', '/home/{0}/{1}')
     ricer.render_template('.tmux.conf', '/home/{0}/{1}')
     ricer.render_template('.zshrc', '/home/{0}/{1}')
