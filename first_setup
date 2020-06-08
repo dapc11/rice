@@ -70,7 +70,7 @@ git clone https://github.com/dapc11/dwm.git
 cd dwm
 sudo make clean install
 #cd ../st
-#udo make clean install
+#sudo make clean install
 cd ..
 xrdb -merge ~/.Xresources
 nitrogen --random --set-zoom-fill /usr/share/backgrounds

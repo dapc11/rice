@@ -14,6 +14,7 @@ import jinja2
 class Ricer():
     def __init__(self, args):
         self.should_overwrite = args.overwrite
+        self.light_contrast = args.light
 
         templateLoader = jinja2.FileSystemLoader(searchpath="./templates/")
         self.env = jinja2.Environment(loader=templateLoader)
@@ -21,7 +22,11 @@ class Ricer():
         self._determine_network_inferface()
 
     def _get_context(self):
-        template = 'dapc_rice.json'
+        if self.light_contrast:
+            template = 'light.json'
+        else:
+            template = 'dark.json'
+
         with open(template, 'r') as f:
             print("Using context: '{}'".format(os.path.abspath(template)))
             return json.load(f)
@@ -73,6 +78,10 @@ def setup_argparser():
     parser.add_argument(
         '--overwrite', '-o',
         help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
+        action='store_true')
+    parser.add_argument(
+        '--light', '-l',
+        help='Use light contrast, defaults to dark if omitted.',
         action='store_true')
     return parser
 

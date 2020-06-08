@@ -33,7 +33,7 @@ noremap <leader>R :silent source ~/.vimrc<CR>
 
 " Some basics:
 nnoremap c "_c
-set bg=dark
+set bg={{vim_theme}}
 set go=a
 set mouse=a
 set nohlsearch
