@@ -56,6 +56,10 @@ function bookmark {
     cd $(cat $bookmark_file | fzf)
 }
 
+function b {
+    bookmark
+}
+
 function fzf_branches {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
