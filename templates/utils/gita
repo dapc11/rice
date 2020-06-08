@@ -13,8 +13,8 @@ function echo_meta {
 }
 
 for repository in ${repositories}; do
-    [ -z $first ] || echo ""
     first=1
     echo_meta $repository
     git --git-dir "${repository}/.git" --work-tree "${repository}" $@
+    [ -z $first ] || echo
 done
