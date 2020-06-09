@@ -65,7 +65,7 @@ echo -e "\n\tSetting up Suckless"
 echo "----------------------------------------------------"
 rm -rf dwm st
 git clone https://github.com/dapc11/dwm.git
-#it clone https://github.com/dapc11/st.git
+#git clone https://github.com/dapc11/st.git
 
 cd dwm
 sudo make clean install
@@ -75,8 +75,5 @@ cd ..
 xrdb -merge ~/.Xresources
 nitrogen --random --set-zoom-fill /usr/share/backgrounds
 
-echo -e "\nSetup Vim - YouCompleteMe by running: \n
-cd ~/.vim/plugged/youcompleteme
-python3 install.py --all"
 echo -e "\nDone"
 exit 0
