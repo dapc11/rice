@@ -23,10 +23,7 @@ class Ricer():
         self._determine_network_inferface()
 
     def _get_context(self):
-        if self.light_contrast:
-            template = 'light.json'
-        else:
-            template = 'dark.json'
+        template = 'light.json' if self.light_contrast else 'dark.json'
 
         with open(template, 'r') as f:
             print("Using context: '{}'".format(os.path.abspath(template)))
