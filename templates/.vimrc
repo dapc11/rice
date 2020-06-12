@@ -62,6 +62,7 @@ set termguicolors
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 nmap <leader>q <plug>(YCMHover)
@@ -167,3 +168,4 @@ endfun
 
 autocmd VimEnter * call StartUp()
 autocmd BufWritePre * :call TrimWhitespace()
+highlight EndOfBuffer ctermfg=black

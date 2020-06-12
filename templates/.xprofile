@@ -11,11 +11,14 @@ function __battery {
 }
 
 function __date {
-    echo "$(date +%F\ %T\ %Z)"
+    echo " $(date +%F\ \ %T\ %Z)"
 }
 
 function __wifi {
     echo "$(nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}')"
+}
+function __now_playing {
+    echo "$(now_playing)"
 }
 
 # Fix Gnome Apps Slow start due to failing services
@@ -35,6 +38,6 @@ ntpdate ntp.ubuntu.com &
 
 # Statusbar
 while true; do
-    xsetroot -name "$(__wifi) | $(__volume) | $(__battery) | $(__date)"
+    xsetroot -name "$(__now_playing) | $(__wifi) | $(__volume) | $(__battery) | $(__date)"
     sleep 5s
 done &
