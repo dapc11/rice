@@ -7,14 +7,14 @@ function echo_meta {
     local padding='##########'
 
     basename=$(basename ${repository})
-    basename_len=$(echo "$basename" | wc -c)
+    basename_len=$(echo "${basename}" | wc -c)
     printf "%s %s %s\n" ${padding} ${basename} "${padding:$basename_len}"
     printf "Absolute path: %s\n" "$(realpath ${repository})"
 }
 
 for repository in ${repositories}; do
     first=1
-    echo_meta $repository
+    echo_meta ${repository}
     git --git-dir "${repository}/.git" --work-tree "${repository}" $@
-    [ -z $first ] || echo
+    [ -z ${first} ] || echo
 done

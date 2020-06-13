@@ -32,7 +32,7 @@ class Ricer():
     def _determine_network_inferface(self):
         try:
             self.context['wifi_if'] = subprocess.check_output(
-                "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
+                    "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
         except subprocess.CalledProcessError:
             print('Could not determine active network interface.')
 
@@ -73,21 +73,21 @@ class Ricer():
 
 def setup_argparser():
     parser = argparse.ArgumentParser(
-        prog='rice_it',
-        description='Dapc ricer, make your environment consistent from a color perspective.')
+            prog='rice_it',
+            description='Dapc ricer, make your environment consistent from a color perspective.')
     parser.add_argument(
-        '--first-setup',
-        '-fs',
-        help='WIP: Indicate that this is the first setup, will install necessary packages to get started.',
-        action='store_true')
+            '--first-setup',
+            '-fs',
+            help='WIP: Indicate that this is the first setup, will install necessary packages to get started.',
+            action='store_true')
     parser.add_argument(
-        '--overwrite', '-o',
-        help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
-        action='store_true')
+            '--overwrite', '-o',
+            help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
+            action='store_true')
     parser.add_argument(
-        '--light', '-l',
-        help='Use light contrast, defaults to dark if omitted.',
-        action='store_true')
+            '--light', '-l',
+            help='Use light contrast, defaults to dark if omitted.',
+            action='store_true')
     return parser
 
 
