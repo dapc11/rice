@@ -71,6 +71,11 @@ class Ricer():
         except subprocess.CalledProcessError:
             print('Could not convert background.')
 
+    def put_background(self):
+        target = '/home/{0}/.local/background.jpg'.format(getpass.getuser())
+        print('Placing background at {0}'.format(target))
+        shutil.copy('templates/images/background.jpg', target)
+
 def setup_argparser():
     parser = argparse.ArgumentParser(
             prog='rice_it',
@@ -114,4 +119,5 @@ if __name__ == "__main__":
     ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', True)
     ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
     ricer.render_template('utils/now_playing', '/home/{0}/.local/bin/now_playing', True)
+    ricer.put_background()
     sys.exit(0)

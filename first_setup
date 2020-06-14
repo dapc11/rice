@@ -50,30 +50,29 @@ sudo pacman -Sy \
     #fonts-font-awesome \
     #build-essential \
 
-pip3 install --user --requirement requirements.txt
+    pip3 install --user --requirement requirements.txt
 
-echo -e "\n\tInstalling Oh-My-Zsh"
-echo "----------------------------------------------------"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    echo -e "\n\tInstalling Oh-My-Zsh"
+    echo "----------------------------------------------------"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+    echo -e "\n\tGenerating dotfiles"
+    echo "----------------------------------------------------"
+    python3 rice_it -o
 
-echo -e "\n\tGenerating dotfiles"
-echo "----------------------------------------------------"
-python3 rice_it -o
+    echo -e "\n\tSetting up Suckless"
+    echo "----------------------------------------------------"
+    rm -rf dwm st
+    git clone https://github.com/dapc11/dwm.git
+    #git clone https://github.com/dapc11/st.git
 
-echo -e "\n\tSetting up Suckless"
-echo "----------------------------------------------------"
-rm -rf dwm st
-git clone https://github.com/dapc11/dwm.git
-#git clone https://github.com/dapc11/st.git
+    cd dwm
+    sudo make clean install
+    #cd ../st
+    #sudo make clean install
+    cd ..
+    xrdb -merge ~/.Xresources
+    nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 
-cd dwm
-sudo make clean install
-#cd ../st
-#sudo make clean install
-cd ..
-xrdb -merge ~/.Xresources
-nitrogen --random --set-zoom-fill /usr/share/backgrounds
-
-echo -e "\nDone"
-exit 0
+    echo -e "\nDone"
+    exit 0

@@ -26,9 +26,7 @@ function __now_playing {
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 #fix_resolution &                    # Add resolution if missing
-#feh --bg-fill ~/.local/share/bg &  # Set bg
-#nitrogen --restore &                # Set bg
-nitrogen --random --set-zoom-fill /usr/share/backgrounds
+nitrogen --restore &                # Set bg
 picom &                             # Composition manager
 xrdb -merge $HOME/.Xresources &     # Uncomment to use Xresources colors/settings on startup
 xsetkbmap se &                      # Set keyboard layout to swedish
