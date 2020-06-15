@@ -85,7 +85,7 @@ set splitbelow splitright
 
 " Nerd tree
 map <leader>r :NERDTreeFind<cr>
-map <leader>n :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
@@ -120,13 +120,27 @@ autocmd BufWritePost files,directories !shortcuts
 
 " fzf
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-nnoremap <silent> <expr> <Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF ~\<cr>"
+
+command! -bang -nargs=* GGrep call fzf#vim#grep('git grep --line-number -- '.shellescape(<q-args>), 0, fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s ~ || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+nnoremap <silent> <expr> <leader>g (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":GGrep \<cr>"
+nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":Rg \<cr>"
+nnoremap <silent> <expr> <leader>F (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":RG \<cr>"
+nnoremap <silent> <expr> <leader>n (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":GFiles \<cr>"
+nnoremap <silent> <expr> <Leader>N (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF ~\<cr>"
 nnoremap <silent> <leader>a :Buffers<CR>
-nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
-nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
