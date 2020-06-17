@@ -31,15 +31,15 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
-set $ws5 "5 "
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8 "
-set $ws9 "9 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
 set $ws10 "10"
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -137,22 +137,22 @@ client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{b
 
 client.background       {{base05}}
 
-bar {
-  status_command i3status
-  position top
-  colors {
-    background            {{base01}}
-    statusline            {{base05}}
-    separator             {{base05}}
+#bar {
+#  status_command i3status
+#  position top
+#  colors {
+#    background            {{base01}}
+#    statusline            {{base05}}
+#    separator             {{base05}}
 
-    #class                border       background    text
-    focused_workspace     {{base03}}   {{base03}}    {{base05}}
-    active_workspace      {{base02}}   {{base02}}    {{base05}}
-    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
-    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
-    binding_mode          {{base03}}   {{base03}}    {{base05}}
-  }
-}
+#    #class                border       background    text
+#    focused_workspace     {{base03}}   {{base03}}    {{base05}}
+#    active_workspace      {{base02}}   {{base02}}    {{base05}}
+#    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
+#    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
+#    binding_mode          {{base03}}   {{base03}}    {{base05}}
+#  }
+#}
 
 bindsym $mod+r mode "resize"
 
@@ -181,3 +181,4 @@ bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --r
 
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id emacs --daemon
+exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top bottom
