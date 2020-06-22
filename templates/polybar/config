@@ -1,52 +1,42 @@
+[global/wm]
+
+margin-bottom = 0
+margin-top = 10
+
 [bar/top]
 ;monitor = eDP-1
-width = 100%
-height = 34
-
-background = #00000000
-foreground = #ccffffff
-
-line-color = ${bar/top.background}
-line-size = 16
-
-spacing = 2
-padding-right = 5
+enable-ipc=true
+border-size = 0
+border-color = {{base07}}
 module-margin = 2
+fixed-center = true
 
-font-0 = NotoSans-Regular:size=8;0
-font-1 = unifont:size=6;-3
-font-2 = FontAwesome:size=8;-2
-font-3 = NotoSans-Regular:size=8;-1
-font-4 = MaterialIcons:size=10;-1
-font-5 = Termsynu:size=8:antialias=false;0
-font-6 = Font Awesome 5 Free:size=10;0
+width = 100%
+height = 30
 
-modules-left = powermenu mpd
+line-size = 1
+
+padding=3
+
+background = {{base03}}
+foreground = {{base07}}
+
+font-0 = NotoSans-Regular
+font-1 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular
+font-2 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular
+font-4 = "jua"
+font-5 = "Iosevka Nerd Font"
+
+modules-left = powermenu
 modules-center = i3
-modules-right = volume backlight wireless-network wired-network battery date
-
-[module/backlight]
-type = internal/xbacklight
-format = <ramp> <bar>
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-font = 3
-bar-indicator-foreground = #ff
-bar-fill = ─
-bar-fill-font = 3
-bar-fill-foreground = {{base08}}
-bar-empty = ─
-bar-empty-font = 3
-bar-empty-foreground = #44
+modules-right = alsa wireless-network wired-network battery date
 
 [module/battery]
 type = internal/battery
 full-at = 98
+battery = BAT0
+adapter = AC0
 
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
@@ -79,72 +69,53 @@ animation-charging-framerate = 750
 [module/i3]
 type = internal/i3
 
-; Only show workspaces defined on the same output as the bar
-;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
 pin-workspaces = true
-
-; This will split the workspace name on ':'
-; Default: false
 strip-wsnumbers = true
-
-; Sort the workspaces by index instead of the default
-; sorting that groups the workspaces by output
-; Default: false
 index-sort = true
-
-; Create click handler used to focus workspace
-; Default: true
-enable-click = false
-
-; Create scroll handlers used to cycle workspaces
-; Default: true
+enable-click = true
 enable-scroll = false
-
-; Wrap around when reaching the first/last workspace
-; Default: true
 wrapping-scroll = false
-
-; Set the scroll cycle direction
-; Default: true
 reverse-scroll = false
-
-; Use fuzzy (partial) matching on labels when assigning
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces
-; containing 'code' in the label
-; Default: false
 fuzzy-match = true
+
+ws-icon-0 = "1;❶"
+ws-icon-1 = "2;❷"
+ws-icon-2 = "3;❸"
+ws-icon-3 = "4;❹"
+ws-icon-4 = "5;❺"
+ws-icon-5 = "6;❻"
+ws-icon-6 = "7;❼"
+ws-icon-7 = "8;❽"
+ws-icon-8 = "9;❾"
+ws-icon-9 = "10;❿"
+ws-icon-default =
 format = <label-state> <label-mode>
 
 label-mode-padding = 2
 label-mode-background = {{base08}}
 
-label-focused = %index%
+label-focused = %icon%
 label-focused-foreground = {{base07}}
-label-focused-background = {{base03}}
+label-focused-background = {{base02}}
 label-focused-font = 4
 label-focused-padding = 4
 
-label-occupied = %index%
+label-occupied = %icon%
 label-occupied-foreground = {{base07}}
 label-occupied-underline = {{base03}}
 label-occupied-font = 4
 label-occupied-padding = 4
 
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-foreground = {{base07}}
 label-urgent-background = {{base08}}
 label-urgent-font = 4
 label-urgent-padding = 4
 
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = 4
 
-label-visible = %index%
+label-visible = %icon%
 label-visible-underline = {{base03}}
 label-visible-padding = 4
 
@@ -152,104 +123,21 @@ label-visible-padding = 4
 label-separator-padding = 2
 label-separator-foreground = {{base0A}}
 
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-format = <label> <ramp-coreload>
-label = CPU
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = {{base0B}}
-ramp-coreload-1 = ▂
-ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = {{base0B}}
-ramp-coreload-2 = ▃
-ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = {{base0B}}
-ramp-coreload-3 = ▄
-ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = {{base0B}}
-ramp-coreload-4 = ▅
-ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = {{base09}}
-ramp-coreload-5 = ▆
-ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = {{base09}}
-ramp-coreload-6 = ▇
-ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = {{base08}}
-ramp-coreload-7 = █
-ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = {{base08}}
-
 [module/date]
 type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F{{base07}}}%H:%M%%{F-}
+date =   %%{F#99}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
 date-alt = %%{F{{base07}}}%A, %d %B %Y  %%{F{{base07}}}%H:%M%%{F{{base03}}}:%%{F{{base0A}}}%S%%{F-}
-
-[module/memory]
-type = internal/memory
-format = <label> <bar-used>
-label = RAM
-
-bar-used-width = 30
-bar-used-foreground-0 = {{base0B}}
-bar-used-foreground-1 = {{base0B}}
-bar-used-foreground-2 = {{base09}}
-bar-used-foreground-3 = {{base08}}
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = {{base02}}
-
-[module/mpd]
-type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
-toggle-off-foreground = #55
-
-bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = #44
 
 [module/wireless-network]
 type = internal/network
-interface = net1
+interface = {{wifi_if}}
 interval = 3.0
 ping-interval = 10
 
-format-connected = <ramp-signal> <label-connected>
+format-connected =  <label-connected>
 label-connected = %essid%
-label-disconnected =    not connected
-label-disconnected-foreground = #66
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+label-disconnected =  not connected
+label-disconnected-foreground = {{base08}}
 
 animation-packetloss-0 = 
 animation-packetloss-0-foreground = {{base0A}}
@@ -262,23 +150,21 @@ type = internal/network
 interface = net0
 interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
-label-disconnected-foreground = #66
+label-connected =   %{T3}%local_ip%%{T-}
+label-disconnected-foreground = {{base08}}
 
-[module/volume]
-type = internal/volume
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 9
+[module/alsa]
+type = internal/alsa
 
-format-volume = <ramp-volume> <label-volume>
-label-muted =   muted
-label-muted-foreground = #66
+format-volume = <ramp-volume>
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+label-muted = 
+label-muted-foreground = {{base08}}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
 
 [module/powermenu]
 type = custom/menu
@@ -311,10 +197,5 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = Cancel
 menu-2-1-foreground = {{base0A}}
 menu-2-1-exec = menu_open-0
-
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F{{base03}}}%Y-%m-%d%%{F-}  %%{F{{base07}}}%H:%M%%{F-}
 
 ; vim:ft=dosini
