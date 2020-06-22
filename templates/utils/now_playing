@@ -12,10 +12,15 @@
 # dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 import dbus
-session_bus = dbus.SessionBus()
-spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2")
-spotify_properties = dbus.Interface(spotify_bus, "org.freedesktop.DBus.Properties")
-metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+import sys
+
+try:
+    session_bus = dbus.SessionBus()
+    spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2")
+    spotify_properties = dbus.Interface(spotify_bus, "org.freedesktop.DBus.Properties")
+    metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+except Exception:
+    sys.exit(1)
 
 def get_title():
     return metadata['xesam:title']
@@ -24,3 +29,4 @@ def get_artist():
     return metadata['xesam:artist'][0]
 
 print(' {} - {}'.format(get_artist(), get_title()))
+sys.exit(0)

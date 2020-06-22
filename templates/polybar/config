@@ -1,24 +1,24 @@
 [global/wm]
 
 margin-bottom = 0
-margin-top = 10
+margin-top = 0
 
 [bar/top]
 ;monitor = eDP-1
 enable-ipc=true
 border-size = 0
-border-color = {{base07}}
+border-color = none
 module-margin = 2
 fixed-center = true
 
 width = 100%
 height = 30
 
-line-size = 1
+line-size = 0
 
 padding=3
 
-background = {{base03}}
+background = #aa665c54
 foreground = {{base07}}
 
 font-0 = NotoSans-Regular
@@ -28,9 +28,9 @@ font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular
 font-4 = "jua"
 font-5 = "Iosevka Nerd Font"
 
-modules-left = powermenu
-modules-center = i3
-modules-right = alsa wireless-network wired-network battery date
+modules-center = spotify
+modules-left = i3
+modules-right = wireless-network wired-network alsa battery date powermenu
 
 [module/battery]
 type = internal/battery
@@ -94,9 +94,9 @@ format = <label-state> <label-mode>
 label-mode-padding = 2
 label-mode-background = {{base08}}
 
-label-focused = %icon%
+label-focused = ""
 label-focused-foreground = {{base07}}
-label-focused-background = {{base02}}
+; label-focused-background = {{base02}}
 label-focused-font = 4
 label-focused-padding = 4
 
@@ -125,8 +125,8 @@ label-separator-foreground = {{base0A}}
 
 [module/date]
 type = internal/date
-date =   %%{F#99}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
-date-alt = %%{F{{base07}}}%A, %d %B %Y  %%{F{{base07}}}%H:%M%%{F{{base03}}}:%%{F{{base0A}}}%S%%{F-}
+date =   %%{F{{base07}}}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
+date-alt = %%{F{{base07}}}%A, %d %B %Y  %%{F{{base07}}}%H:%M%%{F{{base03}}}:%%{F{{base05}}}%S%%{F-}
 
 [module/wireless-network]
 type = internal/network
@@ -156,8 +156,9 @@ label-disconnected-foreground = {{base08}}
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume>
+format-volume = <ramp-volume> <label-volume>
 
+label-volume = %percentage%%
 label-muted = 
 label-muted-foreground = {{base08}}
 
@@ -167,35 +168,21 @@ ramp-volume-2 = 
 ramp-volume-3 = 
 
 [module/powermenu]
-type = custom/menu
+type = custom/script
 
-format-padding = 5
+interval = 5
+label = %output%
+click-left = sysact
+click-right = sysact
+exec = echo " "
+format = <label>
 
-label-open = 
-label-close = 
+[module/spotify]
+type = custom/script
 
-menu-0-0 = Terminate WM
-menu-0-0-foreground = {{base0A}}
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
-menu-0-1-foreground = {{base0A}}
-menu-0-1-exec = menu_open-1
-menu-0-2 = Power off
-menu-0-2-foreground = {{base0A}}
-menu-0-2-exec = menu_open-2
-
-menu-1-0 = Cancel
-menu-1-0-foreground = {{base0A}}
-menu-1-0-exec = menu_open-0
-menu-1-1 = Reboot
-menu-1-1-foreground = {{base0A}}
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = Power off
-menu-2-0-foreground = {{base0A}}
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
-menu-2-1-foreground = {{base0A}}
-menu-2-1-exec = menu_open-0
+interval = 10
+label = %output%
+exec = now_playing
+format = <label>
 
 ; vim:ft=dosini

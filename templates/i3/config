@@ -5,10 +5,10 @@ font pango:{{font}} 10
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 floating_modifier $mod
 bindsym $mod+Return exec {{terminal}}
@@ -180,5 +180,4 @@ bindsym $mod+Ctrl+d exec xrandr --output eDP-1 --off --output DP-2-1 --auto --ou
 bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1
 
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id emacs --daemon
-exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top bottom
+exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
