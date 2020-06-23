@@ -18,6 +18,7 @@ line-size = 0
 
 padding=3
 
+tray-position = left
 background = #aa665c54
 foreground = {{base07}}
 
@@ -28,8 +29,8 @@ font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular
 font-4 = "jua"
 font-5 = "Iosevka Nerd Font"
 
-modules-center = spotify
-modules-left = i3
+modules-center = i3
+modules-left = spotify
 modules-right = wireless-network wired-network alsa battery date powermenu
 
 [module/battery]
@@ -96,7 +97,6 @@ label-mode-background = {{base08}}
 
 label-focused = ""
 label-focused-foreground = {{base07}}
-; label-focused-background = {{base02}}
 label-focused-font = 4
 label-focused-padding = 4
 
@@ -119,14 +119,12 @@ label-visible = %icon%
 label-visible-underline = {{base03}}
 label-visible-padding = 4
 
-; label-separator = |
 label-separator-padding = 2
 label-separator-foreground = {{base0A}}
 
 [module/date]
 type = internal/date
 date =   %%{F{{base07}}}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
-date-alt = %%{F{{base07}}}%A, %d %B %Y  %%{F{{base07}}}%H:%M%%{F{{base03}}}:%%{F{{base05}}}%S%%{F-}
 
 [module/wireless-network]
 type = internal/network
