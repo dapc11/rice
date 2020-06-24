@@ -112,21 +112,6 @@ mode "resize" {
 }
 set $Locker i3lock -c {{base02}} && sleep 1
 
-set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-  bindsym l exec --no-startup-id $Locker, mode "default"
-  bindsym e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-  bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-  bindsym r exec --no-startup-id systemctl reboot, mode "default"
-  bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-bindsym $mod+p mode "$mode_system"
-
 # class                 border     background     text          indicator    child_border
 client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
 client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
@@ -172,7 +157,7 @@ bindsym $mod+plus scratchpad show
 bindsym $mod+l exec sysact
 bindsym $mod+n exec nightmode
 bindsym $mod+w exec firefox
-bindsym $mod+Shift+s exec rofi-randr
+bindsym $mod+p exec rofi-randr
 # leader+ctrl+(u)ndocked, (d)ocked and (p)resentation
 bindsym $mod+Ctrl+u exec xrandr --output eDP-1 --auto --output DP-2-1 --off --output DP-2-2 --off --output HDMI-1 --off
 bindsym $mod+Ctrl+d exec xrandr --output eDP-1 --off --output DP-2-1 --auto --output DP-2-2 --auto --right-of DP-2-1 --output HDMI-1 --off
