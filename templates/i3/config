@@ -110,7 +110,6 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-set $Locker i3lock -c {{base02}} && sleep 1
 
 # class                 border     background     text          indicator    child_border
 client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
