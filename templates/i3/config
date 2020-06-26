@@ -22,10 +22,10 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+v split h
+bindsym $mod+c split v
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+e layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -52,10 +52,10 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-for_window [workspace=$ws1] layout tabbed
-for_window [workspace=$ws2] layout tabbed
-for_window [workspace=$ws3] layout tabbed
-for_window [workspace=$ws9] layout tabbed
+for_window [workspace=$ws1] layout
+for_window [workspace=$ws2] layout
+for_window [workspace=$ws3] layout
+for_window [workspace=$ws9] layout
 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2

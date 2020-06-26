@@ -16,7 +16,7 @@ height = 30
 
 line-size = 0
 
-padding=3
+padding=0
 
 background = {{base02}}
 ; #aa665c54
