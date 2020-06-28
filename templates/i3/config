@@ -92,7 +92,7 @@ for_window [class=".elegram"] move container to workspace $ws9
 for_window [class=".potify"] move scratchpad
 for_window [class="^.*"] border pixel 0
 
-bindsym $mod+Shift+c reload
+bindsym $mod+Ctrl+c reload
 bindsym $mod+Shift+r restart
 
 mode "resize" {
@@ -148,8 +148,8 @@ bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+b exec rofi -show window -theme ~/.config/rofi/config
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base00}}' -sf '{{base05}}' -sb '{{base03}}' -nf '{{base05}}'
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 bindsym $mod+plus scratchpad show
