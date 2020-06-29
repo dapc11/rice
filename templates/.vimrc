@@ -62,6 +62,7 @@ set termguicolors
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+nnoremap <leader>Q :q<CR>
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
@@ -74,6 +75,7 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 
 colorscheme gruvbox
+hi Visual  guifg={{base02}} guibg={{base06}} gui=none
 
 " Enable autocompletion:
 set wildmode=longest,list,full
@@ -183,5 +185,3 @@ endfun
 autocmd VimEnter * call StartUp()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
-
-hi Visual  guifg={{base02}} guibg={{base06}} gui=none

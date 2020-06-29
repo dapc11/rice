@@ -31,7 +31,7 @@ font-5 = Iosevka Nerd Font;2
 
 modules-center = date
 modules-left = i3 spotify
-modules-right = wireless-network wired-network alsa battery powermenu
+modules-right = alsa wireless-network wired-network battery powermenu
 tray-position = right
 
 [module/battery]
@@ -41,7 +41,7 @@ battery = BAT0
 adapter = AC0
 
 format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity>
 format-full = <ramp-capacity> <label-full>
 
 ramp-capacity-0 = 
