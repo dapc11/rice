@@ -133,9 +133,9 @@ interface = {{wifi_if}}
 interval = 3.0
 ping-interval = 10
 
-format-connected =  <label-connected>
+format-connected = 直
 label-connected = %essid%
-label-disconnected =  not connected
+label-disconnected = 睊
 label-disconnected-foreground = {{base08}}
 
 animation-packetloss-0 = 
@@ -149,7 +149,7 @@ type = internal/network
 interface = net0
 interval = 3.0
 
-label-connected =   %{T3}%local_ip%%{T-}
+label-connected =  %{T3}%local_ip%%{T-}
 label-disconnected-foreground = {{base08}}
 
 [module/alsa]
