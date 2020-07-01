@@ -43,8 +43,7 @@ sudo pacman -Sy \
     nitrogen \
     ripgrep \
     i3 \
-    i3status \
-    alacritty
+    polybar
     #feh \
     #vim-gtk \
     #python3-pip \
@@ -81,7 +80,7 @@ sudo pacman -Sy \
     #cd ../st
     #sudo make clean install
     #cd ..
-    xrdb -merge ~/.Xresources
+    xrdb ~/.Xresources
     nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 
     echo -e "\nDone"
