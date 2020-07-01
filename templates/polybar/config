@@ -18,7 +18,7 @@ line-size = 0
 
 padding=0
 
-background = {{base02}}
+background = {{base01}}
 ; #aa665c54
 foreground = {{base07}}
 
