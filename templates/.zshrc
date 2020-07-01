@@ -1,6 +1,7 @@
 user_home="/home/${USER}"
 plugins=(
     git
+    zsh-autosuggestions
 )
 
 export TERM="xterm-256color"

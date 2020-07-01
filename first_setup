@@ -57,13 +57,15 @@ sudo pacman -Sy \
     echo -e "\n\tSetting up fonts"
     echo "----------------------------------------------------"
     sudo mkdir -p /usr/local/share/fonts
-    sudo mv templates/fonts/* /usr/local/share/fonts
-    sudo chmod 666 /usr/local/share/fonts
+    sudo cp templates/fonts/* /usr/local/share/fonts
+    sudo chmod 777 -R /usr/local/share/fonts
+    sudo chowm root:root -R /usr/local/share/fonts
     fc-cache -fv
 
     echo -e "\n\tInstalling Oh-My-Zsh"
     echo "----------------------------------------------------"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
     echo -e "\n\tGenerating dotfiles"
     echo "----------------------------------------------------"
