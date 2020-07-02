@@ -17,7 +17,7 @@
   "base0F": "#d65d0e",
   "font": "monospace",
   "shell": "/usr/bin/zsh",
-  "terminal": "alacritty",
+  "terminal": "xfce4-terminal",
   "browser": "firefox",
   "editor": "vim",
   "keymap": "se",
