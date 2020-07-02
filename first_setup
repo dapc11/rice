@@ -71,17 +71,18 @@ sudo pacman -Sy \
     echo "----------------------------------------------------"
     python3 rice_it -o
 
-    #echo -e "\n\tSetting up Suckless"
-    #echo "----------------------------------------------------"
-    #rm -rf dwm st
+    # echo -e "\n\tSetting up Suckless"
+    # echo "----------------------------------------------------"
+    # rm -rf dwm st
     #git clone https://github.com/dapc11/dwm.git
-    #git clone https://github.com/dapc11/st.git
+    # git clone https://github.com/dapc11/st.git
 
     #cd dwm
     #sudo make clean install
     #cd ../st
-    #sudo make clean install
-    #cd ..
+    # cd st
+    # sudo make clean install
+    # cd ..
     xrdb ~/.Xresources
     nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 

@@ -155,16 +155,15 @@ label-disconnected-foreground = {{base08}}
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume>
 
 label-volume = %percentage%%
-label-muted = 
+label-muted = 婢
 label-muted-foreground = {{base08}}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+ramp-volume-2 = 墳
 
 [module/powermenu]
 type = custom/script
