@@ -185,3 +185,4 @@ endfun
 autocmd VimEnter * call StartUp()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
+let &t_ut=''
