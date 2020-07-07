@@ -42,7 +42,6 @@ sudo pacman -Sy \
     dmenu \
     nitrogen \
     ripgrep \
-    i3 \
     bspwm \
     sxhkd \
     polybar
@@ -77,6 +76,7 @@ sudo pacman -Sy \
     echo -e "\n\tGenerating dotfiles"
     echo "----------------------------------------------------"
     python3 rice_it -o
+    chmod -R 755 ~ ~/.config/bspwm ~/.config/sxhkd
 
     # echo -e "\n\tSetting up Suckless"
     # echo "----------------------------------------------------"
