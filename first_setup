@@ -43,6 +43,8 @@ sudo pacman -Sy \
     nitrogen \
     ripgrep \
     i3 \
+    bspwm \
+    sxhkd \
     polybar
     #feh \
     #vim-gtk \
