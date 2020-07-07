@@ -10,4 +10,5 @@
 
 [ -f "${XDG_CONFIG_HOME:-$HOME}/.xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME}/.xprofile"
 
-ssh-agent dwm
+#ssh-agent dwm
+exec bspwm

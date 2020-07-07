@@ -30,9 +30,81 @@ font-4 = jua;2
 font-5 = Iosevka Nerd Font;2
 
 modules-center = date
-modules-left = i3 spotify
+modules-left = i3 bspwm spotify
 modules-right = alsa wireless-network wired-network battery powermenu
 tray-position = right
+
+[module/bspwm]
+type = internal/bspwm
+
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; But if you rename your bspwm monitors with bspc -n this option will no longer
+; behave correctly.
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+; Default: false
+ws-icon-0 = "1;❶"
+ws-icon-1 = "2;❷"
+ws-icon-2 = "3;❸"
+ws-icon-3 = "4;❹"
+ws-icon-4 = "5;❺"
+ws-icon-5 = "6;❻"
+ws-icon-6 = "7;❼"
+ws-icon-7 = "8;❽"
+ws-icon-8 = "9;❾"
+ws-icon-9 = "10;❿"
+ws-icon-default =
+format = <label-state> <label-mode>
+
+label-mode-background = {{base08}}
+
+label-focused = ""
+label-focused-foreground = {{base07}}
+label-focused-padding = 1
+
+label-occupied = %icon%
+label-occupied-foreground = {{base07}}
+label-occupied-underline = {{base03}}
+label-occupied-font = 1
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = {{base07}}
+label-urgent-background = {{base08}}
+label-urgent-font = 1
+label-urgent-padding = 1
+
+label-empty = %icon%
+label-empty-padding = 1
+
+label-visible = %icon%
+label-visible-underline = {{base03}}
+label-visible-padding = 1
+
+label-separator-padding = 1
+label-separator-foreground = {{base0A}}uzzy-match = true
 
 [module/battery]
 type = internal/battery
@@ -129,12 +201,14 @@ date =   %%{F{{base07}}}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
 
 [module/wireless-network]
 type = internal/network
+; label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
+label-connected =  %{A1:kitty:} clickable text %{A}
 interface = {{wifi_if}}
 interval = 3.0
 ping-interval = 10
 
 format-connected = 直
-label-connected = %essid%
+; label-connected = %essid%
 label-disconnected = 睊
 label-disconnected-foreground = {{base08}}
 

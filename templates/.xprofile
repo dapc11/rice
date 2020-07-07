@@ -35,7 +35,7 @@ unclutter &                         # Remove mouse when idle
 ntpdate ntp.ubuntu.com &
 
 # Statusbar
-while true; do
-    xsetroot -name "$(__now_playing) | $(__wifi) | $(__volume) | $(__battery) | $(__date)"
-    sleep 5s
-done &
+# while true; do
+#     xsetroot -name "$(__now_playing) | $(__wifi) | $(__volume) | $(__battery) | $(__date)"
+#     sleep 5s
+# done &
