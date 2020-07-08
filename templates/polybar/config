@@ -16,7 +16,7 @@ height = 30
 
 line-size = 0
 
-padding=0
+padding=2
 
 background = {{base01}}
 ; #aa665c54
@@ -197,7 +197,7 @@ label-separator-foreground = {{base0A}}
 
 [module/date]
 type = internal/date
-date =   %%{F{{base07}}}%Y-%m-%d%%{F-}    %%{F{{base07}}}%H:%M:%S%%{F-}
+date = %%{F{{base07}}}%Y-%m-%d%%{F-}  %%{F{{base07}}}%H:%M:%S%%{F-}
 
 [module/wireless-network]
 type = internal/network

@@ -1,97 +1,49 @@
 #!/bin/bash
 
-#echo -e "\n\tUpdating packages"
-#echo "----------------------------------------------------"
-#sudo apt-get update
-
-#echo -e "\n\tCleaning up old packages"
-#echo "----------------------------------------------------"
-#sudo apt-get autoremove
-#sudo apt-get autoclean
-
-#echo -e "\n\tPrepare Alacritty"
-#echo "----------------------------------------------------"
-#sudo add-apt-repository ppa:mmstick76/alacritty
-
 echo -e "\n\tInstalling packages"
 echo "----------------------------------------------------"
 #sudo apt-get install \
-sudo pacman -Sy \
-    dkms \
-    ttf-font-awesome \
-    zsh \
-    python3 \
-    curl \
-    git \
-    xsel \
-    xclip \
-    gvim \
-    tmux \
-    slock \
-    ranger \
-    python-ueberzug \
-    fzf \
-    cmake \
-    rofi \
-    picom \
-    xorg-xsetroot \
-    xorg-setxkbmap \
-    unclutter \
-    ack \
-    the_silver_searcher \
-    dmenu \
-    nitrogen \
-    ripgrep \
-    bspwm \
-    sxhkd \
-    polybar
-    #feh \
-    #vim-gtk \
-    #python3-pip \
-    #dconf-cli \
-    #uuid-runtime \
-    #fonts-font-awesome \
-    #build-essential \
+cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
 
-    pip3 install --user --requirement requirements.txt
+pip3 install --user --requirement requirements.txt
 
-    echo -e "\n\tSetting up fonts"
-    echo "----------------------------------------------------"
-    sudo mkdir -p /usr/local/share/fonts
-    sudo cp templates/fonts/* /usr/local/share/fonts
-    sudo chmod 777 -R /usr/local/share/fonts
-    sudo chowm root:root -R /usr/local/share/fonts
-    fc-cache -fv
+echo -e "\n\tSetting up fonts"
+echo "----------------------------------------------------"
+sudo mkdir -p /usr/local/share/fonts
+sudo cp templates/fonts/* /usr/local/share/fonts
+sudo chmod 777 -R /usr/local/share/fonts
+sudo chown root:root -R /usr/local/share/fonts
+fc-cache -fv
 
-    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-    sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
+sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 
-    echo -e "\n\tInstalling Oh-My-Zsh"
-    echo "----------------------------------------------------"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo -e "\n\tInstalling Oh-My-Zsh"
+echo "----------------------------------------------------"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-    echo -e "\n\tGenerating dotfiles"
-    echo "----------------------------------------------------"
-    python3 rice_it -o
-    chmod -R 755 ~ ~/.config/bspwm ~/.config/sxhkd
+echo -e "\n\tGenerating dotfiles"
+echo "----------------------------------------------------"
+python3 rice_it -o
+chmod -R 755 ~/.config/bspwm ~/.config/sxhkd
 
-    # echo -e "\n\tSetting up Suckless"
-    # echo "----------------------------------------------------"
-    # rm -rf dwm st
-    #git clone https://github.com/dapc11/dwm.git
-    # git clone https://github.com/dapc11/st.git
+# echo -e "\n\tSetting up Suckless"
+# echo "----------------------------------------------------"
+# rm -rf dwm st
+#git clone https://github.com/dapc11/dwm.git
+# git clone https://github.com/dapc11/st.git
 
-    #cd dwm
-    #sudo make clean install
-    #cd ../st
-    # cd st
-    # sudo make clean install
-    # cd ..
-    xrdb ~/.Xresources
-    nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
+#cd dwm
+#sudo make clean install
+#cd ../st
+# cd st
+# sudo make clean install
+# cd ..
+xrdb ~/.Xresources
+nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 
-    echo -e "\nDone"
-    exit 0
+echo -e "\nDone"
+exit 0
