@@ -18,6 +18,7 @@ Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " Requires gvim
@@ -74,7 +75,7 @@ let g:ycm_key_invoke_completion = '<c-j>'
 let g:ycm_complete_in_strings = 1
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 
-colorscheme gruvbox
+colorscheme {{vim_colorscheme}}
 hi Visual  guifg={{base02}} guibg={{base06}} gui=none
 
 " Enable autocompletion:

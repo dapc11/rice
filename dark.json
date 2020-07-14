@@ -23,6 +23,7 @@
     "keymap": "se",
     "zsh_theme": "afowler",
     "vim_theme": "dark",
+    "vim_colorscheme": "gruvbox",
     "gtk_theme": "Adwaita-dark",
     "vs_theme": "Gruvbox Dark Medium"
 }

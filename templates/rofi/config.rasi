@@ -7,7 +7,7 @@ configuration {
 * {
     background:        {{base00}};
     background-color:  {{base00}};
-    text-color:        {{base04}};
+    text-color:        {{base05}};
     actbg:             {{base03}};
     winbg:             {{base05}};
 
