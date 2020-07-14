@@ -5,7 +5,7 @@ echo "----------------------------------------------------"
 #sudo apt-get install \
 cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
 
-pip3 install --user --requirement requirements.txt
+pip3 install --user --requirement .requirements.txt
 
 echo -e "\n\tSetting up fonts"
 echo "----------------------------------------------------"

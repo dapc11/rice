@@ -1,6 +1,6 @@
 # Dapc11 Ricer
 
-Setup dapc11 environment with Dwm as window manager.
+Setup dapc11 environment with i3 as window manager.
 
 ## Getting started
 
@@ -16,16 +16,15 @@ One can at any time after first setup invoke __rice_it__ in order to re-generate
 ### Usage
 
 ```
-Usage: rice_it [-h] [--first-setup] [--overwrite]
+usage: rice_it [-h] [--overwrite] [-t THEME]
 
 Dapc ricer, make your environment consistent from a color perspective.
 
 optional arguments:
-  -h, --help          show this help message and exit
-  --first-setup, -fs  WIP: Indicate that this is the first setup, will install
-                      necessary packages to get started.
-  --overwrite, -o     Make rice_it overwrite existing dotfiles in your home
-                      directory, use with caution!
+  -h, --help            show this help message and exit
+  --overwrite, -o       Make rice_it overwrite existing dotfiles in your home directory, use with caution!
+  -t THEME, --theme THEME
+                        Specify which theme the context will be loaded from. Defaults to dark.json
 ```
 
 ## Base 16

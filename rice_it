@@ -79,15 +79,11 @@ def setup_argparser():
             prog='rice_it',
             description='Dapc ricer, make your environment consistent from a color perspective.')
     parser.add_argument(
-            '--first-setup',
-            '-fs',
-            help='WIP: Indicate that this is the first setup, will install necessary packages to get started.',
-            action='store_true')
-    parser.add_argument(
             '--overwrite', '-o',
             help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
             action='store_true')
-    parser.add_argument('-t', '--theme', action='store', dest='theme', default='dark.json')
+    parser.add_argument('-t', '--theme', action='store', dest='theme', default='dark.json',
+            help='Specify which theme the context will be loaded from. Defaults to dark.json')
     return parser
 
 
