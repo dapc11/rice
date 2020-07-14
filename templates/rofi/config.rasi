@@ -5,7 +5,6 @@ configuration {
 }
 
 * {
-    background:        {{base00}};
     background-color:  {{base00}};
     text-color:        {{base05}};
     actbg:             {{base03}};
@@ -22,7 +21,7 @@ configuration {
     selected-active-foreground:  @winbg;
     active-foreground:           @text-color;
     selected-active-background:  @actbg;
-    border-color:                @text-color;
+    border-color:                {{base03}};
     spacing:                     2;
 }
 
