@@ -114,7 +114,7 @@ mode "resize" {
 # class                 border     background     text          indicator    child_border
 client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
 client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
-client.unfocused        {{base03}} {{base01}}     {{base04}}    {{base02}}   {{base02}}
+client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
 client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
 client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
 
