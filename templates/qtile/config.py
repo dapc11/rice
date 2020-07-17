@@ -14,8 +14,8 @@ keys = [
         Key([mod], "Right", lazy.layout.right()),
 
         # Move windows up or down in current stack
-        Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-        Key([mod, "control"], "j", lazy.layout.shuffle_up()),
+        Key([mod, "control"], "Down", lazy.layout.shuffle_down()),
+        Key([mod, "control"], "Up", lazy.layout.shuffle_up()),
 
         # Switch window focus to other pane(s) of stack
         Key([mod], "space", lazy.layout.next()),
@@ -31,7 +31,7 @@ keys = [
         Key([mod], "Return", lazy.spawn("{{terminal}}")),
         Key([mod], "d", lazy.spawn("rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config")),
         Key([mod], "b", lazy.spawn("rofi -show window -theme ~/.config/rofi/config")),
-        Key([mod], "l", lazy.spawn("sysact")),
+        Key([mod], "l", lazy.spawn("systemctl suspend")),
         Key([mod], "n", lazy.spawn("nightmode")),
         Key([mod], "w", lazy.spawn("firefox")),
         Key([mod], "p", lazy.spawn("rofi-randr")),
