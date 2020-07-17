@@ -27,3 +27,4 @@ xorg-xsetroot 1.1.2-2
 xsel 1.2.0.20190821-1
 zsh 5.8-1
 dunst 1.4.1-2
+qtile 0.15.1-1
