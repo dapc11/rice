@@ -28,7 +28,8 @@ keys = [
         # Unsplit = 1 window displayed, like Max layout, but still with
         # multiple stack panes
         Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-        Key([mod], "Return", lazy.spawn("{{terminal}}")),
+        Key([mod], "Return", lazy.spawn("{{terminal}} tmux new-session -A -s main")),
+        Key([mod, "shift"], "Return", lazy.spawn("{{terminal}}")),
         Key([mod], "d", lazy.spawn("rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config")),
         Key([mod], "b", lazy.spawn("rofi -show window -theme ~/.config/rofi/config")),
         Key([mod], "l", lazy.spawn("systemctl suspend")),
@@ -80,18 +81,6 @@ layouts = [
         layout.Max(),
         layout.Stack(num_stacks=2),
         layout.Bsp(
-            border_focus = "{{base03}}",
-            border_normal = "{{base01}}",
-            border_width = 1,
-            margin = 5,
-            ),
-        layout.Columns(
-            border_focus = "{{base03}}",
-            border_normal = "{{base01}}",
-            border_width = 1,
-            margin = 5,
-            ),
-        layout.Matrix(
             border_focus = "{{base03}}",
             border_normal = "{{base01}}",
             border_width = 1,
@@ -153,6 +142,7 @@ screens = [
                         format=" 直 {essid}",
                         ),
                     widget.Clock(format=' %Y-%m-%d %H:%M:%S '),
+                    widget.CurrentLayoutIcon(),
                     widget.Systray(),
                     ],
                 24,
