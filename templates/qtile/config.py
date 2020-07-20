@@ -43,18 +43,9 @@ keys = [
         Key([mod, "control"], "r", lazy.restart()),
         Key([mod, "control"], "q", lazy.shutdown()),
         Key([mod], "r", lazy.spawncmd()),
-        Key(
-            [], "XF86AudioRaiseVolume",
-            lazy.spawn("amixer -c 0 -q set Master 2dB+")
-            ),
-        Key(
-            [], "XF86AudioLowerVolume",
-            lazy.spawn("amixer -c 0 -q set Master 2dB-")
-            ),
-        Key(
-            [], "XF86AudioMute",
-            lazy.spawn("amixer set Master toggle")
-            ),
+        Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
+        Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
+        Key([], "XF86AudioMute", lazy.spawn("amixer set Master toggle")),
         ]
 
 groups = [
@@ -84,19 +75,30 @@ layouts = [
             border_focus = "{{base03}}",
             border_normal = "{{base01}}",
             border_width = 1,
-            margin = 5,
+            margin = 5
             ),
         layout.MonadTall(
             border_focus = "{{base03}}",
             border_normal = "{{base01}}",
             border_width = 1,
-            margin = 5,
+            margin = 5
             ),
         layout.MonadWide(
             border_focus = "{{base03}}",
             border_normal = "{{base01}}",
             border_width = 1,
-            margin = 5,
+            margin = 5
+            ),
+        layout.TreeTab(
+            bg_color = "{{base01}}",
+            active_bg = "{{base02}}",
+            active_fg = "{{base06}}",
+            inactive_bg = "{{base01}}",
+            inactive_fg = "{{base06}}",
+            border_focus = "{{base03}}",
+            border_normal = "{{base01}}",
+            border_width = 1,
+            margin = 5
             ),
         ]
 
