@@ -27,7 +27,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 echo -e "\n\tGenerating dotfiles"
 echo "----------------------------------------------------"
-python3 rice_it -o
+python3 rice_it -t themes/dracula.json -o
 chmod -R 755 ~/.config/bspwm ~/.config/sxhkd
 
  echo -e "\n\tSetting up Suckless"
