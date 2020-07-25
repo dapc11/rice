@@ -171,22 +171,22 @@ label-mode-background = {{base08}}
 label-focused = ""
 label-focused-foreground = {{base07}}
 label-focused-font = 4
-label-focused-padding = 4
+label-focused-padding = 2
 
 label-occupied = %icon%
 label-occupied-foreground = {{base07}}
 label-occupied-underline = {{base03}}
 label-occupied-font = 4
-label-occupied-padding = 4
+label-occupied-padding = 2
 
 label-urgent = %icon%
 label-urgent-foreground = {{base07}}
 label-urgent-background = {{base08}}
 label-urgent-font = 4
-label-urgent-padding = 4
+label-urgent-padding = 2
 
 label-unfocused = %icon%
-label-unfocused-padding = 4
+label-unfocused-padding = 2
 
 label-visible = %icon%
 label-visible-underline = {{base03}}
