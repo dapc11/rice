@@ -6,21 +6,24 @@ margin-top = 0
 [bar/top]
 ;monitor = eDP-1
 enable-ipc=true
-border-size = 0
-border-color = none
-module-margin = 2
-fixed-center = true
+;module-margin = 2
 
 width = 100%
 height = 30
+radius = 10
+border-color = #00000000
+border-left-size = 4
+border-right-size = 4
+border-bottom-size = 0
+border-top-size = 4
+padding-left = 2
+padding-right = 2
 
-line-size = 0
-
-padding=2
+bottom = false
 
 background = {{base01}}
 ; #aa665c54
-foreground = {{base07}}
+foreground = {{base06}}
 
 font-0 = NotoSans-Regular;2
 font-1 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
@@ -32,7 +35,7 @@ font-5 = Iosevka Nerd Font;2
 modules-center = date
 modules-left = i3 bspwm spotify
 modules-right = alsa wireless-network wired-network battery powermenu
-tray-position = right
+;tray-position = right
 
 [module/bspwm]
 type = internal/bspwm
@@ -81,17 +84,17 @@ format = <label-state> <label-mode>
 label-mode-background = {{base08}}
 
 label-focused = ""
-label-focused-foreground = {{base07}}
+label-focused-foreground = {{base06}}
 label-focused-padding = 1
 
 label-occupied = %icon%
-label-occupied-foreground = {{base07}}
+label-occupied-foreground = {{base06}}
 label-occupied-underline = {{base03}}
 label-occupied-font = 1
 label-occupied-padding = 1
 
 label-urgent = %icon%
-label-urgent-foreground = {{base07}}
+label-urgent-foreground = {{base06}}
 label-urgent-background = {{base08}}
 label-urgent-font = 1
 label-urgent-padding = 1
@@ -108,14 +111,15 @@ label-separator-foreground = {{base0A}}uzzy-match = true
 
 [module/battery]
 type = internal/battery
-full-at = 98
+full-at = 93
 battery = BAT0
 adapter = AC0
 
-format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity>
-format-full = <ramp-capacity> <label-full>
+format-charging = %{B{{base02}}}%{F{{base06}}} <animation-charging> <label-charging>  %{B- F-}
+format-discharging = %{B{{base02}}}%{F{{base06}}} <label-discharging> <ramp-capacity>  %{B- F-}
+format-full = %{B{{base02}}}%{F{{base06}}} <ramp-capacity> <label-full>  %{B- F-}
 
+label-discharging = %percentage%%
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = {{base08}}
 ramp-capacity-1 = 
@@ -163,24 +167,21 @@ ws-icon-7 = "8;❽"
 ws-icon-8 = "9;❾"
 ws-icon-9 = "10;❿"
 ws-icon-default =
-format = <label-state> <label-mode>
+format = %{B{{base01}}}%{F{{base06}}} <label-state> <label-mode> %{B- F-}
 
 label-mode-padding = 2
 label-mode-background = {{base08}}
 
 label-focused = ""
-label-focused-foreground = {{base07}}
 label-focused-font = 4
 label-focused-padding = 2
 
 label-occupied = %icon%
-label-occupied-foreground = {{base07}}
 label-occupied-underline = {{base03}}
 label-occupied-font = 4
 label-occupied-padding = 2
 
 label-urgent = %icon%
-label-urgent-foreground = {{base07}}
 label-urgent-background = {{base08}}
 label-urgent-font = 4
 label-urgent-padding = 2
@@ -193,24 +194,21 @@ label-visible-underline = {{base03}}
 label-visible-padding = 4
 
 label-separator-padding = 2
-label-separator-foreground = {{base0A}}
 
 [module/date]
 type = internal/date
-date = %%{F{{base07}}}%Y-%m-%d%%{F-}  %%{F{{base07}}}%H:%M:%S%%{F-}
+date = %{B{{base01}}}%{F{{base06}}} %Y-%m-%d  %H:%M:%S %{B- F-}
 
 [module/wireless-network]
 type = internal/network
-; label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
-label-connected =  %{A1:kitty:} clickable text %{A}
+label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
 interface = {{wifi_if}}
 interval = 3.0
 ping-interval = 10
 
-format-connected = 直
+format-connected = %{B{{base01}}}%{F{{base06}}}  <label-connected>  %{B- F-}
 ; label-connected = %essid%
-label-disconnected = 睊
-label-disconnected-foreground = {{base08}}
+label-disconnected = %{B{{base01}}}%{F{{base08}}} 睊  %{B- F-}
 
 animation-packetloss-0 = 
 animation-packetloss-0-foreground = {{base0A}}
@@ -229,11 +227,9 @@ label-disconnected-foreground = {{base08}}
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume>
-
+format-volume = %{B{{base02}}}%{F{{base06}}} <label-volume> <ramp-volume>  %{B- F-}
 label-volume = %percentage%%
-label-muted = 婢
-label-muted-foreground = {{base08}}
+label-muted = %{B{{base02}}}%{F{{base08}}}  婢  %{B- F-}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -243,7 +239,7 @@ ramp-volume-2 = 墳
 type = custom/script
 
 interval = 5
-label = %output%
+label = %{B{{base01}}}%{F{{base06}}}  %output%%{B- F-}
 click-left = sysact
 click-right = sysact
 exec = echo " "
@@ -253,7 +249,7 @@ format = <label>
 type = custom/script
 
 interval = 10
-label = %output%
+label = %{B{{base04}}}%{F{{base02}}}  %output%  %{B- F-}
 exec = now_playing
 format = <label>
 
