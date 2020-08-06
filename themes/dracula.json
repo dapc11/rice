@@ -25,5 +25,6 @@
   "vim_theme": "dark",
   "vim_colorscheme": "dracula",
   "gtk_theme": "Adwaita",
+  "wifi_if": "wlo1",
   "vs_theme": "Dracula"
 }
