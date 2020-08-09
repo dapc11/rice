@@ -62,6 +62,7 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
+set fillchars+=vert:\
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 nnoremap <leader>Q :q<CR>
