@@ -28,3 +28,11 @@ xsel 1.2.0.20190821-1
 zsh 5.8-1
 dunst 1.4.1-2
 qtile 0.15.1-1
+xcb
+libxcb-xkb-dev
+x11-xkb-utils
+libx11-xcb-dev
+libxkbcommon-x11-dev
+libx11-xcb-dev
+libxcb-res0-dev
+xterm

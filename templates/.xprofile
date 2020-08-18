@@ -18,7 +18,8 @@ function __wifi {
     echo "$(nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}')"
 }
 function __now_playing {
-    echo "$(now_playing)"
+    # echo "$(now_playing)"
+    echo ""
 }
 
 # Fix Gnome Apps Slow start due to failing services
@@ -26,13 +27,12 @@ function __now_playing {
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 #fix_resolution &                    # Add resolution if missing
-nitrogen --restore &                # Set bg
-picom &                             # Composition manager
-xrdb -merge $HOME/.Xresources &     # Uncomment to use Xresources colors/settings on startup
-xsetkbmap se &                      # Set keyboard layout to swedish
-xset r rate 300 50 &                # Speed xrate up
-unclutter &                         # Remove mouse when idle
-ntpdate ntp.ubuntu.com &            # Fix time
+nitrogen --set-auto ${HOME}/.local/background.jpg & # >Background
+compton --config ${HOME}/.config/compton/compton.conf &                            # Composition manager
+xrdb $HOME/.Xresources &     # Uncomment to use Xresources colors/settings on startup
+#xsetkbmap se &                      # Set keyboard layout to swedish
+# unclutter &                         # Remove mouse when idle
+#ntpdate ntp.ubuntu.com &            # Fix time
 dunst &                             # Notifications
 
 # Statusbar

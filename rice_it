@@ -98,6 +98,7 @@ if __name__ == "__main__":
     ricer.render_template('polybar/config')
     ricer.render_template('kitty/kitty.conf')
     ricer.render_template('picom/picom.conf')
+    ricer.render_template('compton/compton.conf')
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code - OSS/User/settings.json')
     ricer.render_template('gtk-3.0/settings.ini')
