@@ -1,42 +1,4 @@
 #!/bin/sh
 
-# This file runs when a DM logs you into a graphical session.
-
-function __volume {
-    echo " $(amixer get Master | grep -o '\[[0-9]\+%\]' | sed 's/[^0-9]*//g;1q')%"
-}
-
-function __battery {
-    echo " $(cat /sys/class/power_supply/BAT0/capacity)%"
-}
-
-function __date {
-    echo " $(date +%F\ \ %T\ %Z)"
-}
-
-function __wifi {
-    echo "$(nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}')"
-}
-function __now_playing {
-    # echo "$(now_playing)"
-    echo ""
-}
-
-# Fix Gnome Apps Slow start due to failing services
-# Add this when you include flatpak in your system
-dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-
-#fix_resolution &                    # Add resolution if missing
-nitrogen --set-auto ${HOME}/.local/background.jpg & # >Background
-compton --config ${HOME}/.config/compton/compton.conf &                            # Composition manager
 xrdb $HOME/.Xresources &     # Uncomment to use Xresources colors/settings on startup
-#xsetkbmap se &                      # Set keyboard layout to swedish
-# unclutter &                         # Remove mouse when idle
-#ntpdate ntp.ubuntu.com &            # Fix time
-dunst &                             # Notifications
-
-# Statusbar
-while true; do
-    xsetroot -name "$(__now_playing) | $(__wifi) | $(__volume) | $(__battery) | $(__date)"
-    sleep 5s
-done &
+compton --config ~/.config/compton/compton.conf &

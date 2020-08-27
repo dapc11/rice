@@ -11,10 +11,11 @@ function main
     local config="$1" ; shift
     local -a bars=("${@}")
 
-    for bar in ${bars[*]}; do
-        echo $bar
-        polybar "$bar" -c "$config" -r 2>"$HOME/.config/polybar/stderr" &
-
+    for m in in $(polybar --list-monitors | cut -d":" -f1); do
+        for bar in ${bars[*]}; do
+            echo $bar
+            MONITOR=$m polybar "$bar" -c "$config" -r 2>"$HOME/.config/polybar/stderr" &
+        done
     done
 
 }

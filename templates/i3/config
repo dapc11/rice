@@ -127,7 +127,7 @@ client.background       {{base05}}
 #    background            {{base01}}
 #    statusline            {{base05}}
 #    separator             {{base05}}
-
+#
 #    #class                border       background    text
 #    focused_workspace     {{base03}}   {{base03}}    {{base05}}
 #    active_workspace      {{base02}}   {{base02}}    {{base05}}
@@ -136,14 +136,15 @@ client.background       {{base05}}
 #    binding_mode          {{base03}}   {{base03}}    {{base05}}
 #  }
 #}
-
+#
 bindsym $mod+r mode "resize"
 
 bindcode 76 exec amixer -q set Master 2dB+ unmute
 bindcode 75 exec amixer -q set Master 2dB- unmute
 bindcode 96 exec amixer -D pulse -q set Master toggle
-bindcode 73 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym $mod+comma exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+b exec rofi -show window -theme ~/.config/rofi/config
@@ -164,6 +165,3 @@ bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --r
 
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
-
-gaps inner 10
-hide_edge_borders smart_no_gaps

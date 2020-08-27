@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+# -*- coding: UTF-8 -*-
 # Play:
 # dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
 # Pause:
@@ -28,5 +28,8 @@ def get_title():
 def get_artist():
     return metadata['xesam:artist'][0]
 
-print(' {} - {}'.format(get_artist(), get_title()))
+try:
+    print("ﱘ {} - {}".format(get_artist(), get_title()))
+except Exception:
+    print('')
 sys.exit(0)

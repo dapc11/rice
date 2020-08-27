@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo -e "\n\tInstalling packages"
-echo "----------------------------------------------------"
-#sudo apt-get install \
-cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
+# echo -e "\n\tInstalling packages"
+# echo "----------------------------------------------------"
+#cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
 
 pip3 install --user --requirement .requirements.txt
 
@@ -15,11 +14,6 @@ sudo chmod 777 -R /usr/local/share/fonts
 sudo chown root:root -R /usr/local/share/fonts
 fc-cache -fv
 
-# curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-# ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-# cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-# sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
-
 echo -e "\n\tInstalling Oh-My-Zsh"
 echo "----------------------------------------------------"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -28,20 +22,19 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 echo -e "\n\tGenerating dotfiles"
 echo "----------------------------------------------------"
 python3 rice_it -t themes/dracula.json -o
-chmod -R 755 ~/.config/bspwm ~/.config/sxhkd
 
  echo -e "\n\tSetting up Suckless"
 echo "----------------------------------------------------"
 rm -rf dwm st
-#git clone https://github.com/dapc11/dwm.git
+git clone https://github.com/dapc11/dwm.git
 git clone https://github.com/dapc11/st.git
-
 #cd dwm
 #sudo make clean install
 #cd ../st
-cd st
-sudo make clean install
-cd ..
+#cd st
+#sudo make clean install
+#cd ..
+
 xrdb ~/.Xresources
 nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 
