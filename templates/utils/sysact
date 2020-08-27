@@ -15,7 +15,7 @@ if __name__ == '__main__':
     pid = get_pid("i3").decode("utf-8")
     commands = {
         ' Exit':       "kill -TERM {}".format(pid),
-        ' Renew':      "kill -HUP {}".format(pid),
+        ' Renew':      "kill -HUP {}".format(pid),
         ' Lock':       'slock',
         ' Suspend':    'systemctl suspend',
         ' Hibernate':  'systemctl hibernate',

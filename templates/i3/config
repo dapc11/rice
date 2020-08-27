@@ -90,7 +90,7 @@ for_window [class=".hunar"] move container to workspace $ws8
 for_window [class=".idgin"] move container to workspace $ws9
 for_window [class=".elegram"] move container to workspace $ws9
 for_window [class=".potify"] move scratchpad
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 
 bindsym $mod+Ctrl+c reload
 bindsym $mod+Shift+r restart
@@ -112,7 +112,7 @@ mode "resize" {
 }
 
 # class                 border     background     text          indicator    child_border
-client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
+client.focused          {{base06}} {{base02}}     {{base05}}    {{base0B}}   {{base06}}
 client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
 client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
 client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
