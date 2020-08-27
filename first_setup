@@ -1,40 +1,90 @@
 #!/bin/bash
 
-# echo -e "\n\tInstalling packages"
-# echo "----------------------------------------------------"
-#cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
+function install_deps
+{
+    echo -e "\n\tInstalling dependecies"
+    echo "----------------------------------------------------"
+    #cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
+    for i in $(cat .installed.txt | cut -d" " -f1 | tr "\n" " "); do
+      sudo apt-get install -y $i
+    done
 
-pip3 install --user --requirement .requirements.txt
+    sudo apt autoremove
 
-echo -e "\n\tSetting up fonts"
-echo "----------------------------------------------------"
-sudo mkdir -p /usr/local/share/fonts
-sudo cp templates/fonts/* /usr/local/share/fonts
-sudo chmod 777 -R /usr/local/share/fonts
-sudo chown root:root -R /usr/local/share/fonts
-fc-cache -fv
+    pip3 install --user --requirement .requirements.txt
 
-echo -e "\n\tInstalling Oh-My-Zsh"
-echo "----------------------------------------------------"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    echo -e "\n\tInstalling Oh-My-Zsh"
+    echo "----------------------------------------------------"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+}
 
-echo -e "\n\tGenerating dotfiles"
-echo "----------------------------------------------------"
-python3 rice_it -t themes/dracula.json -o
+function setup_fonts
+{
+    echo -e "\n\tSetting up fonts"
+    echo "----------------------------------------------------"
+    sudo mkdir -p /usr/local/share/fonts
+    sudo cp templates/fonts/* /usr/local/share/fonts
+    sudo chmod 777 -R /usr/local/share/fonts
+    sudo chown root:root -R /usr/local/share/fonts
+    fc-cache -fv
+}
 
- echo -e "\n\tSetting up Suckless"
-echo "----------------------------------------------------"
-rm -rf dwm st
-git clone https://github.com/dapc11/dwm.git
-git clone https://github.com/dapc11/st.git
-#cd dwm
-#sudo make clean install
-#cd ../st
-#cd st
-#sudo make clean install
-#cd ..
+function install_kitty
+{
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
+     sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+}
 
+function generate_dotfiles
+{
+    echo -e "\n\tGenerating dotfiles"
+    echo "----------------------------------------------------"
+    python3 rice_it -t "themes/$1.json" -o
+}
+
+function setup_dwm
+{
+    rm -rf dwm
+    git clone https://github.com/dapc11/dwm.git
+    cd dwm
+    sudo make clean install
+    cd ..
+}
+
+function setup_st
+{
+    rm -rf st
+    git clone https://github.com/dapc11/st.git
+    cd st
+    sudo make clean install
+    cd ..
+}
+
+function setup_polybar
+{
+    rm -rf polybar
+    git clone https://github.com/jaagr/polybar.git
+    cd polybar
+    ./build.sh
+    cd ..
+}
+
+function setup_suckless
+{
+    echo -e "\n\tSetting up Suckless"
+    echo "----------------------------------------------------"
+    setup_dwm
+    setup_st
+}
+
+install_deps
+setup_fonts
+setup_polybar
+generate_dotfiles dracula
+# setup_suckless
 xrdb ~/.Xresources
 nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
 
