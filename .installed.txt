@@ -1,30 +1,76 @@
+zsh
+vim
 ack 3.3.1-1
-bspwm 0.9.9-1
 cmake 3.17.3-1
 curl 7.70.0-1
 dkms 2.8.1-3
 dmenu 4.9-1.1
 fzf 0.21.1-2
 git 2.27.0-1
-gvim 8.2.0914-0
+vim-gtk3
 nitrogen 1.6.1-3
 picom 8-2
-polybar 3.4.3-1
-python 3.8.3-1
 python-ueberzug 18.1.5-3
 ranger 1.9.3.4.gd8c363c9-1
 ripgrep 12.1.1-1
 rofi 1.5.4-1
 slock 1.4-3
-sxhkd 0.6.1-1
 the_silver_searcher 2.2.0-1
-tmux 3.1_b-1
-ttf-font-awesome 5.13.0-1
-unclutter 1
-xclip 0.13-3
-xorg-setxkbmap 1.3.2-2
-xorg-xsetroot 1.1.2-2
-xsel 1.2.0.20190821-1
-zsh 5.8-1
-dunst 1.4.1-2
-qtile 0.15.1-1
+tmux
+ttf-font-awesome
+unclutter
+xclip
+xorg-setxkbmap
+xorg-xsetroot
+xsel
+dunst
+cmake
+cmake-data
+libcairo2-dev
+libxcb1-dev
+libxcb-ewmh-dev
+libxcb-icccm4-dev
+libxcb-image0-dev
+libxcb-randr0-dev
+libxcb-util0-dev
+libxcb-xkb-dev
+pkg-config
+python-xcbgen
+xcb-proto
+libxcb-xrm-dev
+libasound2-dev
+libmpdclient-dev
+libiw-dev
+libcurl4-openssl-dev
+libpulse-dev
+libxcb-composite0-dev
+libxcb-ewmh2
+python3
+python-dev
+python3-dev
+python3-xcbgen
+build-essential
+libssl-dev
+libffi-dev
+libxml2-dev
+libxslt1-dev
+zlib1g-dev
+python-pip
+libiw-dev
+libx11-dev
+libxft-dev
+cairo-dev
+libcairo2-dev
+libxcb
+xcb-proto
+xcb-util-image
+xcb-util-wm
+libxinerama1
+libxinerama-dev
+xcb
+libxcb-xkb-dev
+x11-xkb-utils
+libx11-xcb-dev
+libxkbcommon-x11-dev
+libxcb-res0-dev
+i3-wm

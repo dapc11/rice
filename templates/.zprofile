@@ -9,6 +9,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 export EDITOR="{{editor}}"
 export TERMINAL="{{terminal}}"
 export BROWSER="{{browser}}"
+export SHELL="/usr/bin/zsh"
 
 export LESSHISTFILE="-"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
