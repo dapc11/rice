@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
-
 unset SESSION_MANAGER
+nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
 xrdb ~/.Xresources
