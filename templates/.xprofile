@@ -1,4 +1,1 @@
-#!/bin/bash
-
-xrdb $HOME/.Xresources &     # Uncomment to use Xresources colors/settings on startup
-compton --config ~/.config/compton/compton.conf &
+.xsessionrc

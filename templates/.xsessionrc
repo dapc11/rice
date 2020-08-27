@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+
+unset SESSION_MANAGER
+xrdb ~/.Xresources
