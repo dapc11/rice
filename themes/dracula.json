@@ -18,7 +18,7 @@
   "font": "MesloLGS",
   "shell": "/usr/bin/zsh",
   "terminal": "xterm",
-  "browser": "firefox",
+  "browser": "google-chrome",
   "editor": "vim",
   "keymap": "se",
   "zsh_theme": "afowler",

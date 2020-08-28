@@ -1,4 +1,6 @@
 [global/wm]
+        print(" {} - {}".format(get_artist(), get_title()))
+
 margin-bottom = 0
 margin-top = 0
 
@@ -17,6 +19,7 @@ padding-left = 2
 padding-right = 2
 separator =
 module-margin = 2
+tray-position = right
 
 bottom = false
 
@@ -41,10 +44,10 @@ battery = BAT0
 adapter = AC0
 
 time-format = %H:%M
-format-charging = <animation-charging> <label-charging>
-format-discharging = <animation-discharging> <label-discharging>
-label-charging = %percentage%%
-label-discharging = %percentage%%
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+label-charging =  %percentage%%
+label-discharging =  %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = {{base08}}
@@ -104,7 +107,9 @@ label-occupied = %icon%
 label-occupied-underline = {{base03}}
 
 label-urgent = %icon%
-label-urgent-background = {{base08}}
+label-urgent-padding = 1
+label-urgent-foreground = {{base08}}
+#label-urgent-background = {{base08}}
 
 label-unfocused = %icon%
 label-unfocused-padding = 1
@@ -169,7 +174,7 @@ format = <label>
 [module/spotify]
 type = custom/script
 
-interval = 10
+interval = 2
 label =  %output%
 exec = now_playing
 format = <label>

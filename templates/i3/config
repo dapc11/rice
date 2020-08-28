@@ -79,6 +79,7 @@ assign [instance=".ibreoffice-writer"] $ws7
 assign [class=".hunar"] $ws8
 assign [class=".idgin"] $ws9
 assign [class=".elegram"] $ws9
+assign [class=".eams-for-linux"] $ws9
 for_window [class=".volution"] move container to workspace $ws1
 for_window [class=".irefox"] move container to workspace $ws2
 for_window [class=".oogle-chrome"] move container to workspace $ws2
@@ -89,7 +90,11 @@ for_window [instance=".ibreoffice"] move container to workspace $ws7
 for_window [class=".hunar"] move container to workspace $ws8
 for_window [class=".idgin"] move container to workspace $ws9
 for_window [class=".elegram"] move container to workspace $ws9
+for_window [class="teams-for-linux"] move container to workspace $ws9
 for_window [class=".potify"] move scratchpad
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
 for_window [class="^.*"] border pixel 1
 
 bindsym $mod+Ctrl+c reload
@@ -156,7 +161,7 @@ bindsym $mod+Ctrl+less move workspace to output left
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec sysact
 bindsym $mod+n exec nightmode
-bindsym $mod+w exec firefox
+bindsym $mod+w exec google-chrome
 bindsym $mod+p exec rofi-randr
 # leader+ctrl+(u)ndocked, (d)ocked and (p)resentation
 bindsym $mod+Ctrl+u exec xrandr --output eDP-1 --auto --output DP-2-1 --off --output DP-2-2 --off --output HDMI-1 --off
