@@ -46,8 +46,8 @@ adapter = AC0
 time-format = %H:%M
 format-charging = <label-charging>
 format-discharging = <label-discharging>
-label-charging =  %percentage%%
-label-discharging =  %percentage%%
+label-charging =  %percentage%%
+label-discharging =  %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = {{base08}}
