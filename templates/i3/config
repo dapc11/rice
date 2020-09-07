@@ -48,6 +48,7 @@ for_window [class=".hunar"] move container to workspace $ws8
 for_window [class=".idgin"] move container to workspace $ws9
 for_window [class=".elegram"] move container to workspace $ws9
 for_window [class="teams-for-linux"] move container to workspace $ws9
+for_window [class=".icrosoft Teams - Preview"] move container to workspace $ws9
 for_window [class=".potify"] move scratchpad
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
@@ -167,6 +168,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
+bindsym $mod+n exec find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base00}}' -sf '{{base05}}' -sb '{{base03}}' -nf '{{base05}}'
 
 bindsym $mod+Tab workspace back_and_forth
@@ -176,7 +178,7 @@ bindsym $mod+Ctrl+less move workspace to output left
 
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec sysact
-bindsym $mod+n exec nightmode
+bindsym $mod+m exec nightmode
 bindsym $mod+w exec google-chrome
 bindsym $mod+p exec rofi-randr
 
