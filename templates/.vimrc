@@ -3,9 +3,9 @@ let mapleader =" "
 
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
@@ -58,7 +58,7 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
-set fillchars+=vert:\  " This is in order to prevent trailingwhitespace to be removed
+set fillchars+=vert:\|
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -93,14 +93,10 @@ let g:NERDTreeMapOpenInTab=''
 let NERDTreeQuitOnOpen=1
 
 " Shortcutting split navigation, saving a keypress:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <C-left> <C-w>h
-map <C-down> <C-w>j
-map <C-up> <C-w>k
-map <C-right> <C-w>l
+map <C-M-left> <C-w>h
+map <C-M-down> <C-w>j
+map <C-M-up> <C-w>k
+map <C-M-right> <C-w>l
 map <leader>q :q<CR>
 
 " Commenting
@@ -172,7 +168,9 @@ nnoremap <silent> <S-t> :tabnew<CR>
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
+" Turns off highlighting on the bits of code that are changed.
+" So the line that is changed is highlighted,
+" but the actual text that has changed stands out on the line and is readable.
 if &diff
     highlight! link DiffText MatchParen
 endif
