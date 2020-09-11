@@ -1,4 +1,5 @@
-let mapleader =","
+nnoremap <SPACE> <Nop>
+let mapleader =" "
 
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -11,7 +12,6 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
-Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
 Plug 'ap/vim-css-color'
@@ -28,9 +28,6 @@ noremap <Leader>P "*p<CR>
 " paste with ctrl+v
 noremap <Leader>y "+y<CR>
 noremap <Leader>p "+p<CR>
-
-noremap <leader>X :!python3 rice_it -o<CR>
-noremap <leader>R :silent source ~/.vimrc<CR>
 
 " Some basics:
 nnoremap c "_c
@@ -61,10 +58,8 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
-set fillchars+=vert:\
+set fillchars+=vert:\  " This is in order to prevent trailingwhitespace to be removed
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-nnoremap <leader>Q :q<CR>
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
@@ -102,6 +97,11 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <C-left> <C-w>h
+map <C-down> <C-w>j
+map <C-up> <C-w>k
+map <C-right> <C-w>l
+map <leader>q :q<CR>
 
 " Commenting
 map <C-_> gcc
@@ -141,14 +141,19 @@ nnoremap <silent> <expr> <leader>g (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>"
 nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":Rg \<cr>"
 nnoremap <silent> <expr> <leader>F (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":RG \<cr>"
 nnoremap <silent> <expr> <leader>n (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":GFiles \<cr>"
+nnoremap <silent> <expr> <leader>o (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":Files \<cr>"
 nnoremap <silent> <expr> <Leader>N (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF ~\<cr>"
-nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
-nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>p :History<CR>
+
+nnoremap <silent> <A-left> :bp<CR>
+nnoremap <silent> <A-right> :bn<CR>
+nnoremap <silent> <A-up> :Buffers<CR>
+
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
 if executable('ag')
@@ -179,6 +184,7 @@ fun! TrimWhitespace()
 endfun
 
 fun! StartUp()
+    highlight EndOfBuffer guifg=bg
     if 0 == argc()
         NERDTree
     end

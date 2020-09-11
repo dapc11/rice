@@ -1,7 +1,9 @@
-#!/bin/bash -x
+#!/bin/bash
 
 if [ -p /dev/stdin ]; then
     fullname=$(cat /dev/stdin)
+elif [ -n "$1" ]; then
+   fullname="$1"
 else
     echo "No input was found on stdin, skipping!"
     exit 0
