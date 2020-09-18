@@ -17,7 +17,7 @@
   "base0F": "#00f769",
   "font": "MesloLGS",
   "shell": "/usr/bin/zsh",
-  "terminal": "xterm",
+  "terminal": "kitty",
   "browser": "google-chrome",
   "editor": "vim",
   "keymap": "se",

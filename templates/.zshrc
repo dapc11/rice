@@ -187,3 +187,16 @@ function fzf_tmux_kill {
         }
     done
 }
+function c() {                                                                                       130 ↵
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  cp -f ~/.config/google-chrome/Default/History /tmp/h
+
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' | grep -v "file" |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs -I {} xdg-open "{}"
+}

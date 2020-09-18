@@ -93,6 +93,7 @@ if __name__ == "__main__":
     ricer.render_template('dunst/dunstrc')
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('i3/config')
+    ricer.render_template('kitty/kitty.conf')
     ricer.render_template('ranger/rc.conf')
     ricer.render_template('polybar/config')
     ricer.render_template('compton/compton.conf')

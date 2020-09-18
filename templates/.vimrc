@@ -8,10 +8,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
+Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
 Plug 'ap/vim-css-color'
@@ -58,7 +58,6 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
-set fillchars+=vert:\|
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -81,16 +80,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
-
-" Nerd tree
-map <leader>r :NERDTreeFind<cr>
-map <leader>t :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTab=''
-let NERDTreeQuitOnOpen=1
 
 " Shortcutting split navigation, saving a keypress:
 map <C-M-left> <C-w>h
@@ -133,12 +122,12 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-nnoremap <silent> <expr> <leader>g (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":GGrep \<cr>"
-nnoremap <silent> <expr> <leader>f (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":Rg \<cr>"
-nnoremap <silent> <expr> <leader>F (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":RG \<cr>"
-nnoremap <silent> <expr> <leader>n (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":GFiles \<cr>"
-nnoremap <silent> <expr> <leader>o (expand('%') =~ 'NERD_tree' ?  "\<c-w>\<c-w>" : '').":Files \<cr>"
-nnoremap <silent> <expr> <Leader>N (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF ~\<cr>"
+nnoremap <silent> <leader>g :GGrep<cr>
+nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>F :RG<cr>
+nnoremap <silent> <leader>n :GFiles<cr>
+nnoremap <silent> <leader>o :Files<cr>
+nnoremap <silent> <Leader>N :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
@@ -168,6 +157,21 @@ nnoremap <silent> <S-t> :tabnew<CR>
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
+
+" Tabular
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
 " Turns off highlighting on the bits of code that are changed.
 " So the line that is changed is highlighted,
 " but the actual text that has changed stands out on the line and is readable.
@@ -181,14 +185,16 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-fun! StartUp()
-    highlight EndOfBuffer guifg=bg
-    if 0 == argc()
-        NERDTree
-    end
-endfun
+fun! HighlightTodo()
+    match none
+    2match none
+    3match none
+    match DraculaRedInverse /TODO/
+    2match DraculaGreen /DONE/
+    3match DraculaOrange /ONGOING/
+endfunc
 
-autocmd VimEnter * call StartUp()
+autocmd BufReadPost,BufNewFile *.md,*.org :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
 let &t_ut=''
