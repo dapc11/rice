@@ -1,6 +1,4 @@
 [global/wm]
-        print(" {} - {}".format(get_artist(), get_title()))
-
 margin-bottom = 0
 margin-top = 0
 
@@ -19,19 +17,19 @@ padding-left = 2
 padding-right = 2
 separator =
 module-margin = 2
-tray-position = right
 
 bottom = false
 
 background = {{base01}}
 foreground = {{base06}}
 
-font-0 = NotoSans-Regular;2
-font-1 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
-font-2 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
-font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular;2
-font-4 = jua;2
-font-5 = Iosevka Nerd Font;2
+font-0 = {{font}};2
+font-1 = NotoSans-Regular;2
+font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular;2
+font-5 = jua;2
+font-6 = Iosevka Nerd Font;2
 
 modules-center = date
 modules-left = i3 spotify
