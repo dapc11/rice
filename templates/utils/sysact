@@ -12,7 +12,7 @@ def get_pid(name):
 if __name__ == '__main__':
 
     user = getpass.getuser()
-    pid = get_pid("i3").decode("utf-8")
+    pid = get_pid("dwm").decode("utf-8")
     commands = {
         ' Exit':       "kill -TERM {}".format(pid),
         ' Renew':      "kill -HUP {}".format(pid),
