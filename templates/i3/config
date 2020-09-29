@@ -165,6 +165,15 @@ bindsym $mod+Ctrl+n exec --no-startup-id amixer set Master 2db+ unmute
 bindsym $mod+Ctrl+b exec --no-startup-id amixer set Master 2db- unmute
 bindsym $mod+Ctrl+m exec --no-startup-id amixer -D pulse -q set Master toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
+bindsym XF86AudioLowerVolume exec amixer set Master 2db- unmute
+bindsym XF86AudioRaiseVolume exec amixer set Master 2db+ unmute
+#TODO: bindsym XF86MonBrightnessDown exec
+#TODO: bindsym XF86MonBrightnessUp exec
+
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config

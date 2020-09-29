@@ -30,7 +30,7 @@ class Ricer():
     def _determine_network_inferface(self):
         try:
             self.context['wifi_if'] = subprocess.check_output(
-                    "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
+                    "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'| tail -1", shell=True).decode('utf-8').strip('\n')
         except subprocess.CalledProcessError:
             print('Could not determine active network interface.')
 
