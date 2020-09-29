@@ -1,6 +1,6 @@
 #!/bin/sh
 
-repositories=$(ag -o --hidden --ignore ".oh-my-zsh" --ignore ".fzf" --ignore ".vim" -g "/\.git/" ~ | sed "s/\.git.*//g" | uniq)
+repositories=$(ag -o --hidden --ignore ".oh-my-zsh" --ignore ".fzf" --ignore ".vim" -g "/\.git/" ~/repos | sed "s/\.git.*//g" | uniq)
 
 function echo_meta {
     local repository=$1
