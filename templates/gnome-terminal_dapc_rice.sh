@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Base16 - Gnome Terminal color scheme install script
 
-[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="dapc11"
-[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="dapc11"
+[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="dapc11-{{vs_theme}}"
+[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="dapc11-{{vs_theme}}"
 [[ -z "$DCONF" ]] && DCONF=dconf
 [[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
 

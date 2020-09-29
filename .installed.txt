@@ -38,3 +38,4 @@ libxcb-res0-dev
 libjsoncpp-dev
 xterm
 fonts-font-awesome
+fonts-hack-ttf
