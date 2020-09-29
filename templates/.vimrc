@@ -172,6 +172,8 @@ function! s:align()
   endif
 endfunction
 
+au FileType python setlocal formatprg=autopep8\ -
+
 " Turns off highlighting on the bits of code that are changed.
 " So the line that is changed is highlighted,
 " but the actual text that has changed stands out on the line and is readable.
@@ -187,11 +189,7 @@ endfun
 
 fun! HighlightTodo()
     match none
-    2match none
-    3match none
-    match DraculaRedInverse /TODO/
-    2match DraculaGreen /DONE/
-    3match DraculaOrange /ONGOING/
+    match Error /TODO/
 endfunc
 
 autocmd BufReadPost,BufNewFile *.md,*.org :call HighlightTodo()
