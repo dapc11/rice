@@ -13,17 +13,17 @@ border-left-size = 0
 border-right-size = 0
 border-bottom-size = 0
 border-top-size = 0
-padding-left = 2
-padding-right = 2
+padding-left = 1
+padding-right = 1
 separator =
-module-margin = 2
+module-margin = 1
 
 bottom = false
 
 background = {{base01}}
 foreground = {{base06}}
 
-font-0 = {{font}};2
+font-0 = {{font}}:style=Regular:size=13;2
 font-1 = NotoSans-Regular;2
 font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
 font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2

@@ -12,7 +12,7 @@ set $ws9 9
 set $ws10 10
 
 floating_modifier $mod
-font pango:{{font}} 10
+font xft:{{font}} 10
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet

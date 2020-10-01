@@ -5,10 +5,11 @@ configuration {
 }
 
 * {
-    background-color:  {{base00}};
-    text-color:        {{base05}};
-    actbg:             {{base03}};
-    winbg:             {{base05}};
+    font:               "{{font}} 12";
+    background-color:   {{base00}};
+    text-color:         {{base05}};
+    actbg:              {{base03}};
+    winbg:              {{base05}};
 
     selected-normal-foreground:  @winbg;
     normal-foreground:           @text-color;

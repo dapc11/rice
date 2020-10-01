@@ -69,7 +69,10 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_invoke_completion = '<c-j>'
 let g:ycm_complete_in_strings = 1
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
-
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
 colorscheme {{vim_colorscheme}}
 hi Visual  guifg={{base02}} guibg={{base06}} gui=none
 
@@ -192,7 +195,7 @@ fun! HighlightTodo()
     match Error /TODO/
 endfunc
 
-autocmd BufReadPost,BufNewFile *.md,*.org :call HighlightTodo()
+autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
 let &t_ut=''

@@ -71,10 +71,10 @@ URxvt*scrollWithBuffer:		    true
 URxvt*scrollTtyOutput:          false
 URxvt*scrollTtyKeypress:        true
 URxvt*secondaryScreen:		    1
-URxvt.font:                     xft:Bitstream Vera Sans Mono:size=13
-URxvt.boldFont:                 xft:Bitstream Vera Sans Mono:size=13:style=bold
-URxvt.italicFont:               xft:Bitstream Vera Sans Mono:size=13:style=italic
-URxvt.boldItalicFont:           xft:Bitstream Vera Sans Mono:size=13:style=Bold Italic
+URxvt.font:                     xft:{{font}}:size=13:style=Regular
+URxvt.boldFont:                 xft:{{font}}:size=13:style=Bold
+URxvt.italicFont:               xft:{{font}}:size=13:style=Italic
+URxvt.boldItalicFont:           xft:{{font}}:size=13:style=Bold Italic
 URxvt*secondaryScroll:		    0
 URxvt.letterSpace:		        0
 URxvt.iso14755:                 False
