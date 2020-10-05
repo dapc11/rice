@@ -1,0 +1,6 @@
+[submodule "polybar"]
+	path = polybar
+	url = ./polybar
+[submodule "i3-gaps"]
+	path = i3-gaps
+	url = ./i3-gaps

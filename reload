@@ -1,0 +1,9 @@
+#!/bin/bash
+kill $(ps aux | grep 'dunst' | awk '{print $2}') > /dev/null 2>&1
+kill $(ps aux | grep 'compton' | awk '{print $2}') > /dev/null 2>&1
+
+dunst -config ~/.config/dunst/dunstrc &
+compton --config  ~/.config/compton/compton.conf &
+xrdb ~/.Xresources
+i3-msg restart
+nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg

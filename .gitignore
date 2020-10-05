@@ -333,7 +333,5 @@ ASALocalRun/
 .vscode/
 *code-workspace
 
-
 dwm/
 st/
-polybar/

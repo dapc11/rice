@@ -63,15 +63,6 @@ function setup_st
     cd ..
 }
 
-function setup_polybar
-{
-    rm -rf polybar
-    git clone https://github.com/jaagr/polybar.git
-    cd polybar
-    ./build.sh
-    cd ..
-}
-
 function setup_suckless
 {
     echo -e "\n\tSetting up Suckless"
@@ -80,12 +71,30 @@ function setup_suckless
     setup_st
 }
 
+function setup_submodules
+{
+    echo -e "\n\tSetting up Suckless"
+    echo "----------------------------------------------------"
+    git submodule init
+    cd polybar
+    ./build.sh
+    cd ../i3-gaps
+    autoreconf --force --install
+    rm -rf build
+    mkdir build
+    cd build
+    ../configure --prefix=/usr --sysconfdir=/etc
+    make
+    sudo make install
+    cd ../../
+}
+
 install_deps
 setup_fonts
-setup_polybar
-generate_dotfiles dracula
-# setup_suckless
+setup_submodules
+generate_dotfiles dark
 xrdb ~/.Xresources
+nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
 echo -e "Please setup your background with nitrogen."
 echo -e "\nDone"
 exit 0
