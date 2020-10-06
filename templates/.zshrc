@@ -1,16 +1,9 @@
-user_home="/home/${USER}"
 plugins=(
     git
     zsh-autosuggestions
 )
 
-export TERM="xterm-256color"
-export ZSH="${user_home}/.oh-my-zsh"
-export PATH=${user_home}/bin:$PATH
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -187,7 +180,7 @@ function fzf_tmux_kill {
         }
     done
 }
-function c() {                                                                                       130 ↵
+function c() {
   local cols sep
   cols=$(( COLUMNS / 3 ))
   sep='{::}'

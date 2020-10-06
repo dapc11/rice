@@ -2,20 +2,21 @@
 
 # zsh profile file. Runs on login. Environmental variables are set here.
 
-# Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Default programs:
+export VISUAL="{{editor}}"
 export EDITOR="{{editor}}"
 export TERMINAL="{{terminal}}"
 export BROWSER="{{browser}}"
 export SHELL="/usr/bin/zsh"
-
-export LESSHISTFILE="-"
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export TERM="xterm-256color"
 
 # Other program settings:
+export LESSHISTFILE="-"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export FZF_DEFAULT_OPTS="--layout=reverse"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
 # Start graphical server on tty1 if not already running.
