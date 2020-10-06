@@ -10,7 +10,7 @@ export EDITOR="{{editor}}"
 export TERMINAL="{{terminal}}"
 export BROWSER="{{browser}}"
 export SHELL="/usr/bin/zsh"
-export TERM="xterm-256color"
+export TERM="rxvt-unicode-256color"
 
 # Other program settings:
 export LESSHISTFILE="-"

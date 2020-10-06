@@ -23,5 +23,23 @@
     {
         "key": "ctrl+w",
         "command": "-workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.view.explorer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+numpad1",
+        "command": "-workbench.view.explorer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "-workbench.action.tasks.build"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "-workbench.action.reopenClosedEditor"
     }
 ]
