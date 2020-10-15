@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 repositories=$(ag -o --hidden --ignore ".oh-my-zsh" --ignore ".fzf" --ignore ".vim" -g "/\.git/" ~/repos | sed "s/\.git.*//g" | uniq)
 

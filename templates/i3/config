@@ -55,7 +55,7 @@ for_window [class=".potify"] move scratchpad
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 for_window [workspace=$ws1] layout
 for_window [workspace=$ws2] layout
 for_window [workspace=$ws3] layout
@@ -67,14 +67,14 @@ for_window [workspace=$ws9] layout
 #
 ###########################################################
 
-smart_gaps on
-gaps inner 10
+#smart_gaps on
+#gaps inner 10
 
 # class                 border     background     text          indicator    child_border
 client.focused          {{base06}} {{base02}}     {{base05}}    {{base04}}   {{base06}}
 client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
 client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
-client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
+client.urgent           {{base03}} {{base08}}     {{base02}}    {{base08}}   {{base08}}
 client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
 
 client.background       {{base05}}

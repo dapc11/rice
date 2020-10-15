@@ -96,6 +96,8 @@ map <C-_> gcc
 
 " Replace ex mode with gq
 map Q gq
+" delete visual and paste
+map <leader>p "_dP
 
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
@@ -199,3 +201,6 @@ autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
 let &t_ut=''
+if (&term =~ '^xterm' && &t_Co == 256)
+  set t_ut= | set ttyscroll=1
+endif

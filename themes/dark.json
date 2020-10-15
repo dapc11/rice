@@ -17,7 +17,7 @@
     "base0F": "#d65d0e",
     "font": "monospace",
     "shell": "/usr/bin/zsh",
-    "terminal": "urxvt",
+    "terminal": "gnome-terminal",
     "browser": "google-chrome",
     "editor": "vim",
     "keymap": "se",
