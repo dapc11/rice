@@ -7,7 +7,7 @@ monitor = ${env:MONITOR:}
 enable-ipc=true
 
 width = 100%
-height = 30
+height = 28
 border-color = #00000000
 border-left-size = 0
 border-right-size = 0
@@ -15,15 +15,15 @@ border-bottom-size = 0
 border-top-size = 0
 padding-left = 1
 padding-right = 1
-separator =
-module-margin = 1
+separator = " "
+module-margin = 0
 
 bottom = false
 
 background = {{base01}}
 foreground = {{base06}}
 
-font-0 = {{font}}:style=Regular:size=13;2
+font-0 = {{font}}:style=Regular:size=12;2
 font-1 = NotoSans-Regular;2
 font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
 font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
@@ -45,9 +45,10 @@ adapter = AC0
 time-format = %H:%M
 format-charging = <label-charging>
 format-discharging = <label-discharging>
-label-charging =  %percentage%%
-label-discharging =  %percentage%%
-label-full = %percentage%%
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = ""
+#label-full = %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = {{base08}}
@@ -85,39 +86,38 @@ wrapping-scroll = false
 reverse-scroll = false
 fuzzy-match = true
 
-ws-icon-0 = "1;❶"
-ws-icon-1 = "2;❷"
-ws-icon-2 = "3;❸"
-ws-icon-3 = "4;❹"
-ws-icon-4 = "5;❺"
-ws-icon-5 = "6;❻"
-ws-icon-6 = "7;❼"
-ws-icon-7 = "8;❽"
-ws-icon-8 = "9;❾"
-ws-icon-9 = "10;❿"
+ws-icon-0 = "1;❶ "
+ws-icon-1 = "2;❷ "
+ws-icon-2 = "3;❸ "
+ws-icon-3 = "4;❹ "
+ws-icon-4 = "5;❺ "
+ws-icon-5 = "6;❻ "
+ws-icon-6 = "7;❼ "
+ws-icon-7 = "8;❽ "
+ws-icon-8 = "9;❾ "
+ws-icon-9 = "10;❿ "
 ws-icon-default =
 format = <label-state> <label-mode>
 
 label-mode-background = {{base08}}
 
-label-focused = ""
-label-focused-padding = 1
+label-focused = " "
+label-focused-padding = 0
 
 label-occupied = %icon%
 label-occupied-underline = {{base03}}
 
 label-urgent = %icon%
-label-urgent-padding = 1
+label-urgent-padding = 0
 label-urgent-foreground = {{base08}}
 #label-urgent-background = {{base08}}
 
 label-unfocused = %icon%
-label-unfocused-padding = 1
+label-unfocused-padding = 0
 
 label-visible = %icon%
 label-visible-underline = {{base03}}
-label-visible-padding = 1
-
+label-visible-padding = 0
 
 [module/date]
 type = internal/date
@@ -168,7 +168,7 @@ interval = 5
 label =  %output%
 click-left = sysact
 click-right = sysact
-exec = echo " "
+exec = echo ""
 format = <label>
 
 [module/spotify]

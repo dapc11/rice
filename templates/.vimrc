@@ -55,8 +55,8 @@ filetype plugin on
 syntax on
 set encoding=utf-8
 set number relativenumber
-"let base16colorspace=256  " Access colors present in 256 colorspace
-"set termguicolors
+let base16colorspace=256  " Access colors present in 256 colorspace
+set termguicolors
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -200,7 +200,6 @@ endfunc
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
 highlight EndOfBuffer ctermfg=black
-let &t_ut=''
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif

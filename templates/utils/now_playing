@@ -32,8 +32,6 @@ def get_artist():
 try:
     if is_playing == "Playing":
         print("奈 {} - {}".format(get_artist(), get_title()))
-    elif is_playing == "Paused":
-        print(" {} - {}".format(get_artist(), get_title()))
     else:
         print('')
     sys.exit(0)
