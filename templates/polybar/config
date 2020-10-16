@@ -32,9 +32,19 @@ font-5 = jua;2
 font-6 = Iosevka Nerd Font;2
 tray-position = right
 
-modules-center = date
+modules-center = xwindow
 modules-left = i3 spotify
-modules-right = alsa wireless-network wired-network battery powermenu
+modules-right = alsa wireless-network wired-network battery date powermenu
+
+[module/xwindow]
+type = internal/xwindow
+
+label = %title%
+label-maxlen = 50
+label-font = 0
+
+#label-empty = Error : 404
+#label-empty-foreground = #e34234
 
 [module/battery]
 type = internal/battery
