@@ -176,8 +176,8 @@ bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
 bindsym XF86AudioLowerVolume exec amixer set Master 2db- unmute
 bindsym XF86AudioRaiseVolume exec amixer set Master 2db+ unmute
-#TODO: bindsym XF86MonBrightnessDown exec
-#TODO: bindsym XF86MonBrightnessUp exec
+bindsym XF86MonBrightnessDown exec dimmer -d
+bindsym XF86MonBrightnessUp exec dimmer -i
 
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config

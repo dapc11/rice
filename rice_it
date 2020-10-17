@@ -115,6 +115,7 @@ if __name__ == "__main__":
     ricer.render_template('.Xresources', '/home/{0}/{1}')
     ricer.render_template('gnome-terminal_dapc_rice.sh', '/home/{0}/{1}')
     ricer.render_template('utils/sysact', '/home/{0}/.local/bin/sysact', True)
+    ricer.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
     ricer.render_template(
         'utils/open_file', '/home/{0}/.local/bin/open_file', True)
     ricer.render_template(
