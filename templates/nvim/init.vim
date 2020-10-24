@@ -82,6 +82,7 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>

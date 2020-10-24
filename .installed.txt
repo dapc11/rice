@@ -69,3 +69,4 @@ xorg-xsetroot
 xsel
 xutils-dev
 zsh
+neovim

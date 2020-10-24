@@ -16,8 +16,11 @@ export TERM="rxvt-unicode-256color"
 export LESSHISTFILE="-"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export FZF_DEFAULT_OPTS="--layout=reverse"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files -g "!.git"'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
