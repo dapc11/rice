@@ -120,6 +120,7 @@ if __name__ == "__main__":
     RICER.render_template('Code/User/keybindings.json')
     RICER.render_template('Code - OSS/User/settings.json')
     RICER.render_template('nvim/init.vim')
+    RICER.render_template('nvim/colors/dapc11.vim')
     RICER.render_template('.vimrc', '/home/{0}/{1}')
     RICER.render_template('.tmux.conf', '/home/{0}/{1}')
     RICER.render_template('.zshrc', '/home/{0}/{1}')

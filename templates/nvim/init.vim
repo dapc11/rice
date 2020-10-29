@@ -14,10 +14,6 @@ Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
 Plug 'ap/vim-css-color'
-Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Python
 Plug 'jiangmiao/auto-pairs'
@@ -55,7 +51,6 @@ noremap <Leader>p "+p<CR>
 
 " Some basics:
 nnoremap c "_c
-set bg=dark
 set go=a
 set mouse=a
 set nohlsearch
@@ -79,11 +74,8 @@ filetype plugin on
 syntax on
 set encoding=utf-8
 set number relativenumber
-let base16colorspace=256  " Access colors present in 256 colorspace
-set termguicolors
 set colorcolumn=80
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
@@ -98,8 +90,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
-colorscheme gruvbox
-hi Visual  guifg=#504945 guibg=#ebdbb2 gui=none
+colorscheme dapc11
 
 " Enable autocompletion:
 set wildmode=longest,list,full
