@@ -14,23 +14,11 @@ Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
 Plug 'ap/vim-css-color'
-
-" Python
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'sbdchd/neoformat'
-Plug 'neomake/neomake'
-
 call plug#end()
 
-"""" Python
-let g:deoplete#enable_at_startup = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-let g:neomake_python_enabled_makers = ['pylint']
-call neomake#configure#automake('nrwi', 500)
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 
@@ -90,7 +78,16 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
-colorscheme dapc11
+
+" Colorscheme
+set bg=dark
+let base16colorspace=256  " Access colors present in 256 colorspace
+set termguicolors
+colorscheme {{vim_colorscheme}}
+
+hi ColorColumn guifg={{base01}} guibg={{base01}}
+hi LineNr guifg={{base02}} guibg={{base00}}
+hi CursorLineNr guifg={{base05}} guibg={{base00}}
 
 " Enable autocompletion:
 set wildmode=longest,list,full
@@ -177,7 +174,6 @@ nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
-
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a

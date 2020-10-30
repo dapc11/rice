@@ -41,5 +41,10 @@
     {
         "key": "ctrl+shift+t",
         "command": "-workbench.action.reopenClosedEditor"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
     }
 ]

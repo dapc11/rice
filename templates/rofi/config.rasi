@@ -6,29 +6,21 @@ configuration {
 
 * {
     font:               "{{font}} 12";
-    background-color:   {{base00}};
-    text-color:         {{base05}};
-    actbg:              {{base03}};
-    winbg:              {{base05}};
+    background-color:    {{base00}};
+    text-color:          {{base05}};
 
-    selected-normal-foreground:  @winbg;
-    normal-foreground:           @text-color;
-    selected-normal-background:  @actbg;
-
-    selected-urgent-foreground:  @background-color;
-    urgent-foreground:           @text-color;
-    selected-urgent-background:  @urgbg;
-
-    selected-active-foreground:  @winbg;
-    active-foreground:           @text-color;
-    selected-active-background:  @actbg;
-    border-color:                {{base03}};
-    spacing:                     2;
+    selected-aactive-fg: {{base05}};
+    selected-aactive-bg: {{base01}};
+    selected-normal-fg:  {{base05}};
+    selected-normal-bg:  {{base01}};
+    border-color:        {{base01}};
+    spacing:             2;
+    border-radius:       5px;
 }
 
 #window {
-    border:    1px;
-    children:  [mainbox];
+    border:    2px;
+    children:  [ mainbox ];
 }
 
 #mainbox {
@@ -37,14 +29,13 @@ configuration {
 }
 
 #listview {
-    border:     0px;
-    scrollbar:  false;
-    padding:    5px 0px 0px;
+    padding:    5px 0px 0px 2px;
 }
 
 entry {
     expand:          false;
     vertical-align:  1;
+    border:          2px;
     padding:         5px;
     border-radius:   5px;
 }
@@ -54,12 +45,11 @@ element {
 }
 
 element selected.normal {
-    background-color:  @selected-normal-background;
-    text-color:        @selected-normal-foreground;
-    border-color:      @active-background;
+    background-color:  @selected-normal-bg;
+    text-color:        @selected-normal-fg;
 }
 
 element selected.active {
-    background-color:  @selected-active-background;
-    text-color:        @selected-active-foreground;
+    background-color:  @selected-aactive-bg;
+    text-color:        @selected-aactive-fg;
 }

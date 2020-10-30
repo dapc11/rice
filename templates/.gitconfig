@@ -1,7 +1,0 @@
-[alias]
-	st = status
-	unstage = reset HEAD --
-	co = checkout
-[user]
-	email = daniel.tingelof@gmail.com
-	name = Daniel Tingelöf

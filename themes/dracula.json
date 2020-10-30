@@ -24,7 +24,7 @@
     "zsh_theme": "afowler",
     "vim_theme": "dark",
     "vim_colorscheme": "dracula",
-    "gtk_theme": "Adwaita",
+    "gtk_theme": "Dracula",
     "wifi_if": "wlo1",
     "vs_theme": "Dracula",
     "bg": "dracula_bg.jpg"

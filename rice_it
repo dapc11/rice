@@ -63,17 +63,6 @@ class Ricer():
         mode |= (mode & 0o444) >> 2  # copy R bits to X
         os.chmod(path, mode)
 
-    def colorize_background(self):
-        try:
-            subprocess.check_output(
-                    "convert templates/bg.jpg -fuzz 50% -fill '{}' -opaque '#000000' ~/.local/share/bg"
-                    .format(self.context['base00']),
-                    shell=True)
-            subprocess.check_output("feh --bg-fill ~/.local/share/bg",
-                    shell=True)
-        except subprocess.CalledProcessError:
-            print('Could not convert background.')
-
     def put_background(self):
         try:
             subprocess.check_output(
@@ -112,7 +101,6 @@ if __name__ == "__main__":
     RICER.render_template('dunst/dunstrc')
     RICER.render_template('rofi/config.rasi')
     RICER.render_template('i3/config')
-    RICER.render_template('kitty/kitty.conf')
     RICER.render_template('ranger/rc.conf')
     RICER.render_template('polybar/config')
     RICER.render_template('compton/compton.conf')
