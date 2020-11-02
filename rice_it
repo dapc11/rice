@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+
 import jinja2
 
 
@@ -18,37 +19,24 @@ class Ricer():
         template_loader = jinja2.FileSystemLoader(searchpath="./templates/")
         self.env = jinja2.Environment(loader=template_loader)
         self.context = self._get_context()
-        self._determine_network_inferface()
 
     def _get_context(self):
         with open(self.theme, 'r') as context:
             print("Using context: '{}'".format(os.path.abspath(self.theme)))
             return json.load(context)
 
-    def _determine_network_inferface(self):
-        try:
-            self.context['wifi_if'] = subprocess.check_output(
-                "ip -4 route ls | grep default | grep -Po '(?<=dev )(\\S+)'| tail -1",
-                shell=True).decode('utf-8').strip('\n')
-        except subprocess.CalledProcessError:
-            print('Could not determine active network interface.')
-
     def _get_destination(self, template, target):
         if self.should_overwrite:
             return Path(target.format(getpass.getuser(), template))
-        else:
-            return Path('output/{0}'.format(template))
-
-    def _create_missing_parents(self, path):
-        if not os.path.exists(path.parent):
-            os.makedirs(path.parent)
+        return Path('output/{0}'.format(template))
 
     def render_template(self,
             template,
             target='/home/{0}/.config/{1}/',
             binary=False):
         destination = self._get_destination(template, target)
-        self._create_missing_parents(destination)
+        if not os.path.exists(destination):
+            os.makedirs(destination)
 
         environment_template = self.env.get_template(template)
 
