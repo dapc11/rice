@@ -2,8 +2,8 @@
 kill $(ps aux | grep 'dunst' | awk '{print $2}') > /dev/null 2>&1
 kill $(ps aux | grep 'compton' | awk '{print $2}') > /dev/null 2>&1
 
-dunst -config ~/.config/dunst/dunstrc &
-compton --config  ~/.config/compton/compton.conf &
+dunst -config ~/.config/dunst/dunstrc &> /dev/null &
+compton --config  ~/.config/compton/compton.conf &> /dev/null &
 xrdb ~/.Xresources
-i3-msg restart
-nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
+i3-msg restart &> /dev/null
+nitrogen --restore

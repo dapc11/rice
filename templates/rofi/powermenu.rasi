@@ -20,8 +20,8 @@
 /* ########### */
 
 #window {
-  width: 30%;
-  height: 16%;
+  width: 560px;
+  height: 160px;
 }
 
 /* ########### */

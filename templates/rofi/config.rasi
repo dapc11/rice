@@ -19,7 +19,6 @@ configuration {
 }
 
 #window {
-    border:    2px;
     children:  [ mainbox ];
 }
 
