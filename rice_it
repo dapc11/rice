@@ -35,8 +35,8 @@ class Ricer():
             target='/home/{0}/.config/{1}/',
             binary=False):
         destination = self._get_destination(template, target)
-        if not os.path.exists(destination):
-            os.makedirs(destination)
+        if not os.path.exists(destination.parent):
+            os.makedirs(destination.parent)
 
         environment_template = self.env.get_template(template)
 
@@ -88,6 +88,8 @@ if __name__ == "__main__":
     RICER = Ricer(PARSER.parse_args())
     RICER.render_template('dunst/dunstrc')
     RICER.render_template('rofi/config.rasi')
+    RICER.render_template('rofi/powermenu.rasi')
+    RICER.render_template('rofi/powermenu.sh', '/home/{0}/.local/bin/sysact', True)
     RICER.render_template('i3/config')
     RICER.render_template('ranger/rc.conf')
     RICER.render_template('polybar/config')
@@ -105,7 +107,7 @@ if __name__ == "__main__":
     RICER.render_template('.zprofile', '/home/{0}/{1}')
     RICER.render_template('.Xresources', '/home/{0}/{1}')
     RICER.render_template('gnome-terminal_dapc_rice.sh', '/home/{0}/{1}')
-    RICER.render_template('utils/sysact', '/home/{0}/.local/bin/sysact', True)
+    RICER.render_template('utils/sysact', '/home/{0}/.local/bin/sysact2', True)
     RICER.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
     RICER.render_template('utils/open_file', '/home/{0}/.local/bin/open_file',
             True)
