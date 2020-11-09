@@ -16,6 +16,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisha
 Plug 'ap/vim-css-color'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-fugitive'
 Plug 'chriskempson/base16-vim'
 Plug 'jiangmiao/auto-pairs'
 call plug#end()
@@ -175,6 +176,9 @@ nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
+
+" Fugitive
+nnoremap <leader>gs :Git status<CR>
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
