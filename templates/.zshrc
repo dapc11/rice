@@ -32,6 +32,7 @@ bindkey "\E[1~" beginning-of-line
 bindkey "\E[4~" end-of-line
 
 # Aliases
+alias vim="nvim"
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head"
 alias fzf_history="history | fzf"

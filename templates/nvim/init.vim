@@ -216,3 +216,20 @@ highlight EndOfBuffer ctermfg=black
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
+
+
+function InsertIfEmpty()
+    if @% == ""
+        " No filename for current buffer
+        Files
+    elseif @% == "."
+        Files
+    endif
+endfunction
+
+au VimEnter * call InsertIfEmpty()
+
+augroup goodbye_netrw
+  au!
+  autocmd VimEnter * silent! au! FileExplorer *
+augroup END
