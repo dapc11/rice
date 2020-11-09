@@ -178,7 +178,13 @@ nnoremap <silent> <S-t> :tabnew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 " Fugitive
-nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>g- :Silent Git stash<CR>:e<CR>
+nnoremap <leader>g+ :Silent Git stash pop<CR>:e<CR>
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
