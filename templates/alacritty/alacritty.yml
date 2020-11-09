@@ -10,6 +10,7 @@ window:
   decorations: full
   title: alacritty
   class: alacritty
+  dynamic_title: true
 background_opacity: 1.0
 
 scrolling:
@@ -26,7 +27,7 @@ font:
   italic:
     family: {{font}}
     style: Italic
-  size: 12.0
+  size: 13.0
 
   offset:
     x: 0
@@ -42,10 +43,10 @@ draw_bold_text_with_bright_colors: true
 
 colors:
   primary:
-    background: '{{base01}}'
+    background: '{{base00}}'
     foreground: '{{base05}}'
   selection:
-    text: '{{base00}}'
+    text: '{{base01}}'
     background: '{{base05}}'
   normal:
     black:   '{{base00}}'
@@ -57,7 +58,7 @@ colors:
     cyan:    '{{base0B}}'
     white:   '{{base06}}'
   bright:
-    black:   '{{base01}}'
+    black:   '{{base03}}'
     red:     '{{base08}}'
     green:   '{{base0B}}'
     yellow:  '{{base0A}}'
@@ -82,12 +83,7 @@ mouse:
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
   save_to_clipboard: true
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
-
 
 live_config_reload: true
 shell:

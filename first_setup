@@ -1,5 +1,33 @@
 #!/bin/bash
 
+function install_alacritty
+{
+    # Install required tools
+    sudo apt-get install -y rust cargo cmake libfreetype6-dev libfontconfig1-dev xclip
+
+    # Download, compile and install Alacritty
+    git clone https://github.com/jwilm/alacritty
+    cd alacritty
+    cargo install alacritty
+
+    # Add Man-Page entries
+    sudo mkdir -p /usr/local/share/man/man1
+    gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+
+    # Create desktop file
+    cp extra/linux/Alacritty.desktop ~/.local/share/applications/
+
+    # Copy binary to path
+    sudo cp ~/.cargo/bin/alacritty /usr/local/bin
+
+    # Use Alacritty as default terminal (Ctrl + Alt + T)
+    gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
+
+    # Remove temporary dir
+    cd ..
+    rm -r alacritty
+}
+
 function install_deps
 {
     echo -e "\n\tInstalling dependecies"
@@ -91,6 +119,7 @@ function setup_submodules
 
 install_deps
 setup_fonts
+install_alacritty
 setup_submodules
 generate_dotfiles dark
 xrdb ~/.Xresources

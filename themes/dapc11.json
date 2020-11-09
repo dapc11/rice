@@ -17,7 +17,7 @@
     "base0F": "#9CB760",
     "font": "monospace",
     "shell": "/usr/bin/zsh",
-    "terminal": "gnome-terminal",
+    "terminal": "alacritty",
     "browser": "google-chrome",
     "editor": "vim",
     "keymap": "se",

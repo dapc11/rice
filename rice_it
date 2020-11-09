@@ -86,6 +86,7 @@ def setup_argparser():
 if __name__ == "__main__":
     PARSER = setup_argparser()
     RICER = Ricer(PARSER.parse_args())
+    RICER.render_template('alacritty/alacritty.yml')
     RICER.render_template('dunst/dunstrc')
     RICER.render_template('rofi/config.rasi')
     RICER.render_template('rofi/powermenu.rasi')
