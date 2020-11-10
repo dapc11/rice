@@ -27,9 +27,9 @@ RPROMPT='${return_code} '
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 set -g hist_ignore_dups
-# Enable Home & End in tmux xterm-256color
-bindkey "\E[1~" beginning-of-line
-bindkey "\E[4~" end-of-line
+# Enable Home & End in rxvt-unicode-256color
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 
 # Aliases
 alias vim="nvim"

@@ -157,6 +157,11 @@ nnoremap <silent> <A-left> :bp<CR>
 nnoremap <silent> <A-right> :bn<CR>
 nnoremap <silent> <A-up> :Buffers<CR>
 
+nmap <silent> <C-A-Up> :wincmd k<CR>
+nmap <silent> <C-A-Down> :wincmd j<CR>
+nmap <silent> <C-A-Left> :wincmd h<CR>
+nmap <silent> <C-A-Right> :wincmd l<CR>
+
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 
