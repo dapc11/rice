@@ -90,6 +90,7 @@ colorscheme {{vim_colorscheme}}
 hi ColorColumn guifg={{base01}} guibg={{base01}}
 hi LineNr guifg={{base02}} guibg={{base00}}
 hi CursorLineNr guifg={{base05}} guibg={{base00}}
+hi Normal guibg=#1F1F1F
 
 " Enable autocompletion:
 set wildmode=longest,list,full
