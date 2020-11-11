@@ -10,7 +10,6 @@ from pathlib import Path
 
 import jinja2
 
-
 class Ricer():
     def __init__(self, args):
         self.should_overwrite = args.overwrite
@@ -31,9 +30,9 @@ class Ricer():
         return Path('output/{0}'.format(template))
 
     def render_template(self,
-            template,
-            target='/home/{0}/.config/{1}/',
-            binary=False):
+                        template,
+                        target='/home/{0}/.config/{1}/',
+                        binary=False):
         destination = self._get_destination(template, target)
         if not os.path.exists(destination.parent):
             os.makedirs(destination.parent)
@@ -44,19 +43,16 @@ class Ricer():
         with open(destination, 'w') as destination_file:
             destination_file.write(environment_template.render(self.context))
             if binary:
-                self._make_executeable(destination)
-
-    def _make_executeable(self, path):
-        mode = os.stat(path).st_mode
-        mode |= (mode & 0o444) >> 2  # copy R bits to X
-        os.chmod(path, mode)
+                mode = os.stat(destination).st_mode
+                mode |= (mode & 0o444) >> 2  # copy R bits to X
+                os.chmod(destination, mode)
 
     def put_background(self):
         try:
             subprocess.check_output(
-                    "nitrogen --force-setter=xinerama  --set-auto templates/images/{0}"
-                    .format(self.context['bg']),
-                    shell=True)
+                "nitrogen --force-setter=xinerama  --set-auto templates/images/{0}"
+                .format(self.context['bg']),
+                shell=True)
             print('Background updated.')
         except subprocess.CalledProcessError:
             print('Could not set background.')
@@ -64,22 +60,22 @@ class Ricer():
 
 def setup_argparser():
     arg_parser = argparse.ArgumentParser(
-            prog='rice_it',
-            description='Dapc ricer, make your environment consistent from a color perspective.'
-            )
+        prog='rice_it',
+        description='Dapc ricer, make your environment consistent from a color perspective.'
+        )
     arg_parser.add_argument(
-            '--overwrite',
-            '-o',
-            help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
-            action='store_true')
+        '--overwrite',
+        '-o',
+        help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
+        action='store_true')
     arg_parser.add_argument(
-            '-t',
-            '--theme',
-            action='store',
-            dest='theme',
-            default='themes/dark.json',
-            help='Specify which theme the context will be loaded from. Defaults to dark.json'
-            )
+        '-t',
+        '--theme',
+        action='store',
+        dest='theme',
+        default='themes/dark.json',
+        help='Specify which theme the context will be loaded from. Defaults to dark.json'
+        )
     return arg_parser
 
 
@@ -111,15 +107,15 @@ if __name__ == "__main__":
     RICER.render_template('utils/sysact', '/home/{0}/.local/bin/sysact2', True)
     RICER.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
     RICER.render_template('utils/open_file', '/home/{0}/.local/bin/open_file',
-            True)
+                          True)
     RICER.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode',
-            True)
+                          True)
     RICER.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
     RICER.render_template('utils/now_playing',
-            '/home/{0}/.local/bin/now_playing', True)
+                          '/home/{0}/.local/bin/now_playing', True)
     RICER.render_template('utils/rofi-randr',
-            '/home/{0}/.local/bin/rofi-randr', True)
+                          '/home/{0}/.local/bin/rofi-randr', True)
     RICER.render_template('polybar/startup.sh',
-            '/home/{0}/.config/polybar/startup.sh', True)
+                          '/home/{0}/.config/polybar/startup.sh', True)
     RICER.put_background()
     sys.exit(0)
