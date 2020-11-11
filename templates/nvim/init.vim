@@ -82,15 +82,13 @@ endif
 let g:airline_symbols.maxlinenr = ''
 
 " Colorscheme
-"set bg=dark
-"let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 colorscheme {{vim_colorscheme}}
 
-hi ColorColumn guifg={{base01}} guibg={{base01}}
+hi ColorColumn guibg={{base01}}
 hi LineNr guifg={{base02}} guibg={{base00}}
 hi CursorLineNr guifg={{base05}} guibg={{base00}}
-hi Normal guibg=#1F1F1F
+hi Normal guibg={{vim_guibg}}
 
 " Enable autocompletion:
 set wildmode=longest,list,full

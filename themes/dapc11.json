@@ -24,6 +24,7 @@
     "zsh_theme": "afowler",
     "vim_theme": "dark",
     "vim_colorscheme": "base16-default-dark",
+    "vim_guibg": "#1F1F1F",
     "gtk_theme": "Adwaita",
     "wifi_if": "wlo1",
     "vs_theme": "Dark",
