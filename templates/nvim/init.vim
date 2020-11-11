@@ -12,8 +12,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
 Plug 'ap/vim-css-color'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
@@ -29,6 +29,15 @@ let g:neoformat_basic_format_retab = 1
 
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+call deoplete#custom#option('smart_case', v:true)
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
 
 """"
 " Requires gvim
