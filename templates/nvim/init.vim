@@ -14,6 +14,7 @@ Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
@@ -22,6 +23,11 @@ Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 """""""""" CoC
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
+nnoremap <silent> <space>b :<C-u>CocFzfList diagnostics --current-buf<CR>
+
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

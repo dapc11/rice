@@ -128,6 +128,7 @@ label-visible-padding = 0
 
 [module/date]
 type = internal/date
+format = %{A1:gnome-calendar:} <date> %{A}
 date =  %Y-%m-%d  %H:%M:%S
 
 [module/wireless-network]
