@@ -75,7 +75,7 @@ gaps outer 3
 client.focused          {{base06}} {{base02}}     {{base05}}    {{base04}}   {{base06}}
 client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
 client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
-client.urgent           {{base03}} {{base08}}     {{base02}}    {{base08}}   {{base08}}
+client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
 client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
 
 client.background       {{base05}}
