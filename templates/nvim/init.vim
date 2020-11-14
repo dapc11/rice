@@ -25,17 +25,17 @@ call plug#end()
 """""""""" CoC
 let g:coc_fzf_preview = ''
 let g:coc_fzf_opts = []
-nnoremap <silent> <space>b :<C-u>CocFzfList diagnostics --current-buf<CR>
 
-
-" GoTo code navigation.
+nmap <silent> gb :<C-u>CocFzfList diagnostics --current-buf<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> gf <Plug>(coc-fix-current)
+nmap <silent> go :<C-u>CocFzfList outline<CR>
+inoremap <silent><expr> <c-space> coc#refresh()
+set keywordprg=:call\ <SID>show_documentation()
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -54,7 +54,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F2> <Plug>(coc-rename)
 
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 """"
 " Enable alignment
@@ -101,6 +100,7 @@ syntax on
 set encoding=utf-8
 set number relativenumber
 set colorcolumn=80
+set timeoutlen=500
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
