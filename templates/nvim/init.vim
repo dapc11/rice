@@ -34,28 +34,13 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> go :<C-u>CocFzfList outline<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
-set keywordprg=:call\ <SID>show_documentation()
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <F2> <Plug>(coc-rename)
-
-" Apply AutoFix to problem on the current line.
-
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 """"
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_WindowLayout = 2
+nnoremap <silent> <c-u> :UndotreeToggle<CR>
+
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 
