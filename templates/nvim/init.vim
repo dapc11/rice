@@ -38,8 +38,8 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 """"
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_WindowLayout = 2
 nnoremap <silent> <c-u> :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Enable alignment
 let g:neoformat_basic_format_align = 1
@@ -190,9 +190,6 @@ if executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
     set grepprg=ag\ --nogroup\ --nocolor
 endif
-
-" UndoTree
-nnoremap <leader>u :UndotreeShow<CR>
 
 "" Tabs
 nnoremap <Tab> gt
