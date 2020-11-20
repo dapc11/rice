@@ -15,7 +15,7 @@
     "base0D": "#6a9fb5",
     "base0E": "#aa759f",
     "base0F": "#9CB760",
-    "font": "monospace",
+    "font": "DejaVu Sans",
     "shell": "/usr/bin/zsh",
     "terminal": "alacritty",
     "browser": "google-chrome",
