@@ -28,11 +28,6 @@ let g:coc_fzf_opts = []
 
 nmap <silent> gb :<C-u>CocFzfList diagnostics --current-buf<CR>
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gf <Plug>(coc-fix-current)
-nmap <silent> go :<C-u>CocFzfList outline<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -88,15 +83,6 @@ set colorcolumn=80
 set timeoutlen=500
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
-nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-nmap <leader>q <plug>(YCMHover)
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_invoke_completion = '<c-j>'
-let g:ycm_complete_in_strings = 1
-let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -129,8 +115,6 @@ map <leader>q :q<CR>
 " Commenting
 map <C-_> gcc
 
-" Replace ex mode with gq
-map Q gq
 " delete visual and paste
 map <leader>p "_dP
 
@@ -143,9 +127,6 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
-
-" When shortcut files are updated, renew bash and ranger configs with new material:
-autocmd BufWritePost files,directories !shortcuts
 
 " fzf
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
@@ -200,15 +181,12 @@ nnoremap <silent> <S-t> :tabnew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 " Fugitive
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit -v -q<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gf :Git fetch<CR>
-nnoremap <leader>gP :Git pull --rebase<CR>
-nnoremap <leader>g- :Silent Git stash<CR>:e<CR>
-nnoremap <leader>g+ :Silent Git stash pop<CR>:e<CR>
+nnoremap gs :Gstatus<CR>
+nnoremap gc :Gcommit -v -q<CR>
+nnoremap gp :Git push<CR>
+nnoremap gP :Git pull --rebase<CR>
+nnoremap g- :Silent Git stash<CR>:e<CR>
+nnoremap g+ :Silent Git stash pop<CR>:e<CR>
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -223,8 +201,6 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-
-au FileType python setlocal formatprg=autopep8\ -
 
 " Turns off highlighting on the bits of code that are changed.
 " So the line that is changed is highlighted,
@@ -267,3 +243,5 @@ augroup goodbye_netrw
   au!
   autocmd VimEnter * silent! au! FileExplorer *
 augroup END
+
+nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
