@@ -17,13 +17,14 @@
     "base0F": "#d65d0e",
     "font": "monospace",
     "shell": "/usr/bin/zsh",
-    "terminal": "xterm",
-    "browser": "firefox",
+    "terminal": "gnome-terminal",
+    "browser": "google-chrome",
     "editor": "vim",
     "keymap": "se",
     "zsh_theme": "afowler",
     "vim_theme": "dark",
     "vim_colorscheme": "gruvbox",
     "gtk_theme": "Adwaita-dark",
-    "vs_theme": "Gruvbox Dark Medium"
+    "vs_theme": "Gruvbox Dark Soft",
+    "bg": "gruvbox_bg.jpg"
 }

@@ -1,0 +1,50 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+t",
+        "command": "-git.sync"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+shift+[Equal]",
+        "command": "-workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.view.explorer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+numpad1",
+        "command": "-workbench.view.explorer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "-workbench.action.tasks.build"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "-workbench.action.reopenClosedEditor"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
+    }
+]

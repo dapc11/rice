@@ -1,16 +1,125 @@
 set $mod Mod4
+set $refresh_i3status killall -SIGUSR1 i3status
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
-font pango:{{font}} 10
+floating_modifier $mod
+font xft:{{font}} 10
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 10%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 10%-
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
 
-floating_modifier $mod
+############################################################
+#
+# Assignment and alignment
+#
+###########################################################
+
+assign [class=".volution"] $ws1
+assign [class=".irefox"] $ws2
+assign [class=".oogle-chrome"] $ws2
+assign [class=".etbrains-idea-ce"] $ws3
+assign [class=".etbrains-pycharm-ce"] $ws3
+assign [instance=".fica"] $ws6
+assign [class=".fica"] $ws6
+assign [instance=".ibreoffice-writer"] $ws7
+assign [class=".hunar"] $ws8
+assign [class=".ulseUi"] $ws8
+assign [class=".idgin"] $ws9
+assign [class=".elegram"] $ws9
+assign [class=".eams-for-linux"] $ws9
+for_window [class=".volution"] move container to workspace $ws1
+for_window [class=".irefox"] move container to workspace $ws2
+for_window [class=".oogle-chrome"] move container to workspace $ws2
+for_window [class=".etbrains-idea-ce"] move container to workspace $ws3
+for_window [class=".etbrains-pycharm-ce"] move container to workspace $ws3
+for_window [instance=".fica"] move container to workspace $ws6
+for_window [instance=".ibreoffice"] move container to workspace $ws7
+for_window [class=".hunar"] move container to workspace $ws8
+for_window [class=".ulseUi"] move container to workspace $ws8
+for_window [class=".idgin"] move container to workspace $ws9
+for_window [class=".elegram"] move container to workspace $ws9
+for_window [class="teams-for-linux"] move container to workspace $ws9
+for_window [class=".icrosoft Teams - Preview"] move container to workspace $ws9
+for_window [class=".potify"] move scratchpad
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
+for_window [class="^.*"] border pixel 0
+for_window [workspace=$ws1] layout
+for_window [workspace=$ws2] layout
+for_window [workspace=$ws3] layout
+for_window [workspace=$ws9] layout
+
+############################################################
+#
+# Theming
+#
+###########################################################
+
+#smart_gaps on
+gaps inner 10
+gaps outer 3
+
+# class                 border     background     text          indicator    child_border
+client.focused          {{base06}} {{base02}}     {{base05}}    {{base04}}   {{base06}}
+client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
+client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
+client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
+client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
+
+client.background       {{base05}}
+
+#bar {
+#  status_command i3status
+#  position top
+#  colors {
+#    background            {{base01}}
+#    statusline            {{base05}}
+#    separator             {{base05}}
+#
+#    #class                border       background    text
+#    focused_workspace     {{base03}}   {{base03}}    {{base05}}
+#    active_workspace      {{base02}}   {{base02}}    {{base05}}
+#    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
+#    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
+#    binding_mode          {{base03}}   {{base03}}    {{base05}}
+#  }
+#}
+
+############################################################
+#
+# Key bindings
+#
+###########################################################
+
+mode "resize" {
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym odiaeresis resize grow width 10 px or 10 ppt
+
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
 bindsym $mod+Return exec {{terminal}}
 bindsym $mod+q kill
 
@@ -31,16 +140,6 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -51,11 +150,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
-for_window [workspace=$ws1] layout
-for_window [workspace=$ws2] layout
-for_window [workspace=$ws3] layout
-for_window [workspace=$ws9] layout
 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -68,102 +162,42 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class=".volution"] $ws1
-assign [class=".irefox"] $ws2
-assign [class=".oogle-chrome"] $ws2
-assign [class=".etbrains-idea-ce"] $ws3
-assign [class=".etbrains-pycharm-ce"] $ws3
-assign [instance=".fica"] $ws6
-assign [class=".fica"] $ws6
-assign [instance=".ibreoffice-writer"] $ws7
-assign [class=".hunar"] $ws8
-assign [class=".idgin"] $ws9
-assign [class=".elegram"] $ws9
-for_window [class=".volution"] move container to workspace $ws1
-for_window [class=".irefox"] move container to workspace $ws2
-for_window [class=".oogle-chrome"] move container to workspace $ws2
-for_window [class=".etbrains-idea-ce"] move container to workspace $ws3
-for_window [class=".etbrains-pycharm-ce"] move container to workspace $ws3
-for_window [instance=".fica"] move container to workspace $ws6
-for_window [instance=".ibreoffice"] move container to workspace $ws7
-for_window [class=".hunar"] move container to workspace $ws8
-for_window [class=".idgin"] move container to workspace $ws9
-for_window [class=".elegram"] move container to workspace $ws9
-for_window [class=".potify"] move scratchpad
-for_window [class="^.*"] border pixel 0
-
 bindsym $mod+Ctrl+c reload
 bindsym $mod+Shift+r restart
 
-mode "resize" {
-  bindsym j resize shrink width 10 px or 10 ppt
-  bindsym k resize grow height 10 px or 10 ppt
-  bindsym l resize shrink height 10 px or 10 ppt
-  bindsym odiaeresis resize grow width 10 px or 10 ppt
+bindsym $mod+Ctrl+comma exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+Ctrl+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym $mod+Ctrl+n exec --no-startup-id amixer set Master 2db+ unmute
+bindsym $mod+Ctrl+b exec --no-startup-id amixer set Master 2db- unmute
+bindsym $mod+Ctrl+m exec --no-startup-id amixer -D pulse -q set Master toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
+bindsym XF86AudioLowerVolume exec amixer set Master 2db- unmute
+bindsym XF86AudioRaiseVolume exec amixer set Master 2db+ unmute
+bindsym XF86MonBrightnessDown exec dimmer -d
+bindsym XF86MonBrightnessUp exec dimmer -i
 
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+r mode "default"
-}
-
-# class                 border     background     text          indicator    child_border
-client.focused          {{base03}} {{base02}}     {{base05}}    {{base0B}}   {{base04}}
-client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
-client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
-client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
-client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
-
-client.background       {{base05}}
-
-#bar {
-#  status_command i3status
-#  position top
-#  colors {
-#    background            {{base01}}
-#    statusline            {{base05}}
-#    separator             {{base05}}
-
-#    #class                border       background    text
-#    focused_workspace     {{base03}}   {{base03}}    {{base05}}
-#    active_workspace      {{base02}}   {{base02}}    {{base05}}
-#    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
-#    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
-#    binding_mode          {{base03}}   {{base03}}    {{base05}}
-#  }
-#}
-
-bindsym $mod+r mode "resize"
-
-bindcode 76 exec amixer -q set Master 2dB+ unmute
-bindcode 75 exec amixer -q set Master 2dB- unmute
-bindcode 96 exec amixer -D pulse -q set Master toggle
-bindcode 73 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindcode 74 exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
-bindsym $mod+b exec rofi -show window -theme ~/.config/rofi/config
+bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
+bindsym $mod+n exec find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base00}}' -sf '{{base05}}' -sb '{{base03}}' -nf '{{base05}}'
+
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec sysact
-bindsym $mod+n exec nightmode
-bindsym $mod+w exec firefox
+bindsym $mod+m exec nightmode
+bindsym $mod+w exec google-chrome
 bindsym $mod+p exec rofi-randr
+
 # leader+ctrl+(u)ndocked, (d)ocked and (p)resentation
 bindsym $mod+Ctrl+u exec xrandr --output eDP-1 --auto --output DP-2-1 --off --output DP-2-2 --off --output HDMI-1 --off
 bindsym $mod+Ctrl+d exec xrandr --output eDP-1 --off --output DP-2-1 --auto --output DP-2-2 --auto --right-of DP-2-1 --output HDMI-1 --off
 bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1
-
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
-
-gaps inner 10
-hide_edge_borders smart_no_gaps

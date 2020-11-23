@@ -1,14 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import argparse
 import getpass
 import json
 import os
-import shutil
+import subprocess
 import sys
 from pathlib import Path
-import stat
-import subprocess
 
 import jinja2
 
@@ -17,103 +15,107 @@ class Ricer():
         self.should_overwrite = args.overwrite
         self.theme = args.theme
 
-        templateLoader = jinja2.FileSystemLoader(searchpath="./templates/")
-        self.env = jinja2.Environment(loader=templateLoader)
+        template_loader = jinja2.FileSystemLoader(searchpath="./templates/")
+        self.env = jinja2.Environment(loader=template_loader)
         self.context = self._get_context()
-        self._determine_network_inferface()
 
     def _get_context(self):
-        with open(self.theme, 'r') as f:
+        with open(self.theme, 'r') as context:
             print("Using context: '{}'".format(os.path.abspath(self.theme)))
-            return json.load(f)
-
-    def _determine_network_inferface(self):
-        try:
-            self.context['wifi_if'] = subprocess.check_output(
-                    "ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)'", shell=True).decode('utf-8').strip('\n')
-        except subprocess.CalledProcessError:
-            print('Could not determine active network interface.')
+            return json.load(context)
 
     def _get_destination(self, template, target):
         if self.should_overwrite:
             return Path(target.format(getpass.getuser(), template))
-        else:
-            return Path('output/{0}'.format(template))
+        return Path('output/{0}'.format(template))
 
-    def _create_missing_parents(self, path):
-        if not os.path.exists(path.parent):
-            os.makedirs(path.parent)
-
-    def render_template(self, template, target='/home/{0}/.config/{1}/', binary=False):
+    def render_template(self,
+                        template,
+                        target='/home/{0}/.config/{1}/',
+                        binary=False):
         destination = self._get_destination(template, target)
-        self._create_missing_parents(destination)
+        if not os.path.exists(destination.parent):
+            os.makedirs(destination.parent)
 
-        t = self.env.get_template(template)
+        environment_template = self.env.get_template(template)
 
         print('Writing to {0}'.format(destination))
-        with open(destination, 'w') as f:
-            f.write(t.render(self.context))
+        with open(destination, 'w') as destination_file:
+            destination_file.write(environment_template.render(self.context))
             if binary:
-                self._make_executeable(destination)
-
-    def _make_executeable(self, path):
-        mode = os.stat(path).st_mode
-        mode |= (mode & 0o444) >> 2    # copy R bits to X
-        os.chmod(path, mode)
-
-    def colorize_background(self):
-        try:
-            subprocess.check_output("convert templates/bg.jpg -fuzz 50% -fill '{}' -opaque '#000000' ~/.local/share/bg"
-                    .format(self.context['base00']), shell=True)
-            subprocess.check_output("feh --bg-fill ~/.local/share/bg", shell=True)
-        except subprocess.CalledProcessError:
-            print('Could not convert background.')
+                mode = os.stat(destination).st_mode
+                mode |= (mode & 0o444) >> 2  # copy R bits to X
+                os.chmod(destination, mode)
 
     def put_background(self):
-        target = '/home/{0}/.local/background.jpg'.format(getpass.getuser())
-        print('Placing background at {0}'.format(target))
-        shutil.copy('templates/images/background.jpg', target)
+        try:
+            subprocess.check_output(
+                "nitrogen --force-setter=xinerama  --set-auto templates/images/{0}"
+                .format(self.context['bg']),
+                shell=True)
+            print('Background updated.')
+        except subprocess.CalledProcessError:
+            print('Could not set background.')
+
 
 def setup_argparser():
-    parser = argparse.ArgumentParser(
-            prog='rice_it',
-            description='Dapc ricer, make your environment consistent from a color perspective.')
-    parser.add_argument(
-            '--overwrite', '-o',
-            help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
-            action='store_true')
-    parser.add_argument('-t', '--theme', action='store', dest='theme', default='dark.json',
-            help='Specify which theme the context will be loaded from. Defaults to dark.json')
-    return parser
+    arg_parser = argparse.ArgumentParser(
+        prog='rice_it',
+        description='Dapc ricer, make your environment consistent from a color perspective.'
+        )
+    arg_parser.add_argument(
+        '--overwrite',
+        '-o',
+        help='Make rice_it overwrite existing dotfiles in your home directory, use with caution!',
+        action='store_true')
+    arg_parser.add_argument(
+        '-t',
+        '--theme',
+        action='store',
+        dest='theme',
+        default='themes/dark.json',
+        help='Specify which theme the context will be loaded from. Defaults to dark.json'
+        )
+    return arg_parser
 
 
 if __name__ == "__main__":
-    parser = setup_argparser()
-    ricer = Ricer(parser.parse_args())
-    ricer.render_template('dunst/dunstrc')
-    ricer.render_template('rofi/config.rasi')
-    ricer.render_template('i3/config')
-    ricer.render_template('qtile/config.py')
-    ricer.render_template('ranger/rc.conf')
-    ricer.render_template('polybar/config')
-    ricer.render_template('kitty/kitty.conf')
-    ricer.render_template('picom/picom.conf')
-    ricer.render_template('Code/User/settings.json')
-    ricer.render_template('Code - OSS/User/settings.json')
-    ricer.render_template('gtk-3.0/settings.ini')
-    ricer.render_template('.vimrc', '/home/{0}/{1}')
-    ricer.render_template('.tmux.conf', '/home/{0}/{1}')
-    ricer.render_template('.zshrc', '/home/{0}/{1}')
-    ricer.render_template('.gitconfig', '/home/{0}/{1}')
-    ricer.render_template('.xinitrc', '/home/{0}/{1}')
-    ricer.render_template('.xprofile', '/home/{0}/{1}')
-    ricer.render_template('.zprofile', '/home/{0}/{1}')
-    ricer.render_template('.Xresources', '/home/{0}/{1}')
-    ricer.render_template('utils/sysact', '/home/{0}/.local/bin/sysact', True)
-    ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', True)
-    ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
-    ricer.render_template('utils/now_playing', '/home/{0}/.local/bin/now_playing', True)
-    ricer.render_template('utils/rofi-randr', '/home/{0}/.local/bin/rofi-randr', True)
-    ricer.render_template('polybar/startup.sh', '/home/{0}/.config/polybar/startup.sh', True)
-    ricer.put_background()
+    PARSER = setup_argparser()
+    RICER = Ricer(PARSER.parse_args())
+    RICER.render_template('alacritty/alacritty.yml')
+    RICER.render_template('dunst/dunstrc')
+    RICER.render_template('rofi/config.rasi')
+    RICER.render_template('rofi/powermenu.rasi')
+    RICER.render_template('rofi/powermenu.sh', '/home/{0}/.local/bin/sysact', True)
+    RICER.render_template('i3/config')
+    RICER.render_template('ranger/rc.conf')
+    RICER.render_template('polybar/config')
+    RICER.render_template('compton/compton.conf')
+    RICER.render_template('Code/User/settings.json')
+    RICER.render_template('Code/User/keybindings.json')
+    RICER.render_template('Code - OSS/User/settings.json')
+    RICER.render_template('nvim/init.vim')
+    RICER.render_template('nvim/colors/dapc11.vim')
+    RICER.render_template('.vimrc', '/home/{0}/{1}')
+    RICER.render_template('.tmux.conf', '/home/{0}/{1}')
+    RICER.render_template('.zshrc', '/home/{0}/{1}')
+    RICER.render_template('.xsessionrc', '/home/{0}/{1}')
+    RICER.render_template('.xprofile', '/home/{0}/{1}')
+    RICER.render_template('.zprofile', '/home/{0}/{1}')
+    RICER.render_template('.Xresources', '/home/{0}/{1}')
+    RICER.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
+    RICER.render_template('utils/open_file', '/home/{0}/.local/bin/open_file',
+                          True)
+    RICER.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode',
+                          True)
+    RICER.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
+    RICER.render_template('utils/now_playing',
+                          '/home/{0}/.local/bin/now_playing', True)
+    RICER.render_template('utils/rofi-randr',
+                          '/home/{0}/.local/bin/rofi-randr', True)
+    RICER.render_template('polybar/startup.sh',
+                          '/home/{0}/.config/polybar/startup.sh', True)
+    #RICER.render_template('gnome-terminal_dapc_rice.sh', '/home/{0}/{1}')
+    #RICER.render_template('utils/sysact', '/home/{0}/.local/bin/sysact2', True)
+    RICER.put_background()
     sys.exit(0)

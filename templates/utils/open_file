@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -p /dev/stdin ]; then
+    fullname=$(cat /dev/stdin)
+elif [ -n "$1" ]; then
+   fullname="$1"
+else
+    echo "No input was found on stdin, skipping!"
+    exit 0
+fi
+
+filename=$(basename -- "$fullname")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+case "$extension" in
+    ("pdf") evince "$fullname" ;;
+    ("txt") xterm -e vim "$fullname" ;;
+    ("docx") libreoffice "$fullname" ;;
+    ("doc") libreoffice "$fullname" ;;
+    ("pptx") libreoffice "$fullname" ;;
+    ("ppt") libreoffice "$fullname" ;;
+    ("xlsm") libreoffice "$fullname" ;;
+    ("xls") libreoffice "$fullname" ;;
+    (*) echo "No alternative to open file with extension: $extension" ;;
+esac
+
+exit 0

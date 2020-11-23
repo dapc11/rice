@@ -3,87 +3,45 @@ margin-bottom = 0
 margin-top = 0
 
 [bar/top]
-;monitor = eDP-1
+monitor = ${env:MONITOR:}
 enable-ipc=true
 
 width = 100%
-height = 30
+height = 28
 border-color = #00000000
 border-left-size = 0
 border-right-size = 0
 border-bottom-size = 0
 border-top-size = 0
-padding-left = 2
-padding-right = 2
-separator =
-module-margin = 2
+padding-left = 1
+padding-right = 1
+separator = " "
+module-margin = 0
 
 bottom = false
 
 background = {{base01}}
 foreground = {{base06}}
 
-font-0 = NotoSans-Regular;2
-font-1 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
-font-2 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
-font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular;2
-font-4 = jua;2
-font-5 = Iosevka Nerd Font;2
+font-0 = {{font}}:style=Regular:size=11;2
+font-1 = NotoSans-Regular;2
+font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular;2
+font-5 = jua;2
+font-6 = Iosevka Nerd Font;2
+tray-position = right
 
-modules-center = date
-modules-left = i3 bspwm spotify
-modules-right = alsa wireless-network wired-network battery powermenu
+modules-center = xwindow
+modules-left = i3 spotify
+modules-right = alsa wireless-network wired-network battery date powermenu
 
-[module/bspwm]
-type = internal/bspwm
+[module/xwindow]
+type = internal/xwindow
 
-pin-workspaces = true
-inline-mode = false
-enable-click = false
-enable-scroll = false
-reverse-scroll = false
-
-ws-icon-0 = "1;❶"
-ws-icon-1 = "2;❷"
-ws-icon-2 = "3;❸"
-ws-icon-3 = "4;❹"
-ws-icon-4 = "5;❺"
-ws-icon-5 = "6;❻"
-ws-icon-6 = "7;❼"
-ws-icon-7 = "8;❽"
-ws-icon-8 = "9;❾"
-ws-icon-9 = "10;❿"
-ws-icon-default =
-format = <label-state> <label-mode>
-
-label-mode-background = {{base08}}
-
-label-focused = ""
-label-focused-foreground = {{base06}}
-label-focused-padding = 1
-
-label-occupied = %icon%
-label-occupied-foreground = {{base06}}
-label-occupied-underline = {{base03}}
-label-occupied-font = 1
-label-occupied-padding = 1
-
-label-urgent = %icon%
-label-urgent-foreground = {{base06}}
-label-urgent-background = {{base08}}
-label-urgent-font = 1
-label-urgent-padding = 1
-
-label-empty = %icon%
-label-empty-padding = 1
-
-label-visible = %icon%
-label-visible-underline = {{base03}}
-label-visible-padding = 1
-
-label-separator-padding = 1
-label-separator-foreground = {{base0A}}
-fuzzy-match = true
+label = %title%
+label-maxlen = 50
+label-font = 0
 
 [module/battery]
 type = internal/battery
@@ -92,10 +50,12 @@ battery = BAT0
 adapter = AC0
 
 time-format = %H:%M
-format-charging = <animation-charging> <label-charging>
-format-discharging = <animation-discharging> <label-discharging>
-label-charging = %percentage%%
-label-discharging = %percentage%%
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+label-charging =  %percentage%%
+label-discharging =  %percentage%%
+label-full = ""
+#label-full = %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = {{base08}}
@@ -133,57 +93,51 @@ wrapping-scroll = false
 reverse-scroll = false
 fuzzy-match = true
 
-ws-icon-0 = "1;❶"
-ws-icon-1 = "2;❷"
-ws-icon-2 = "3;❸"
-ws-icon-3 = "4;❹"
-ws-icon-4 = "5;❺"
-ws-icon-5 = "6;❻"
-ws-icon-6 = "7;❼"
-ws-icon-7 = "8;❽"
-ws-icon-8 = "9;❾"
-ws-icon-9 = "10;❿"
+ws-icon-0 = "1;❶ "
+ws-icon-1 = "2;❷ "
+ws-icon-2 = "3;❸ "
+ws-icon-3 = "4;❹ "
+ws-icon-4 = "5;❺ "
+ws-icon-5 = "6;❻ "
+ws-icon-6 = "7;❼ "
+ws-icon-7 = "8;❽ "
+ws-icon-8 = "9;❾ "
+ws-icon-9 = "10;❿ "
 ws-icon-default =
 format = <label-state> <label-mode>
 
-label-mode-padding = 2
 label-mode-background = {{base08}}
 
-label-focused = ""
-label-focused-font = 4
-label-focused-padding = 2
+label-focused = " "
+label-focused-padding = 0
 
 label-occupied = %icon%
 label-occupied-underline = {{base03}}
-label-occupied-font = 4
-label-occupied-padding = 2
 
 label-urgent = %icon%
-label-urgent-background = {{base08}}
-label-urgent-font = 4
-label-urgent-padding = 2
+label-urgent-padding = 0
+label-urgent-foreground = {{base08}}
 
 label-unfocused = %icon%
-label-unfocused-padding = 2
+label-unfocused-padding = 0
 
 label-visible = %icon%
 label-visible-underline = {{base03}}
-label-visible-padding = 4
-
-label-separator-padding = 2
+label-visible-padding = 0
 
 [module/date]
 type = internal/date
+format = %{A1:gnome-calendar:} <date> %{A}
 date =  %Y-%m-%d  %H:%M:%S
 
 [module/wireless-network]
 type = internal/network
-label-connected = "%{A1:xterm -e sh -c 'nmtui':} %essid%%{A}"
+label-connected = "%{A1:xterm -e sh -c 'nmtui':} %signal%%%{A}"
 label-disconnected = "%{A1:xterm -e sh -c 'nmtui':} 睊 %{A}"
 label-disconnected-foreground = {{base08}}
 
 interface = {{wifi_if}}
-interval = 2.0
+interval = 5.0
 
 format-connected =  <label-connected>
 format-disconnected =  <label-disconnected>
@@ -221,13 +175,13 @@ interval = 5
 label =  %output%
 click-left = sysact
 click-right = sysact
-exec = echo " "
+exec = echo ""
 format = <label>
 
 [module/spotify]
 type = custom/script
 
-interval = 10
+interval = 2
 label =  %output%
 exec = now_playing
 format = <label>

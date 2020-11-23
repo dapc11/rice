@@ -1,16 +1,9 @@
-user_home="/home/${USER}"
 plugins=(
     git
     zsh-autosuggestions
 )
 
-export TERM="xterm-256color"
-export ZSH="${user_home}/.oh-my-zsh"
-export PATH=${user_home}/bin:$PATH
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -34,11 +27,13 @@ RPROMPT='${return_code} '
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 set -g hist_ignore_dups
-# Enable Home & End in tmux xterm-256color
-bindkey "\E[1~" beginning-of-line
-bindkey "\E[4~" end-of-line
+# Enable Home & End in rxvt-unicode-256color
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 
 # Aliases
+alias vim="nvim"
+alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head"
 alias fzf_history="history | fzf"
@@ -186,4 +181,17 @@ function fzf_tmux_kill {
             tmux kill-session -t "$match[1]"
         }
     done
+}
+function c() {
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  cp -f ~/.config/google-chrome/Default/History /tmp/h
+
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' | grep -v "file" |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs -I {} xdg-open "{}"
 }

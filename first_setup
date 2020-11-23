@@ -1,5 +1,33 @@
 #!/bin/bash
 
+function install_alacritty
+{
+    # Install required tools
+    sudo apt-get install -y rust cargo cmake libfreetype6-dev libfontconfig1-dev xclip
+
+    # Download, compile and install Alacritty
+    git clone https://github.com/jwilm/alacritty
+    cd alacritty
+    cargo install alacritty
+
+    # Add Man-Page entries
+    sudo mkdir -p /usr/local/share/man/man1
+    gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+
+    # Create desktop file
+    cp extra/linux/Alacritty.desktop ~/.local/share/applications/
+
+    # Copy binary to path
+    sudo cp ~/.cargo/bin/alacritty /usr/local/bin
+
+    # Use Alacritty as default terminal (Ctrl + Alt + T)
+    gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
+
+    # Remove temporary dir
+    cd ..
+    rm -r alacritty
+}
+
 function install_deps
 {
     echo -e "\n\tInstalling dependecies"
@@ -35,7 +63,7 @@ function install_kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
     cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-     sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+    sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 }
 
 function generate_dotfiles
@@ -63,15 +91,6 @@ function setup_st
     cd ..
 }
 
-function setup_polybar
-{
-    rm -rf polybar
-    git clone https://github.com/jaagr/polybar.git
-    cd polybar
-    ./build.sh
-    cd ..
-}
-
 function setup_suckless
 {
     echo -e "\n\tSetting up Suckless"
@@ -80,13 +99,31 @@ function setup_suckless
     setup_st
 }
 
+function setup_submodules
+{
+    echo -e "\n\tSetting up Suckless"
+    echo "----------------------------------------------------"
+    git submodule init
+    cd polybar
+    ./build.sh
+    cd ../i3-gaps
+    autoreconf --force --install
+    rm -rf build
+    mkdir build
+    cd build
+    ../configure --prefix=/usr --sysconfdir=/etc
+    make
+    sudo make install
+    cd ../../
+}
+
 install_deps
 setup_fonts
-setup_polybar
-generate_dotfiles dracula
-setup_suckless
+install_alacritty
+setup_submodules
+generate_dotfiles dark
 xrdb ~/.Xresources
-nitrogen --set-zoom-fill $HOME/.local/background.jpg || nitrogen random --set-zoom-fill /usr/share/backgrounds
-
+nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
+echo -e "Please setup your background with nitrogen."
 echo -e "\nDone"
 exit 0
