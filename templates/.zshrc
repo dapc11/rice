@@ -33,6 +33,7 @@ bindkey "^[[F" end-of-line
 
 # Aliases
 alias vim="nvim"
+alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head"
 alias fzf_history="history | fzf"

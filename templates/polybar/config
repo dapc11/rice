@@ -117,7 +117,6 @@ label-occupied-underline = {{base03}}
 label-urgent = %icon%
 label-urgent-padding = 0
 label-urgent-foreground = {{base08}}
-#label-urgent-background = {{base08}}
 
 label-unfocused = %icon%
 label-unfocused-padding = 0

@@ -26,7 +26,7 @@
     "vim_colorscheme": "base16-default-dark",
     "vim_guibg": "#1F1F1F",
     "gtk_theme": "Adwaita",
-    "wifi_if": "wlo1",
+    "wifi_if": "wlp1s0",
     "vs_theme": "Dark",
     "bg": "background2.jpg"
 }
