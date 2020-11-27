@@ -28,5 +28,6 @@
     "gtk_theme": "Adwaita",
     "wifi_if": "wlp1s0",
     "vs_theme": "Dark",
-    "bg": "background2.jpg"
+    "bg": "background2.jpg",
+    "window_manager": "bspwm"
 }

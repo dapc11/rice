@@ -27,5 +27,6 @@
     "gtk_theme": "Dracula",
     "wifi_if": "wlo1",
     "vs_theme": "Dracula",
-    "bg": "dracula_bg.jpg"
+    "bg": "dracula_bg.jpg",
+    "window_manager": "bspwm"
 }

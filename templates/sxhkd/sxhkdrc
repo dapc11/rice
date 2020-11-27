@@ -2,68 +2,91 @@
 # wm independent hotkeys
 #
 
-# description: run {{terminal}}
+# terminal emulator
 super + Return
     {{terminal}}
 
-# description: program launcher
-super + @space
-    rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
-super + d
-    rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
-
-# description: make sxhkd reload its configuration files:
+# make sxhkd reload its configuration files:
 super + Escape
     pkill -USR1 -x sxhkd
 
+
+super + {_,shift + }q
+    bspc node -{c,k}
+
+
+super + ctrl + u
+    xrandr --output edp-1 --auto --output dp-2-1 --off --output dp-2-2 --off --output hdmi-1 --off
+super + ctrl + d
+    xrandr --output edp-1 --off --output dp-2-1 --auto --output dp-2-2 --auto --right-of dp-2-1 --output hdmi-1 --off
+super + ctrl + p
+    xrandr --output edp-1 --auto --output hdmi-1 --auto --right-of edp-1
 super + l
     sysact
-super + n
-    nightmode
+#super + m
+#    nightmode
 super + w
-    firefox
+    google-chrome
 super + p
     rofi-randr
-# description: leader+ctrl+(u)ndocked, (d)ocked and (p)resentation
-super + ctrl + u
-    xrandr --output eDP-1 --auto --output DP-2-1 --off --output DP-2-2 --off --output HDMI-1 --off
-super ctrl + d
-    xrandr --output eDP-1 --off --output DP-2-1 --auto --output DP-2-2 --auto --right-of DP-2-1 --output HDMI-1 --off
-super + ctrl + p
-    xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1
+super + d
+    rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
+super + s
+    rofi -show window -theme ~/.config/rofi/config
+super + n
+    find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
+XF86AudioPrev
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+XF86AudioPlay
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+XF86AudioNext
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+XF86AudioMute
+    amixer -D pulse -q set Master toggle
+XF86AudioLowerVolume
+    amixer set Master 2db- unmute
+XF86AudioRaiseVolume
+    amixer set Master 2db+ unmute
+XF86MonBrightnessDown
+    dimmer -d
+XF86MonBrightnessUp
+    dimmer -i
 #
 # bspwm hotkeys
 #
 
-# description: quit/restart bspwm
+# quit/restart bspwm
 super + alt + {q,r}
     bspc {quit,wm -r}
 
-# description: close and kill
-super + {_,shift + }q
+# close and kill
+super + {_,shift + }w
     bspc node -{c,k}
 
-# description: alternate between the tiled and monocle layout
+# alternate between the tiled and monocle layout
 super + m
     bspc desktop -l next
 
-# description: send the newest marked node to the newest preselected node
+# send the newest marked node to the newest preselected node
 super + y
     bspc node newest.marked.local -n newest.!automatic.local
 
-# description: swap the current node and the biggest node
+# swap the current node and the biggest node
 super + g
     bspc node -s biggest
+# Rotate tree
+super + shift + {d,a}
+    bspc node @/ -C {forward,backward}
 
 #
 # state/flags
 #
 
-# description: set the window state
+# set the window state
 super + {t,shift + t,s,f}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# description: set the node flags
+# set the node flags
 super + ctrl + {m,x,y,z}
     bspc node -g {marked,locked,sticky,private}
 
@@ -71,33 +94,29 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# description: focus the node in the given direction
-super + {_,shift + }{Left, Down, Up, Right}
-    bspc node -{f,s} {west,south,north,east}
+# focus the node in the given direction
+super + { Left, Down, Up, Right }
+    bspc node -f {west,south,north,east}
 
-# description: focus the node for the given path jump
-super + {p,b,comma,period}
-    bspc node -f @{parent,brother,first,second}
+# swap the node in the given direction
+super + shift { Left, Down, Up, Right }
+    bspc node -s {west,south,north,east}
 
-# description: focus the next/previous node in the current desktop
+# focus the next/previous node in the current desktop
 super + {_,shift + }c
     bspc node -f {next,prev}.local
 
-# description: focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-    bspc desktop -f {prev,next}.local
-
-# description: focus the last node/desktop
+# focus the last node/desktop
 super + {grave,Tab}
     bspc {node,desktop} -f last
 
-# description: focus the older or newer node in the focus history
+# focus the older or newer node in the focus history
 super + {o,i}
     bspc wm -h off; \
     bspc node {older,newer} -f; \
     bspc wm -h on
 
-# description: focus or send to the given desktop
+# focus or send to the given desktop
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
@@ -105,19 +124,19 @@ super + {_,shift + }{1-9,0}
 # preselect
 #
 
-# description: preselect the direction
-super + ctrl + {Left, Down, Up, Right}
+# preselect the direction
+super + ctrl + {h,j,k,l}
     bspc node -p {west,south,north,east}
 
-# description: preselect the ratio
+# preselect the ratio
 super + ctrl + {1-9}
     bspc node -o 0.{1-9}
 
-# description: cancel the preselection for the focused node
+# cancel the preselection for the focused node
 super + ctrl + space
     bspc node -p cancel
 
-# description: cancel the preselection for the focused desktop
+# cancel the preselection for the focused desktop
 super + ctrl + shift + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
@@ -125,14 +144,32 @@ super + ctrl + shift + space
 # move/resize
 #
 
-# description: expand a window by moving one of its side outward
-super + alt + {Left, Down, Up, Right}
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
     bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# description: contract a window by moving one of its side inward
-super + alt + shift + {Left, Down, Up, Right}
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
     bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# description: move a floating window
+# move a floating window
 super + {Left,Down,Up,Right}
     bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + x; {h,j,k,l}:
+    tabc.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
+
+# Remove one tab from tabbed
+super + x; r
+    tabbed=$(bspc query -N -n focused); \
+    child=$(tabc.sh $tabbed list | head -n1); \
+    tabc.sh $tabbed remove $child
+
+super + x; x
+    tabbed
+
+ctrl + alt + {Left,Right}
+    desk=`bspc query -D -d focused`; \
+    bspc desktop -m {prev,next}; \
+    bspc monitor -f {prev,next}; \
+    bspc desktop -f $desk

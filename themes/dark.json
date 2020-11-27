@@ -26,5 +26,6 @@
     "vim_colorscheme": "gruvbox",
     "gtk_theme": "Adwaita-dark",
     "vs_theme": "Gruvbox Dark Soft",
-    "bg": "gruvbox_bg.jpg"
+    "bg": "gruvbox_bg.jpg",
+    "window_manager": "bspwm"
 }

@@ -33,7 +33,7 @@ font-6 = Iosevka Nerd Font;2
 tray-position = right
 
 modules-center = xwindow
-modules-left = i3 spotify
+modules-left = bspwm i3 spotify
 modules-right = alsa wireless-network wired-network battery date powermenu
 
 [module/xwindow]
@@ -80,6 +80,66 @@ animation-discharging-2 = 
 animation-discharging-3 = 
 animation-discharging-4 = 
 animation-discharging-framerate = 1000
+
+[module/bspwm]
+type = internal/bspwm
+ws-icon-0 = "1;❶ "
+ws-icon-1 = "2;❷ "
+ws-icon-2 = "3;❸ "
+ws-icon-3 = "4;❹ "
+ws-icon-4 = "5;❺ "
+ws-icon-5 = "6;❻ "
+ws-icon-6 = "7;❼ "
+ws-icon-7 = "8;❽ "
+ws-icon-8 = "9;❾ "
+ws-icon-9 = "10;❿ "
+ws-icon-default =
+format = <label-state> <label-mode>
+label-mode-background = {{base08}}
+
+label-focused = " "
+label-focused-padding = 0
+
+
+label-urgent = %icon%
+label-urgent-padding = 0
+label-urgent-foreground = {{base08}}
+label-unfocused = %icon%
+label-unfocused-padding = 0
+
+label-visible = %icon%
+label-visible-underline = {{base03}}
+label-visible-padding = 0
+
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; But if you rename your bspwm monitors with bspc -n this option will no longer
+; behave correctly.
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
 
 [module/i3]
 type = internal/i3
@@ -159,7 +219,7 @@ type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
 
 label-muted-foreground = {{base08}}
-label-muted =  婢
+label-muted = "婢 "
 
 ramp-volume-0 = 
 ramp-volume-1 = 

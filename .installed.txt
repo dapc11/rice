@@ -51,7 +51,6 @@ python
 python-ueberzug
 python3-sphinx
 python3-xcbgen
-qtile
 ranger
 ripgrep
 rofi
@@ -70,3 +69,5 @@ xsel
 xutils-dev
 zsh
 neovim
+xdotool
+tabbed

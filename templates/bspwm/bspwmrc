@@ -1,18 +1,34 @@
 #! /bin/sh
 
 sxhkd &
-~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top &
+dunst -config ~/.config/dunst/dunstrc &
+nitrogen --restore &
+xrdb ~/.Xresources &
+nm-applet &
+if [ -x ~/.local/bin/set_dual_monitor ]; then
+    ~/.local/bin/set_dual_monitor
+fi
+if [ -x /usr/local/bin/polybar ]; then
+    ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
+fi
+compton --config ~/.config/compton/compton.conf &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor -d ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿
 
-bspc config border_width             1
-bspc config window_gap               12
+bspc config border_width         2
+bspc config window_gap          12
 
-bspc config split_ratio              0.52
-bspc config borderless_monocle       true
-bspc config gapless_monocle          true
+
 bspc config normal_border_color      "{{base01}}"
 bspc config focused_border_color     "{{base03}}"
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
 
+bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
-bspc rule -a firefox desktop='^2'
+bspc rule -a Firefox desktop='^2'
+bspc rule -a Google-chrome desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off

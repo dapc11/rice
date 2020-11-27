@@ -24,9 +24,9 @@ case $chosen in
         systemctl suspend
         ;;
     $renew)
-        kill -HUP $(pidof -s i3)
+        kill -HUP $(pidof -s {{window_manager}})
         ;;
     $exit)
-        kill -TERM $(pidof -s i3)
+        kill -TERM $(pidof -s {{window_manager}})
         ;;
 esac
