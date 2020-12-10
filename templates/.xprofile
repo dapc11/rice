@@ -18,8 +18,7 @@ function __wifi {
     echo "$(nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}')"
 }
 function __now_playing {
-    # echo "$(now_playing)"
-    echo ""
+    echo "$(now_playing) |"
 }
 
 compton --config ~/.config/compton/compton.conf &
@@ -29,6 +28,6 @@ xrdb ~/.Xresources &
 
 # Statusbar
 while true; do
-    xsetroot -name "$(__now_playing) | $(__wifi) | $(__volume) | $(__battery) | $(__date)"
+    xsetroot -name "$(__now_playing) $(__wifi) | $(__volume) | $(__battery) | $(__date)"
     sleep 5s
 done &

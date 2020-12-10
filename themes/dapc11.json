@@ -29,5 +29,5 @@
     "wifi_if": "wlp1s0",
     "vs_theme": "Dark",
     "bg": "background2.jpg",
-    "window_manager": "bspwm"
+    "window_manager": "dwm"
 }
