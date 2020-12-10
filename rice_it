@@ -99,7 +99,7 @@ if __name__ == "__main__":
     RICER.render_template('.vimrc', '/home/{0}/{1}')
     RICER.render_template('.tmux.conf', '/home/{0}/{1}')
     RICER.render_template('.zshrc', '/home/{0}/{1}')
-    RICER.render_template('.xsessionrc', '/home/{0}/{1}')
+    #RICER.render_template('.xsessionrc', '/home/{0}/{1}')
     RICER.render_template('.xprofile', '/home/{0}/{1}')
     RICER.render_template('.zprofile', '/home/{0}/{1}')
     RICER.render_template('.Xresources', '/home/{0}/{1}')
