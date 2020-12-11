@@ -20,6 +20,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'chriskempson/base16-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-markdown'
 call plug#end()
 
 """""""""" CoC
@@ -111,6 +112,10 @@ map <C-M-down> <C-w>j
 map <C-M-up> <C-w>k
 map <C-M-right> <C-w>l
 map <leader>q :q<CR>
+command WQ wq
+command Wq wq
+command W w
+command Q q
 
 " Commenting
 map <C-_> gcc
@@ -187,6 +192,10 @@ nnoremap gp :Git push<CR>
 nnoremap gP :Git pull --rebase<CR>
 nnoremap g- :Silent Git stash<CR>:e<CR>
 nnoremap g+ :Silent Git stash pop<CR>:e<CR>
+
+" Markdown
+let g:markdown_folding = 1
+au FileType markdown setlocal foldlevel=99
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
