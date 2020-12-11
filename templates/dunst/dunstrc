@@ -174,18 +174,11 @@ history = ctrl+grave
 # Context menu.
 context = ctrl+shift+period
 
-[signed_on]
-appname = Pidgin
-summary = "*signed on*"
-urgency = low
+[evolution-alarm]
+appname = evolution-alarm-notification
+summary = "*"
 
-[signed_off]
-appname = Pidgin
-summary = *signed off*
-urgency = low
-
-[says]
-appname = Pidgin
-summary = *says*
-urgency = critical
+[evolution-mai]
+appname = evolution-mail-notification
+summary = "*
 # vim: ft=cfg
