@@ -193,6 +193,7 @@ bindsym $mod+Ctrl+less move workspace to output left
 
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec sysact
+bindsym $mod+backspace exec sysact
 bindsym $mod+m exec nightmode
 bindsym $mod+w exec google-chrome
 bindsym $mod+p exec rofi-randr

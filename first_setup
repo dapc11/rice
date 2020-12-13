@@ -106,14 +106,6 @@ function setup_submodules
     git submodule init
     cd polybar
     ./build.sh
-    cd ../i3-gaps
-    autoreconf --force --install
-    rm -rf build
-    mkdir build
-    cd build
-    ../configure --prefix=/usr --sysconfdir=/etc
-    make
-    sudo make install
     cd ../../
 }
 
@@ -121,7 +113,7 @@ install_deps
 setup_fonts
 install_alacritty
 setup_submodules
-generate_dotfiles dark
+generate_dotfiles dapc11
 xrdb ~/.Xresources
 nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
 echo -e "Please setup your background with nitrogen."

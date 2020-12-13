@@ -17,7 +17,6 @@ function git_prompt_info() {
 }
 
 ZSH_THEME="{{zsh_theme}}"
-HIST_STAMPS="mm/dd/yyyy"
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
@@ -35,26 +34,7 @@ bindkey "^[[F" end-of-line
 alias vim="nvim"
 alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
-alias ducks="du -cks * | sort -rn | head"
-alias fzf_history="history | fzf"
-alias fzf_find="find . | fzf"
-alias fzf_ps="ps -ef | fzf"
-
-# Utils
-bookmark_file="$HOME/.local/bookmarks"
-function bookmark_add {
-    mkdir -p $HOME/.local
-    touch $bookmark_file
-    grep -qF -- "$1" "$bookmark_file" || echo "$1" >> "$bookmark_file"
-}
-
-function bookmark {
-    cd $(cat $bookmark_file | fzf)
-}
-
-function b {
-    bookmark
-}
+alias ducks="du -cks * | sort -rn | head | column -t"
 
 function fzf_branches {
   local branches branch
@@ -181,17 +161,4 @@ function fzf_tmux_kill {
             tmux kill-session -t "$match[1]"
         }
     done
-}
-function c() {
-  local cols sep
-  cols=$(( COLUMNS / 3 ))
-  sep='{::}'
-
-  cp -f ~/.config/google-chrome/Default/History /tmp/h
-
-  sqlite3 -separator $sep /tmp/h \
-    "select substr(title, 1, $cols), url
-     from urls order by last_visit_time desc" |
-  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' | grep -v "file" |
-  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs -I {} xdg-open "{}"
 }

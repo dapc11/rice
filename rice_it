@@ -104,13 +104,9 @@ if __name__ == "__main__":
     RICER.render_template('.zprofile', '/home/{0}/{1}')
     RICER.render_template('.Xresources', '/home/{0}/{1}')
     RICER.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
-    RICER.render_template('utils/open_file', '/home/{0}/.local/bin/open_file',
-                          True)
     RICER.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode',
                           True)
     RICER.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
-    RICER.render_template('utils/tabc.sh', '/home/{0}/.local/bin/tabc.sh', True)
-    RICER.render_template('utils/set_dual_monitor', '/home/{0}/.local/bin/set_dual_monitor', True)
     RICER.render_template('utils/now_playing',
                           '/home/{0}/.local/bin/now_playing', True)
     RICER.render_template('utils/rofi-randr',
