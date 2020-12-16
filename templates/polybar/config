@@ -182,8 +182,8 @@ date =  %Y-%m-%d  %H:%M:%S
 
 [module/wireless-network]
 type = internal/network
-label-connected = "%{A1:xterm -e sh -c 'nmtui':} %signal%%%{A}"
-label-disconnected = "%{A1:xterm -e sh -c 'nmtui':} 睊 %{A}"
+label-connected = "%{A1:alacritty -e sh -c 'nmtui':} %signal%%%{A}"
+label-disconnected = "%{A1:alacritty -e sh -c 'nmtui':} 睊 %{A}"
 label-disconnected-foreground = {{base08}}
 
 interface = {{wifi_if}}
