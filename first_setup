@@ -3,7 +3,7 @@
 function install_alacritty
 {
     # Install required tools
-    sudo apt-get install -y rust cargo cmake libfreetype6-dev libfontconfig1-dev xclip
+    sudo apt-get install -y rustc cargo cmake libfreetype6-dev libfontconfig1-dev xclip
 
     # Download, compile and install Alacritty
     git clone https://github.com/jwilm/alacritty
@@ -101,11 +101,11 @@ function setup_suckless
 
 function setup_submodules
 {
-    echo -e "\n\tSetting up Suckless"
+    echo -e "\n\tSetting up polybar"
     echo "----------------------------------------------------"
-    git submodule init
+    git Gsubmodule update --init --recursive
     cd polybar
-    ./build.sh
+    bash build.sh -f -c -p -i -a -3 -n -j -g -z
     cd ../../
 }
 

@@ -34,7 +34,7 @@ tray-position = right
 
 modules-center = xwindow
 modules-left = bspwm i3 spotify
-modules-right = alsa wireless-network wired-network battery date powermenu
+modules-right = updates alsa wireless-network wired-network battery date powermenu
 
 [module/xwindow]
 type = internal/xwindow
@@ -234,6 +234,14 @@ type = custom/script
 interval = 2
 label =  %output%
 exec = now_playing
+format = <label>
+
+[module/updates]
+type = custom/script
+
+interval = 5
+label = %output%
+exec = ~/.config/polybar/updates.sh
 format = <label>
 
 ; vim:ft=dosini

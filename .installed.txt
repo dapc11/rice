@@ -1,3 +1,6 @@
+sudo
+curl
+xrdb
 ack
 autoconf
 automake

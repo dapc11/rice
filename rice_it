@@ -113,6 +113,8 @@ if __name__ == "__main__":
                           '/home/{0}/.local/bin/rofi-randr', True)
     RICER.render_template('polybar/startup.sh',
                           '/home/{0}/.config/polybar/startup.sh', True)
+    RICER.render_template('polybar/updates.sh',
+                          '/home/{0}/.config/polybar/updates.sh', True)
     #RICER.render_template('gnome-terminal_dapc_rice.sh', '/home/{0}/{1}')
     #RICER.render_template('utils/sysact', '/home/{0}/.local/bin/sysact2', True)
     RICER.put_background()
