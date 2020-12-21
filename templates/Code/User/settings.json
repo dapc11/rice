@@ -12,5 +12,11 @@
     "workbench.colorTheme": "{{vs_theme}}",
     "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 16,
-    "terminal.integrated.fontSize": 16
+    "terminal.integrated.fontSize": 16,
+    "workbench.colorCustomizations": {
+        "statusBar.background" : "{{base02}}",
+        "statusBar.noFolderBackground" : "{{base03}}",
+        "statusBar.debuggingBackground": "{{base04}}",
+        "statusBar.foreground": "{{base06}}"
+    }    
 }
