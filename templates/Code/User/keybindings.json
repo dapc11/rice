@@ -26,8 +26,7 @@
     },
     {
         "key": "ctrl+shift+t",
-        "command": "workbench.view.explorer",
-        "when": "editorFocus"
+        "command": "workbench.action.toggleSidebarVisibility",
     },
     {
         "key": "alt+numpad1",
