@@ -1,39 +1,50 @@
-@define-color theme_base_color {{base01}};
+@define-color theme_base_color {{base03}};
 @define-color theme_bg_color {{base02}};
-@define-color fg_color {{base06}};
-@define-color theme_selected_bg_color {{base05}};
 @define-color theme_text_color {{base06}};
 @define-color theme_fg_color @theme_text_color;
+@define-color theme_selected_bg_color {{base05}};
 @define-color theme_selected_fg_color @theme_bg_color;
-@define-color theme_selected_bg_color @theme_fg_color;
-@define-color base_color {{base01}};
-@define-color text_color {{base06}};
-@define-color success_color {{base0B}};
-@define-color error_color {{base08}};
 @define-color theme_unfocused_selected_bg_color @theme_fg_color;
 @define-color theme_unfocused_selected_fg_color @theme_bg_color;
 
 
 * {
-    background-color: @theme_bg_color;
-    color: @theme_fg_color;
-    font: 13px "{{font}}";
+  color: @theme_fg_color;
+  background-color: @theme_bg_color;
+  font: 13px "{{font}}";
 }
 
-*:hover, *: {
-    color: @theme_bg_color;
-    background-color: @theme_fg_color;
+*:hover {
+  background-color: {{base03}};
+}
+*:focus {
+  background-color: {{base04}}
 }
 
-button, link {
-    box-shadow: 0px;
-	background-color:{{base01}};
-	border-radius:px;
-	color: {{base0C}};
-	padding:0px;;
+treeview, button, link, panel {
+	padding: 0px;
+  box-shadow: 0px;
+	color: {{base06}};
+	background-color: {{base02}};
+	border-radius: 0px;
 }
 
-button:link { color: {{base0c}}; }          /* Unvisited links */
-button:visited { color: {{base0E}}; }     /* Visited links */
-button:hover { background-color: {{base0A}}; }  /* Hovered links */
-button:active { color: {{base08}}; }         /* Active links */
+cellview {
+  color: inherit;
+  background-color: inherit;
+}
+
+menuitem {
+	color: {{base06}};
+  background-color: inherit;
+}
+menuitem * {
+	color: @theme_fg_color;
+}
+menuitem:hover {
+  background-color: {{base04}};
+}
+
+label {
+  background-color: inherit;
+}
