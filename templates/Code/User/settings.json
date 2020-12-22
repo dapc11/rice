@@ -17,6 +17,12 @@
         "statusBar.background" : "{{base02}}",
         "statusBar.noFolderBackground" : "{{base03}}",
         "statusBar.debuggingBackground": "{{base04}}",
-        "statusBar.foreground": "{{base06}}"
-    }    
+        "titleBar.background": "{{base02}}",
+        "menu.background": "{{base02}}",
+        "statusBar.foreground": "{{base06}}",
+        "menu.selectionForeground": "{{base06}}",
+        "menu.selectionBackground": "{{base04}}",
+        "statusBarItem.remoteBackground": "{{base0B}}",
+        "statusBarItem.remoteForeground": "{{base02}}"
+    }
 }
