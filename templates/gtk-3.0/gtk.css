@@ -15,7 +15,7 @@
 }
 
 *:hover {
-  background-color: {{base03}};
+  background-color: {{base04}};
 }
 *:focus {
   background-color: {{base04}}
@@ -37,11 +37,15 @@ cellview {
 menuitem {
 	color: {{base06}};
   background-color: inherit;
+  border-radius: 1px;
 }
 menuitem * {
 	color: @theme_fg_color;
 }
 menuitem:hover {
+  background-color: {{base04}};
+}
+menuitem:focus {
   background-color: {{base04}};
 }
 

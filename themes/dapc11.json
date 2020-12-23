@@ -25,7 +25,7 @@
     "vim_theme": "dark",
     "vim_colorscheme": "base16-default-dark",
     "vim_guibg": "#1F1F1F",
-    "gtk_theme": "Adwaita",
+    "gtk_theme": "Yaru-dark",
     "vs_theme": "Dark",
     "bg": "background2.jpg",
     "window_manager": "i3"

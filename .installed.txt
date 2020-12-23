@@ -73,4 +73,5 @@ xutils-dev
 zsh
 neovim
 xdotool
+thunar
 tabbed
