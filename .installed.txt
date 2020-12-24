@@ -74,4 +74,5 @@ zsh
 neovim
 xdotool
 thunar
+pavucontrol
 tabbed

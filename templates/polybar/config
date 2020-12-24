@@ -206,10 +206,9 @@ label-disconnected-foreground = {{base08}}
 
 [module/alsa]
 type = internal/alsa
-format-volume = <ramp-volume> <label-volume>
-
+format-volume = "%{A3:pavucontrol:}<ramp-volume> <label-volume>%{A}"
 label-muted-foreground = {{base08}}
-label-muted = "婢 "
+label-muted = "%{A3:pavucontrol:}婢 %{A}"
 
 ramp-volume-0 = 
 ramp-volume-1 = 
