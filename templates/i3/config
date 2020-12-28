@@ -12,7 +12,7 @@ set $ws9 9
 set $ws10 10
 
 floating_modifier $mod
-font xft:{{font}} 10
+font pango:{{font}} 11
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -72,9 +72,9 @@ gaps inner 10
 gaps outer 3
 
 # class                 border     background     text          indicator    child_border
-client.focused          {{base06}} {{base02}}     {{base05}}    {{base04}}   {{base06}}
-client.focused_inactive {{base03}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
-client.unfocused        {{base03}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
+client.focused          {{base03}} {{base03}}     {{base05}}    {{base04}}   {{base06}}
+client.focused_inactive {{base01}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
+client.unfocused        {{base01}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
 client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
 client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
 
@@ -133,6 +133,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 bindsym $mod+v split h
 bindsym $mod+c split v
+bindsym $mod+x [urgent=latest] focus
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
