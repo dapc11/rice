@@ -20,6 +20,9 @@
 *:focus {
   background-color: {{base04}}
 }
+*:active {
+  background-color: {{base04}}
+}
 
 treeview, button, link, panel {
 	padding: 0px;

@@ -2,10 +2,11 @@
 configuration {
     show-icons:  true;
     width:       30;
+    matching: "fuzzy";
 }
 
 * {
-    font:               "{{font}} 12";
+    font:                "{{font}} 12";
     background-color:    {{base00}};
     text-color:          {{base05}};
 
@@ -13,34 +14,35 @@ configuration {
     selected-aactive-bg: {{base01}};
     selected-normal-fg:  {{base05}};
     selected-normal-bg:  {{base01}};
-    border-color:        {{base01}};
+    border-color:        {{base02}};
     spacing:             2;
     border-radius:       5px;
 }
 
 #window {
-    children:  [ mainbox ];
+    children:            [ mainbox ];
+    border: 2px;
 }
 
 #mainbox {
-    children:  [ entry,listview ];
-    padding:   10px;
+    children:            [ entry,listview ];
+    padding:             10px;
 }
 
 #listview {
-    padding:    5px 0px 0px 2px;
+    padding:             5px 0px 0px 2px;
 }
 
 entry {
-    expand:          false;
-    vertical-align:  1;
-    border:          2px;
-    padding:         5px;
-    border-radius:   5px;
+    expand:             false;
+    vertical-align:     1;
+    border:             2px;
+    padding:            5px;
+    border-radius:      5px;
 }
 
 element {
-    padding:  2px;
+    padding:            2px;
 }
 
 element selected.normal {

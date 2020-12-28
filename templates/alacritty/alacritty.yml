@@ -44,28 +44,28 @@ draw_bold_text_with_bright_colors: true
 colors:
   primary:
     background: '{{base00}}'
-    foreground: '{{base05}}'
+    foreground: '{{base06}}'
   selection:
-    text: '{{base01}}'
-    background: '{{base05}}'
+    text:       '{{base06}}'
+    background: '{{base02}}'
   normal:
-    black:   '{{base00}}'
+    black:   '{{base01}}'
     red:     '{{base08}}'
     green:   '{{base0B}}'
     yellow:  '{{base0A}}'
-    blue:    '{{base0D}}'
+    blue:    '{{base0C}}'
     magenta: '{{base0E}}'
-    cyan:    '{{base0B}}'
-    white:   '{{base06}}'
-  bright:
-    black:   '{{base03}}'
-    red:     '{{base08}}'
-    green:   '{{base0B}}'
-    yellow:  '{{base0A}}'
-    blue:    '{{base0D}}'
-    magenta: '{{base0E}}'
-    cyan:    '{{base0B}}'
+    cyan:    '{{base0D}}'
     white:   '{{base07}}'
+  bright:
+    black:   '{{base04}}'
+    red:     '{{base08}}'
+    green:   '{{base0F}}'
+    yellow:  '{{base0A}}'
+    blue:    '{{base0C}}'
+    magenta: '{{base0E}}'
+    cyan:    '{{base0D}}'
+    white:   '{{base04}}'
   indexed_colors: []
 cursor:
   style: Block

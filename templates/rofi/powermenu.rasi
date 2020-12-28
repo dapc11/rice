@@ -14,13 +14,13 @@
   accent:                                {{base04}};
   background:                            {{base00}};
   background-light:                      {{base01}};
-  foreground:                            {{base05}};
+  foreground:                            {{base04}};
 }
 
 /* ########### */
 
 #window {
-  width: 560px;
+  width: 565px;
   height: 160px;
 }
 
@@ -69,7 +69,7 @@ textbox-prompt-colon {
 #prompt {
   margin: @menu-prompt-margin;
   background-color: @background-light;
-  text-color: @accent;
+  text-color: @foreground;
 }
 #textbox-prompt-colon {
   expand: false;
@@ -90,9 +90,9 @@ textbox-prompt-colon {
   padding: @menu-element-padding;
   border-color: @background-light;
 }
-#element.selected {
+/*#element.selected {
   border-color: @accent;
-}
+}*/
 element.active,
 element.selected.urgent {
   background-color: @on;

@@ -93,7 +93,6 @@ if __name__ == "__main__":
     RICER.render_template('compton/compton.conf')
     RICER.render_template('Code/User/settings.json')
     RICER.render_template('Code/User/keybindings.json')
-    RICER.render_template('Code - OSS/User/settings.json')
     RICER.render_template('nvim/init.vim')
     RICER.render_template('nvim/colors/dapc11.vim')
     RICER.render_template('.vimrc', '/home/{0}/{1}')
@@ -106,8 +105,8 @@ if __name__ == "__main__":
     RICER.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode',
                           True)
     RICER.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
-    RICER.render_template('gtk-3.0/gtk.css', '/home/{0}/.config/gtk-3.0/gtk.css', True)
-    RICER.render_template('gtk-3.0/settings.ini', '/home/{0}/.config/gtk-3.0/settings.ini', True)
+    #RICER.render_template('gtk-3.0/gtk.css', '/home/{0}/.config/gtk-3.0/gtk.css', True)
+    #RICER.render_template('gtk-3.0/settings.ini', '/home/{0}/.config/gtk-3.0/settings.ini', True)
     RICER.render_template('utils/now_playing',
                           '/home/{0}/.local/bin/now_playing', True)
     RICER.render_template('utils/rofi-randr',
