@@ -28,5 +28,6 @@
     "gtk_theme": "Yaru",
     "vs_theme": "Dark",
     "bg": "bg.jpg",
+    "wifi_if": "wlp1s0",
     "window_manager": "i3"
 }

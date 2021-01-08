@@ -232,7 +232,7 @@ type = custom/script
 
 interval = 2
 label =  %output%
-exec = now_playing
+exec = python3 ~/.local/bin/now_playing
 format = <label>
 
 [module/updates]

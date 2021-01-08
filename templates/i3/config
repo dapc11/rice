@@ -68,8 +68,8 @@ for_window [workspace=$ws9] layout
 ###########################################################
 
 #smart_gaps on
-gaps inner 10
-gaps outer 3
+#gaps inner 10
+#gaps outer 3
 
 # class                 border     background     text          indicator    child_border
 client.focused          {{base03}} {{base03}}     {{base05}}    {{base04}}   {{base06}}

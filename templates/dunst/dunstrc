@@ -1,18 +1,18 @@
 [urgency_low]
-background = "{{base01}}"
+background = "{{base00}}"
 foreground = "{{base05}}"
 timeout = 10
 [urgency_normal]
-background = "{{base01}}"
+background = "{{base00}}"
 foreground = "{{base05}}"
 timeout = 10
 [urgency_critical]
-background = "{{base01}}"
+background = "{{base00}}"
 foreground = "{{base08}}"
 frame_color = "{{base08}}"
 timeout = 0
 [global]
-frame_color = "{{base05}}"
+frame_color = "{{base02}}"
 # Which monitor should the notifications be displayed on.
 monitor = 0
 
@@ -49,7 +49,7 @@ horizontal_padding = 8
 
 # Defines width in pixels of frame around the notification window.
 # Set to 0 to disable.
-frame_width = 1
+frame_width = 2
 
 # Defines color of the frame around the notification window.
 

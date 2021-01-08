@@ -1,6 +1,7 @@
 plugins=(
     git
     zsh-autosuggestions
+    virtualenv
 )
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -35,6 +36,16 @@ alias vim="nvim"
 alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
+
+function pb-kill-line () {
+  zle kill-line
+  echo -n $CUTBUFFER | xclip -selection clipboard
+}
+
+zle -N pb-kill-line
+
+bindkey '^K' pb-kill-line
+source <(kubectl completion zsh)
 
 function fzf_branches {
   local branches branch
