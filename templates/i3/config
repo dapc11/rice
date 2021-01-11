@@ -193,13 +193,8 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 bindsym $mod+plus scratchpad show
-bindsym $mod+l exec sysact
-bindsym $mod+backspace exec sysact
+bindsym $mod+l exec ~/.config/rofi/rofi-power
+bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+m exec nightmode
 bindsym $mod+w exec google-chrome
-bindsym $mod+p exec rofi-randr
-
-# leader+ctrl+(u)ndocked, (d)ocked and (p)resentation
-bindsym $mod+Ctrl+u exec xrandr --output eDP-1 --auto --output DP-2-1 --off --output DP-2-2 --off --output HDMI-1 --off
-bindsym $mod+Ctrl+d exec xrandr --output eDP-1 --off --output DP-2-1 --auto --output DP-2-2 --auto --right-of DP-2-1 --output HDMI-1 --off
-bindsym $mod+Ctrl+p exec xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1
+bindsym $mod+p exec ~/.config/rofi/rofi-randr

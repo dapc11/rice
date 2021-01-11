@@ -15,7 +15,7 @@ function __date {
 }
 
 function __wifi {
-    echo "$(nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}')"
+    nmcli dev wifi | grep -E '^[*]' | awk -v q=' ' '{ print $3q$9}'
 }
 function __now_playing {
     echo "$(now_playing) |"

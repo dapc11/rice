@@ -111,7 +111,8 @@ def render_vs_code(ricer):
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('rofi/powermenu.rasi')
-    ricer.render_template('rofi/powermenu.sh', '/home/{0}/.local/bin/sysact', True)
+    ricer.render_template('rofi/rofi-power', '/home/{0}/.config/rofi/rofi-power', True)
+    ricer.render_template('rofi/rofi-randr', '/home/{0}/.config/rofi/rofi-randr', True)
 
 
 def render_polybar(ricer):
@@ -125,7 +126,6 @@ def render_utils(ricer):
     ricer.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
     ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', True)
     ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
-    ricer.render_template('utils/rofi-randr', '/home/{0}/.local/bin/rofi-randr', True)
 
 
 if __name__ == "__main__":
