@@ -45,7 +45,6 @@ function pb-kill-line () {
 zle -N pb-kill-line
 
 bindkey '^K' pb-kill-line
-source <(kubectl completion zsh)
 
 function fzf_branches {
   local branches branch

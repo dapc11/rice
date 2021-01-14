@@ -7,6 +7,9 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from shutil import copyfile
+from shutil import copy
+from distutils.dir_util import copy_tree
 
 import jinja2
 
@@ -94,14 +97,23 @@ def main():
     render_vs_code(ricer)
     render_vim(ricer)
     render_utils(ricer)
-    ricer.put_background()
+    render_awesome(ricer)
+    #ricer.put_background()
     sys.exit(0)
 
 
 def render_vim(ricer):
     ricer.render_template('nvim/init.vim')
     ricer.render_template('.vimrc', '/home/{0}/{1}')
-
+    
+def render_awesome(ricer):
+    ricer.render_template('awesome/rc.lua')
+    ricer.render_template('awesome/theme.lua')
+    copy('templates/awesome/wireless.lua', '/home/{0}/.config/awesome/wireless.lua'.format(getpass.getuser()))
+    copy('templates/awesome/clickable_container.lua', '/home/{0}/.config/awesome/clickable_container.lua'.format(getpass.getuser()))
+    copy('templates/awesome/tasklist.lua', '/home/{0}/.config/awesome/tasklist.lua'.format(getpass.getuser()))
+    copyfile('templates/images/bg.jpg', '/home/{0}/.config/awesome/background.jpg'.format(getpass.getuser()))
+    copy_tree('templates/awesome/awesome-wm-widgets', '/home/{0}/.config/awesome/awesome-wm-widgets'.format(getpass.getuser()))
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
