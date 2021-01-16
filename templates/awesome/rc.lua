@@ -18,6 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- bar widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
+local volume_widget = require("volume.volume")
 local wireless_widget = require("wireless")
 local task_list_widget = require("tasklist")
 -- Enable hotkeys help widget for VIM and other apps
@@ -86,7 +87,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 --  Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %d-%m-%y w%V %H:%M ")
+mytextclock = wibox.widget.textclock("  %y-%m-%d  w%V  %H:%M:%S ", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -175,7 +176,7 @@ awful.screen.connect_for_each_screen(function(s)
                             id     = 'index_role',
                             widget = wibox.widget.textbox,
                         },
-                        margins = 2,
+                        margins = 0,
                         widget  = wibox.container.margin,
                     },
                     shape  = gears.shape.circle,
@@ -222,13 +223,16 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            wibox.widget.textbox(" "),
             s.mytaglist,
+            wibox.widget.textbox(" "),
+            s.mylayoutbox,
             wibox.widget.textbox(" ")
         },
         task_list_widget(s), -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.textbox("    "), batteryarc_widget({
+            batteryarc_widget({
                 thickness = 3,
                 size = 20,
                 low_level_color = "{{base08}}",
@@ -236,17 +240,14 @@ awful.screen.connect_for_each_screen(function(s)
                 charging_color = "{{base0B}}",
             }),
             wibox.widget.systray(),
-            wibox.widget.textbox("  墳  "), volumearc_widget({
-                thickness = 3,
-                height = 20,
-                mute_color = "{{base08}}"
-            }),
-            wireless_widget({
+            wibox.widget.textbox(" "), volume_widget{
+                type = 'horizontal_bar'
+            },
+            wibox.widget.textbox(" "), wireless_widget({
                 popup_position = "top_right",
                 main_color = "{{base07}}"
             }),
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)

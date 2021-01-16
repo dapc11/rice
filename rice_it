@@ -114,6 +114,7 @@ def render_awesome(ricer):
     copy('templates/awesome/tasklist.lua', '/home/{0}/.config/awesome/tasklist.lua'.format(getpass.getuser()))
     copyfile('templates/images/bg.jpg', '/home/{0}/.config/awesome/background.jpg'.format(getpass.getuser()))
     copy_tree('templates/awesome/awesome-wm-widgets', '/home/{0}/.config/awesome/awesome-wm-widgets'.format(getpass.getuser()))
+    copy_tree('templates/awesome/volume', '/home/{0}/.config/awesome/volume'.format(getpass.getuser()))
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
