@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local beautiful = require('beautiful')
 local gears = require("gears")
 
-local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/awesome-wm-widgets/experiments/volume/icons/'
+local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/volume/icons/'
 
 local widget = {}
 

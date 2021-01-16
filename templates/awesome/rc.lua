@@ -18,6 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- bar widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local volume_widget = require("volume.volume")
 local wireless_widget = require("wireless")
 local task_list_widget = require("tasklist")
@@ -88,6 +89,14 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 --  Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("  %y-%m-%d  w%V  %H:%M:%S ", 1)
+local cw = calendar_widget({
+    placement = 'top_right',
+    radius = 8
+})
+mytextclock:connect_signal("button::press", 
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -216,38 +225,64 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s})
+
+    local w = wibox.widget {
+        shape  = gears.shape.circle,
+        forced_width = 5,
+        opacity = 0,
+        widget = wibox.widget.separator,
+    }
+
+function boxWidget(widget)
+    return {
+        {
+            widget,
+            left   = 10,
+            right  = 10,
+            widget = wibox.container.margin
+        },
+        shape = gears.shape.rounded_bar,
+        bg = "{{base03}}",
+        shape_clip = true,
+        widget = wibox.container.background,
+    }
+end
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.textbox(" "),
-            s.mytaglist,
-            wibox.widget.textbox(" "),
-            s.mylayoutbox,
-            wibox.widget.textbox(" ")
+            w, s.mytaglist,
+            w, s.mylayoutbox,
+            w
         },
         task_list_widget(s), -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            batteryarc_widget({
+            wibox.widget.systray(),
+            w, boxWidget(
+                batteryarc_widget({
                 thickness = 3,
                 size = 20,
                 low_level_color = "{{base08}}",
                 medium_level_color = "{{base0A}}",
                 charging_color = "{{base0B}}",
+            })),
+            w, boxWidget(
+                volume_widget{
+                widget_type = 'horizontal_bar',
+                with_icon = true,
+                mute_color = '{{base08}}'
             }),
-            wibox.widget.systray(),
-            wibox.widget.textbox(" "), volume_widget{
-                type = 'horizontal_bar'
-            },
-            wibox.widget.textbox(" "), wireless_widget({
+            w, boxWidget(
+                wireless_widget({
                 popup_position = "top_right",
                 main_color = "{{base07}}"
-            }),
-            mytextclock,
+            })),
+            w, boxWidget(mytextclock),
+            w,
         },
     }
 end)

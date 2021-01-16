@@ -14,41 +14,6 @@ function dbg(message)
                      text = message })
 end
 
-local function draw_signal(level, main)
-    -- draw 32x32 for simplicity, imagebox will resize it using loseless transform
-    local img = cairo.ImageSurface.create(cairo.Format.ARGB32, 32, 32)
-    local cr  = cairo.Context(img)
-
-    cr:set_source(gears.color(theme.fg_normal))
-    if level > 75 then
-        cr:arc(         32/2, 32/2, 32/2, 145*math.pi/180, 395*math.pi/180)
-        cr:arc_negative(32/2, 32/2, 32/2-3, 395*math.pi/180, 145*math.pi/180)
-    end
-    if level > 50 then
-        cr:arc(         32/2, 32/2, 24/2, 145*math.pi/180, 395*math.pi/180)
-        cr:arc_negative(32/2, 32/2, 24/2-3, 395*math.pi/180, 145*math.pi/180)
-    end
-    if level > 25 then
-        cr:arc(         32/2, 32/2, 16/2, 145*math.pi/180, 395*math.pi/180)
-        cr:arc_negative(32/2, 32/2, 16/2-3, 395*math.pi/180, 145*math.pi/180)
-    end
-    cr:rectangle(32/2-1, 32/2-1, 2, 32/2-2)
-    cr:set_source(gears.color(main))
-    cr:fill()
-
-    if level == 0 then
-        cr:set_source(gears.color("#cf5050"))
-        gears.shape.transform(gears.shape.cross)
-            :rotate(45*math.pi/180)
-                :translate(12, -10)(cr, 10, 10, 3)
-    end
-
-    cr:close_path()
-    cr:fill()
-    return img
-end
-
-
 local wireless = {}
 local function worker(args)
     local args = args or {}
@@ -68,10 +33,9 @@ local function worker(args)
     local indent        = args.indent or 3
     local main_color    = args.main_color or beautiful.fg_color
 
-    local net_icon = wibox.widget.imagebox(draw_signal(0, main_color))
     local net_text = wibox.widget.textbox()
     net_text.font = font
-    net_text:set_text(" N/A ")
+    net_text:set_text("睊 N/A ")
     local signal_level = 0
     local function net_update()
         awful.spawn.easy_async("awk 'NR==3 {printf \"%3.0f\" ,($3/70)*100}' /proc/net/wireless", function(stdout, stderr, reason, exit_code)
@@ -79,12 +43,10 @@ local function worker(args)
         end)
         if signal_level == nil then
             connected = false
-            net_text:set_text(" N/A ")
-            net_icon:set_image(draw_signal(0, main_color))
+            net_text:set_text("睊 N/A ")
         else
             connected = true
-            net_text:set_text(string.format("%"..indent.."d%%", signal_level))
-            net_icon:set_image(draw_signal(signal_level, main_color))
+            net_text:set_text(string.format(" %d%%", signal_level))
         end
     end
 
@@ -92,10 +54,8 @@ local function worker(args)
     local timer = gears.timer.start_new( timeout, function () net_update()
       return true end )
 
-    widgets_table["imagebox"]	= net_icon
     widgets_table["textbox"]	= net_text
     if widget then
-            widget:add(net_icon)
             -- Hide the text when we want to popup the signal instead
             if not popup_signal then
                     widget:add(net_text)
