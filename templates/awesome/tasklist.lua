@@ -192,7 +192,11 @@ local task_list = function(s)
         s,
         awful.widget.tasklist.filter.currenttags,
         tasklist_buttons,
-        {},
+        {
+            spacing = 10,
+            spacing_widget = wibox.widget.separator,
+            layout  = wibox.layout.flex.horizontal
+        },
         list_update,
         wibox.layout.fixed.horizontal()
     )

@@ -21,25 +21,14 @@ theme.fg_focus      = "{{base07}}"
 theme.fg_urgent     = "{{base07}}"
 theme.fg_minimize   = "{{base07}}"
 
-theme.useless_gap   = dpi(8)
+theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(2)
 theme.border_normal = "{{base02}}"
 theme.border_focus  = "{{base03}}"
 theme.border_marked = "{{base08}}"
 
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
-
-
-theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
-
 
 theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
 theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"

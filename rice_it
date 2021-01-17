@@ -112,7 +112,7 @@ def render_awesome(ricer):
     copy('templates/awesome/wireless.lua', '/home/{0}/.config/awesome/wireless.lua'.format(getpass.getuser()))
     copy('templates/awesome/clickable_container.lua', '/home/{0}/.config/awesome/clickable_container.lua'.format(getpass.getuser()))
     copy('templates/awesome/tasklist.lua', '/home/{0}/.config/awesome/tasklist.lua'.format(getpass.getuser()))
-    copyfile('templates/images/bg.jpg', '/home/{0}/.config/awesome/background.jpg'.format(getpass.getuser()))
+    copyfile('templates/images/background2.jpg', '/home/{0}/.config/awesome/background.jpg'.format(getpass.getuser()))
     copy_tree('templates/awesome/awesome-wm-widgets', '/home/{0}/.config/awesome/awesome-wm-widgets'.format(getpass.getuser()))
     copy_tree('templates/awesome/volume', '/home/{0}/.config/awesome/volume'.format(getpass.getuser()))
 
