@@ -59,12 +59,11 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
-beautiful.taglist_bg_focus = "{{base03}}"
+beautiful.taglist_bg_focus = "{{base02}}"
 beautiful.taglist_bg_urgent = "{{base08}}"
-beautiful.taglist_bg_empty = "{{base01}}"
-beautiful.taglist_bg_occupied = "{{base02}}"
 beautiful.tasklist_shape = gears.shape.rounded_bar
 beautiful.tasklist_spacing = 10
+beautiful.taglist_spacing = 2
 
 -- This is used later as the default terminal and editor to run.
 terminal = "{{terminal}}"
@@ -179,7 +178,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
+        filter  = function (t) return t.selected or #t:clients() > 0 end,
         style   = {
             shape = gears.shape.circle
         },
@@ -207,17 +206,18 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 layout = wibox.layout.fixed.horizontal,
             },
+            fg = "{{base05}}",
             id     = 'background_role',
             widget = wibox.container.background,
             -- Add support for hover colors and an index label
             create_callback = function(self, c3, index, objects) --luacheck: no unused args
                 self:get_children_by_id('index_role')[1].markup = ' '..index..' '
                 self:connect_signal('mouse::enter', function()
-                    if self.bg ~= '{{base03}}' then
+                    if self.bg ~= '{{base06}}' then
                         self.backup     = self.bg
                         self.has_backup = true
                     end
-                    self.bg = '{{base03}}'
+                    self.bg = '{{base06}}'
                 end)
                 self:connect_signal('mouse::leave', function()
                     if self.has_backup then self.bg = self.backup end

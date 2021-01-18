@@ -14,17 +14,12 @@ theme.bg_normal     = "{{base01}}"
 theme.bg_focus      = "{{base03}}"
 theme.bg_urgent     = "{{base08}}"
 theme.bg_minimize   = "{{base02}}"
-theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "{{base06}}"
-theme.fg_focus      = "{{base07}}"
-theme.fg_urgent     = "{{base07}}"
-theme.fg_minimize   = "{{base07}}"
 
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(2)
 theme.border_normal = "{{base02}}"
-theme.border_focus  = "{{base03}}"
+theme.border_focus  = "{{base04}}"
 theme.border_marked = "{{base08}}"
 
 theme.menu_height = dpi(15)
