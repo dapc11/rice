@@ -61,6 +61,8 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 beautiful.taglist_bg_focus = "{{base02}}"
 beautiful.taglist_bg_urgent = "{{base08}}"
+beautiful.bg_normal = "{{base02}}"
+beautiful.fg_normal = "{{base06}}"
 beautiful.tasklist_shape = gears.shape.rounded_bar
 beautiful.tasklist_spacing = 10
 beautiful.taglist_spacing = 2
@@ -213,11 +215,11 @@ awful.screen.connect_for_each_screen(function(s)
             create_callback = function(self, c3, index, objects) --luacheck: no unused args
                 self:get_children_by_id('index_role')[1].markup = ' '..index..' '
                 self:connect_signal('mouse::enter', function()
-                    if self.bg ~= '{{base06}}' then
+                    if self.bg ~= '{{base04}}' then
                         self.backup     = self.bg
                         self.has_backup = true
                     end
-                    self.bg = '{{base06}}'
+                    self.bg = '{{base04}}'
                 end)
                 self:connect_signal('mouse::leave', function()
                     if self.has_backup then self.bg = self.backup end
