@@ -53,7 +53,7 @@ do
         in_error = false
     end)
 end
--- 
+--
 
 -- Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -88,7 +88,7 @@ awful.layout.layouts = {
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- 
+--
 
 --  Wibar
 -- Create a textclock widget
@@ -314,7 +314,7 @@ end
         },
     }
 end)
--- 
+--
 
 --  Mouse bindings
 root.buttons(gears.table.join(
@@ -322,7 +322,7 @@ root.buttons(gears.table.join(
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
--- 
+--
 
 --  Key bindings
 globalkeys = gears.table.join(
@@ -348,9 +348,9 @@ globalkeys = gears.table.join(
               {description = "jump to urgent client", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey, }, "Return", function () awful.spawn(terminal) end, 
+    awful.key({ modkey, }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, }, "s", function () awful.spawn("rofi -show window -theme ~/.config/rofi/config") end, 
+    awful.key({ modkey, }, "s", function () awful.spawn("rofi -show window -theme ~/.config/rofi/config") end,
               {description = "switch window", group = "launcher"}),
     awful.key({ modkey, }, "d", function () awful.spawn("rofi -show drun -display-drun '' -modi drun -theme ~/.config/rofi/config") end,
               {description = "launch application", group = "launcher"}),
@@ -411,13 +411,6 @@ clientkeys = gears.table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized = not c.maximized
@@ -504,7 +497,7 @@ clientbuttons = gears.table.join(
 
 -- Set keys
 root.keys(globalkeys)
--- 
+--
 
 --  Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -574,7 +567,7 @@ awful.rules.rules = {
     { rule = { class = "Teams-for-linux"}, properties = { screen = 1, tag = "9"} },
     { rule = { name = "Microsoft Teams Notification"}, properties = { screen = 1, tag = "9"} },
 }
--- 
+--
 
 --  Signals
 -- Signal function to execute when a new client appears.
