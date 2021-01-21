@@ -9,7 +9,6 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
@@ -32,10 +31,6 @@ nmap <silent> gd <Plug>(coc-definition)
 inoremap <silent><expr> <c-space> coc#refresh()
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-""""
-let g:undotree_SetFocusWhenToggle = 1
-nnoremap <silent> <c-u> :UndotreeToggle<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
 
 " Enable alignment
 let g:neoformat_basic_format_align = 1

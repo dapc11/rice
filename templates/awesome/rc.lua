@@ -59,8 +59,9 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
-beautiful.taglist_bg_focus = "{{base02}}"
+beautiful.taglist_bg_focus = "{{base0E}}"
 beautiful.taglist_bg_urgent = "{{base08}}"
+beautiful.taglist_bg_occupied = "{{base02}}"
 beautiful.bg_normal = "{{base02}}"
 beautiful.fg_normal = "{{base06}}"
 beautiful.tasklist_shape = gears.shape.rounded_bar
@@ -180,7 +181,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = function (t) return t.selected or #t:clients() > 0 end,
+        filter  = awful.widget.taglist.filter.all,
         style   = {
             shape = gears.shape.circle
         },
@@ -554,12 +555,24 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Firefox"}, properties = { screen = 1, tag = "2"} },
+    { rule = { class = "Code" }, properties = { screen = 1, tag = "4" } },
+    { rule = { class = "Evolution" }, properties = { screen = 1, tag = "1" } },
+    { rule = { class = "Jetbrains-idea-ce"}, properties = { screen = 1, tag = "4"} },
+    { rule = { class = "Jetbrains-pycharm-ce"}, properties = { screen = 1, tag = "4"} },
+    { rule = { class = "Wfica"}, properties = { screen = 1, tag = "6"} },
+    { rule = { class = "wfica"}, properties = { screen = 1, tag = "6"} },
+    { rule = { class = "Libreoffice-writer"}, properties = { screen = 1, tag = "7"} },
+    { rule = { class = "Thunar"}, properties = { screen = 1, tag = ""} },
+    { rule = { class = "PulseUi"}, properties = { screen = 1, tag = "8"} },
+    { rule = { class = "Pidgin"}, properties = { screen = 1, tag = "9"} },
+    { rule = { class = "Telegram"}, properties = { screen = 1, tag = "9"} },
+    { rule = { class = "Teams-for-linux"}, properties = { screen = 1, tag = "9"} },
+    { rule = { name = "Microsoft Teams Notification"}, properties = { screen = 1, tag = "9"} },
 }
 -- 
 

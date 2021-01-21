@@ -4,18 +4,19 @@ import argparse
 import getpass
 import json
 import os
-import subprocess
 import sys
 from pathlib import Path
 from shutil import copyfile
-from shutil import copy
 from distutils.dir_util import copy_tree
 
 import jinja2
 
-
 class Ricer:
+    HOME_DIR = "/home/{0}/{1}"
+    EXECUTABLE = True
+
     def __init__(self, args):
+        self.user = getpass.getuser()
         self.should_overwrite = args.overwrite
         self.theme = args.theme
 
@@ -25,15 +26,16 @@ class Ricer:
 
     def _get_context(self):
         with open(self.theme, 'r') as context:
-            print("Using context: '{}'".format(os.path.abspath(self.theme)))
+            theme_path = os.path.abspath(self.theme)
+            print(f"Using context: '{theme_path}'")
             return json.load(context)
 
     def _get_destination(self, template, target):
         if self.should_overwrite:
-            return Path(target.format(getpass.getuser(), template))
-        return Path('output/{0}'.format(template))
+            return Path(target.format(self.user, template))
+        return Path(f'output/{template}')
 
-    def render_template(self, template, target='/home/{0}/.config/{1}/', binary=False):
+    def render_template(self, template, target='/home/{0}/.config/{1}/', executable=False):
         destination = self._get_destination(template, target)
         if not os.path.exists(destination.parent):
             os.makedirs(destination.parent)
@@ -43,19 +45,17 @@ class Ricer:
         print('Writing to {0}'.format(destination))
         with open(destination, 'w') as destination_file:
             destination_file.write(environment_template.render(self.context))
-            if binary:
+            if executable:
                 mode = os.stat(destination).st_mode
                 mode |= (mode & 0o444) >> 2  # copy R bits to X
                 os.chmod(destination, mode)
 
-    def put_background(self):
-        try:
-            subprocess.check_output(
-                "nitrogen --force-setter=xinerama  --set-auto templates/images/{0}".format(self.context['bg']),
-                shell=True)
-            print('Background updated.')
-        except subprocess.CalledProcessError:
-            print('Could not set background.')
+    def copy_file(self, source, target):
+        print(f'Copying {source} to {target}')
+        if os.path.isdir(source):
+            copy_tree(source, target)
+        else:
+            copyfile(source, target)
 
 
 def setup_argparser():
@@ -82,63 +82,60 @@ def setup_argparser():
 def main():
     parser = setup_argparser()
     ricer = Ricer(parser.parse_args())
+    render_vim(ricer)
+    render_rofi(ricer)
+    render_utils(ricer)
+    render_polybar(ricer)
+    render_vs_code(ricer)
+    render_awesome(ricer)
     ricer.render_template('alacritty/alacritty.yml')
     ricer.render_template('dunst/dunstrc')
     ricer.render_template('i3/config')
     ricer.render_template('ranger/rc.conf')
     ricer.render_template('compton/compton.conf')
-    ricer.render_template('.tmux.conf', '/home/{0}/{1}')
-    ricer.render_template('.zshrc', '/home/{0}/{1}')
-    ricer.render_template('.xprofile', '/home/{0}/{1}')
-    ricer.render_template('.zprofile', '/home/{0}/{1}')
-    ricer.render_template('.Xresources', '/home/{0}/{1}')
-    render_rofi(ricer)
-    render_polybar(ricer)
-    render_vs_code(ricer)
-    render_vim(ricer)
-    render_utils(ricer)
-    render_awesome(ricer)
-    #ricer.put_background()
+    ricer.render_template('.tmux.conf', Ricer.HOME_DIR)
+    ricer.render_template('.zshrc', Ricer.HOME_DIR)
+    ricer.render_template('.xprofile', Ricer.HOME_DIR)
+    ricer.render_template('.zprofile', Ricer.HOME_DIR)
+    ricer.render_template('.Xresources', Ricer.HOME_DIR)
     sys.exit(0)
 
-
 def render_vim(ricer):
-    ricer.render_template('nvim/init.vim')
-    ricer.render_template('.vimrc', '/home/{0}/{1}')
-    
+    # ricer.render_template('nvim/init.vim')
+    ricer.render_template('.vimrc', ricer.HOME_DIR)
+    ricer.render_template('.vimrc', '/home/{0}/.config/nvim/init.vim')
+
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
     ricer.render_template('awesome/theme.lua')
-    copy('templates/awesome/wireless.lua', '/home/{0}/.config/awesome/wireless.lua'.format(getpass.getuser()))
-    copy('templates/awesome/clickable_container.lua', '/home/{0}/.config/awesome/clickable_container.lua'.format(getpass.getuser()))
-    copy('templates/awesome/tasklist.lua', '/home/{0}/.config/awesome/tasklist.lua'.format(getpass.getuser()))
-    copyfile('templates/images/background2.jpg', '/home/{0}/.config/awesome/background.jpg'.format(getpass.getuser()))
-    copy_tree('templates/awesome/awesome-wm-widgets', '/home/{0}/.config/awesome/awesome-wm-widgets'.format(getpass.getuser()))
-    copy_tree('templates/awesome/volume', '/home/{0}/.config/awesome/volume'.format(getpass.getuser()))
+    ricer.render_template('awesome/wireless.lua')
+    ricer.render_template('awesome/clickable_container.lua')
+    ricer.render_template('awesome/tasklist.lua')
+    ricer.copy_file('templates/images/background2.jpg', f'/home/{ricer.user}/.config/awesome/background.jpg')
+    ricer.copy_file('templates/awesome/awesome-wm-widgets', f'/home/{ricer.user}/.config/awesome/awesome-wm-widgets')
+    ricer.copy_file('templates/awesome/volume', f'/home/{ricer.user}/.config/awesome/volume')
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code/User/keybindings.json')
 
-
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('rofi/powermenu.rasi')
-    ricer.render_template('rofi/rofi-power', '/home/{0}/.config/rofi/rofi-power', True)
-    ricer.render_template('rofi/rofi-randr', '/home/{0}/.config/rofi/rofi-randr', True)
-
+    ricer.render_template('rofi/rofi-power', '/home/{0}/.config/rofi/rofi-power', Ricer.EXECUTABLE)
+    ricer.render_template('rofi/rofi-randr', '/home/{0}/.config/rofi/rofi-randr', Ricer.EXECUTABLE)
 
 def render_polybar(ricer):
     ricer.render_template('polybar/config')
-    ricer.render_template('polybar/startup.sh', '/home/{0}/.config/polybar/startup.sh', True)
-    ricer.render_template('polybar/updates.sh', '/home/{0}/.config/polybar/updates.sh', True)
-    ricer.render_template('polybar/now_playing.py', '/home/{0}/.config/polybar/now_playing.py', True)
+    ricer.render_template('polybar/startup.sh', '/home/{0}/.config/polybar/startup.sh', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/updates.sh', '/home/{0}/.config/polybar/updates.sh', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/now_playing.py', '/home/{0}/.config/polybar/now_playing.py', Ricer.EXECUTABLE)
 
 
 def render_utils(ricer):
-    ricer.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', True)
-    ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', True)
-    ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', True)
+    ricer.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', Ricer.EXECUTABLE)
+    ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', Ricer.EXECUTABLE)
+    ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', Ricer.EXECUTABLE)
 
 
 if __name__ == "__main__":

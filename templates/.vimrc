@@ -2,23 +2,25 @@ nnoremap <SPACE> <Nop>
 let mapleader =" "
 
 " Plugins, autoinstall vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --omnisharp-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 Plug 'ap/vim-css-color'
-Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-fugitive'
+Plug 'chriskempson/base16-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-markdown'
 call plug#end()
 
 " Requires gvim
@@ -34,7 +36,6 @@ nnoremap c "_c
 set bg={{vim_theme}}
 set go=a
 set mouse=a
-set nohlsearch
 set clipboard+=unnamedplus
 set hidden
 set noerrorbells
@@ -45,6 +46,7 @@ set smartindent
 set nu
 set nowrap
 set smartcase
+set hlsearch
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -58,28 +60,34 @@ set number relativenumber
 let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set colorcolumn=80
+nnoremap <esc> :noh<return><esc>
+
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-nmap <leader>q <plug>(YCMHover)
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_invoke_completion = '<c-j>'
-let g:ycm_complete_in_strings = 1
-let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
 colorscheme {{vim_colorscheme}}
-hi Visual  guifg={{base02}} guibg={{base06}} gui=none
+hi ColorColumn guibg={{base01}}
+hi LineNr guifg={{base02}} guibg={{base00}}
+hi CursorLineNr guifg={{base05}} guibg={{base00}}
+hi Normal guibg={{vim_guibg}}
 
 " Enable autocompletion:
 set wildmode=longest,list,full
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+"""""""""" CoC
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
+
+nmap <silent> gb :<C-u>CocFzfList diagnostics --current-buf<CR>
+nmap <silent> gd <Plug>(coc-definition)
+inoremap <silent><expr> <c-space> coc#refresh()
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
@@ -151,9 +159,6 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" UndoTree
-nnoremap <leader>u :UndotreeShow<CR>
-
 "" Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
@@ -161,7 +166,6 @@ nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
-
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -203,3 +207,19 @@ highlight EndOfBuffer ctermfg=black
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
+
+function InsertIfEmpty()
+    if @% == ""
+        " No filename for current buffer
+        Files
+    elseif @% == "."
+        Files
+    endif
+endfunction
+
+au VimEnter * call InsertIfEmpty()
+
+augroup goodbye_netrw
+  au!
+  autocmd VimEnter * silent! au! FileExplorer *
+augroup END
