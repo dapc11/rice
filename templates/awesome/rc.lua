@@ -17,9 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- bar widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
-local volume_widget = require("volume.volume")
+-- local volume_widget = require("volume.volume")
 local wireless_widget = require("wireless")
 local task_list_widget = require("tasklist")
 -- Enable hotkeys help widget for VIM and other apps
@@ -160,26 +159,21 @@ local function set_wallpaper(s)
     end
 end
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
-awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
-
-    -- Each screen has its own tag table.
+local function create_tags(s)
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+end
 
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
+local function create_layout_box(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
+end
+
+local function create_tag_list(s)
+    return awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         style   = {
@@ -232,11 +226,10 @@ awful.screen.connect_for_each_screen(function(s)
         },
         buttons = taglist_buttons
     }
+end
 
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = "#00000000"})
-
-    local w = wibox.widget {
+local function setup_wibox(s)
+    local separator = wibox.widget {
         shape  = gears.shape.circle,
         forced_width = 5,
         opacity = 0,
@@ -264,8 +257,8 @@ end
         {
             { -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
-                w, boxWidget(s.mytaglist),
-                w, boxWidget({
+                separator, boxWidget(s.mytaglist),
+                separator, boxWidget({
                     s.mylayoutbox,
                     top = 4,
                     bottom = 4,
@@ -273,7 +266,7 @@ end
                     right = 2,
                     widget = wibox.container.margin
                 }),
-                w
+                separator
             },
             top = 4,
             widget = wibox.container.margin
@@ -287,7 +280,7 @@ end
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 wibox.widget.systray(),
-                w, boxWidget(
+                separator, boxWidget(
                     batteryarc_widget({
                     thickness = 3,
                     size = 20,
@@ -295,24 +288,37 @@ end
                     medium_level_color = "{{base0A}}",
                     charging_color = "{{base0B}}",
                 })),
-                w, boxWidget(
-                    volume_widget{
-                    widget_type = 'horizontal_bar',
-                    with_icon = true,
-                    mute_color = '{{base08}}'
-                }),
-                w, boxWidget(
+              --  separator, boxWidget(
+              --      volume_widget{
+              --      widget_type = 'horizontal_bar',
+              --      with_icon = true,
+              --      mute_color = '{{base08}}'
+              --  }),
+                separator, boxWidget(
                     wireless_widget({
                     popup_position = "top_right",
                     main_color = "{{base07}}"
                 })),
-                w, boxWidget(mytextclock),
-                w,
+                separator, boxWidget(mytextclock),
+                separator,
             },
             top = 4,
             widget = wibox.container.margin
         },
     }
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
+
+awful.screen.connect_for_each_screen(function(s)
+    set_wallpaper(s)
+    create_tags(s)
+    create_layout_box(s)
+    s.mytaglist = create_tag_list(s)
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = "#00000000"})
+
+    setup_wibox(s)
 end)
 --
 
