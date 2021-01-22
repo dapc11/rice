@@ -27,7 +27,7 @@
     "vim_guibg": "#1F1F1F",
     "gtk_theme": "Yaru",
     "vs_theme": "Dark",
-    "bg": "bg.jpg",
+    "bg": "background2.jpg",
     "wifi_if": "wlp1s0",
     "window_manager": "awesome"
 }

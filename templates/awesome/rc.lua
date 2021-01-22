@@ -16,11 +16,11 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- bar widgets
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
--- local volume_widget = require("volume.volume")
-local wireless_widget = require("wireless")
-local task_list_widget = require("tasklist")
+local batteryarc_widget = require("widgets.batteryarc-widget.batteryarc")
+local calendar_widget = require("widgets.calendar-widget.calendar")
+-- local volume_widget = require("widgets.volume.volume")
+local wireless_widget = require("widgets.wireless")
+local task_list_widget = require("widgets.tasklist")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -57,15 +57,6 @@ end
 -- Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-
-beautiful.taglist_bg_focus = "{{base0E}}"
-beautiful.taglist_bg_urgent = "{{base08}}"
-beautiful.taglist_bg_occupied = "{{base02}}"
-beautiful.bg_normal = "{{base02}}"
-beautiful.fg_normal = "{{base06}}"
-beautiful.tasklist_shape = gears.shape.rounded_bar
-beautiful.tasklist_spacing = 10
-beautiful.taglist_spacing = 2
 
 -- This is used later as the default terminal and editor to run.
 terminal = "{{terminal}}"
@@ -107,24 +98,6 @@ local month_calendar = awful.widget.calendar_popup.month({
 })
 month_calendar:attach( mytextclock, "tr" )
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
-
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
@@ -148,10 +121,8 @@ local tasklist_buttons = gears.table.join(
                                           end))
 
 local function set_wallpaper(s)
-    -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
@@ -176,55 +147,7 @@ local function create_tag_list(s)
     return awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        style   = {
-            shape = gears.shape.circle
-        },
-        widget_template = {
-            {
-                {
-                    {
-                        {
-                            id     = 'index_role',
-                            widget = wibox.widget.textbox,
-                        },
-                        margins = 0,
-                        widget  = wibox.container.margin,
-                    },
-                    shape  = gears.shape.circle,
-                    widget = wibox.container.background,
-                },
-                {
-                    {
-                        id     = 'icon_role',
-                        widget = wibox.widget.imagebox,
-                    },
-                    margins = 0,
-                    widget  = wibox.container.margin,
-                },
-                layout = wibox.layout.fixed.horizontal,
-            },
-            fg = "{{base05}}",
-            id     = 'background_role',
-            widget = wibox.container.background,
-            -- Add support for hover colors and an index label
-            create_callback = function(self, c3, index, objects) --luacheck: no unused args
-                self:get_children_by_id('index_role')[1].markup = ' '..index..' '
-                self:connect_signal('mouse::enter', function()
-                    if self.bg ~= '{{base04}}' then
-                        self.backup     = self.bg
-                        self.has_backup = true
-                    end
-                    self.bg = '{{base04}}'
-                end)
-                self:connect_signal('mouse::leave', function()
-                    if self.has_backup then self.bg = self.backup end
-                end)
-            end,
-            update_callback = function(self, c3, index, objects) --luacheck: no unused args
-                self:get_children_by_id('index_role')[1].markup = ' '..index..' '
-            end,
-        },
-        buttons = taglist_buttons
+        buttons = awful.button({ }, 1, function(t) t:view_only() end)
     }
 end
 
@@ -236,75 +159,80 @@ local function setup_wibox(s)
         widget = wibox.widget.separator,
     }
 
-function boxWidget(widget)
-    return {
-        {
-            widget,
-            left   = 10,
-            right  = 10,
-            widget = wibox.container.margin
-        },
-        shape = gears.shape.rounded_bar,
-        bg = "{{base03}}",
-        shape_clip = true,
-        widget = wibox.container.background,
-    }
-end
+    function boxWidget(widget)
+        return {
+            {
+                widget,
+                left   = 10,
+                right  = 10,
+                widget = wibox.container.margin
+            },
+            shape = gears.shape.rounded_bar,
+            bg = "{{base03}}",
+            shape_clip = true,
+            widget = wibox.container.background,
+        }
+    end
 
-    -- Add widgets to the wibox
+    local left = {
+        {
+            layout = wibox.layout.fixed.horizontal,
+            separator, boxWidget(s.mytaglist),
+            separator, boxWidget({
+                s.mylayoutbox,
+                top = 4,
+                bottom = 4,
+                left = 2,
+                right = 2,
+                widget = wibox.container.margin
+            }),
+            separator
+        },
+        top = 4,
+        widget = wibox.container.margin
+    }
+
+    local middle = {
+        task_list_widget(s),
+        top = 4,
+        widget = wibox.container.margin
+    }
+
+    local right = {
+        {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            separator, boxWidget(
+            batteryarc_widget({
+                thickness = 3,
+                size = 20,
+                low_level_color = "{{base08}}",
+                medium_level_color = "{{base0A}}",
+                charging_color = "{{base0B}}",
+            })),
+            --  separator, boxWidget(
+            --      volume_widget{
+            --      widget_type = 'horizontal_bar',
+            --      with_icon = true,
+            --      mute_color = '{{base08}}'
+            --  }),
+            separator, boxWidget(
+            wireless_widget({
+                popup_position = "top_right",
+                main_color = "{{base07}}"
+            })),
+            separator, boxWidget(mytextclock),
+            separator,
+        },
+        top = 4,
+        widget = wibox.container.margin
+    }
+
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        {
-            { -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                separator, boxWidget(s.mytaglist),
-                separator, boxWidget({
-                    s.mylayoutbox,
-                    top = 4,
-                    bottom = 4,
-                    left = 2,
-                    right = 2,
-                    widget = wibox.container.margin
-                }),
-                separator
-            },
-            top = 4,
-            widget = wibox.container.margin
-        },
-        {
-            task_list_widget(s),
-            top = 4,
-            widget = wibox.container.margin
-        }, -- Middle widget
-        {
-            { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                wibox.widget.systray(),
-                separator, boxWidget(
-                    batteryarc_widget({
-                    thickness = 3,
-                    size = 20,
-                    low_level_color = "{{base08}}",
-                    medium_level_color = "{{base0A}}",
-                    charging_color = "{{base0B}}",
-                })),
-              --  separator, boxWidget(
-              --      volume_widget{
-              --      widget_type = 'horizontal_bar',
-              --      with_icon = true,
-              --      mute_color = '{{base08}}'
-              --  }),
-                separator, boxWidget(
-                    wireless_widget({
-                    popup_position = "top_right",
-                    main_color = "{{base07}}"
-                })),
-                separator, boxWidget(mytextclock),
-                separator,
-            },
-            top = 4,
-            widget = wibox.container.margin
-        },
+        left,
+        middle,
+        right
     }
 end
 

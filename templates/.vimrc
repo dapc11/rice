@@ -181,8 +181,14 @@ function! s:align()
   endif
 endfunction
 
-au FileType python setlocal formatprg=autopep8\ -
-
+au FileType python setlocal
+    \ tabstop=4
+    \ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ expandtab
+    \ autoindent
+    \ fileformat=unix
 " Turns off highlighting on the bits of code that are changed.
 " So the line that is changed is highlighted,
 " but the actual text that has changed stands out on the line and is readable.

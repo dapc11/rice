@@ -57,7 +57,6 @@ class Ricer:
         else:
             copyfile(source, target)
 
-
 def setup_argparser():
     arg_parser = argparse.ArgumentParser(
         prog='rice_it',
@@ -108,12 +107,11 @@ def render_vim(ricer):
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
     ricer.render_template('awesome/theme.lua')
-    ricer.render_template('awesome/wireless.lua')
-    ricer.render_template('awesome/clickable_container.lua')
-    ricer.render_template('awesome/tasklist.lua')
-    ricer.copy_file('templates/images/background2.jpg', f'/home/{ricer.user}/.config/awesome/background.jpg')
-    ricer.copy_file('templates/awesome/awesome-wm-widgets', f'/home/{ricer.user}/.config/awesome/awesome-wm-widgets')
-    ricer.copy_file('templates/awesome/volume', f'/home/{ricer.user}/.config/awesome/volume')
+    background = ricer.context['bg']
+    ricer.copy_file(f"templates/images/{background}",
+                    f'/home/{ricer.user}/.config/awesome/background.jpg')
+    ricer.copy_file('templates/awesome/widgets',
+                    f'/home/{ricer.user}/.config/awesome/widgets')
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
@@ -122,20 +120,28 @@ def render_vs_code(ricer):
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')
     ricer.render_template('rofi/powermenu.rasi')
-    ricer.render_template('rofi/rofi-power', '/home/{0}/.config/rofi/rofi-power', Ricer.EXECUTABLE)
-    ricer.render_template('rofi/rofi-randr', '/home/{0}/.config/rofi/rofi-randr', Ricer.EXECUTABLE)
+    ricer.render_template('rofi/rofi-power',
+                          '/home/{0}/.config/rofi/rofi-power', Ricer.EXECUTABLE)
+    ricer.render_template('rofi/rofi-randr',
+                          '/home/{0}/.config/rofi/rofi-randr', Ricer.EXECUTABLE)
 
 def render_polybar(ricer):
     ricer.render_template('polybar/config')
-    ricer.render_template('polybar/startup.sh', '/home/{0}/.config/polybar/startup.sh', Ricer.EXECUTABLE)
-    ricer.render_template('polybar/updates.sh', '/home/{0}/.config/polybar/updates.sh', Ricer.EXECUTABLE)
-    ricer.render_template('polybar/now_playing.py', '/home/{0}/.config/polybar/now_playing.py', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/startup.sh',
+                          '/home/{0}/.config/polybar/startup.sh', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/updates.sh',
+                          '/home/{0}/.config/polybar/updates.sh', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/now_playing.py',
+                          '/home/{0}/.config/polybar/now_playing.py', Ricer.EXECUTABLE)
 
 
 def render_utils(ricer):
-    ricer.render_template('utils/dimmer', '/home/{0}/.local/bin/dimmer', Ricer.EXECUTABLE)
-    ricer.render_template('utils/nightmode', '/home/{0}/.local/bin/nightmode', Ricer.EXECUTABLE)
-    ricer.render_template('utils/gita', '/home/{0}/.local/bin/gita', Ricer.EXECUTABLE)
+    ricer.render_template('utils/dimmer',
+                          '/home/{0}/.local/bin/dimmer', Ricer.EXECUTABLE)
+    ricer.render_template('utils/nightmode',
+                          '/home/{0}/.local/bin/nightmode', Ricer.EXECUTABLE)
+    ricer.render_template('utils/gita',
+                          '/home/{0}/.local/bin/gita', Ricer.EXECUTABLE)
 
 
 if __name__ == "__main__":
