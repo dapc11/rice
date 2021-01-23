@@ -2,7 +2,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 local dpi = require('beautiful').xresources.apply_dpi
 local gears = require('gears')
-local clickable_container = require('clickable_container')
+local clickable_container = require('widgets.tasklist.clickable_container')
 
 local function list_update(w, buttons, label, data, objects)
     -- Update the widgets, creating them if needed

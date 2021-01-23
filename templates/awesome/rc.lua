@@ -68,7 +68,6 @@ awful.layout.layouts = {
     awful.layout.suit.fair,
     awful.layout.suit.max,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
 }
 --
 
@@ -478,7 +477,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+      }, properties = { titlebars_enabled = true }
     },
 
     { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = "2" } },
@@ -527,19 +526,29 @@ client.connect_signal("request::titlebars", function(c)
             awful.mouse.client.resize(c)
         end)
     )
-end)
--- Focus urgent tags automatically
-tag.connect_signal("property::urgent", function(t)
-                       awful.screen.focus(t.screen)
-                       if not(t.selected) then
-                           t:view_only()
-                       end
-end)
 
--- Focus urgent clients automatically
-client.connect_signal("property::urgent", function(c)
-                          c.minimized = false
-                          c:jump_to()
+    awful.titlebar(c) : setup {
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Right
+            awful.titlebar.widget.minimizebutton(c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.closebutton    (c),
+            layout = wibox.layout.fixed.horizontal()
+        },
+        layout = wibox.layout.align.horizontal
+    }
 end)
 
  -- Enable sloppy focus, so that focus follows mouse.

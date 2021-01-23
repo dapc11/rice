@@ -112,6 +112,8 @@ def render_awesome(ricer):
                     f'/home/{ricer.user}/.config/awesome/background.jpg')
     ricer.copy_file('templates/awesome/widgets',
                     f'/home/{ricer.user}/.config/awesome/widgets')
+    ricer.copy_file('templates/awesome/icons',
+                    f'/home/{ricer.user}/.config/awesome/icons')
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
