@@ -16,18 +16,14 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- bar widgets
-local batteryarc_widget = require("widgets.batteryarc-widget.batteryarc")
-local calendar_widget = require("widgets.calendar-widget.calendar")
--- local volume_widget = require("widgets.volume.volume")
-local wireless_widget = require("widgets.wireless")
-local task_list_widget = require("widgets.tasklist")
+local battery_widget = require("widgets.battery.battery")
+local calendar_widget = require("widgets.calendar.calendar")
+local volume_widget = require("widgets.volume.volume")
+local wireless_widget = require("widgets.network.wireless")
+local task_list_widget = require("widgets.tasklist.tasklist")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-
--- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 --  Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -203,19 +199,19 @@ local function setup_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             separator, boxWidget(
-            batteryarc_widget({
+            battery_widget({
                 thickness = 3,
                 size = 20,
                 low_level_color = "{{base08}}",
                 medium_level_color = "{{base0A}}",
                 charging_color = "{{base0B}}",
             })),
-            --  separator, boxWidget(
-            --      volume_widget{
-            --      widget_type = 'horizontal_bar',
-            --      with_icon = true,
-            --      mute_color = '{{base08}}'
-            --  }),
+            separator, boxWidget(
+                volume_widget{
+                widget_type = 'horizontal_bar',
+                with_icon = true,
+                mute_color = '{{base08}}'
+            }),
             separator, boxWidget(
             wireless_widget({
                 popup_position = "top_right",
@@ -531,6 +527,19 @@ client.connect_signal("request::titlebars", function(c)
             awful.mouse.client.resize(c)
         end)
     )
+end)
+-- Focus urgent tags automatically
+tag.connect_signal("property::urgent", function(t)
+                       awful.screen.focus(t.screen)
+                       if not(t.selected) then
+                           t:view_only()
+                       end
+end)
+
+-- Focus urgent clients automatically
+client.connect_signal("property::urgent", function(c)
+                          c.minimized = false
+                          c:jump_to()
 end)
 
  -- Enable sloppy focus, so that focus follows mouse.
