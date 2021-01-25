@@ -82,6 +82,7 @@ local month_calendar = awful.widget.calendar_popup.month({
     week_numbers = true,
     margin = 5,
     style_weeknumber = {
+        border_width = 0,
         bg_color = "{{base03}}"
     },
     style_normal = {
@@ -162,8 +163,8 @@ local function setup_wibox(s)
                 right  = 10,
                 widget = wibox.container.margin
             },
-            shape = gears.shape.rounded_bar,
-            bg = "{{base03}}",
+            shape = gears.shape.rounded_rect,
+            bg = beautiful.bg_normal,
             shape_clip = true,
             widget = wibox.container.background,
         }
@@ -477,7 +478,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = "2" } },
