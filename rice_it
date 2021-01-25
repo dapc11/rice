@@ -136,7 +136,6 @@ def render_polybar(ricer):
     ricer.render_template('polybar/now_playing.py',
                           '/home/{0}/.config/polybar/now_playing.py', Ricer.EXECUTABLE)
 
-
 def render_utils(ricer):
     ricer.render_template('utils/dimmer',
                           '/home/{0}/.local/bin/dimmer', Ricer.EXECUTABLE)

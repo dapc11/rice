@@ -33,6 +33,7 @@ set colorcolumn=80
 set updatetime=50
 set shortmess+=c
 set clipboard+=unnamedplus
+set laststatus=2
 
 " Plugins, autoinstall vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -47,6 +48,43 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 
 colorscheme base16-ocean
+
+" Status line
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+let g:currentmode={
+       \ 'n'  : 'normal ',
+       \ 'v'  : 'visual ',
+       \ 'V'  : 'v·line  ',
+       \ '' : 'v·block ',
+       \ 'i'  : 'insert ',
+       \ 'R'  : 'replace ',
+       \ 'Rv' : 'v·replace ',
+       \ 'c'  : 'command ',
+       \ 't'  : 'finder ',
+       \}
+
+set statusline=
+set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
@@ -124,3 +162,5 @@ endfunc
 
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
+
+inoremap <C-Space> <C-x><C-n>
