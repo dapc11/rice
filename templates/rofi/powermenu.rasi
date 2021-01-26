@@ -5,22 +5,21 @@
 
   option-6-listview-spacing:             10px;
 
-  menu-window-padding:                   5px 15px;
+  menu-window-padding:                   10px 10px;
   menu-inputbar-margin:                  10px 0px;
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    0px 0px 0px -5px;
-  menu-element-border:                   10px;
-  menu-element-padding:                  3px 8px -1px -40px;
-  accent:                                {{base04}};
+  menu-element-padding:                  5px 15px 5px -30px;
+  accent:                                {{base05}};
   background:                            {{base00}};
-  background-light:                      {{base01}};
+  background-light:                      {{base08}};
   foreground:                            {{base04}};
 }
 
 /* ########### */
 
 #window {
-  width: 565px;
+  width: 540px;
   height: 160px;
 }
 
@@ -37,14 +36,6 @@
 }
 #listview {
   layout: horizontal;
-}
-#element {
-  padding: @option-element-padding;
-  background-color: @background-light;
-}
-#element.selected {
-  background-color: @accent;
-  text-color: @background;
 }
 
 /* ########### */
@@ -68,8 +59,8 @@ textbox-prompt-colon {
 }
 #prompt {
   margin: @menu-prompt-margin;
-  background-color: @background-light;
-  text-color: @foreground;
+  background-color: {{base02}};
+  text-color: {{base05}};
 }
 #textbox-prompt-colon {
   expand: false;
@@ -77,37 +68,11 @@ textbox-prompt-colon {
   background-color: @accent;
   text-color: @background;
 }
-#horibox {
-  padding: 0px;
-}
 #listview {
   spacing: @option-6-listview-spacing;
   lines: 6;
 }
 #element {
   font: @icon-font;
-  border: @menu-element-border;
   padding: @menu-element-padding;
-  border-color: @background-light;
-}
-/*#element.selected {
-  border-color: @accent;
-}*/
-element.active,
-element.selected.urgent {
-  background-color: @on;
-  text-color: @background;
-  border-color: @on;
-}
-element.selected.urgent {
-  border-color: @accent;
-}
-element.urgent,
-element.selected.active {
-  background-color: @off;
-  text-color: @background;
-  border-color: @off;
-}
-element.selected.active {
-  border-color: @accent;
 }
