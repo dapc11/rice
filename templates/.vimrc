@@ -36,8 +36,8 @@ set clipboard+=unnamedplus
 set laststatus=2
 
 " Plugins, autoinstall vim-plug
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall
 endif
 call plug#begin('~/.vim/plugged')
@@ -60,19 +60,32 @@ function! StatuslineGit()
 endfunction
 
 let g:currentmode={
-       \ 'n'  : 'normal ',
-       \ 'v'  : 'visual ',
-       \ 'V'  : 'v·line  ',
-       \ '' : 'v·block ',
-       \ 'i'  : 'insert ',
-       \ 'R'  : 'replace ',
-       \ 'Rv' : 'v·replace ',
-       \ 'c'  : 'command ',
-       \ 't'  : 'finder ',
+       \ 'n'  : 'n',
+       \ 'v'  : 'v',
+       \ 'V'  : 'vl',
+       \ '' : 'vb',
+       \ 'i'  : 'i',
+       \ 'R'  : 'r',
+       \ 'Rv' : 'rv',
+       \ 'c'  : 'c',
+       \ 't'  : 'f',
        \}
 
+hi NormalColor guibg={{base04}} guifg={{base06}}
+hi InsertColor guibg={{base0B}} guifg={{base03}}
+hi ReplaceColor guibg={{base08}} guifg={{base03}}
+hi VisualColor  guibg={{base0C}} guifg={{base03}}
+
 set statusline=
-set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='n')?'\ \ normal\ ':''}
+set statusline+=%#InsertColor#%{(g:currentmode[mode()]=='i')?'\ \ insert\ ':''}
+set statusline+=%#ReplaceColor#%{(g:currentmode[mode()]=='r')?'\ \ replace\ ':''}
+set statusline+=%#ReplaceColor#%{(g:currentmode[mode()]=='rv')?'\ \ v-replace\ ':''}
+set statusline+=%#VisualColor#%{(g:currentmode[mode()]=='v')?'\ \ visual\ ':''}
+set statusline+=%#VisualColor#%{(g:currentmode[mode()]=='vl')?'\ \ v-line\ ':''}
+set statusline+=%#VisualColor#%{(g:currentmode[mode()]=='vb')?'\ \ v-block\ ':''}
+set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='c')?'\ \ command\ ':''}
+set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='f')?'\ \ finder\ ':''}
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
 set statusline+=%#LineNr#
@@ -162,5 +175,7 @@ endfunc
 
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+let g:indentLine_char = '⦙'
 
 inoremap <C-Space> <C-x><C-n>
