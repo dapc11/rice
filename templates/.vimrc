@@ -146,6 +146,21 @@ nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader>p :History<CR>
 
+let g:fzf_colors = {
+\ 'fg':      ['fg', 'Normal'],
+\ 'bg':      ['bg', 'Normal'],
+\ 'hl':      ['fg', 'Comment'],
+\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\ 'hl+':     ['fg', 'Statement'],
+\ 'info':    ['fg', 'PreProc'],
+\ 'border':  ['fg', 'Normal'],
+\ 'prompt':  ['fg', 'Conditional'],
+\ 'pointer': ['fg', 'Exception'],
+\ 'marker':  ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header':  ['fg', 'Comment'] }
+
 nnoremap <silent> <A-left> :bp<CR>
 nnoremap <silent> <A-right> :bn<CR>
 nnoremap <silent> <A-up> :Buffers<CR>
