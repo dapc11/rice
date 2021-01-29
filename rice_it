@@ -101,8 +101,17 @@ def main():
 
 def render_vim(ricer):
     # ricer.render_template('nvim/init.vim')
-    ricer.render_template('.vimrc', ricer.HOME_DIR)
-    ricer.render_template('.vimrc', '/home/{0}/.config/nvim/init.vim')
+    try:
+        os.mkdir(f'/home/{ricer.user}/.vim')
+    except FileExistsError as e:
+        pass
+    ricer.render_template('vim/.vimrc', '/home/{0}/.vimrc')
+    ricer.render_template('vim/mappings.vim', '/home/{0}/.vim/mappings.vim')
+    ricer.render_template('vim/plugins.vim', '/home/{0}/.vim/plugins.vim')
+    ricer.render_template('vim/statusline.vim', '/home/{0}/.vim/statusline.vim')
+    ricer.render_template('vim/fzf.vim', '/home/{0}/.vim/fzf.vim')
+    ricer.render_template('vim/options.vim', '/home/{0}/.vim/options.vim')
+    ricer.render_template('vim/.vimrc', '/home/{0}/.config/nvim/init.vim')
 
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
