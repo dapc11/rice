@@ -15,17 +15,18 @@
     "base0D": "#83a598",
     "base0E": "#d3869b",
     "base0F": "#d65d0e",
-    "font": "monospace",
+    "font": "DejaVu Sans",
     "shell": "/usr/bin/zsh",
-    "terminal": "gnome-terminal",
+    "alacritty": "alacritty",
     "browser": "google-chrome",
     "editor": "vim",
     "keymap": "se",
     "zsh_theme": "afowler",
     "vim_theme": "dark",
     "vim_colorscheme": "gruvbox",
-    "gtk_theme": "Adwaita-dark",
+    "gtk_theme": "Yaru",
     "vs_theme": "Gruvbox Dark Soft",
     "bg": "gruvbox_bg.jpg",
-    "window_manager": "bspwm"
+    "wifi_if": "wlp1s0",
+    "window_manager": "i3"
 }

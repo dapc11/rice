@@ -58,7 +58,7 @@ colors:
     cyan:    '{{base0D}}'
     white:   '{{base07}}'
   bright:
-    black:   '{{base04}}'
+    black:   '{{base03}}'
     red:     '{{base08}}'
     green:   '{{base0F}}'
     yellow:  '{{base0A}}'

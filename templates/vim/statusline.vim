@@ -19,10 +19,10 @@ let g:currentmode={
        \ 't'  : 'f',
        \}
 
-hi NormalColor guibg={{base04}} guifg={{base06}}
-hi InsertColor guibg={{base0B}} guifg={{base03}}
-hi ReplaceColor guibg={{base08}} guifg={{base03}}
-hi VisualColor  guibg={{base0C}} guifg={{base03}}
+hi NormalColor guibg={{base03}} guifg={{base06}}
+hi InsertColor guibg={{base0B}} guifg={{base02}}
+hi ReplaceColor guibg={{base08}} guifg={{base02}}
+hi VisualColor  guibg={{base0C}} guifg={{base02}}
 
 set laststatus=2
 set statusline=

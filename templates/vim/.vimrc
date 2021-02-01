@@ -2,7 +2,8 @@ nnoremap <SPACE> <Nop>
 let mapleader =" "
 
 so ~/.vim/plugins.vim
-colorscheme base16-ocean
+colorscheme {{vim_colorscheme}}
+set background={{vim_theme}}
 so ~/.vim/statusline.vim
 so ~/.vim/mappings.vim
 so ~/.vim/fzf.vim
