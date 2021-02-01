@@ -9,7 +9,7 @@
   menu-inputbar-margin:                  10px 0px;
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    0px 0px 0px -5px;
-  menu-element-padding:                  6px 15px -3px -35px;
+  menu-element-padding:                  6px 15px 6px -30px;
   accent:                                {{base05}};
   background:                            {{base00}};
   background-light:                      {{base08}};
