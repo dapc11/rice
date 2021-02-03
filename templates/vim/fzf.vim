@@ -15,10 +15,10 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <silent> <leader>g :GGrep<cr>
 nnoremap <silent> <leader>f :Rg<cr>
 nnoremap <silent> <leader>F :RG<cr>
-nnoremap <silent> <leader>o :GFiles?<cr>
-nnoremap <silent> <leader>O :GFiles<cr>
-nnoremap <silent> <leader>n :Files<cr>
-nnoremap <silent> <Leader>N :FZF ~<cr>
+nnoremap <silent> <leader>n :GFiles<cr>
+nnoremap <silent> <leader>N :GFiles?<cr>
+nnoremap <silent> <leader>o :Files<cr>
+nnoremap <silent> <Leader>O :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
@@ -38,9 +38,3 @@ let g:fzf_colors = {
             \ 'marker':  ['fg', 'Keyword'],
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
-
-" The Silver Searcher
-if executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-    set grepprg=ag\ --nogroup\ --nocolor
-endif

@@ -27,3 +27,11 @@ noremap <Leader>P "*p<CR>
 " paste with ctrl+v
 noremap <Leader>y "+y<CR>
 noremap <Leader>p "+p<CR>
+
+" Commandline
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <M-Left> <S-Left>
+cnoremap <M-Right> <S-Right>
+cnoremap <M-BS> <C-W>
+cnoremap <C-BS> <C-W>
