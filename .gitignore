@@ -334,7 +334,8 @@ ASALocalRun/
 .vscode/
 *code-workspace
 
-
+.git/
 dwm/
 st/
 i3-gaps/
+polybar/

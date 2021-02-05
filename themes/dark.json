@@ -17,7 +17,7 @@
     "base0F": "#d65d0e",
     "font": "DejaVu Sans",
     "shell": "/usr/bin/zsh",
-    "alacritty": "alacritty",
+    "terminal": "alacritty",
     "browser": "google-chrome",
     "editor": "vim",
     "keymap": "se",

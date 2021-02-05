@@ -9,4 +9,5 @@ Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'gruvbox-community/gruvbox'
+Plug 'towolf/vim-helm'
 call plug#end()

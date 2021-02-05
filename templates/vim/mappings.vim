@@ -35,3 +35,7 @@ cnoremap <M-Left> <S-Left>
 cnoremap <M-Right> <S-Right>
 cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
+
+" Move lines
+nnoremap <silent> <C-Down> :move+<cr>
+nnoremap <silent> <C-Up> :move-2<cr>
