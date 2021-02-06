@@ -10,4 +10,5 @@ Plug 'chriskempson/base16-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'gruvbox-community/gruvbox'
 Plug 'towolf/vim-helm'
+Plug 'tpope/vim-fugitive'
 call plug#end()

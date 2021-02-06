@@ -37,11 +37,11 @@ set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='c')?'\ \ command\ ':''}
 set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='f')?'\ \ finder\ ':''}
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
+set statusline+=%#StatusLine#
 set statusline+=\ %f
 set statusline+=%m
 set statusline+=%=
-set statusline+=%#CursorColumn#
+set statusline+=%#StatusLineNc#
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%
