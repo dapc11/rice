@@ -19,7 +19,7 @@ command! -nargs=? -complete=dir AF
   \   'source': 'rg --files --hidden . '.expand(<q-args>)
   \ })))
 
-nnoremap <silent> <leader>g :GGrep<cr>
+nnoremap <silent> <leader>G :GGrep<cr>
 nnoremap <silent> <leader>f :Rg<cr>
 nnoremap <silent> <leader>F :RG<cr>
 nnoremap <silent> <leader>n :GFiles<cr>

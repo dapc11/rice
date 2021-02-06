@@ -6,7 +6,7 @@ map <C-M-left> <C-w>h
 map <C-M-down> <C-w>j
 map <C-M-up> <C-w>k
 map <C-M-right> <C-w>l
-map <leader>q :q<CR>
+map <leader>q <C-w>q
 
 inoremap <C-Space> <C-x><C-n>
 
@@ -39,3 +39,16 @@ cnoremap <C-BS> <C-W>
 " Move lines
 nnoremap <silent> <C-Down> :move+<cr>
 nnoremap <silent> <C-Up> :move-2<cr>
+
+" Fugitive
+nnoremap <silent> <Leader>gss :Git status<cr>
+nnoremap <silent> <Leader>gap :Git add -p<cr>
+nnoremap <silent> <Leader>gaa :Git add -u<cr>
+nnoremap <silent> <Leader>gdd :Git diff<cr>
+nnoremap <silent> <Leader>gdc :Git diff --cached<cr>
+nnoremap <silent> <Leader>gl :Git log<cr>
+nnoremap <silent> <Leader>gcc :Git commit<cr>
+nnoremap <silent> <Leader>gca :Git commit --amend<cr>
+nnoremap <silent> <Leader>gb :Git blame<cr>
+nnoremap <silent> <Leader>gsh :Git show HEAD<cr>
+nnoremap <silent> <Leader>gp :Git push
