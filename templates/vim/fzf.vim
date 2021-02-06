@@ -25,9 +25,10 @@ nnoremap <silent> <leader>F :RG<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
 nnoremap <silent> <leader>o :AF<cr>
-nnoremap <silent> <Leader>O : FZF ~<cr>
+nnoremap <silent> <Leader>O :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
+
 
 let g:fzf_colors = {
             \ 'fg':      ['fg', 'Normal'],
