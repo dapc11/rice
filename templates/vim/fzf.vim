@@ -28,6 +28,8 @@ nnoremap <silent> <leader>o :AF<cr>
 nnoremap <silent> <Leader>O :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+
 
 
 let g:fzf_colors = {

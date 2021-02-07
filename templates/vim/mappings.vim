@@ -1,6 +1,9 @@
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
+map ö {
+map ä }
+
 " Shortcutting split navigation, saving a keypress:
 map <C-M-left> <C-w>h
 map <C-M-down> <C-w>j
