@@ -42,3 +42,5 @@ nnoremap <silent> <leader>o :AF<cr>
 nnoremap <silent> <Leader>O :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
+command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap( {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -not -path "*/\.*" -type d', 'sink': 'cd'}))
+nnoremap <silent> <leader>c :Cd ~<CR>
