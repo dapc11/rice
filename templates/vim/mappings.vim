@@ -3,6 +3,7 @@ let mapleader =" "
 
 map ö {
 map ä }
+map ga <Nop>
 
 " Shortcutting split navigation, saving a keypress:
 map <C-M-left> <C-w>h
@@ -44,14 +45,11 @@ nnoremap <silent> <C-Down> :move+<cr>
 nnoremap <silent> <C-Up> :move-2<cr>
 
 " Fugitive
-nnoremap <silent> <Leader>gss :Git status<cr>
-nnoremap <silent> <Leader>gap :Git add -p<cr>
-nnoremap <silent> <Leader>gaa :Git add -u<cr>
-nnoremap <silent> <Leader>gdd :Git diff<cr>
-nnoremap <silent> <Leader>gdc :Git diff --cached<cr>
+nnoremap <Leader>ga :Git add<Space>
+nnoremap <Leader>gd :Git diff<Space>
+nnoremap <Leader>gc :Git commit<Space>
+nnoremap <silent> <Leader>gs :Git status<cr>
 nnoremap <silent> <Leader>gl :Git log<cr>
-nnoremap <silent> <Leader>gcc :Git commit<cr>
-nnoremap <silent> <Leader>gca :Git commit --amend<cr>
 nnoremap <silent> <Leader>gb :Git blame<cr>
-nnoremap <silent> <Leader>gsh :Git show HEAD<cr>
-nnoremap <silent> <Leader>gp :Git push
+nnoremap <silent> <Leader>gh :Git show HEAD<cr>
+nnoremap <Leader>gp :Git push
