@@ -41,8 +41,8 @@ cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
 
 " Move lines
-nnoremap <silent> <C-Down> :move+<cr>
-nnoremap <silent> <C-Up> :move-2<cr>
+nnoremap <silent> <M-Down> :move+<cr>
+nnoremap <silent> <M-Up> :move-2<cr>
 
 " Fugitive
 nnoremap <Leader>ga :Git add<Space>
@@ -53,3 +53,6 @@ nnoremap <silent> <Leader>gl :Git log<cr>
 nnoremap <silent> <Leader>gb :Git blame<cr>
 nnoremap <silent> <Leader>gh :Git show HEAD<cr>
 nnoremap <Leader>gp :Git push
+
+" Select and search
+vnoremap <C-f> y/\V<C-R>=escape(@",'/\')<CR><CR>
