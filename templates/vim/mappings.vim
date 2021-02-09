@@ -48,9 +48,9 @@ nnoremap <silent> <M-Up> :move-2<cr>
 nnoremap <Leader>ga :Git add<Space>
 nnoremap <Leader>gd :Git diff<Space>
 nnoremap <Leader>gc :Git commit<Space>
-nnoremap <silent> <Leader>gs :Git status<cr>
-nnoremap <silent> <Leader>gl :Git log<cr>
-nnoremap <silent> <Leader>gb :Git blame<cr>
+nnoremap <silent> <Leader>gs :Gstatus<cr>
+nnoremap <silent> <Leader>gl :Glog<cr>
+nnoremap <silent> <Leader>gb :Gblame<cr>
 nnoremap <silent> <Leader>gh :Git show HEAD<cr>
 nnoremap <Leader>gp :Git push
 
