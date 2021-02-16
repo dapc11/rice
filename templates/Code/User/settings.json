@@ -14,7 +14,7 @@
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
     "workbench.colorCustomizations": {
-        "statusBar.background":           "{{base02}}",
+        "statusBar.background":           "{{base01}}",
         "statusBar.noFolderBackground":   "{{base03}}",
         "statusBar.debuggingBackground":  "{{base04}}",
         "titleBar.background":            "{{base02}}",
