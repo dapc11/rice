@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 from shutil import copyfile
 from distutils.dir_util import copy_tree
+import subprocess
 
 import jinja2
 
@@ -88,7 +89,10 @@ def main():
     ricer = Ricer(parser.parse_args())
     render_vim(ricer)
     render_rofi(ricer)
-    render_awesome(ricer)
+    if ricer.context['window_manager'] == 'awesome':
+        render_awesome(ricer)
+    else:
+        render_background(ricer)
     render_polybar(ricer)
     render_vs_code(ricer)
     ricer.render_template('alacritty/alacritty.yml')
@@ -108,7 +112,7 @@ def render_vim(ricer):
     # ricer.render_template('nvim/init.vim')
     try:
         os.mkdir(f'/home/{ricer.user}/.vim')
-    except FileExistsError as e:
+    except FileExistsError:
         pass
     ricer.render_template('vim/.vimrc')
     ricer.render_template('vim/mappings.vim')
@@ -130,10 +134,15 @@ def render_awesome(ricer):
     ricer.copy_file('templates/awesome/icons',
                     f'/home/{ricer.user}/.config/awesome/icons')
 
+def render_background(ricer):
+    background = ricer.context['bg']
+    ricer.copy_file(f"templates/images/{background}",
+                    f'/home/{ricer.user}/.local/background.jpg')
+    print(subprocess.run(['nitrogen', '--set-auto', f'/home/{ricer.user}/.local/background.jpg']))
+
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code/User/keybindings.json')
-    ricer.render_template('Code/User/dapc-vs.tmTheme')
 
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')

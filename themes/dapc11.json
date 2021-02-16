@@ -38,8 +38,6 @@
     "editor": "vim",
     "keymap": "se",
     "zsh_theme": "afowler",
-    "vim_theme": "dark",
-    "vim_colorscheme": "dapc11",
     "gtk_theme": "Yaru",
     "vs_theme": "Dark",
     "bg": "background2.jpg",

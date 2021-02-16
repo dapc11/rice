@@ -3,7 +3,7 @@ let mapleader =" "
 
 so ~/.config/vim/plugins.vim
 so ~/.config/vim/dapc11.vim
-set background={{vim_theme}}
+set background=dark
 so ~/.config/vim/statusline.vim
 so ~/.config/vim/mappings.vim
 so ~/.config/vim/fzf.vim

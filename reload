@@ -6,4 +6,3 @@ dunst -config ~/.config/dunst/dunstrc &> /dev/null &
 compton --config  ~/.config/compton/compton.conf &> /dev/null &
 xrdb ~/.Xresources
 i3-msg restart &> /dev/null
-nitrogen --restore
