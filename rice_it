@@ -117,6 +117,7 @@ def render_vim(ricer):
     ricer.render_template('vim/fzf.vim')
     ricer.render_template('vim/options.vim')
     ricer.render_template('vim/.vimrc')
+    ricer.render_template('vim/dapc11.vim')
 
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
@@ -132,6 +133,7 @@ def render_awesome(ricer):
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code/User/keybindings.json')
+    ricer.render_template('Code/User/dapc-vs.tmTheme')
 
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')

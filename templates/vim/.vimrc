@@ -1,13 +1,13 @@
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
-so ~/.vim/plugins.vim
-colorscheme {{vim_colorscheme}}
+so ~/.config/vim/plugins.vim
+so ~/.config/vim/dapc11.vim
 set background={{vim_theme}}
-so ~/.vim/statusline.vim
-so ~/.vim/mappings.vim
-so ~/.vim/fzf.vim
-so ~/.vim/options.vim
+so ~/.config/vim/statusline.vim
+so ~/.config/vim/mappings.vim
+so ~/.config/vim/fzf.vim
+so ~/.config/vim/options.vim
 
 function! TrimWhitespace()
     let l:save = winsaveview()
