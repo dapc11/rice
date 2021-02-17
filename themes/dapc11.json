@@ -30,17 +30,5 @@
     "base0C_hex": "8080ff",
     "base0D_hex": "80b3ff",
     "base0E_hex": "ff80ff",
-    "base0F_hex": "80ff80",
-    "font": "Menlo",
-    "shell": "/usr/bin/zsh",
-    "terminal": "alacritty",
-    "browser": "google-chrome",
-    "editor": "vim",
-    "keymap": "se",
-    "zsh_theme": "afowler",
-    "gtk_theme": "Yaru",
-    "vs_theme": "Dark",
-    "bg": "background2.jpg",
-    "wifi_if": "wlp1s0",
-    "window_manager": "i3"
+    "base0F_hex": "80ff80"
 }

@@ -1,0 +1,13 @@
+{
+    "font": "Menlo",
+    "shell": "/usr/bin/zsh",
+    "terminal": "alacritty",
+    "browser": "google-chrome",
+    "editor": "vim",
+    "keymap": "se",
+    "zsh_theme": "afowler",
+    "gtk_theme": "Yaru",
+    "bg": "dark.jpg",
+    "wifi_if": "wlan0",
+    "window_manager": "i3"
+}

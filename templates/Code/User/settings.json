@@ -9,7 +9,6 @@
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.inheritEnv": true,
-    "workbench.colorTheme": "{{vs_theme}}",
     "editor.fontFamily": "'{{font}}', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,

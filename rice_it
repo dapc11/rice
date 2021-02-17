@@ -29,10 +29,12 @@ class Ricer:
         self.context = self._get_context()
 
     def _get_context(self):
-        with open(self.theme, 'r') as context:
+        with open(self.theme, 'r') as colors_context:
             theme_path = os.path.abspath(self.theme)
             print(f"Using context: '{theme_path}'")
-            return json.load(context)
+            with open('themes/settings.json', 'r') as settings_context:
+                context = {**json.load(settings_context), **json.load(colors_context)}
+                return context
 
     def _get_destination(self, template):
         dest = f'{self.target}/{template}'
