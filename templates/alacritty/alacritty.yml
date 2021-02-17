@@ -19,13 +19,13 @@ scrolling:
 
 font:
   normal:
-    family: DejaVu Sans Mono
+    family: {{font}}
     style: Regular
   bold:
-    family: DejaVu Sans Mono
+    family: {{font}}
     style: Bold
   italic:
-    family: DejaVu Sans Mono
+    family: {{font}}
     style: Italic
   size: 13.0
 

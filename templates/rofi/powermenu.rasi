@@ -41,7 +41,7 @@
 /* ########### */
 
 * {
-  font: @text-font;
+  font: "{{font}} 12";
 }
 #window {
   padding: @menu-window-padding;
@@ -55,18 +55,18 @@ prompt,
 textbox-prompt-colon {
   padding: @menu-prompt-padding;
   border: 2px;
-  border-color: @accent;
+  border-color: {{base02}};
 }
 #prompt {
   margin: @menu-prompt-margin;
-  background-color: {{base02}};
-  text-color: {{base05}};
+  background-color: {{base00}};
+  text-color: {{base06}};
 }
 #textbox-prompt-colon {
   expand: false;
   str: "Uptime";
-  background-color: @accent;
-  text-color: @background;
+  background-color: {{base04}};
+  text-color: {{base00}};
 }
 #listview {
   spacing: @option-6-listview-spacing;

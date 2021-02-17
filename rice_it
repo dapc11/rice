@@ -140,7 +140,7 @@ def render_background(ricer):
     background = ricer.context['bg']
     ricer.copy_file(f"templates/images/{background}",
                     f'/home/{ricer.user}/.local/background.jpg')
-    print(subprocess.run(['nitrogen', '--set-auto', f'/home/{ricer.user}/.local/background.jpg']))
+    subprocess.run(['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'])
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
