@@ -7,7 +7,5 @@
     "keymap": "se",
     "zsh_theme": "afowler",
     "gtk_theme": "Yaru",
-    "bg": "atom.jpg",
-    "wifi_if": "wlan0",
     "window_manager": "i3"
 }
