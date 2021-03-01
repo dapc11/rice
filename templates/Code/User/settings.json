@@ -12,6 +12,7 @@
     "editor.fontFamily": "'{{font}}', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
+    "terminal.integrated.allowChords": false,
     "workbench.colorCustomizations": {
         "statusBar.background":           "{{base01}}",
         "statusBar.noFolderBackground":   "{{base03}}",
