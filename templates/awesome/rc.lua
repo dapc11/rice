@@ -53,6 +53,10 @@ end
 -- Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+beautiful.taglist_bg_occupied = "{{base01}}"
+beautiful.taglist_shape_focus = gears.shape.rounded_bar
+beautiful.taglist_shape = gears.shape.rounded_bar
+
 
 -- This is used later as the default terminal and editor to run.
 terminal = "{{terminal}}"
@@ -225,10 +229,16 @@ local function setup_wibox(s)
     }
 
     s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        left,
-        middle,
-        right
+        {
+            layout = wibox.layout.align.horizontal,
+            left,
+            middle,
+            right
+        },
+        left   = 8,
+        right  = 8,
+        top    = 2,
+        widget = wibox.container.margin
     }
 end
 
@@ -482,10 +492,10 @@ awful.rules.rules = {
     { rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
     { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = "2" } },
     { rule = { class = "Firefox"}, properties = { screen = 1, tag = "2"} },
-    { rule = { class = "Code" }, properties = { screen = 1, tag = "4" } },
+    { rule = { class = "Code" }, properties = { screen = 1, tag = "3" } },
     { rule = { class = "Evolution" }, properties = { screen = 1, tag = "1" } },
-    { rule = { class = "Jetbrains-idea-ce"}, properties = { screen = 1, tag = "4"} },
-    { rule = { class = "Jetbrains-pycharm-ce"}, properties = { screen = 1, tag = "4"} },
+    { rule = { class = "Jetbrains-idea-ce"}, properties = { screen = 1, tag = "3"} },
+    { rule = { class = "Jetbrains-pycharm-ce"}, properties = { screen = 1, tag = "3"} },
     { rule = { class = "Wfica"}, properties = { screen = 1, tag = "6"} },
     { rule = { class = "wfica"}, properties = { screen = 1, tag = "6"} },
     { rule = { class = "Libreoffice-writer"}, properties = { screen = 1, tag = "7"} },
@@ -560,6 +570,7 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 client.connect_signal("manage", function (c)
     c.shape = function(cr,w,h)
-        gears.shape.rounded_rect(cr,w,h,6)
+        gears.shape.rounded_rect(cr,w,h,10)
     end
 end)
+

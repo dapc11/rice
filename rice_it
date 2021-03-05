@@ -21,7 +21,7 @@ class Ricer:
         if self.overwrite:
             self.target = f'/home/{self.user}/.config'
         else:
-            self.target = '{0}/target'.format(os.getcwd())
+            self.target = f'{os.getcwd()}/target'
         self.theme = args.theme
 
         template_loader = jinja2.FileSystemLoader(searchpath="./templates/")

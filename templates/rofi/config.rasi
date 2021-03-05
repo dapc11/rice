@@ -16,7 +16,6 @@ configuration {
     selected-normal-bg:  {{base01}};
     border-color:        {{base02}};
     spacing:             2;
-    border-radius:       5px;
 }
 
 #window {
