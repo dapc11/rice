@@ -23,6 +23,7 @@ set colorcolumn=80
 set updatetime=50
 set shortmess+=c
 set clipboard+=unnamedplus
+set mouse=a
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
 " Use <C-L> to clear the highlighting of :set hlsearch.
