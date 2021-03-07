@@ -40,10 +40,6 @@ cnoremap <M-Right> <S-Right>
 cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
 
-" Move lines
-nnoremap <silent> <M-Down> :move+<cr>
-nnoremap <silent> <M-Up> :move-2<cr>
-
 " Fugitive
 nnoremap <Leader>ga :Git add<Space>
 nnoremap <Leader>gd :Git diff<Space>
