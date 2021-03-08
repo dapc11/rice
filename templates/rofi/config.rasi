@@ -8,11 +8,11 @@ configuration {
 * {
     font:                "{{font}} 12";
     background-color:    {{base00}};
-    text-color:          {{base05}};
+    text-color:          {{base06}};
 
-    selected-aactive-fg: {{base05}};
+    selected-aactive-fg: {{base06}};
     selected-aactive-bg: {{base01}};
-    selected-normal-fg:  {{base05}};
+    selected-normal-fg:  {{base06}};
     selected-normal-bg:  {{base01}};
     border-color:        {{base02}};
     spacing:             2;
