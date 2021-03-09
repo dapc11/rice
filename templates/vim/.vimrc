@@ -4,6 +4,7 @@ let mapleader =" "
 so ~/.config/vim/plugins.vim
 so ~/.config/vim/dapc11.vim
 set background=dark
+colorscheme gruvbox
 so ~/.config/vim/statusline.vim
 so ~/.config/vim/mappings.vim
 so ~/.config/vim/fzf.vim

@@ -5,6 +5,7 @@ import getpass
 import json
 import os
 import sys
+import glob
 from pathlib import Path
 from shutil import copyfile
 from distutils.dir_util import copy_tree
@@ -30,7 +31,7 @@ class Ricer:
         self.context['wifi_if'] = self.get_wireless_if()
 
     def _get_context(self):
-        with open(self.theme, 'r') as colors_context:
+        with open(f'themes/{self.theme}.json', 'r') as colors_context:
             theme_path = os.path.abspath(self.theme)
             print(f"Using context: '{theme_path}'")
             with open('themes/settings.json', 'r') as settings_context:
@@ -87,15 +88,35 @@ def setup_argparser():
         '--theme',
         action='store',
         dest='theme',
-        default='themes/dark.json',
-        help='Specify which theme the context will be loaded from. Defaults to dark.json'
+        help='Specify which theme the context will be loaded from.'
+    )
+    arg_parser.add_argument(
+        '-l',
+        '--list',
+        action='store_true',
+        help='List available themes'
     )
     return arg_parser
 
+def get_themes():
+    theme_names = []
+    for theme_path in glob.glob('themes/*.json'):
+        if 'settings' in theme_path:
+            continue
+        theme_names.append(os.path.splitext(os.path.basename(theme_path))[0])
+    return theme_names
 
 def main():
     parser = setup_argparser()
-    ricer = Ricer(parser.parse_args())
+    themes = get_themes()
+    args = parser.parse_args()
+    if args.list or args.theme is None:
+        print('Specify theme with --theme (-t) flag.\nAvailable themes:')
+        for theme in themes:
+            print(f'- {theme}')
+        sys.exit(0)
+
+    ricer = Ricer(args)
 
     render_vim(ricer)
     render_rofi(ricer)

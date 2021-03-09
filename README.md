@@ -1,14 +1,11 @@
 # Dapc11 Ricer
 
-Setup dapc11 environment with i3 as window manager.
-
 ## Getting started
 
 Make __first_setup__ executable and invoke it as following in order to setuo your environment:
 
 ```bash
-chmod +x first_setup
-./first_setup
+bash first_setup
 ```
 
 One can at any time after first setup invoke __rice_it__ in order to re-generate dotfiles, see below for usage.
