@@ -7,5 +7,5 @@
     "keymap": "se",
     "zsh_theme": "afowler",
     "gtk_theme": "Yaru",
-    "window_manager": "awesome"
+    "window_manager": "i3"
 }

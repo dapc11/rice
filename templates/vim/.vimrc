@@ -2,13 +2,13 @@ nnoremap <SPACE> <Nop>
 let mapleader =" "
 
 so ~/.config/vim/plugins.vim
-so ~/.config/vim/dapc11.vim
 set background=dark
-colorscheme gruvbox
+so ~/.config/vim/dapc11.vim
+"colorscheme gruvbox
+so ~/.config/vim/options.vim
 so ~/.config/vim/statusline.vim
 so ~/.config/vim/mappings.vim
 so ~/.config/vim/fzf.vim
-so ~/.config/vim/options.vim
 
 function! TrimWhitespace()
     let l:save = winsaveview()

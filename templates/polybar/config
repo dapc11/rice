@@ -13,7 +13,7 @@ border-left-size = 0
 border-right-size = 0
 border-bottom-size = 0
 border-top-size = 0
-padding-left = 1
+padding-left = 0
 padding-right = 1
 separator = " "
 module-margin = 0
@@ -34,7 +34,7 @@ tray-position = right
 
 modules-center = xwindow
 modules-left = bspwm i3 spotify
-modules-right = updates alsa wireless-network wired-network battery date powermenu
+modules-right = updates alsa wireless-network wired-network battery date
 
 [module/xwindow]
 type = internal/xwindow
@@ -143,22 +143,22 @@ wrapping-scroll = false
 reverse-scroll = false
 fuzzy-match = true
 
-ws-icon-0 = "1;❶ "
-ws-icon-1 = "2;❷ "
-ws-icon-2 = "3;❸ "
-ws-icon-3 = "4;❹ "
-ws-icon-4 = "5;❺ "
-ws-icon-5 = "6;❻ "
-ws-icon-6 = "7;❼ "
-ws-icon-7 = "8;❽ "
-ws-icon-8 = "9;❾ "
-ws-icon-9 = "10;❿ "
+ws-icon-0 = "1; ❶ "
+ws-icon-1 = "2; ❷ "
+ws-icon-2 = "3; ❸ "
+ws-icon-3 = "4; ❹ "
+ws-icon-4 = "5; ❺ "
+ws-icon-5 = "6; ❻ "
+ws-icon-6 = "7; ❼ "
+ws-icon-7 = "8; ❽ "
+ws-icon-8 = "9; ❾ "
+ws-icon-9 = "10; ❿ "
 ws-icon-default =
 format = <label-state> <label-mode>
 
 label-mode-background = {{base08}}
 
-label-focused = " "
+label-focused = "  "
 label-focused-padding = 0
 
 label-occupied = %icon%

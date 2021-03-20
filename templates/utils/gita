@@ -15,6 +15,6 @@ function echo_meta {
 for repository in ${repositories}; do
     first=1
     echo_meta ${repository}
-    git --git-dir "${repository}/.git" --work-tree "${repository}" $@
+    git --git-dir "${repository}/.git" --work-tree "${repository}" $@ -- ':!*fossa-report*'
     [ -z ${first} ] || echo
 done
