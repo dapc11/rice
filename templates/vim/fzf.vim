@@ -2,7 +2,7 @@ let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_colors = {
             \ 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
+            \ 'hl':      ['fg', 'Constant'],
             \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
             \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
             \ 'hl+':     ['fg', 'Statement'],
@@ -34,13 +34,12 @@ command! -nargs=? -complete=dir AF
   \ })))
 
 nnoremap <silent> <leader>G :GGrep<cr>
-nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>f :BLines<cr>
 nnoremap <silent> <leader>F :RG<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
 nnoremap <silent> <leader>o :AF<cr>
 nnoremap <silent> <Leader>O :FZF ~<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>l :BLines<CR>
 command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap( {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -not -path "*/\.*" -type d', 'sink': 'cd'}))
 nnoremap <silent> <leader>c :Cd ~<CR>
