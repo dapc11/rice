@@ -4,7 +4,6 @@ let mapleader =" "
 map ö {
 map ä }
 map ga <Nop>
-
 " Shortcutting split navigation, saving a keypress:
 map <C-M-left> <C-w>h
 map <C-M-down> <C-w>j
@@ -16,10 +15,6 @@ inoremap <C-Space> <C-x><C-n>
 
 nnoremap <silent> <A-left> :bp<CR>
 nnoremap <silent> <A-right> :bn<CR>
-nnoremap <silent> <A-up> :Buffers<CR>
-
-" delete visual and paste
-map <leader>p "_dP
 
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
@@ -52,3 +47,12 @@ nnoremap <Leader>gp :Git push
 
 " Select and search
 vnoremap <C-f> y/\V<C-R>=escape(@",'/\')<CR><CR>
+" Paste over select and keep register
+vnoremap <leader>p "_dP
+
+" :e sane mappings
+set wildcharm=<C-Z>
+cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
+cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
+cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"

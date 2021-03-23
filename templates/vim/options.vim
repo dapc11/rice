@@ -2,6 +2,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set expandtab
 set relativenumber
 set hlsearch
 set hidden
@@ -18,7 +19,6 @@ set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 set shiftround
-set signcolumn=yes
 set colorcolumn=80
 set updatetime=50
 set shortmess+=c
