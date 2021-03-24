@@ -5,8 +5,7 @@ plugins=(
 )
 
 # Enable autocompletion
-autoload -Uz compinit
-compinit
+autoload -Uz compinit; compinit
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
@@ -20,6 +19,7 @@ if type rg &> /dev/null; then
     # --follow: Follow symlinks
     # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+    export FZF_DEFAULT_OPTS='-m --height 50% --border --layout=reverse'
 fi
 
 function git_prompt_info() {
