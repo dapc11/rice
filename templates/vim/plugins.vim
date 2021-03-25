@@ -10,4 +10,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-rooter'
 call plug#end()
+
+let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
+let g:rooter_change_directory_for_non_project_files = 'home'

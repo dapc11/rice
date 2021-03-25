@@ -55,7 +55,5 @@ function pb-kill-line () {
   zle kill-line
   echo -n $CUTBUFFER | xclip -selection clipboard
 }
-
 zle -N pb-kill-line
-
 bindkey '^K' pb-kill-line
