@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ## This file runs when a DM logs you into a graphical session.
-
 # function __volume {
 #     echo " $(amixer get Master | grep -o '\[[0-9]\+%\]' | sed 's/[^0-9]*//g;1q')%"
 # }

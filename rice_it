@@ -23,19 +23,16 @@ class Ricer:
             self.target = f'/home/{self.user}/.config'
         else:
             self.target = f'{os.getcwd()}/target'
-        self.theme = args.theme
+        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./templates/"))
+        self.context = self._get_context(args.theme)
 
-        template_loader = jinja2.FileSystemLoader(searchpath="./templates/")
-        self.env = jinja2.Environment(loader=template_loader)
-        self.context = self._get_context()
-        self.context['wifi_if'] = self.get_wireless_if()
-
-    def _get_context(self):
-        with open(f'themes/{self.theme}.json', 'r') as colors_context:
-            theme_path = os.path.abspath(self.theme)
+    def _get_context(self, theme):
+        with open(f'themes/{theme}.json', 'r') as colors_context:
+            theme_path = os.path.abspath(theme)
             print(f"Using context: '{theme_path}'")
             with open('themes/settings.json', 'r') as settings_context:
                 context = {**json.load(settings_context), **json.load(colors_context)}
+                context['wifi_if'] = self.get_wireless_if()
                 return context
 
     def _get_destination(self, template):
@@ -46,7 +43,13 @@ class Ricer:
         return dest
 
     def set_target_dir(self, target):
-        self.target = target
+        if self.overwrite:
+            self.target = target
+
+    def _make_executable(self, dest):
+        mode = os.stat(dest).st_mode
+        mode |= (mode & 0o444) >> 2  # copy R bits to X
+        os.chmod(dest, mode)
 
     def render_template(self, template, executable=False):
         dest = self._get_destination(template)
@@ -55,10 +58,8 @@ class Ricer:
         print(f'Writing to {dest}')
         with open(dest, 'w') as destination_file:
             destination_file.write(environment_template.render(self.context))
-            if executable:
-                mode = os.stat(dest).st_mode
-                mode |= (mode & 0o444) >> 2  # copy R bits to X
-                os.chmod(dest, mode)
+        if executable:
+            self._make_executable(dest)
 
     def copy_file(self, source, target):
         print(f'Copying {source} to {target}')
@@ -131,6 +132,7 @@ def main():
     ricer.render_template('i3/config')
     ricer.render_template('ranger/rc.conf')
     ricer.render_template('compton/compton.conf')
+    ricer.set_target_dir(f'/home/{ricer.user}')
     ricer.render_template('.tmux.conf')
     ricer.render_template('.zshrc')
     ricer.render_template('.xprofile')
@@ -140,7 +142,6 @@ def main():
     sys.exit(0)
 
 def render_vim(ricer):
-    # ricer.render_template('nvim/init.vim')
     try:
         os.mkdir(f'/home/{ricer.user}/.vim')
     except FileExistsError:
