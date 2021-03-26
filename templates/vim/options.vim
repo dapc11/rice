@@ -24,7 +24,6 @@ set updatetime=50                           " Short time to combo key strokes
 set shortmess+=c
 set clipboard+=unnamedplus                  " System clipboard
 set mouse=a                                 " Enable mouse
-"set autochdir                               " Auto change working dir
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
@@ -33,3 +32,14 @@ set splitbelow splitright
 if maparg('<C-l>', 'n') ==# ''
   nnoremap <silent> <C-L> :let @/ = ""<CR>
 endif
+
+" Python
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix

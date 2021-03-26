@@ -10,6 +10,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 call plug#end()
 
