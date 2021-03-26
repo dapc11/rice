@@ -124,12 +124,12 @@ def main():
     if ricer.context['window_manager'] == 'awesome':
         render_awesome(ricer)
     else:
+        ricer.render_template('i3/config')
         render_background(ricer)
-    render_polybar(ricer)
+        render_polybar(ricer)
     render_vs_code(ricer)
     ricer.render_template('alacritty/alacritty.yml')
     ricer.render_template('dunst/dunstrc')
-    ricer.render_template('i3/config')
     ricer.render_template('ranger/rc.conf')
     ricer.render_template('compton/compton.conf')
     ricer.set_target_dir(f'/home/{ricer.user}')
@@ -158,6 +158,9 @@ def render_vim(ricer):
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
     ricer.render_template('awesome/theme.lua')
+    ricer.copy_file(f"templates/awesome/sysact",
+                    f'/home/{ricer.user}/.local/bin/sysact')
+    ricer._make_executable(f'/home/{ricer.user}/.local/bin/sysact')
     background = ricer.context['bg']
     ricer.copy_file(f"templates/images/{background}",
                     f'/home/{ricer.user}/.config/awesome/background.jpg')

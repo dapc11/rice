@@ -16,16 +16,13 @@ local function list_update(w, buttons, label, data, objects)
             bgb = cache.bgb
             tbm = cache.tbm
             ibm = cache.ibm
-            tt  = cache.tt
+            tt = cache.tt
         else
             ib = wibox.widget.imagebox()
             tb = wibox.widget.textbox()
             cb = wibox.widget {
                 {
-                    {
-						markup = '',
-						widget = wibox.widget.textbox
-					},
+                    {markup = '', widget = wibox.widget.textbox},
                     margins = dpi(1),
                     widget = wibox.container.margin
                 },
@@ -41,18 +38,10 @@ local function list_update(w, buttons, label, data, objects)
                 bottom = dpi(4),
                 widget = wibox.container.margin
             }
-            cbm:buttons(
-                gears.table.join(
-                    awful.button(
-                        {},
-                        1,
-                        nil,
-                        function()
-                            o:kill()
-                        end
-                    )
-                )
-            )
+            cbm:buttons(gears.table.join(
+                            awful.button({}, 1, nil, function()
+                    o:kill()
+                end)))
             bg_clickable = clickable_container()
             bgb = wibox.container.background()
             tbm = wibox.widget {
@@ -84,13 +73,12 @@ local function list_update(w, buttons, label, data, objects)
             -- And all of this gets a background
             bgb:set_widget(bg_clickable)
 
-
             -- Tooltip to display whole title, if it was truncated
             tt = awful.tooltip({
                 objects = {tb},
                 mode = 'outside',
                 align = 'bottom',
-                delay_show = 1,
+                delay_show = 1
             })
 
             data[o] = {
@@ -99,7 +87,7 @@ local function list_update(w, buttons, label, data, objects)
                 bgb = bgb,
                 tbm = tbm,
                 ibm = ibm,
-                tt  = tt
+                tt = tt
             }
         end
 
@@ -113,7 +101,10 @@ local function list_update(w, buttons, label, data, objects)
             -- Truncate when title is too long
             local text_only = text:match('>(.-)<')
             if (utf8.len(text_only) > 24) then
-                text = text:gsub('>(.-)<', '>' .. string.sub(text_only, 1, utf8.offset(text_only,22) - 1) .. '...<')
+                text = text:gsub('>(.-)<', '>' ..
+                                     string.sub(text_only, 1,
+                                                utf8.offset(text_only, 22) - 1) ..
+                                     '...<')
                 tt:set_text(text_only)
                 tt:add_to_object(tb)
             else
@@ -144,62 +135,33 @@ local function list_update(w, buttons, label, data, objects)
 end
 
 local tasklist_buttons = awful.util.table.join(
-    awful.button(
-        {},
-        1,
-        function(c)
-            if c == client.focus then
-                c.minimized = true
-            else
-                -- Without this, the following
-                -- :isvisible() makes no sense
-                c.minimized = false
-                if not c:isvisible() and c.first_tag then
-                    c.first_tag:view_only()
-                end
-                -- This will also un-minimize
-                -- the client, if needed
-                c:emit_signal('request::activate')
-                c:raise()
+                             awful.button({}, 1, function(c)
+        if c == client.focus then
+            c.minimized = true
+        else
+            -- Without this, the following
+            -- :isvisible() makes no sense
+            c.minimized = false
+            if not c:isvisible() and c.first_tag then
+                c.first_tag:view_only()
             end
+            -- This will also un-minimize
+            -- the client, if needed
+            c:emit_signal('request::activate')
+            c:raise()
         end
-    ),
-    awful.button(
-        {},
-        2,
-        function(c)
-            c:kill()
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function()
-            awful.client.focus.byidx(1)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function()
-            awful.client.focus.byidx(-1)
-        end
-    )
-)
+    end), awful.button({}, 2, function(c) c:kill() end), awful.button({}, 4,
+                                                                      function()
+        awful.client.focus.byidx(1)
+    end), awful.button({}, 5, function() awful.client.focus.byidx(-1) end))
 
 local task_list = function(s)
-    return awful.widget.tasklist(
-        s,
-        awful.widget.tasklist.filter.currenttags,
-        tasklist_buttons,
-        {
-            spacing = 10,
-            spacing_widget = wibox.widget.separator,
-            layout  = wibox.layout.flex.horizontal
-        },
-        list_update,
-        wibox.layout.fixed.horizontal()
-    )
+    return awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags,
+                                 tasklist_buttons, {
+        spacing = 10,
+        spacing_widget = wibox.widget.separator,
+        layout = wibox.layout.flex.horizontal
+    }, list_update, wibox.layout.fixed.horizontal())
 end
 
 return task_list

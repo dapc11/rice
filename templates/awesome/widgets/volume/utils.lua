@@ -1,12 +1,10 @@
-
-
 local utils = {}
 
 local function split(string_to_split, separator)
     if separator == nil then separator = "%s" end
     local t = {}
 
-    for str in string.gmatch(string_to_split, "([^".. separator .."]+)") do
+    for str in string.gmatch(string_to_split, "([^" .. separator .. "]+)") do
         table.insert(t, str)
     end
 
@@ -67,7 +65,8 @@ function utils.extract_sinks_and_sources(pacmd_output)
             in_device = false
             in_properties = false
             in_ports = false
-            device['active_port'] = line:match(': (.+)'):gsub('<',''):gsub('>','')
+            device['active_port'] = line:match(': (.+)'):gsub('<', ''):gsub('>',
+                                                                            '')
         end
 
         if in_device then
@@ -79,12 +78,14 @@ function utils.extract_sinks_and_sources(pacmd_output)
 
         if in_properties then
             local t = split(line, '=')
-            local key = t[1]:gsub('\t+', ''):gsub('%.', '_'):gsub('-', '_'):gsub(':', ''):gsub("%s+$", "")
+            local key = t[1]:gsub('\t+', ''):gsub('%.', '_'):gsub('-', '_')
+                            :gsub(':', ''):gsub("%s+$", "")
             local value
             if t[2] == nil then
                 value = t[2]
             else
-                value = t[2]:gsub('"', ''):gsub("^%s+", ""):gsub(' Analog Stereo', '')
+                value = t[2]:gsub('"', ''):gsub("^%s+", ""):gsub(
+                            ' Analog Stereo', '')
             end
             properties[key] = value
         end
@@ -92,9 +93,7 @@ function utils.extract_sinks_and_sources(pacmd_output)
         if in_ports then
             local t = split(line, ': ')
             local key = t[1]
-            if key ~= nil then
-                key = key:gsub('\t+', '')
-            end
+            if key ~= nil then key = key:gsub('\t+', '') end
             ports[key] = t[2]
         end
     end

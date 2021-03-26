@@ -23,21 +23,21 @@ function widget.get_widget(widgets_args)
                 id = "icon",
                 image = ICON_DIR .. 'audio-volume-high-symbolic.svg',
                 resize = false,
-                widget = wibox.widget.imagebox,
+                widget = wibox.widget.imagebox
             },
             valign = 'center',
             visible = with_icon,
-            layout = wibox.container.place,
+            layout = wibox.container.place
         },
         {
             id = 'bar',
             max_value = 100,
             forced_width = width,
             color = main_color,
-            margins = { top = margins, bottom = margins },
+            margins = {top = margins, bottom = margins},
             background_color = bg_color,
             shape = gears.shape[shape],
-            widget = wibox.widget.progressbar,
+            widget = wibox.widget.progressbar
         },
         spacing = 4,
         layout = wibox.layout.fixed.horizontal,
@@ -48,20 +48,22 @@ function widget.get_widget(widgets_args)
             else
                 local new_value_num = tonumber(new_value)
                 if (new_value_num >= 0 and new_value_num < 33) then
-                    volume_icon_name="audio-volume-low-symbolic"
+                    volume_icon_name = "audio-volume-low-symbolic"
                 elseif (new_value_num < 66) then
-                    volume_icon_name="audio-volume-medium-symbolic"
+                    volume_icon_name = "audio-volume-medium-symbolic"
                 else
-                    volume_icon_name="audio-volume-high-symbolic"
+                    volume_icon_name = "audio-volume-high-symbolic"
                 end
             end
-            self:get_children_by_id('icon')[1]:set_image(ICON_DIR .. volume_icon_name .. '.svg')
+            self:get_children_by_id('icon')[1]:set_image(
+                ICON_DIR .. volume_icon_name .. '.svg')
             self:get_children_by_id('bar')[1]:set_value(tonumber(new_value))
         end,
         mute = function(self)
             self.is_muted = true
             self:get_children_by_id('bar')[1]:set_color(mute_color)
-            self:get_children_by_id('icon')[1]:set_image(ICON_DIR .. 'audio-volume-muted-symbolic.svg')
+            self:get_children_by_id('icon')[1]:set_image(
+                ICON_DIR .. 'audio-volume-muted-symbolic.svg')
         end,
         unmute = function(self)
             self.is_muted = false

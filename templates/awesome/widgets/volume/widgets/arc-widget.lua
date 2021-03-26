@@ -19,7 +19,7 @@ function widget.get_widget(widgets_args)
             id = "icon",
             image = ICON_DIR .. 'audio-volume-high-symbolic.svg',
             resize = true,
-            widget = wibox.widget.imagebox,
+            widget = wibox.widget.imagebox
         },
         max_value = 100,
         thickness = thickness,
@@ -32,15 +32,10 @@ function widget.get_widget(widgets_args)
         set_volume_level = function(self, new_value)
             self.value = new_value
         end,
-        mute = function(self)
-            self.colors = { mute_color }
-        end,
-        unmute = function(self)
-            self.colors = { main_color }
-        end
+        mute = function(self) self.colors = {mute_color} end,
+        unmute = function(self) self.colors = {main_color} end
     }
 
 end
-
 
 return widget

@@ -23,11 +23,11 @@ function widget.get_widget(widgets_args)
                 id = "icon",
                 image = ICON_DIR .. 'audio-volume-high-symbolic.svg',
                 resize = false,
-                widget = wibox.widget.imagebox,
+                widget = wibox.widget.imagebox
             },
             valign = 'center',
             visible = with_icon,
-            layout = wibox.container.place,
+            layout = wibox.container.place
         },
         {
             {
@@ -35,15 +35,15 @@ function widget.get_widget(widgets_args)
                 max_value = 100,
                 forced_width = width,
                 forced_height = 5,
-                margins = { top = margins, bottom = margins },
+                margins = {top = margins, bottom = margins},
                 color = main_color,
                 background_color = bg_color,
                 shape = gears.shape[shape],
-                widget = wibox.widget.progressbar,
+                widget = wibox.widget.progressbar
             },
             forced_width = width,
             direction = 'east',
-            layout = wibox.container.rotate,
+            layout = wibox.container.rotate
         },
         spacing = 4,
         layout = wibox.layout.fixed.horizontal,
