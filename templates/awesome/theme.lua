@@ -8,8 +8,8 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "{{font}} 11"
-theme.bg_focus = "{{base03}}"
+theme.font = "{{font}} 12"
+theme.bg_focus = "{{base01}}"
 theme.bg_urgent = "{{base08}}"
 theme.bg_minimize = "{{base01}}"
 theme.bg_normal = "{{base02}}"
@@ -24,8 +24,8 @@ theme.taglist_fg_urgent = "{{base03}}"
 theme.taglist_bg_occupied = "{{base04}}"
 theme.useless_gap = dpi(5)
 theme.border_width = dpi(1)
-theme.border_normal = "{{base02}}"
-theme.border_focus = "{{base04}}"
+theme.border_normal = "{{base01}}"
+theme.border_focus = "{{base03}}"
 theme.border_marked = "{{base08}}"
 theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)

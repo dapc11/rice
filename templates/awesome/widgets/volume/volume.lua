@@ -37,6 +37,8 @@ local popup = awful.popup {
     shape = gears.shape.rounded_rect,
     border_width = 1,
     border_color = beautiful.bg_focus,
+    preferred_positions = 'right',
+    preferred_anchors   = {'front', 'back'},
     maximum_width = 400,
     offset = {y = 5},
     widget = {}
@@ -88,6 +90,7 @@ local function build_rows(devices, on_checkbox_click, device_type)
                             widget = wibox.widget.textbox
                         },
                         left = 10,
+                        right = 10,
                         layout = wibox.container.margin
                     },
                     spacing = 8,
@@ -134,7 +137,7 @@ end
 local function build_header_row(text)
     return wibox.widget {
         {
-            markup = "<b>" .. text .. "</b>",
+            markup = text,
             align = 'center',
             widget = wibox.widget.textbox
         },
@@ -206,18 +209,18 @@ local function worker(user_args)
     end
 
     volume.widget:buttons(awful.util.table.join(
-                              awful.button({}, 3, function()
-            if popup.visible then
-                popup.visible = not popup.visible
-            else
-                rebuild_popup()
-                popup:move_next_to(mouse.current_widget_geometry)
-            end
-        end), awful.button({}, 4, function() volume:inc() end),
-                              awful.button({}, 5, function() volume:dec() end),
-                              awful.button({}, 1, function()
-            volume:toggle()
-        end)))
+        --awful.button({}, 3, function()
+        --    if popup.visible then
+        --        popup.visible = not popup.visible
+        --    else
+        --        rebuild_popup()
+        --        popup:move_next_to(mouse.current_widget_geometry)
+        --    end
+        --end),
+        awful.button({}, 4, function() volume:inc() end),
+        awful.button({}, 5, function() volume:dec() end),
+        awful.button({}, 1, function() volume:toggle() end)
+    ))
 
     watch(GET_VOLUME_CMD, refresh_rate, update_graphic, volume.widget)
 

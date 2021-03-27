@@ -3,7 +3,7 @@ local beautiful = require('beautiful')
 
 local widget = {}
 
-local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/volume/icons/'
+local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/widgets/volume/icons/'
 
 function widget.get_widget(widgets_args)
     local args = widgets_args or {}
@@ -20,7 +20,7 @@ function widget.get_widget(widgets_args)
         {id = 'txt', font = font, widget = wibox.widget.textbox},
         layout = wibox.layout.fixed.horizontal,
         set_volume_level = function(self, new_value)
-            self:get_children_by_id('txt')[1]:set_text(new_value)
+            self:get_children_by_id('txt')[1]:set_text(new_value .. "%")
             local volume_icon_name
             if self.is_muted then
                 volume_icon_name = 'audio-volume-muted-symbolic'
@@ -45,7 +45,6 @@ function widget.get_widget(widgets_args)
         end,
         unmute = function(self) self.is_muted = false end
     }
-
 end
 
 return widget

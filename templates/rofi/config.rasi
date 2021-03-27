@@ -7,20 +7,20 @@ configuration {
 
 * {
     font:                "{{font}} 12";
-    background-color:    {{base00}};
+    background-color:    {{base01}};
     text-color:          {{base06}};
 
     selected-aactive-fg: {{base06}};
-    selected-aactive-bg: {{base01}};
+    selected-aactive-bg: {{base03}};
     selected-normal-fg:  {{base06}};
-    selected-normal-bg:  {{base01}};
-    border-color:        {{base02}};
+    selected-normal-bg:  {{base03}};
+    border-color:        {{base03}};
     spacing:             2;
 }
 
 #window {
     children:            [ mainbox ];
-    border: 2px;
+    border: 0px;
 }
 
 #mainbox {

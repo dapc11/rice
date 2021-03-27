@@ -57,7 +57,7 @@ end
 -- Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-beautiful.taglist_bg_occupied = "{{base01}}"
+beautiful.taglist_bg_occupied = "{{base02}}"
 beautiful.taglist_shape_focus = gears.shape.rounded_bar
 beautiful.taglist_shape = gears.shape.rounded_bar
 
@@ -81,7 +81,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 --  Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("  %y-%m-%d  %H:%M:%S ", 1)
+mytextclock = wibox.widget.textclock(" %y-%m-%d  %H:%M:%S", 1)
 local month_calendar = awful.widget.calendar_popup.month(
                            {
         week_numbers = true,
@@ -137,7 +137,7 @@ end
 local function create_tag_list(s)
     return awful.widget.taglist {
         screen = s,
-        filter = awful.widget.taglist.filter.all,
+        filter = function (t) return t.selected or #t:clients() > 0 end,
         buttons = awful.button({}, 1, function(t) t:view_only() end)
     }
 end
@@ -145,14 +145,14 @@ end
 local function setup_wibox(s)
     local separator = wibox.widget {
         shape = gears.shape.circle,
-        forced_width = 5,
+        forced_width = 10,
         opacity = 0,
         widget = wibox.widget.separator
     }
 
     function boxWidget(widget)
         return {
-            {widget, left = 10, right = 10, widget = wibox.container.margin},
+            {widget, widget = wibox.container.margin},
             shape = gears.shape.rounded_rect,
             bg = beautiful.bg_normal,
             shape_clip = true,
@@ -168,8 +168,6 @@ local function setup_wibox(s)
             separator,
             boxWidget({
                 s.mylayoutbox,
-                top = 4,
-                bottom = 4,
                 left = 2,
                 right = 2,
                 widget = wibox.container.margin
@@ -191,24 +189,21 @@ local function setup_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             separator,
-            boxWidget(battery_widget({
-                thickness = 3,
-                size = 20,
-                low_level_color = "{{base08}}",
-                medium_level_color = "{{base0A}}",
-                charging_color = "{{base0B}}"
-            })),
-            separator,
-            boxWidget(volume_widget {
-                widget_type = 'horizontal_bar',
-                with_icon = true,
-                mute_color = '{{base08}}'
-            }),
-            separator,
             boxWidget(wireless_widget({
                 popup_position = "top_right",
                 main_color = "{{base07}}"
             })),
+            separator,
+            boxWidget(battery_widget({
+                low_level_color = "{{base08}}",
+                medium_level_color = "{{base0A}}",
+                charging_color = "{{base06}}"
+            })),
+            separator,
+            boxWidget(volume_widget {
+                widget_type = 'icon_and_text',
+                mute_color = '{{base08}}'
+            }),
             separator,
             boxWidget(mytextclock),
             separator
@@ -221,7 +216,8 @@ local function setup_wibox(s)
         {layout = wibox.layout.align.horizontal, left, middle, right},
         left = 8,
         right = 8,
-        top = 2,
+        top = -2,
+        bottom = 1,
         widget = wibox.container.margin
     }
 end
@@ -234,7 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
     create_tags(s)
     create_layout_box(s)
     s.mytaglist = create_tag_list(s)
-    s.mywibox = awful.wibar({position = "top", screen = s, bg = "#00000000"})
+    s.mywibox = awful.wibar({position = "top", screen = s})
 
     setup_wibox(s)
 end)
@@ -545,9 +541,15 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus",
-                      function(c) c.border_color = beautiful.border_focus end)
+                      function(c)
+                          c.border_color = beautiful.border_focus
+                          c.opacity = 1.0
+                      end)
 client.connect_signal("unfocus",
-                      function(c) c.border_color = beautiful.border_normal end)
+                      function(c)
+                          c.border_color = beautiful.border_normal
+                          c.opacity = 0.9
+                      end)
 client.connect_signal("manage", function(c)
     c.shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 end)
