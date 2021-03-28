@@ -213,7 +213,7 @@ local function setup_wibox(s)
     }
 
     s.mywibox:setup{
-        {layout = wibox.layout.align.horizontal, left, middle, right},
+        {layout = wibox.layout.align.horizontal,expand = "none", left, middle, right},
         left = 8,
         right = 8,
         top = -2,
@@ -552,4 +552,19 @@ client.connect_signal("unfocus",
                       end)
 client.connect_signal("manage", function(c)
     c.shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
+end)
+
+
+-- Focus urgent tags automatically
+tag.connect_signal("property::urgent", function(t)
+                       awful.screen.focus(t.screen)
+                       if not(t.selected) then
+                           t:view_only()
+                       end
+end)
+
+-- Focus urgent clients automatically
+client.connect_signal("property::urgent", function(c)
+                          c.minimized = false
+                          c:jump_to()
 end)

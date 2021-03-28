@@ -156,12 +156,45 @@ local tasklist_buttons = awful.util.table.join(
     end), awful.button({}, 5, function() awful.client.focus.byidx(-1) end))
 
 local task_list = function(s)
-    return awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags,
-                                 tasklist_buttons, {
+    return awful.widget.tasklist {
+    screen   = s,
+    filter   = awful.widget.tasklist.filter.focused,
+    buttons  = tasklist_buttons,
+    layout   = {
         spacing = 10,
-        spacing_widget = wibox.widget.separator,
-        layout = wibox.layout.flex.horizontal
-    }, list_update, wibox.layout.fixed.horizontal())
-end
+        layout  = wibox.layout.flex.horizontal
+    },
+    style = {
+        align = "center",
+    },
+    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+    -- not a widget instance.
+    widget_template = {
+        {
+            {
+                {
+                    {
+                        id     = 'icon_role',
+                        widget = wibox.widget.imagebox,
+                    },
+                    left = 10,
+                    right = 10,
+                    margin = 10,
+                    widget  = wibox.container.margin,
+                },
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left  = 10,
+            right = 10,
+            widget = wibox.container.margin
+        },
+        id     = 'background_role',
+        widget = wibox.container.background,
+    },
+}end
 
 return task_list
