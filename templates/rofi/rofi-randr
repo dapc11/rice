@@ -3,9 +3,9 @@
 #xrandr --newmode "2560x1440_33.00"  162.77  2560 2688 2960 3360  1440 1441 1444 1468  -HSync +Vsync &> /dev/null
 #xrandr --addmode eDP-1 2560x1440_33.00 &> /dev/null
 
-internal=$(xrandr|grep primary|cut -d' ' -f1)
-ext=$(xrandr |grep ' 'connected| grep -v primary | head -n 1| cut -d' ' -f1)
-ext2=$(xrandr |grep ' 'connected| grep -v "primary\|${ext}" | head -n 1| cut -d' ' -f1)
+internal=$(xrandr --current| head -n -1 |grep primary|cut -d' ' -f1)
+ext=$(xrandr --current| head -n -1 |grep ' 'connected| grep -v primary | head -n 1| cut -d' ' -f1)
+ext2=$(xrandr --current| head -n -1 |grep ' 'connected| grep -v "primary\|${ext}" | head -n 1| cut -d' ' -f1)
 
 undocked() {
     echo -e '1. undocked'
@@ -18,9 +18,9 @@ hdmi_external() {
 }
 
 print_menu() {
-undocked
-docked
-hdmi_external
+    undocked
+    docked
+    hdmi_external
 }
 
 element_height=1
@@ -28,7 +28,7 @@ element_count=3
 
 res=$(print_menu | rofi \
     -dmenu -lines "$element_count" \
-    -eh "$element_height" -p 'Select screen setup:' -no-custom \
+    -eh "$element_height" -p 'Select screen setup' -no-custom \
     -width 20 -format i -theme ~/.config/rofi/config)
 
 if [ -z "$res" ] ; then
@@ -50,4 +50,4 @@ case "$res" in
 esac
 
 i3-msg restart &> /dev/null
-nitrogen --restore
+feh --bg-fill ~/.local/background.jpg

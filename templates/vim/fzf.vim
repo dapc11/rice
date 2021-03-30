@@ -26,10 +26,17 @@ command! -nargs=? -complete=dir AFF
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)
   \ }))
+
+command! -bang -nargs=* RG
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'dir': '~/repos/'}), <bang>0)
 nnoremap <silent> <leader>G :GGrep<cr>
 nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>F :RG<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
 nnoremap <silent> <leader><Leader> :AF<cr>
 nnoremap <silent> <Leader>o :AFF<cr>
+nnoremap <silent> <Leader>b :Buffers<cr>
