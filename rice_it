@@ -29,7 +29,7 @@ class Ricer:
     def _get_context(self, theme):
         with open(f'themes/{theme}.json', 'r') as colors_context:
             theme_path = os.path.abspath(theme)
-            print(f"Using context: '{theme_path}'")
+            print(f"Using context: '{theme_path}.json'")
             with open('themes/settings.json', 'r') as settings_context:
                 context = {**json.load(settings_context), **json.load(colors_context)}
                 context['wifi_if'] = self.get_wireless_if()
