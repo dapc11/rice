@@ -32,10 +32,9 @@ font-5 = jua;2
 font-6 = Iosevka Nerd Font;2
 tray-position = right
 
-modules-center = xwindow
+modules-center = date
 modules-left = bspwm i3 spotify
-modules-right = updates alsa wireless-network wired-network battery date
-
+modules-right = updates alsa wireless-network wired-network battery
 [module/xwindow]
 type = internal/xwindow
 

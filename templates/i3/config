@@ -55,7 +55,7 @@ for_window [class=".potify"] move scratchpad
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border normal
 for_window [workspace=$ws1] layout
 for_window [workspace=$ws2] layout
 for_window [workspace=$ws3] layout
@@ -72,30 +72,13 @@ for_window [workspace=$ws9] layout
 #gaps outer 3
 
 # class                 border     background     text          indicator    child_border
-client.focused          {{base03}} {{base03}}     {{base05}}    {{base04}}   {{base06}}
-client.focused_inactive {{base01}} {{base01}}     {{base05}}    {{base03}}   {{base02}}
-client.unfocused        {{base01}} {{base01}}     {{base05}}    {{base02}}   {{base02}}
-client.urgent           {{base03}} {{base08}}     {{base05}}    {{base08}}   {{base08}}
-client.placeholder      {{base01}} {{base00}}     {{base05}}    {{base01}}   {{base02}}
+client.focused          {{base02}} {{base02}}     {{base06}}    {{base04}}   {{base02}}
+client.focused_inactive {{base03}} {{base02}}     {{base06}}    {{base03}}   {{base02}}
+client.unfocused        {{base02}} {{base01}}     {{base06}}    {{base02}}   {{base00}}
+client.urgent           {{base08}} {{base08}}     {{base06}}    {{base08}}   {{base08}}
+client.placeholder      {{base06}} {{base06}}     {{base00}}    {{base02}}   {{base02}}
 
 client.background       {{base05}}
-
-#bar {
-#  status_command i3status
-#  position top
-#  colors {
-#    background            {{base01}}
-#    statusline            {{base05}}
-#    separator             {{base05}}
-#
-#    #class                border       background    text
-#    focused_workspace     {{base03}}   {{base03}}    {{base05}}
-#    active_workspace      {{base02}}   {{base02}}    {{base05}}
-#    inactive_workspace    {{base01}}   {{base01}}    {{base04}}
-#    urgent_workspace      {{base08}}   {{base08}}    {{base05}}
-#    binding_mode          {{base03}}   {{base03}}    {{base05}}
-#  }
-#}
 
 ############################################################
 #
@@ -185,7 +168,7 @@ bindsym XF86MonBrightnessUp exec dimmer -i
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
 bindsym $mod+n exec find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
-bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base00}}' -sf '{{base05}}' -sb '{{base03}}' -nf '{{base05}}'
+bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
 
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth

@@ -23,7 +23,6 @@ endfunc
 
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 autocmd BufWritePre * :call TrimWhitespace()
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-" Automatically deletes all trailing whitespace and newlines at end of file on sav
+" Automatically deletes all trailing whitespace and newlines at end of file on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e

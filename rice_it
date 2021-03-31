@@ -131,6 +131,7 @@ def main():
     ricer.render_template('alacritty/alacritty.yml')
     ricer.render_template('dunst/dunstrc')
     ricer.render_template('ranger/rc.conf')
+    ricer.render_template('yamllint/config')
     ricer.render_template('compton/compton.conf')
     ricer.set_target_dir(f'/home/{ricer.user}')
     ricer.render_template('.tmux.conf')

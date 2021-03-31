@@ -43,3 +43,6 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
+
+" Yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

@@ -76,3 +76,4 @@ xdotool
 thunar
 pavucontrol
 tabbed
+yamllint
