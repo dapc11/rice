@@ -17,12 +17,12 @@
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
         "VISUAL": "vim",
-        "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
+        "PATH": "${env:HOME}/.local/bin/:${env:PATH}"
     },
     "colorize.languages": [
         "json",
-        "vim",
-    ]
+        "vim"
+    ],
     "workbench.colorCustomizations": {
     //     "statusBar.background":           "{{base01}}",
     //     "statusBar.noFolderBackground":   "{{base03}}",

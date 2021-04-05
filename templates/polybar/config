@@ -14,9 +14,11 @@ border-right-size = 0
 border-bottom-size = 0
 border-top-size = 0
 padding-left = 0
-padding-right = 1
-separator = " "
-module-margin = 0
+padding-right = 2
+separator = "|"
+separator-padding = 1
+separator-foreground = {{base03}}
+module-margin = 1
 
 bottom = false
 
@@ -33,8 +35,8 @@ font-6 = Iosevka Nerd Font;2
 tray-position = right
 
 modules-center = date
-modules-left = bspwm i3 spotify
-modules-right = updates alsa wireless-network wired-network battery
+modules-left = bspwm i3
+modules-right = spotify updates alsa wireless-network wired-network battery powermenu
 [module/xwindow]
 type = internal/xwindow
 
@@ -221,8 +223,8 @@ type = custom/script
 
 interval = 5
 label =  %output%
-click-left = sysact
-click-right = sysact
+click-left = ~/.config/rofi/rofi-power
+click-right = ~/.config/rofi/rofi-power
 exec = echo ""
 format = <label>
 
