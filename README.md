@@ -4,7 +4,7 @@
 
 Make __first_setup__ executable and invoke it as following in order to setuo your environment:
 
-```bash
+```shell
 bash first_setup
 ```
 
@@ -12,16 +12,18 @@ One can at any time after first setup invoke __rice_it__ in order to re-generate
 
 ### Usage
 
-```
-usage: rice_it [-h] [--overwrite] [-t THEME]
+```shell
+usage: rice_it [-h] [--overwrite] [-t THEME] [-l]
 
 Dapc ricer, make your environment consistent from a color perspective.
 
 optional arguments:
   -h, --help            show this help message and exit
-  --overwrite, -o       Make rice_it overwrite existing dotfiles in your home directory, use with caution!
+  --overwrite, -o       Make rice_it overwrite existing dotfiles in your home
+                        directory, use with caution!
   -t THEME, --theme THEME
-                        Specify which theme the context will be loaded from. Defaults to dark.json
+                        Specify which theme the context will be loaded from.
+  -l, --list            List available themes
 ```
 
 ## Base 16
