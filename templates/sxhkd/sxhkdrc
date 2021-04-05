@@ -26,7 +26,7 @@ super + l
 #super + m
 #    nightmode
 super + w
-    google-chrome
+    {{browser}}
 super + p
     rofi-randr
 super + d

@@ -55,7 +55,7 @@ for_window [class=".potify"] move scratchpad
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
-for_window [class="^.*"] border normal
+for_window [class="^.*"] border pixel 1
 for_window [workspace=$ws1] layout
 for_window [workspace=$ws2] layout
 for_window [workspace=$ws3] layout
@@ -72,9 +72,9 @@ for_window [workspace=$ws9] layout
 #gaps outer 3
 
 # class                 border     background     text          indicator    child_border
-client.focused          {{base02}} {{base02}}     {{base06}}    {{base04}}   {{base02}}
-client.focused_inactive {{base03}} {{base02}}     {{base06}}    {{base03}}   {{base02}}
-client.unfocused        {{base02}} {{base01}}     {{base06}}    {{base02}}   {{base00}}
+client.focused          {{base02}} {{base03}}     {{base07}}    {{base04}}   {{base03}}
+client.focused_inactive {{base02}} {{base02}}     {{base06}}    {{base02}}   {{base01}}
+client.unfocused        {{base02}} {{base01}}     {{base04}}    {{base02}}   {{base01}}
 client.urgent           {{base08}} {{base08}}     {{base06}}    {{base08}}   {{base08}}
 client.placeholder      {{base06}} {{base06}}     {{base00}}    {{base02}}   {{base02}}
 
@@ -164,7 +164,6 @@ bindsym XF86AudioRaiseVolume exec amixer set Master 2db+ unmute
 bindsym XF86MonBrightnessDown exec dimmer -d
 bindsym XF86MonBrightnessUp exec dimmer -i
 
-
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
 bindsym $mod+n exec find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
@@ -179,5 +178,5 @@ bindsym $mod+plus scratchpad show
 bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+m exec nightmode
-bindsym $mod+w exec google-chrome
+bindsym $mod+w exec {{browser}}
 bindsym $mod+p exec ~/.config/rofi/rofi-randr

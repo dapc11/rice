@@ -2,7 +2,7 @@
     "font": "DejaVu Sans Mono",
     "shell": "/usr/bin/zsh",
     "terminal": "alacritty",
-    "browser": "google-chrome",
+    "browser": "firefox",
     "editor": "vim",
     "keymap": "se",
     "zsh_theme": "afowler",
