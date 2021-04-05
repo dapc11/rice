@@ -70,7 +70,7 @@ function generate_dotfiles
 {
     echo -e "\n\tGenerating dotfiles"
     echo "----------------------------------------------------"
-    python3 rice_it -t "themes/$1.json" -o
+    python3 rice_it -t $1 -o
 }
 
 function setup_dwm
@@ -99,11 +99,11 @@ function setup_suckless
     setup_st
 }
 
-function setup_submodules
+function setup_polybar
 {
     echo -e "\n\tSetting up polybar"
     echo "----------------------------------------------------"
-    git Gsubmodule update --init --recursive
+    git submodule update --init --recursive
     cd polybar
     bash build.sh -f -c -p -i -a -3 -n -j -g -z
     cd ../../
@@ -112,10 +112,10 @@ function setup_submodules
 install_deps
 setup_fonts
 install_alacritty
-setup_submodules
-generate_dotfiles dapc11
+setup_polybar
+generate_dotfiles monokai-dimmed
 xrdb ~/.Xresources
-nitrogen --force-setter=xinerama --set-auto ~/.local/background.jpg
+feh --bg-fill ~/.local/background.jpg
 echo -e "Please setup your background with nitrogen."
 echo -e "\nDone"
 exit 0

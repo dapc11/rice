@@ -1,6 +1,6 @@
 sudo
 curl
-xrdb
+x11-xserver-utils
 ack
 autoconf
 automake
