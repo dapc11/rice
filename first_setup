@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function install_alacritty
+function setup_alacritty
 {
     # Install required tools
     sudo apt-get install -y rustc cargo cmake libfreetype6-dev libfontconfig1-dev xclip
@@ -15,6 +15,7 @@ function install_alacritty
     gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 
     # Create desktop file
+    mkdir -p ~/.local/share/applications
     cp extra/linux/Alacritty.desktop ~/.local/share/applications/
 
     # Copy binary to path
@@ -32,6 +33,7 @@ function install_deps
 {
     echo -e "\n\tInstalling dependecies"
     echo "----------------------------------------------------"
+    sudo apt-get update
     #cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
     for i in $(cat .installed.txt | cut -d" " -f1 | tr "\n" " "); do
       sudo apt-get install -y $i
@@ -40,12 +42,18 @@ function install_deps
     sudo apt autoremove
 
     pip3 install --user --requirement .requirements.txt
-
-    echo -e "\n\tInstalling Oh-My-Zsh"
-    echo "----------------------------------------------------"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 }
+
+function setup_zsh
+{
+    echo -e "\n\nSetting up ZSH"
+    echo "----------------------------------------------------"
+    sudo apt-get install -y zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    chsh -s $(which zsh)
+}
+
 
 function setup_fonts
 {
@@ -70,7 +78,7 @@ function generate_dotfiles
 {
     echo -e "\n\tGenerating dotfiles"
     echo "----------------------------------------------------"
-    python3 rice_it -t $1 -o
+    python3 rice_it -t $1
 }
 
 function setup_dwm
@@ -103,19 +111,23 @@ function setup_polybar
 {
     echo -e "\n\tSetting up polybar"
     echo "----------------------------------------------------"
-    git submodule update --init --recursive
+    git clone https://github.com/polybar/polybar
     cd polybar
-    bash build.sh -f -c -p -i -a -3 -n -j -g -z
-    cd ../../
+    bash build.sh -f -c -p -i -a -3 -n -j -g -A
+    cd ..
+    rm -rf polybar
 }
 
+mkdir -p ~/.local/bin
+
+export PATH="$HOME/.local/bin:$PATH"
+
 install_deps
+setup_zsh
 setup_fonts
-install_alacritty
+setup_alacritty
 setup_polybar
 generate_dotfiles monokai-dimmed
-xrdb ~/.Xresources
-feh --bg-fill ~/.local/background.jpg
-echo -e "Please setup your background with nitrogen."
+[[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
 echo -e "\nDone"
 exit 0

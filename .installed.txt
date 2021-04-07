@@ -49,7 +49,6 @@ libyajl-dev
 nitrogen
 picom
 pkg-config
-polybar
 python
 python-ueberzug
 python3-sphinx
@@ -58,7 +57,7 @@ ranger
 ripgrep
 rofi
 slock
-the_silver_searcher
+silversearcher-ag
 tmux
 ttf-font-awesome
 unclutter
@@ -78,3 +77,4 @@ pavucontrol
 tabbed
 yamllint
 libiw-dev
+feh

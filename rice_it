@@ -62,7 +62,11 @@ class Ricer:
             self._make_executable(dest)
 
     def copy_file(self, source, target):
+        if not self.overwrite:
+            basename = os.path.basename(source)
+            target = f"{self.target}/{basename}"
         print(f'Copying {source} to {target}')
+        parent = Path(target).parent
         if os.path.isdir(source):
             copy_tree(source, target)
         else:
@@ -70,9 +74,12 @@ class Ricer:
 
     def get_wireless_if(self):
         lines = open("/proc/net/wireless", "r").readlines()
-        interface = lines[2:][0].split(":")[0]
-        print(f'Wireless network interface: {interface}')
-        return interface
+        try:
+            interface = lines[2:][0].split(":")[0]
+            print(f'Wireless network interface: {interface}')
+            return interface
+        except IndexError:
+            return "N/A"
 
 def setup_argparser():
     arg_parser = argparse.ArgumentParser(
@@ -173,7 +180,8 @@ def render_background(ricer):
     background = ricer.context['bg']
     ricer.copy_file(f"templates/images/{background}",
                     f'/home/{ricer.user}/.local/background.jpg')
-    subprocess.run(['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'])
+    if ricer.overwrite:
+        subprocess.run(['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'])
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
