@@ -57,3 +57,10 @@ function pb-kill-line () {
 }
 zle -N pb-kill-line
 bindkey '^K' pb-kill-line
+
+if type kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+if type helm &> /dev/null; then
+  source <(helm completion zsh)
+fi

@@ -17,9 +17,3 @@ export LESSHISTFILE="-"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
-if type kubectl &> /dev/null; then
-  source <(kubectl completion zsh)
-fi
-if type helm &> /dev/null; then
-  source <(helm completion zsh)
-fi

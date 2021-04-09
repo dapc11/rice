@@ -70,5 +70,25 @@
         "key": "ctrl+shift+v",
         "command": "-markdown.extension.togglePreview",
         "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+[Minus]",
+        "command": "editor.action.fontZoomIn"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "editor.action.fontZoomOut"
+    },
+    {
+        "key": "ctrl+[Minus]",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "editor.action.fontZoomReset"
     }
 ]
