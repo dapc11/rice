@@ -1,5 +1,5 @@
 {
-    "font": "DejaVu Sans Mono",
+    "font": "MesloLGS NF",
     "shell": "/usr/bin/zsh",
     "terminal": "alacritty",
     "browser": "firefox",
