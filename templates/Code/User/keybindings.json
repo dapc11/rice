@@ -90,5 +90,21 @@
     {
         "key": "ctrl+0",
         "command": "editor.action.fontZoomReset"
+    },
+    {
+        "key": "ctrl+shift+[Minus]",
+        "command": "workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+numpad_add",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+numpad_subtract",
+        "command": "-workbench.action.zoomOut"
     }
 ]
