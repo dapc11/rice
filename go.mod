@@ -1,3 +1,3 @@
-module dapc11
+module rice
 
 go 1.16
