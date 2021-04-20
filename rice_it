@@ -2,7 +2,6 @@
 
 import argparse
 import getpass
-import json
 import os
 import sys
 import glob
@@ -12,6 +11,8 @@ from distutils.dir_util import copy_tree
 import subprocess
 
 import jinja2
+from lib import utils
+
 
 class Ricer:
     EXECUTABLE = True
@@ -23,17 +24,9 @@ class Ricer:
             self.target = f'/home/{self.user}/.config'
         else:
             self.target = f'{os.getcwd()}/target'
-        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./templates/"))
-        self.context = self._get_context(args.theme)
-
-    def _get_context(self, theme):
-        with open(f'themes/{theme}.json', 'r') as colors_context:
-            theme_path = os.path.abspath(theme)
-            print(f"Using context: '{theme_path}.json'")
-            with open('themes/settings.json', 'r') as settings_context:
-                context = {**json.load(settings_context), **json.load(colors_context)}
-                context['wifi_if'] = self.get_wireless_if()
-                return context
+        self.env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(searchpath="./templates/"))
+        self.context = utils.get_context(args.theme)
 
     def _get_destination(self, template):
         dest = f'{self.target}/{template}'
@@ -46,11 +39,6 @@ class Ricer:
         if self.overwrite:
             self.target = target
 
-    def _make_executable(self, dest):
-        mode = os.stat(dest).st_mode
-        mode |= (mode & 0o444) >> 2  # copy R bits to X
-        os.chmod(dest, mode)
-
     def render_template(self, template, executable=False):
         dest = self._get_destination(template)
         environment_template = self.env.get_template(template)
@@ -59,27 +47,18 @@ class Ricer:
         with open(dest, 'w') as destination_file:
             destination_file.write(environment_template.render(self.context))
         if executable:
-            self._make_executable(dest)
+            utils.make_executable(dest)
 
     def copy_file(self, source, target):
         if not self.overwrite:
             basename = os.path.basename(source)
             target = f"{self.target}/{basename}"
         print(f'Copying {source} to {target}')
-        parent = Path(target).parent
         if os.path.isdir(source):
             copy_tree(source, target)
         else:
             copyfile(source, target)
 
-    def get_wireless_if(self):
-        lines = open("/proc/net/wireless", "r").readlines()
-        try:
-            interface = lines[2:][0].split(":")[0]
-            print(f'Wireless network interface: {interface}')
-            return interface
-        except IndexError:
-            return "N/A"
 
 def setup_argparser():
     arg_parser = argparse.ArgumentParser(
@@ -106,6 +85,7 @@ def setup_argparser():
     )
     return arg_parser
 
+
 def get_themes():
     theme_names = []
     for theme_path in glob.glob('themes/*.json'):
@@ -113,6 +93,7 @@ def get_themes():
             continue
         theme_names.append(os.path.splitext(os.path.basename(theme_path))[0])
     return theme_names
+
 
 def main():
     parser = setup_argparser()
@@ -149,11 +130,8 @@ def main():
     render_utils(ricer)
     sys.exit(0)
 
+
 def render_vim(ricer):
-    #try:
-    #    os.mkdir(f'/home/{ricer.user}/.vim')
-    #except FileExistsError:
-    #    pass
     ricer.render_template('nvim/init.vim')
     ricer.render_template('nvim/mappings.vim')
     ricer.render_template('nvim/plugins.vim')
@@ -162,12 +140,13 @@ def render_vim(ricer):
     ricer.render_template('nvim/options.vim')
     ricer.render_template('nvim/dapc11.vim')
 
+
 def render_awesome(ricer):
     ricer.render_template('awesome/rc.lua')
     ricer.render_template('awesome/theme.lua')
     ricer.copy_file(f"templates/awesome/sysact",
                     f'/home/{ricer.user}/.local/bin/sysact')
-    ricer._make_executable(f'/home/{ricer.user}/.local/bin/sysact')
+    ricer.make_executable(f'/home/{ricer.user}/.local/bin/sysact')
     background = ricer.context['bg']
     ricer.copy_file(f"templates/images/{background}",
                     f'/home/{ricer.user}/.config/awesome/background.jpg')
@@ -176,16 +155,22 @@ def render_awesome(ricer):
     ricer.copy_file('templates/awesome/icons',
                     f'/home/{ricer.user}/.config/awesome/icons')
 
+
 def render_background(ricer):
     background = ricer.context['bg']
     ricer.copy_file(f"templates/images/{background}",
                     f'/home/{ricer.user}/.local/background.jpg')
     if ricer.overwrite:
-        subprocess.run(['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'])
+        subprocess.run(['feh',
+                        '--bg-fill',
+                        f'/home/{ricer.user}/.local/background.jpg'],
+                       check=True)
+
 
 def render_vs_code(ricer):
     ricer.render_template('Code/User/settings.json')
     ricer.render_template('Code/User/keybindings.json')
+
 
 def render_rofi(ricer):
     ricer.render_template('rofi/config.rasi')
@@ -193,11 +178,13 @@ def render_rofi(ricer):
     ricer.render_template('rofi/rofi-power', Ricer.EXECUTABLE)
     ricer.render_template('rofi/rofi-randr', Ricer.EXECUTABLE)
 
+
 def render_polybar(ricer):
     ricer.render_template('polybar/config')
     ricer.render_template('polybar/startup.sh', Ricer.EXECUTABLE)
     ricer.render_template('polybar/updates.sh', Ricer.EXECUTABLE)
     ricer.render_template('polybar/now_playing.py', Ricer.EXECUTABLE)
+
 
 def render_utils(ricer):
     ricer.set_target_dir(f'/home/{ricer.user}/.local')

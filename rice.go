@@ -147,6 +147,5 @@ func main() {
 	//TODO link files
 	//TODO set background
 
-
 	renderTemplates(theme, overwrite)
 }

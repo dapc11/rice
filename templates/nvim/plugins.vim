@@ -36,6 +36,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <silent> <leader>q :call CocAction('doHover')<CR>
+autocmd FileType go nnoremap <silent> <leader>Q :GoDocBrowser<CR>
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -63,3 +64,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> g- :CocDiagnostics<CR>
+nmap <silent> g, <Plug>(coc-diagnostic-prev)
+nmap <silent> g. <Plug>(coc-diagnostic-next)
+
+" Formatting selected code.
+xmap <silent>gf  <Plug>(coc-format-selected)
+nmap <silent>gf  <Plug>(coc-format-selected)
