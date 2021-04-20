@@ -11,7 +11,8 @@ map <C-M-up> <C-w>k
 map <C-M-right> <C-w>l
 map <leader>q <C-w>q
 
-inoremap <C-Space> <C-x><C-n>
+" Remap omni complete
+"inoremap <C-Space> <C-x><C-n>
 
 nnoremap <silent> <A-left> :bp<CR>
 nnoremap <silent> <A-right> :bn<CR>
