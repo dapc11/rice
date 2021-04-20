@@ -50,3 +50,10 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
     base0D - Functions, Methods, Attribute IDs, Headings
     base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed
     base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+
+
+## Roadmap
+
+- Convert python script fully to Golang
+- Make symbolic links to dapc11 .config dir
+- Unit testing
