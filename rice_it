@@ -184,6 +184,7 @@ def render_polybar(ricer):
     ricer.render_template('polybar/startup.sh', Ricer.EXECUTABLE)
     ricer.render_template('polybar/updates.sh', Ricer.EXECUTABLE)
     ricer.render_template('polybar/now_playing.py', Ricer.EXECUTABLE)
+    ricer.render_template('polybar/weather.sh', Ricer.EXECUTABLE)
 
 
 def render_utils(ricer):

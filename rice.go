@@ -50,6 +50,7 @@ func init() {
 	templates["templates/polybar/startup.sh"] = executable
 	templates["templates/polybar/updates.sh"] = executable
 	templates["templates/polybar/now_playing.py"] = executable
+	templates["templates/polybar/weather.sh"] = executable
 	templates["templates/bin/dimmer"] = executable
 	templates["templates/bin/nightmode"] = executable
 	templates["templates/bin/gita"] = executable

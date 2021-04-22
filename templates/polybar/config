@@ -36,7 +36,7 @@ tray-position = right
 
 modules-center = date
 modules-left = bspwm i3
-modules-right = spotify updates alsa wireless-network wired-network battery powermenu
+modules-right = spotify weather updates alsa wireless-network wired-network battery powermenu
 [module/xwindow]
 type = internal/xwindow
 
@@ -244,4 +244,12 @@ label = %output%
 exec = ~/.config/polybar/updates.sh
 format = <label>
 
-; vim:ft=dosini
+[module/weather]
+type = custom/script
+
+exec = ~/.config/polybar/weather.sh
+interval = 600
+label-font = 3
+
+
+;vim:ft=dosini
