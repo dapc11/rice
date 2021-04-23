@@ -27,7 +27,8 @@ command! -nargs=? -complete=dir AFF
   \   'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)
   \ }))
 nnoremap <silent> <leader>G :GGrep<cr>
-nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>f :BLines<cr>
+nnoremap <silent> <leader>F :Rg<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
