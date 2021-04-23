@@ -34,7 +34,7 @@ if maparg('<C-l>', 'n') ==# ''
 endif
 
 " Python
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
     \ set tabstop=4
     \ set softtabstop=4

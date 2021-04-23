@@ -21,7 +21,7 @@ call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
-let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', '':'', '<':'>'}
+let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', '<':'>'}
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
@@ -32,7 +32,7 @@ let g:ale_lint_on_text_changed = 'never'
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
+"" Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <silent> <leader>q :call CocAction('doHover')<CR>

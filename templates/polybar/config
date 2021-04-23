@@ -249,7 +249,7 @@ type = custom/script
 
 exec = ~/.config/polybar/weather.sh
 interval = 600
-label-font = 3
+label-font = 4
 
 
 ;vim:ft=dosini
