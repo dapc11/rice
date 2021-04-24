@@ -58,3 +58,7 @@ cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " Search and replace with prompt
 nnoremap <leader>r yiw:%s/\<<C-r>"\>//gc<left><left><left>
+
+
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
