@@ -35,14 +35,14 @@ cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
 
 " Fugitive
-nnoremap <Leader>Ga :Git add<Space>
-nnoremap <Leader>Gd :Git diff<Space>
-nnoremap <Leader>Gc :Git commit<Space>
-nnoremap <silent> <Leader>Gs :Gstatus<cr>
-nnoremap <silent> <Leader>Gl :Glog<cr>
-nnoremap <silent> <Leader>Gb :Gblame<cr>
-nnoremap <silent> <Leader>Gh :Git show HEAD<cr>
-nnoremap <Leader>Gp :Git push
+nnoremap <Leader>la :Git add<Space>
+nnoremap <Leader>ld :Git diff<Space>
+nnoremap <Leader>lc :Git commit<Space>
+nnoremap <silent> <Leader>ls :Gstatus<cr>
+nnoremap <silent> <Leader>ll :Glog<cr>
+nnoremap <silent> <Leader>lb :Gblame<cr>
+nnoremap <silent> <Leader>lh :Git show HEAD<cr>
+nnoremap <Leader>lp :Git push
 
 " Select and search
 vnoremap <C-f> y/\V<C-R>=escape(@",'/\')<CR><CR>

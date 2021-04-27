@@ -3,6 +3,18 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
+let g:coc_global_extensions = [
+\ 'coc-git',
+\ 'coc-json',
+\ 'coc-snippets',
+\ 'coc-pairs',
+\ 'coc-go',
+\ 'coc-sh',
+\ 'coc-yaml',
+\ 'coc-highlight',
+\ 'coc-python'
+\ ]
+
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -12,7 +24,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
-Plug 'jiangmiao/auto-pairs'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }

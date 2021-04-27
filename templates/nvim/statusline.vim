@@ -18,6 +18,7 @@ let g:currentmode={
        \ 'Rv' : 'rv',
        \ 'c'  : 'c',
        \ 't'  : 'f',
+       \ 's'  : 'test',
        \}
 
 hi NormalColor guibg={{base02}} guifg={{base06}}
