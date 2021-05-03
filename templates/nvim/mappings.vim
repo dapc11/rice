@@ -26,6 +26,8 @@ noremap <Leader>P "*p<CR>
 noremap <Leader>y "+y<CR>
 noremap <Leader>p "+p<CR>
 
+nnoremap <Leader>q :bd<CR>
+
 " Commandline
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>

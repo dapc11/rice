@@ -46,7 +46,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "" Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-nnoremap <silent> <leader>q :call CocAction('doHover')<CR>
+nnoremap <silent> <c-k> :call CocAction('doHover')<CR>
 autocmd FileType go nnoremap <silent> <leader>Q :GoDocBrowser<CR>
 
 " Use <c-space> to trigger completion.
