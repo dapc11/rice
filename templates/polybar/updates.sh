@@ -2,10 +2,8 @@
 
 updates=$(/usr/lib/update-notifier/apt-check --human-readable | cut -d" " -f1 | head -1)
 
-if [ "$updates" -eq "0" ]; then
+if [ "$updates" != "" ]; then
     echo " $updates"
 else
     echo ""
 fi
-
-exit 0

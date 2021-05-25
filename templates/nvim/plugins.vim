@@ -38,13 +38,9 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
 
-
 """"" CoC
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <silent> <c-k> :call CocAction('doHover')<CR>
 autocmd FileType go nnoremap <silent> <leader>Q :GoDocBrowser<CR>
@@ -77,8 +73,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 nmap <silent> g- :CocDiagnostics<CR>
-nmap <silent> g, <Plug>(coc-diagnostic-prev)
-nmap <silent> g. <Plug>(coc-diagnostic-next)
+nmap <silent> gp <Plug>(coc-diagnostic-prev)
+nmap <silent> gn <Plug>(coc-diagnostic-next)
 
 " Formatting selected code.
 xmap <silent>gf  <Plug>(coc-format-selected)
