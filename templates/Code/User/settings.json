@@ -2,9 +2,8 @@
     "editor.suggestSelection": "first",
     "editor.rulers": [80,120],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.jediEnabled": false,
     "terminal.external.linuxExec": "{{terminal}}",
-    "terminal.integrated.shell.linux": "{{shell}}",
+    "terminal.integrated.defaultProfile.linux": "{{shell}}",
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
@@ -17,8 +16,23 @@
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
         "VISUAL": "vim",
-        "PATH": "${env:HOME}/.local/bin/:${env:PATH}"
+        "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
+        "PYTHONPATH": "${env:HOME}/dev/:${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src"
     },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "python.languageServer": "Microsoft",
+    "go.toolsManagement.autoUpdate": true,
+    "python.pythonPath": "${env:HOME}/dev/bin/python3",
+		"python.autoComplete.extraPaths": [
+			"${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src",
+			"${env:HOME}/repos/adp-gs-ecchronos/python"
+		],
+    "python.envFile": "${env:HOME}/repos/.env",
     "colorize.languages": [
         "json",
         "vim"
