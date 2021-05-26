@@ -2,15 +2,16 @@
 
 import argparse
 import getpass
-import os
-import sys
 import glob
+import os
+import subprocess
+import sys
+from distutils.dir_util import copy_tree
 from pathlib import Path
 from shutil import copyfile
-from distutils.dir_util import copy_tree
-import subprocess
 
 import jinja2
+
 from lib import utils
 
 
@@ -20,6 +21,7 @@ class Ricer:
     def __init__(self, args):
         self.user = getpass.getuser()
         self.overwrite = args.overwrite
+
         if self.overwrite:
             self.target = f'/home/{self.user}/.config'
         else:
@@ -31,8 +33,10 @@ class Ricer:
     def _get_destination(self, template):
         dest = f'{self.target}/{template}'
         parent = Path(dest).parent
+
         if not os.path.exists(parent):
             os.makedirs(parent)
+
         return dest
 
     def set_target_dir(self, target):
@@ -46,6 +50,7 @@ class Ricer:
         print(f'Writing to {dest}')
         with open(dest, 'w') as destination_file:
             destination_file.write(environment_template.render(self.context))
+
         if executable:
             utils.make_executable(dest)
 
@@ -54,6 +59,7 @@ class Ricer:
             basename = os.path.basename(source)
             target = f"{self.target}/{basename}"
         print(f'Copying {source} to {target}')
+
         if os.path.isdir(source):
             copy_tree(source, target)
         else:
@@ -85,15 +91,18 @@ def setup_argparser():
         action='store_true',
         help='List available themes'
     )
+
     return arg_parser
 
 
 def get_themes():
     theme_names = []
+
     for theme_path in glob.glob('themes/*.json'):
         if 'settings' in theme_path:
             continue
         theme_names.append(os.path.splitext(os.path.basename(theme_path))[0])
+
     return theme_names
 
 
@@ -101,8 +110,10 @@ def main():
     parser = setup_argparser()
     themes = get_themes()
     args = parser.parse_args()
+
     if args.list or args.theme is None:
         print('Specify theme with --theme (-t) flag.\nAvailable themes:')
+
         for theme in themes:
             print(f'- {theme}')
         sys.exit(0)
@@ -111,6 +122,7 @@ def main():
 
     render_vim(ricer)
     render_rofi(ricer)
+
     if ricer.context['window_manager'] == 'awesome':
         render_awesome(ricer)
     else:
@@ -162,6 +174,7 @@ def render_background(ricer):
     background = ricer.context['bg']
     ricer.copy_file(f'templates/images/{background}',
                     f'/home/{ricer.user}/.local/background.jpg')
+
     if ricer.overwrite:
         subprocess.run(['feh',
                         '--bg-fill',

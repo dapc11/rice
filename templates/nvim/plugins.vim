@@ -4,18 +4,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-let g:coc_global_extensions = [
-\ 'coc-git',
-\ 'coc-json',
-\ 'coc-snippets',
-\ 'coc-pairs',
-\ 'coc-go',
-\ 'coc-sh',
-\ 'coc-yaml',
-\ 'coc-highlight',
-\ 'coc-python'
-\ ]
-
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -28,7 +16,6 @@ Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
@@ -37,45 +24,37 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
-
-""""" CoC
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nnoremap <silent> <c-k> :call CocAction('doHover')<CR>
-autocmd FileType go nnoremap <silent> <leader>Q :GoDocBrowser<CR>
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
+let g:ale_completion_enabled = 1
+" Make sure to pip install python-language-server yamllint
+let g:ale_linters = {'python': ['pyls', 'flake8']}
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
 endif
+set omnifunc=ale#completion#OmniFunc
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'autoimport', 'isort'],
+\}
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_pyls_auto_pipenv = 1
+let g:ale_python_pyls_config = {}
+let g:ale_python_pyls_executable = 'pyls'
+let g:ale_python_pyls_options = ''
+let g:ale_python_pyls_use_global = 1
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Write this in your vimrc file
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+nmap <silent> gd :ALEGoToDefinition<CR>
+nmap <silent> gt :ALEToggle<CR>
+nmap <silent> gr :ALEFindReferences<CR>
+nmap <silent> gk :ALEHover<CR>
+nmap <silent> gs :ALESymbolSearch
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <silent> g- :CocDiagnostics<CR>
-nmap <silent> gp <Plug>(coc-diagnostic-prev)
-nmap <silent> gn <Plug>(coc-diagnostic-next)
-
-" Formatting selected code.
-xmap <silent>gf  <Plug>(coc-format-selected)
-nmap <silent>gf  <Plug>(coc-format-selected)
+nmap <silent> gl :ALELint<CR>
+nmap <silent> gn :ALENext<CR>
+nmap <silent> gp :ALEPrevious<CR>
