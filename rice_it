@@ -160,7 +160,7 @@ def render_awesome(ricer):
 
 def render_background(ricer):
     background = ricer.context['bg']
-    ricer.copy_file(f"templates/images/{background}",
+    ricer.copy_file(f'templates/images/{background}',
                     f'/home/{ricer.user}/.local/background.jpg')
     if ricer.overwrite:
         subprocess.run(['feh',

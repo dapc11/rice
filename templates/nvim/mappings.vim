@@ -60,7 +60,11 @@ cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " Search and replace with prompt
 nnoremap <leader>r yiw:%s/\<<C-r>"\>//gc<left><left><left>
+nnoremap <leader>s yiw/<C-r>"<CR>
 
-
+" Navigate errors
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
+
+" Paste without overwrite default register
+xnoremap p pgvy

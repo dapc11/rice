@@ -15,6 +15,7 @@ let g:currentmode={
        \ '' : 'vb',
        \ 'i'  : 'i',
        \ 'R'  : 'r',
+       \ 'r'  : 'r',
        \ 'Rv' : 'rv',
        \ 'c'  : 'c',
        \ 't'  : 'f',
