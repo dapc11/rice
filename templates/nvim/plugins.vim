@@ -15,18 +15,20 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
+Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
+let g:ale_python_flake8_options = '--ignore=E704,E121,E126,W503,W504,E226,E24,E123,D103'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_completion_enabled = 1
 " Make sure to pip install python-language-server yamllint
-let g:ale_linters = {'python': ['pyls', 'flake8']}
+let g:ale_linters = {'python': ['pyright','pyls', 'flake8']}
 if executable('pyls')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',

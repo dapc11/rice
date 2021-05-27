@@ -68,3 +68,13 @@ nnoremap <C-p> :cp<CR>
 
 " Paste without overwrite default register
 xnoremap p pgvy
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
