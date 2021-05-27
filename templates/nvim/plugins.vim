@@ -15,6 +15,7 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
+Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
@@ -26,7 +27,7 @@ let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_completion_enabled = 1
 " Make sure to pip install python-language-server yamllint
-let g:ale_linters = {'python': ['pyls', 'flake8']}
+let g:ale_linters = {'python': ['pyright','pyls', 'flake8']}
 if executable('pyls')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
