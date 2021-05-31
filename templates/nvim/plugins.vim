@@ -17,14 +17,15 @@ Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'preservim/nerdtree'
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 let g:ale_python_flake8_options = '--ignore=E704,E121,E126,W503,W504,E226,E24,E123,D103'
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_completion_enabled = 1
 " Make sure to pip install python-language-server yamllint
@@ -63,3 +64,43 @@ nmap <silent> gl :ALELint<CR>
 nmap <silent> gn :ALENext<CR>
 nmap <silent> gp :ALEPrevious<CR>
 map <F3> :ALEFix<CR> :update<CR>
+
+
+" Nerdtree
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" map <Leader>k :call NERDTreeToggleAndRefresh()<CR>
+
+" function NERDTreeToggleAndRefresh()
+"   :NERDTreeToggle
+"   if g:NERDTree.IsOpen()
+"     :NERDTreeRefreshRoot
+"   endif
+" endfunction
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
+function! ToggleNerdTree()
+  set eventignore=BufEnter
+  NERDTreeToggle
+  set eventignore=
+endfunction
+nmap <Leader>k :call ToggleNerdTree()<CR>
+let g:NERDTreeMouseMode=3
