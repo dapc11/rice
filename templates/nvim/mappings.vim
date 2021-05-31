@@ -78,3 +78,12 @@ function! ToggleQuickFix()
 endfunction
 
 nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
+
+
+" center search results
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+
+" Close all buffers but the opened one
+map <Leader>a :cclose <bar> lclose <bar> pclose<CR>

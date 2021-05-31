@@ -1,17 +1,19 @@
 #!/usr/bin/python3
-import os
 import json
+import os
 
 
 def get_context(theme):
-    with open(f'themes/{theme}.json', 'r') as colors_context:
+    with open(f'themes/{theme}.json', 'r') as colors_context,\
+            open('themes/settings.json', 'r') as settings_context:
         theme_path = os.path.abspath(theme)
         print(f"Using context: '{theme_path}.json'")
-        with open('themes/settings.json', 'r') as settings_context:
-            context = {**json.load(settings_context),
-                       **json.load(colors_context)}
-            context['wifi_if'] = get_wireless_if()
-            return context
+        context = {
+            **json.load(settings_context),
+            **json.load(colors_context)}
+        context['wifi_if'] = get_wireless_if()
+
+        return context
 
 
 def make_executable(dest):
@@ -25,6 +27,7 @@ def get_wireless_if():
     try:
         interface = lines[2:][0].split(":")[0]
         print(f'Wireless network interface: {interface}')
+
         return interface
     except IndexError:
         return "N/A"

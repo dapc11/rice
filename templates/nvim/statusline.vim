@@ -8,6 +8,20 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   'W:%d|E:%d',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+
 let g:currentmode={
        \ 'n'  : 'n',
        \ 'v'  : 'v',
@@ -46,6 +60,7 @@ set statusline+=\ %f
 set statusline+=%m
 set statusline+=%=
 set statusline+=%#StatusLineNc#
+set statusline+=%{LinterStatus()}
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%

@@ -63,7 +63,7 @@ class Ricer:
         if os.path.isdir(source):
             copy_tree(source, target)
         else:
-            copyfile(source, target)
+            copyfile(source, str(target))
 
 
 def setup_argparser():
@@ -162,7 +162,7 @@ def render_awesome(ricer):
                     f'/home/{ricer.user}/.local/bin/sysact')
     ricer.make_executable(f'/home/{ricer.user}/.local/bin/sysact')
     background = ricer.context['bg']
-    ricer.copy_file(f"templates/images/{background}",
+    ricer.copy_file(f'templates/images/{background}',
                     f'/home/{ricer.user}/.config/awesome/background.jpg')
     ricer.copy_file('templates/awesome/widgets',
                     f'/home/{ricer.user}/.config/awesome/widgets')
@@ -176,10 +176,11 @@ def render_background(ricer):
                     f'/home/{ricer.user}/.local/background.jpg')
 
     if ricer.overwrite:
-        subprocess.run(['feh',
-                        '--bg-fill',
-                        f'/home/{ricer.user}/.local/background.jpg'],
-                       check=True)
+        subprocess.run([
+            'feh',
+            '--bg-fill',
+            f'/home/{ricer.user}/.local/background.jpg'],
+            check=True)
 
 
 def render_vs_code(ricer):

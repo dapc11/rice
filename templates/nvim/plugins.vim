@@ -47,6 +47,8 @@ let g:ale_python_pyls_config = {}
 let g:ale_python_pyls_executable = 'pyls'
 let g:ale_python_pyls_options = ''
 let g:ale_python_pyls_use_global = 1
+let g:ale_set_balloons = 1
+
 
 " Write this in your vimrc file
 let g:ale_set_loclist = 0
@@ -60,3 +62,4 @@ nmap <silent> gs :ALESymbolSearch
 nmap <silent> gl :ALELint<CR>
 nmap <silent> gn :ALENext<CR>
 nmap <silent> gp :ALEPrevious<CR>
+map <F3> :ALEFix<CR> :update<CR>
