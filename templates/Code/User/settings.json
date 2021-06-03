@@ -43,6 +43,14 @@
         "--enable=all",
         "--disable=W1202"
     ],
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style={based_on_style: google, column_limit: 100, indent_width: 4}"
+      ],
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "python.autoComplete.addBrackets": true,
     "python.formatting.autopep8Args": ["--max-line-length", "100", "--experimental"],
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
@@ -57,7 +65,7 @@
             "editor.codeActionsOnSave": {
                 "source.organizeImports": true
             }
-        },
+    },
     "vim.handleKeys": { "<C-f>": false },
     "workbench.colorCustomizations": {
         "terminal.foreground":            "{{base06}}",
