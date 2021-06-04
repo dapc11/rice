@@ -1,6 +1,9 @@
 {
     "editor.suggestSelection": "first",
-    "editor.rulers": [100,120],
+    "editor.rulers": [
+        100,
+        120
+    ],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.external.linuxExec": "{{terminal}}",
     "terminal.integrated.defaultProfile.linux": "{{shell}}",
@@ -28,16 +31,18 @@
     "python.languageServer": "Microsoft",
     "go.toolsManagement.autoUpdate": true,
     "python.pythonPath": "${env:HOME}/dev/bin/python3",
-		"python.autoComplete.extraPaths": [
-			"${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src",
-			"${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src/lib",
-			"${env:HOME}/repos/adp-gs-ecchronos/python",
-            "${env:HOME}/repos/adp-gs-wcdbcd/helm/test/python"
-		],
+    "python.autoComplete.extraPaths": [
+        "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src",
+        "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src/lib",
+        "${env:HOME}/repos/adp-gs-ecchronos/python",
+        "${env:HOME}/repos/adp-gs-wcdbcd/helm/test/python"
+    ],
     "python.envFile": "${env:HOME}/repos/.env",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": false,
-    "python.linting.flake8Args": ["--config ~/.config/flake8"],
+    "python.linting.flake8Args": [
+        "--config ~/.config/flake8"
+    ],
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
         "--enable=all",
@@ -45,13 +50,17 @@
     ],
     "python.formatting.provider": "yapf",
     "python.formatting.yapfArgs": [
-        "--style={based_on_style: google, column_limit: 100, indent_width: 4}"
-      ],
+        "--style={based_on_style: google, split_all_comma_separated_values=True, column_limit: 100, indent_width: 4}"
+    ],
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "python.autoComplete.addBrackets": true,
-    "python.formatting.autopep8Args": ["--max-line-length", "100", "--experimental"],
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "100",
+        "--experimental"
+    ],
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
     "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
@@ -59,31 +68,40 @@
         "json",
         "vim"
     ],
-    "[git-commit]": {"editor.rulers": [50]},
-    "[python]": {
-        "editor.rulers": [100, 120],
-            "editor.codeActionsOnSave": {
-                "source.organizeImports": true
-            }
+    "[git-commit]": {
+        "editor.rulers": [
+            50
+        ]
     },
-    "vim.handleKeys": { "<C-f>": false },
+    "[python]": {
+        "editor.rulers": [
+            100,
+            120
+        ],
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "vim.handleKeys": {
+        "<C-f>": false
+    },
     "workbench.colorCustomizations": {
-        "terminal.foreground":            "{{base06}}",
-        "terminal.ansiBrightBlack":       "{{base02}}",
-        "terminal.ansiBrightCyan":        "{{base0C}}",
-        "terminal.ansiBrightGreen":       "{{base0F}}",
-        "terminal.ansiBrightMagenta":     "{{base0E}}",
-        "terminal.ansiBrightRed":         "{{base08}}",
-        "terminal.ansiBrightWhite":       "{{base07}}",
-        "terminal.ansiBrightYellow":      "{{base0A}}",
-        "terminal.ansiBrightBlue":        "{{base0C}}",
-        "terminal.ansiBlack":             "{{base00}}",
-        "terminal.ansiCyan":              "{{base0D}}",
-        "terminal.ansiGreen":             "{{base0B}}",
-        "terminal.ansiMagenta":           "{{base09}}",
-        "terminal.ansiRed":               "{{base08}}",
-        "terminal.ansiWhite":             "{{base06}}",
-        "terminal.ansiYellow":            "{{base0A}}",
-        "terminal.ansiBlue":              "{{base0C}}",
+        "terminal.foreground": "{{base06}}",
+        "terminal.ansiBrightBlack": "{{base02}}",
+        "terminal.ansiBrightCyan": "{{base0C}}",
+        "terminal.ansiBrightGreen": "{{base0F}}",
+        "terminal.ansiBrightMagenta": "{{base0E}}",
+        "terminal.ansiBrightRed": "{{base08}}",
+        "terminal.ansiBrightWhite": "{{base07}}",
+        "terminal.ansiBrightYellow": "{{base0A}}",
+        "terminal.ansiBrightBlue": "{{base0C}}",
+        "terminal.ansiBlack": "{{base00}}",
+        "terminal.ansiCyan": "{{base0D}}",
+        "terminal.ansiGreen": "{{base0B}}",
+        "terminal.ansiMagenta": "{{base09}}",
+        "terminal.ansiRed": "{{base08}}",
+        "terminal.ansiWhite": "{{base06}}",
+        "terminal.ansiYellow": "{{base0A}}",
+        "terminal.ansiBlue": "{{base0C}}",
     }
 }
