@@ -1,0 +1,19 @@
+[MASTER]
+
+# A comma-separated list of package or module names from where C extensions may
+# be loaded. Extensions are loading into the active Python interpreter and may
+# run arbitrary code.
+# Classes in cassandra-driver are not found because of a bug.
+extension-pkg-whitelist=cassandra
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use.
+jobs=4
+
+# Maximum number of characters on a single line.
+max-line-length=99
+
+[MESSAGES CONTROL]
+# Disable duplicate-code check due to issues with disabling the check in
+# individual files, see https://github.com/PyCQA/pylint/issues/214
+disable=R0801

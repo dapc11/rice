@@ -1,9 +1,4 @@
 {
-    "editor.suggestSelection": "first",
-    "editor.rulers": [
-        100,
-        120
-    ],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.external.linuxExec": "{{terminal}}",
     "terminal.integrated.defaultProfile.linux": "{{shell}}",
@@ -13,24 +8,27 @@
     "terminal.integrated.inheritEnv": true,
     "editor.fontFamily": "'{{font}}', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 13,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.suggestSelection": "first",
+    "editor.rulers": [
+        100,
+        120
+    ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
     "workbench.colorTheme": "Monokai Dimmed",
+    "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
         "VISUAL": "vim",
         "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
         "PYTHONPATH": "${env:HOME}/dev/:${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src:${env:HOME}/repos/adp-gs-wcdbcd/helm/test/python"
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
     "python.languageServer": "Microsoft",
-    "go.toolsManagement.autoUpdate": true,
     "python.pythonPath": "${env:HOME}/dev/bin/python3",
+    "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
     "python.autoComplete.extraPaths": [
         "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src",
         "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src/lib",
@@ -39,40 +37,17 @@
     ],
     "python.envFile": "${env:HOME}/repos/.env",
     "python.linting.enabled": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.flake8Args": [
-        "--config ~/.config/flake8"
-    ],
+    "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--enable=all",
-        "--disable=W1202"
-    ],
+    "python.linting.pylintCategorySeverity.warning": "Error",
+    "python.linting.pylintUseMinimalCheckers": false,
     "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": [
-        "--style={based_on_style: google, split_all_comma_separated_values=True, column_limit: 100, indent_width: 4}"
-    ],
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
     "python.autoComplete.addBrackets": true,
     "python.formatting.autopep8Args": [
         "--max-line-length",
-        "100",
+        "99",
         "--experimental"
     ],
-    "python.linting.pylintCategorySeverity.warning": "Error",
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
-    "colorize.languages": [
-        "json",
-        "vim"
-    ],
-    "[git-commit]": {
-        "editor.rulers": [
-            50
-        ]
-    },
     "[python]": {
         "editor.rulers": [
             100,
@@ -82,9 +57,24 @@
             "source.organizeImports": true
         }
     },
+    "colorize.languages": [
+        "json",
+        "vim"
+    ],
+    "[git-commit]": {
+        "editor.rulers": [
+            50
+        ]
+    },
     "vim.handleKeys": {
         "<C-f>": false
     },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
     "workbench.colorCustomizations": {
         "terminal.foreground": "{{base06}}",
         "terminal.ansiBrightBlack": "{{base02}}",
