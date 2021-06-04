@@ -17,7 +17,7 @@ from lib import utils
 
 
 class Ricer:
-    """Class for transforming the templates into actual configuration files for various software."""
+    """Class for transforming the templates into actual config files for various software."""
     EXECUTABLE = True
 
     def __init__(self, args):
@@ -80,16 +80,18 @@ def setup_argparser():
     arg_parser = argparse.ArgumentParser(
         prog='rice_it',
         description='Dapc ricer, make your environment consistent from a color perspective.')
-    arg_parser.add_argument('-o',
-                            '--overwrite',
-                            help='Make rice_it overwrite existing dotfiles in your home directory,'
-                            ' use with caution!',
-                            action='store_true')
-    arg_parser.add_argument('-t',
-                            '--theme',
-                            action='store',
-                            dest='theme',
-                            help='Specify which theme the context will be loaded from.')
+    arg_parser.add_argument(
+        '-o',
+        '--overwrite',
+        help='Make rice_it overwrite existing dotfiles in your home directory,'
+        ' use with caution!',
+        action='store_true')
+    arg_parser.add_argument(
+        '-t',
+        '--theme',
+        action='store',
+        dest='theme',
+        help='Specify which theme the context will be loaded from.')
     arg_parser.add_argument('-l', '--list', action='store_true', help='List available themes')
 
     return arg_parser
@@ -165,8 +167,8 @@ def render_awesome(ricer):
     ricer.copy_file('templates/awesome/sysact', f'/home/{ricer.user}/.local/bin/sysact')
     ricer.make_executable(f'/home/{ricer.user}/.local/bin/sysact')
     background = ricer.context['bg']
-    ricer.copy_file(f'templates/images/{background}',
-                    f'/home/{ricer.user}/.config/awesome/background.jpg')
+    ricer.copy_file(
+        f'templates/images/{background}', f'/home/{ricer.user}/.config/awesome/background.jpg')
     ricer.copy_file('templates/awesome/widgets', f'/home/{ricer.user}/.config/awesome/widgets')
     ricer.copy_file('templates/awesome/icons', f'/home/{ricer.user}/.config/awesome/icons')
 
@@ -179,8 +181,8 @@ def render_background(ricer):
     ricer.copy_file(f'templates/images/{background}', f'/home/{ricer.user}/.local/background.jpg')
 
     if ricer.overwrite:
-        subprocess.run(['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'],
-                       check=True)
+        subprocess.run(
+            ['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'], check=True)
 
 
 def render_vs_code(ricer):
