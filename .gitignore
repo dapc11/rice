@@ -339,3 +339,4 @@ st/
 i3-gaps/
 target/
 ./polybar/
+.env
