@@ -1,5 +1,8 @@
-Jinja2==2.11.1
-autopep8==1.5
-pylint==2.4.4
-pywal==3.3.0
-iwlib==1.7.0
+autopep8~=1.5
+flake8-commas~2.0
+flake8~=3.9
+iwlib~=1.7
+Jinja2~=2.11
+pylint~=2.4
+pywal~=3.3
+yapf~=0.31

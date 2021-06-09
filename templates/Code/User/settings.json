@@ -24,18 +24,10 @@
         "EDITOR": "vim",
         "VISUAL": "vim",
         "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
-        "PYTHONPATH": "${env:HOME}/dev/:${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src:${env:HOME}/repos/adp-gs-wcdbcd/helm/test/python"
     },
     "python.languageServer": "Microsoft",
     "python.pythonPath": "${env:HOME}/dev/bin/python3",
     "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
-    "python.autoComplete.extraPaths": [
-        "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src",
-        "${env:HOME}/repos/adp-gs-wcdbcd/cassandra/python/src/lib",
-        "${env:HOME}/repos/adp-gs-ecchronos/python",
-        "${env:HOME}/repos/adp-gs-wcdbcd/helm/test/python"
-    ],
-    "python.envFile": "${env:HOME}/repos/.env",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
