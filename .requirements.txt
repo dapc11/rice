@@ -1,9 +1,9 @@
 autopep8==1.5
 flake8-commas~=2.0
 flake8~=3.8
-iwlib==1.7.0
-Jinja2==2.11.1
-pylint==2.4.4
+iwlib~=1.7
+Jinja2~=2.11
+pip~=21.1
 pylint~=2.6
-pywal==3.3.0
+pywal~=3.3
 yapf~=0.31

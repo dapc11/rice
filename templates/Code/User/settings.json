@@ -58,15 +58,10 @@
             50
         ]
     },
-    "vim.handleKeys": {
-        "<C-f>": false
+    "workbench.editorAssociations": {
+        "viewType": "jupyter.notebook.ipynb",
+        "filenamePattern": "*.ipynb"
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
     "workbench.colorCustomizations": {
         "terminal.foreground": "{{base06}}",
         "terminal.ansiBrightBlack": "{{base02}}",
@@ -85,5 +80,40 @@
         "terminal.ansiWhite": "{{base06}}",
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
+    },
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+    {
+        "before": ["j", "j"],
+        "after": ["<Esc>"]
     }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "d"],
+            "after": ["d", "d"]
+        },
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["<C-w>"],
+            "after": ["v", "i", "\""]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": [":bd"]
+        },
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-k>": false,
+    },
 }

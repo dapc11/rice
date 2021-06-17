@@ -18,6 +18,10 @@ command! -bang -nargs=* GGrep
   \ 0,
   \ fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}),
   \ <bang>0)
+command! -nargs=? -complete=dir AFFF
+  \ call fzf#run(fzf#wrap({
+  \   'source': 'rg --no-heading --files --no-ignore-vcs --hidden . '.expand(<q-args>)
+  \ }))
 command! -nargs=? -complete=dir AF
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg --no-heading --files ~/ '.expand(<q-args>)
@@ -32,5 +36,6 @@ nnoremap <silent> <leader>f :Rg<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
-nnoremap <silent> <leader><Leader> :AF<cr>
-nnoremap <silent> <Leader>o :AFF<cr>
+nnoremap <silent> <leader><Leader> :AFFF<cr>
+nnoremap <silent> <Leader>o :AF<cr>
+nnoremap <silent> <Leader>O :AFF<cr>

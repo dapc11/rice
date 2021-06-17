@@ -18,6 +18,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'preservim/nerdtree'
+Plug 'terryma/vim-expand-region'
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
@@ -104,3 +105,6 @@ function! ToggleNerdTree()
 endfunction
 nmap <Leader>k :call ToggleNerdTree()<CR>
 let g:NERDTreeMouseMode=3
+
+map J <Plug>(expand_region_expand)
+map K <Plug>(expand_region_shrink)
