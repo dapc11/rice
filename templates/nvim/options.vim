@@ -19,7 +19,7 @@ set termguicolors                           " Make colorscheme work
 set scrolloff=8                             " Start scroll when n lines from screen edge
 set noshowmode
 set completeopt=menuone,noinsert,noselect   " Autocompletion
-set colorcolumn=80                          " Dont go further
+set colorcolumn=100                         " Dont go further
 set updatetime=50                           " Short time to combo key strokes
 set shortmess+=c
 set clipboard+=unnamedplus                  " System clipboard
@@ -39,7 +39,7 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4
     \| set softtabstop=4
     \| set shiftwidth=4
-    \| set textwidth=79
+    \| set textwidth=99
     \| set expandtab
     \| set autoindent
     \| set fileformat=unix

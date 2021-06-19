@@ -42,6 +42,7 @@ class Ricer:
 
     def set_target_dir(self, target):
         """More or less changing current working dir for template rendering."""
+
         if self.overwrite:
             self.target = target
 
@@ -64,6 +65,7 @@ class Ricer:
 
     def copy_file(self, source, target):
         """Moving source to target, without rendering any template value placeholders."""
+
         if not self.overwrite:
             basename = os.path.basename(source)
             target = f"{self.target}/{basename}"
