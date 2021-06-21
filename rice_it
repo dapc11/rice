@@ -18,6 +18,7 @@ from lib import utils
 
 class Ricer:
     """Class for transforming the templates into actual config files for various software."""
+
     EXECUTABLE = True
 
     def __init__(self, args):
@@ -25,14 +26,16 @@ class Ricer:
         self.overwrite = args.overwrite
 
         if self.overwrite:
-            self.target = f'/home/{self.user}/.config'
+            self.target = f"/home/{self.user}/.config"
         else:
-            self.target = f'{os.getcwd()}/target'
-        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath='./templates/'))
+            self.target = f"{os.getcwd()}/target"
+        self.env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(searchpath="./templates/"),
+        )
         self.context = utils.get_context(args.theme)
 
     def _get_destination(self, template):
-        dest = f'{self.target}/{template}'
+        dest = f"{self.target}/{template}"
         parent = Path(dest).parent
 
         if not os.path.exists(parent):
@@ -56,8 +59,8 @@ class Ricer:
         dest = self._get_destination(template)
         environment_template = self.env.get_template(template)
 
-        print(f'Writing to {dest}')
-        with open(dest, 'w') as destination_file:
+        print(f"Writing to {dest}")
+        with open(dest, "w") as destination_file:
             destination_file.write(environment_template.render(self.context))
 
         if executable:
@@ -69,7 +72,7 @@ class Ricer:
         if not self.overwrite:
             basename = os.path.basename(source)
             target = f"{self.target}/{basename}"
-        print(f'Copying {source} to {target}')
+        print(f"Copying {source} to {target}")
 
         if os.path.isdir(source):
             copy_tree(source, target)
@@ -80,21 +83,29 @@ class Ricer:
 def setup_argparser():
     """Setup the arguments of the program."""
     arg_parser = argparse.ArgumentParser(
-        prog='rice_it',
-        description='Dapc ricer, make your environment consistent from a color perspective.')
+        prog="rice_it",
+        description="Dapc ricer, make your environment consistent from a color perspective.",
+    )
     arg_parser.add_argument(
-        '-o',
-        '--overwrite',
-        help='Make rice_it overwrite existing dotfiles in your home directory,'
-        ' use with caution!',
-        action='store_true')
+        "-o",
+        "--overwrite",
+        help="Make rice_it overwrite existing dotfiles in your home directory,"
+        " use with caution!",
+        action="store_true",
+    )
     arg_parser.add_argument(
-        '-t',
-        '--theme',
-        action='store',
-        dest='theme',
-        help='Specify which theme the context will be loaded from.')
-    arg_parser.add_argument('-l', '--list', action='store_true', help='List available themes')
+        "-t",
+        "--theme",
+        action="store",
+        dest="theme",
+        help="Specify which theme the context will be loaded from.",
+    )
+    arg_parser.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        help="List available themes",
+    )
 
     return arg_parser
 
@@ -103,8 +114,8 @@ def get_themes():
     """Utility function for visualizing which themes that are available."""
     theme_names = []
 
-    for theme_path in glob.glob('themes/*.json'):
-        if 'settings' in theme_path:
+    for theme_path in glob.glob("themes/*.json"):
+        if "settings" in theme_path:
             continue
         theme_names.append(os.path.splitext(os.path.basename(theme_path))[0])
 
@@ -118,10 +129,10 @@ def main():
     args = parser.parse_args()
 
     if args.list or args.theme is None:
-        print('Specify theme with --theme (-t) flag.\nAvailable themes:')
+        print("Specify theme with --theme (-t) flag.\nAvailable themes:")
 
         for theme in themes:
-            print(f'- {theme}')
+            print(f"- {theme}")
         sys.exit(0)
 
     ricer = Ricer(args)
@@ -129,94 +140,108 @@ def main():
     render_vim(ricer)
     render_rofi(ricer)
 
-    if ricer.context['window_manager'] == 'awesome':
+    if ricer.context["window_manager"] == "awesome":
         render_awesome(ricer)
     else:
-        ricer.render_template('i3/config')
+        ricer.render_template("i3/config")
         render_background(ricer)
         render_polybar(ricer)
     render_vs_code(ricer)
-    ricer.render_template('alacritty/alacritty.yml')
-    ricer.render_template('dunst/dunstrc')
-    ricer.render_template('ranger/rc.conf')
-    ricer.render_template('yamllint/config')
-    ricer.render_template('compton/compton.conf')
-    ricer.set_target_dir(f'/home/{ricer.user}')
-    ricer.render_template('.tmux.conf')
-    ricer.render_template('.zshrc')
-    ricer.render_template('.xprofile')
-    ricer.render_template('.zprofile')
-    ricer.render_template('.Xresources')
+    ricer.render_template("alacritty/alacritty.yml")
+    ricer.render_template("dunst/dunstrc")
+    ricer.render_template("ranger/rc.conf")
+    ricer.render_template("yamllint/config")
+    ricer.render_template("compton/compton.conf")
+    ricer.render_template("qtile/config.py")
+    ricer.set_target_dir(f"/home/{ricer.user}")
+    ricer.render_template(".tmux.conf")
+    ricer.render_template(".zshrc")
+    ricer.render_template(".xprofile")
+    ricer.render_template(".zprofile")
+    ricer.render_template(".Xresources")
     render_utils(ricer)
     sys.exit(0)
 
 
 def render_vim(ricer):
     """Render Vim templates."""
-    ricer.render_template('nvim/init.vim')
-    ricer.render_template('nvim/mappings.vim')
-    ricer.render_template('nvim/plugins.vim')
-    ricer.render_template('nvim/statusline.vim')
-    ricer.render_template('nvim/fzf.vim')
-    ricer.render_template('nvim/options.vim')
-    ricer.render_template('nvim/dapc11.vim')
+    ricer.render_template("nvim/init.vim")
+    ricer.render_template("nvim/mappings.vim")
+    ricer.render_template("nvim/plugins.vim")
+    ricer.render_template("nvim/statusline.vim")
+    ricer.render_template("nvim/fzf.vim")
+    ricer.render_template("nvim/options.vim")
+    ricer.render_template("nvim/dapc11.vim")
 
 
 def render_awesome(ricer):
     """Render AwesomeWM templates."""
-    ricer.render_template('awesome/rc.lua')
-    ricer.render_template('awesome/theme.lua')
-    ricer.copy_file('templates/awesome/sysact', f'/home/{ricer.user}/.local/bin/sysact')
-    ricer.make_executable(f'/home/{ricer.user}/.local/bin/sysact')
-    background = ricer.context['bg']
+    ricer.render_template("awesome/rc.lua")
+    ricer.render_template("awesome/theme.lua")
+    ricer.copy_file("templates/awesome/sysact", f"/home/{ricer.user}/.local/bin/sysact")
+    ricer.make_executable(f"/home/{ricer.user}/.local/bin/sysact")
+    background = ricer.context["bg"]
     ricer.copy_file(
-        f'templates/images/{background}', f'/home/{ricer.user}/.config/awesome/background.jpg')
-    ricer.copy_file('templates/awesome/widgets', f'/home/{ricer.user}/.config/awesome/widgets')
-    ricer.copy_file('templates/awesome/icons', f'/home/{ricer.user}/.config/awesome/icons')
+        f"templates/images/{background}",
+        f"/home/{ricer.user}/.config/awesome/background.jpg",
+    )
+    ricer.copy_file(
+        "templates/awesome/widgets",
+        f"/home/{ricer.user}/.config/awesome/widgets",
+    )
+    ricer.copy_file(
+        "templates/awesome/icons",
+        f"/home/{ricer.user}/.config/awesome/icons",
+    )
 
 
 def render_background(ricer):
     """Render background to ~/.local/background.jpg.
     If overwrite is set to True, set background with 'feh'
     """
-    background = ricer.context['bg']
-    ricer.copy_file(f'templates/images/{background}', f'/home/{ricer.user}/.local/background.jpg')
+    background = ricer.context["bg"]
+    ricer.copy_file(
+        f"templates/images/{background}",
+        f"/home/{ricer.user}/.local/background.jpg",
+    )
 
     if ricer.overwrite:
         subprocess.run(
-            ['feh', '--bg-fill', f'/home/{ricer.user}/.local/background.jpg'], check=True)
+            ["feh", "--bg-fill", f"/home/{ricer.user}/.local/background.jpg"],
+            check=True,
+        )
 
 
 def render_vs_code(ricer):
     """Render VS Code templates."""
-    ricer.render_template('Code/User/settings.json')
-    ricer.render_template('Code/User/keybindings.json')
+    ricer.render_template("Code/User/settings.json")
+    ricer.render_template("Code/User/keybindings.json")
 
 
 def render_rofi(ricer):
     """Render Rofi templates."""
-    ricer.render_template('rofi/config.rasi')
-    ricer.render_template('rofi/powermenu.rasi')
-    ricer.render_template('rofi/rofi-power', Ricer.EXECUTABLE)
-    ricer.render_template('rofi/rofi-randr', Ricer.EXECUTABLE)
+    ricer.render_template("rofi/config.rasi")
+    ricer.render_template("rofi/powermenu.rasi")
+    ricer.render_template("rofi/rofi-power", Ricer.EXECUTABLE)
+    ricer.render_template("rofi/rofi-randr", Ricer.EXECUTABLE)
 
 
 def render_polybar(ricer):
     """Render Polybar templates."""
-    ricer.render_template('polybar/config')
-    ricer.render_template('polybar/startup.sh', Ricer.EXECUTABLE)
-    ricer.render_template('polybar/updates.sh', Ricer.EXECUTABLE)
-    ricer.render_template('polybar/now_playing.py', Ricer.EXECUTABLE)
-    ricer.render_template('polybar/weather.sh', Ricer.EXECUTABLE)
+    ricer.render_template("polybar/config")
+    ricer.render_template("polybar/startup.sh", Ricer.EXECUTABLE)
+    ricer.render_template("polybar/updates.sh", Ricer.EXECUTABLE)
+    ricer.render_template("polybar/now_playing.py", Ricer.EXECUTABLE)
+    ricer.render_template("polybar/weather.sh", Ricer.EXECUTABLE)
 
 
 def render_utils(ricer):
     """Render utility scripts."""
-    ricer.set_target_dir(f'/home/{ricer.user}/.local')
-    ricer.render_template('bin/dimmer', Ricer.EXECUTABLE)
-    ricer.render_template('bin/nightmode', Ricer.EXECUTABLE)
-    ricer.render_template('bin/gita', Ricer.EXECUTABLE)
+    ricer.set_target_dir(f"/home/{ricer.user}/.local")
+    ricer.render_template("bin/dimmer", Ricer.EXECUTABLE)
+    ricer.render_template("bin/nightmode", Ricer.EXECUTABLE)
+    ricer.render_template("bin/gita", Ricer.EXECUTABLE)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,8 +1,10 @@
-from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.lazy import lazy
-from libqtile import layout, bar, widget
+"""Dapc11 qtile config"""
 
-from typing import List  # noqa: F401
+from typing import List
+
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
 
 mod = "mod4"
 
@@ -12,34 +14,33 @@ keys = [
     Key([mod], "Up", lazy.layout.up()),
     Key([mod], "Left", lazy.layout.left()),
     Key([mod], "Right", lazy.layout.right()),
-
     # Move windows up or down in current stack
     Key([mod, "control"], "Down", lazy.layout.shuffle_down()),
     Key([mod, "control"], "Up", lazy.layout.shuffle_up()),
-
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
-
     # Swap panes of split stack
     Key([mod, "shift"], "space", lazy.layout.rotate()),
-
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("{{terminal}} tmux new-session -A -s main")),
+    Key([mod], "Return", lazy.spawn("{{terminal}} -e tmux new-session -A -s main")),
     Key([mod, "shift"], "Return", lazy.spawn("{{terminal}}")),
     Key(
-        [mod], "d",
-        lazy.spawn("rofi -show drun -display-drun "
-                   " -modi drun -theme ~/.config/rofi/config")),
-    Key([mod], "b", lazy.spawn("rofi -show window -theme ~/.config/rofi/config")),
+        [mod],
+        "d",
+        lazy.spawn(
+            "rofi -show drun -display-drun -modi drun -theme ~/.config/rofi/config",
+        ),
+    ),
+    Key([mod], "s", lazy.spawn("rofi -show window -theme ~/.config/rofi/config")),
     Key([mod], "l", lazy.spawn("systemctl suspend")),
     Key([mod], "n", lazy.spawn("nightmode")),
-    Key([mod], "w", lazy.spawn("firefox")),
+    Key([mod], "w", lazy.spawn("{{browser}}")),
     Key([mod], "p", lazy.spawn("rofi-randr")),
-    # Toggle between different layouts as defined below
+    # Toggle between diffrent layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
@@ -63,22 +64,35 @@ for i in groups:
         [
             # mod1 + letter of group = switch to group
             Key([mod], i.name, lazy.group[i.name].toscreen()),
-
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-        ])
+        ],
+    )
 
 layouts = [
     layout.Max(),
     layout.Stack(num_stacks=2),
-    layout.Bsp(border_focus="{{base03}}", border_normal="{{base01}}", border_width=1, margin=5),
+    layout.Bsp(
+        border_focus="{{base03}}",
+        border_normal="{{base01}}",
+        border_width=1,
+        margin=5,
+    ),
     layout.MonadTall(
-        border_focus="{{base03}}", border_normal="{{base01}}", border_width=1, margin=5),
+        border_focus="{{base03}}",
+        border_normal="{{base01}}",
+        border_width=1,
+        margin=5,
+    ),
     layout.MonadWide(
-        border_focus="{{base03}}", border_normal="{{base01}}", border_width=1, margin=5),
+        border_focus="{{base03}}",
+        border_normal="{{base01}}",
+        border_width=1,
+        margin=5,
+    ),
     layout.TreeTab(
         bg_color="{{base01}}",
         active_bg="{{base02}}",
@@ -88,11 +102,12 @@ layouts = [
         border_focus="{{base03}}",
         border_normal="{{base01}}",
         border_width=1,
-        margin=5),
+        margin=5,
+    ),
 ]
 
 widget_defaults = dict(
-    font='sans',
+    font="{{font}}",
     fontsize=14,
     padding=3,
     background="{{base01}}",
@@ -114,36 +129,49 @@ screens = [
                 ),
                 widget.WindowName(),
                 widget.Mpris2(
-                    name='spotify',
+                    name="spotify",
                     objname="org.mpris.MediaPlayer2.spotify",
-                    display_metadata=['xesam:title', 'xesam:artist'],
+                    display_metadata=["xesam:title", "xesam:artist"],
                     scroll_chars=None,
-                    stop_pause_text='',
-                    **widget_defaults),
+                    stop_pause_text="",
+                    **widget_defaults,
+                ),
                 widget.TextBox(text="墳"),
                 widget.Volume(),
                 widget.Battery(
-                    format='  {percent:2.0%}',
-                    low_foreground='{{base08}}',
+                    format="  {percent:2.0%}",
+                    low_foreground="{{base08}}",
                 ),
                 widget.Wlan(
                     foreground="{{base06}}",
-                    interface="wlo1",
+                    interface="wlan0",
                     format=" 直 {essid}",
                 ),
-                widget.Clock(format=' %Y-%m-%d %H:%M:%S '),
+                widget.Clock(format=" %Y-%m-%d %H:%M:%S "),
                 widget.CurrentLayoutIcon(),
                 widget.Systray(),
             ],
             24,
-            background="{{base01}}"), ),
+            background="{{base01}}",
+        ),
+    ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag(
+        [mod],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size(),
+    ),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -155,49 +183,22 @@ cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
-        {
-            'wmclass': 'confirm'
-        },
-        {
-            'wmclass': 'dialog'
-        },
-        {
-            'wmclass': 'download'
-        },
-        {
-            'wmclass': 'error'
-        },
-        {
-            'wmclass': 'file_progress'
-        },
-        {
-            'wmclass': 'notification'
-        },
-        {
-            'wmclass': 'splash'
-        },
-        {
-            'wmclass': 'toolbar'
-        },
-        {
-            'wmclass': 'confirmreset'
-        },  # gitk
-        {
-            'wmclass': 'makebranch'
-        },  # gitk
-        {
-            'wmclass': 'maketag'
-        },  # gitk
-        {
-            'wname': 'branchdialog'
-        },  # gitk
-        {
-            'wname': 'pinentry'
-        },  # GPG key password entry
-        {
-            'wmclass': 'ssh-askpass'
-        },  # ssh-askpass
-    ])
+        {"wmclass": "confirm"},
+        {"wmclass": "dialog"},
+        {"wmclass": "download"},
+        {"wmclass": "error"},
+        {"wmclass": "file_progress"},
+        {"wmclass": "notification"},
+        {"wmclass": "splash"},
+        {"wmclass": "toolbar"},
+        {"wmclass": "confirmreset"},  # gitk
+        {"wmclass": "makebranch"},  # gitk
+        {"wmclass": "maketag"},  # gitk
+        {"wname": "branchdialog"},  # gitk
+        {"wname": "pinentry"},  # GPG key password entry
+        {"wmclass": "ssh-askpass"},  # ssh-askpass
+    ],
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

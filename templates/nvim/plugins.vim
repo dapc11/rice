@@ -25,7 +25,7 @@ let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/e
 let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/venv/dev/bin/python3'
-let g:jedi#environment_path = "~/venv/dev/bin/python3"
+" let g:jedi#environment_path = "dev"
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
@@ -34,7 +34,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {'python': ['pylint', 'flake8']}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['add_blank_lines_for_python_control_statements', 'yapf'],
+\   'python': ['add_blank_lines_for_python_control_statements', 'black', 'isort'],
 \}
 if executable('pyls')
     au User lsp_setup call lsp#register_server({
