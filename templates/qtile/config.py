@@ -41,7 +41,8 @@ keys = [
     Key([mod], "w", lazy.spawn("{{browser}}")),
     Key([mod], "p", lazy.spawn("rofi-randr")),
     # Toggle between diffrent layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod], "space", lazy.next_layout()),
+    Key([mod], "Tab", lazy.screen.togglegroup()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
@@ -74,24 +75,30 @@ for i in groups:
 
 layouts = [
     layout.Max(),
-    layout.Stack(num_stacks=2),
+    layout.Stack(
+        num_stacks=2,
+        border_focus="{{base03}}",
+        border_normal="{{base01}}",
+        border_width=1,
+        margin=15,
+    ),
     layout.Bsp(
         border_focus="{{base03}}",
         border_normal="{{base01}}",
         border_width=1,
-        margin=5,
+        margin=15,
     ),
     layout.MonadTall(
         border_focus="{{base03}}",
         border_normal="{{base01}}",
         border_width=1,
-        margin=5,
+        margin=15,
     ),
     layout.MonadWide(
         border_focus="{{base03}}",
         border_normal="{{base01}}",
         border_width=1,
-        margin=5,
+        margin=15,
     ),
     layout.TreeTab(
         bg_color="{{base01}}",
@@ -102,7 +109,7 @@ layouts = [
         border_focus="{{base03}}",
         border_normal="{{base01}}",
         border_width=1,
-        margin=5,
+        margin=15,
     ),
 ]
 
@@ -114,6 +121,8 @@ widget_defaults = dict(
     foreground="{{base06}}",
 )
 extension_defaults = widget_defaults.copy()
+
+SEPARATOR = widget.TextBox(text="|")
 
 screens = [
     Screen(
@@ -136,19 +145,25 @@ screens = [
                     stop_pause_text="",
                     **widget_defaults,
                 ),
+                SEPARATOR,
                 widget.TextBox(text="墳"),
                 widget.Volume(),
+                SEPARATOR,
                 widget.Battery(
-                    format="  {percent:2.0%}",
+                    format=" {percent:2.0%}",
                     low_foreground="{{base08}}",
                 ),
+                SEPARATOR,
                 widget.Wlan(
                     foreground="{{base06}}",
                     interface="wlan0",
-                    format=" 直 {essid}",
+                    format="直 {essid}",
                 ),
-                widget.Clock(format=" %Y-%m-%d %H:%M:%S "),
+                SEPARATOR,
+                widget.Clock(format="%Y-%m-%d %H:%M:%S"),
+                SEPARATOR,
                 widget.CurrentLayoutIcon(),
+                SEPARATOR,
                 widget.Systray(),
             ],
             24,
