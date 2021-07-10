@@ -1,15 +1,14 @@
 * {
   /* General */
-  icon-font:                             "Hurmit Nerd Font Mono 32";
-  icon-font-small:                       "Hurmit Nerd Font Mono 24";
+  icon-font:                             "Hurmit Nerd Font Mono 28";
+  icon-font-small:                       "Hurmit Nerd Font Mono 20";
 
-  option-6-listview-spacing:             10px;
 
   menu-window-padding:                   10px 10px;
   menu-inputbar-margin:                  10px 0px;
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    1px 0px 0px -5px;
-  menu-element-padding:                  6px 15px 6px -30px;
+  menu-element-padding:                  6px 0px 6px 6px;
   accent:                                {{base05}};
   background:                            {{base00}};
   background-light:                      {{base08}};
@@ -19,8 +18,6 @@
 /* ########### */
 
 #window {
-  width: 540px;
-  height: 160px;
 }
 
 /* ########### */
@@ -75,4 +72,5 @@ textbox-prompt-colon {
 #element {
   font: @icon-font;
   padding: @menu-element-padding;
+  horizontal-align: 0.5;
 }
