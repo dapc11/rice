@@ -130,5 +130,9 @@ setup_alacritty
 setup_polybar
 generate_dotfiles monokai-dimmed
 [[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
+git config --global alias.st status
+git config --global alias.ci 'commit -v'
+git config --global user.email "daniel.tingelof@gmail.com"
+git config --global user.name "Daniel Tingelöf"
 echo -e "\nDone"
 exit 0

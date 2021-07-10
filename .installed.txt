@@ -78,3 +78,4 @@ tabbed
 yamllint
 libiw-dev
 feh
+jq

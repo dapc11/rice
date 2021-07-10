@@ -233,7 +233,7 @@ type = custom/script
 
 interval = 2
 label =  %output%
-exec = python3 ~/.local/bin/now_playing
+exec = python3 ~/.config/polybar/now_playing.py
 format = <label>
 
 [module/updates]
