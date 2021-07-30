@@ -4,11 +4,6 @@ let mapleader =" "
 map ö {
 map ä }
 map ga <Nop>
-" Shortcutting split navigation, saving a keypress:
-map <C-M-left> <C-w>h
-map <C-M-down> <C-w>j
-map <C-M-up> <C-w>k
-map <C-M-right> <C-w>l
 
 inoremap <C-Space> <C-x><C-n>
 
@@ -87,3 +82,9 @@ nnoremap N Nzzzv
 
 " Close all buffers but the opened one
 map <Leader>a :cclose <bar> lclose <bar> pclose<CR>
+
+" set moving between windows to ctrl+arrows
+nnoremap <silent> <C-Right> <c-w>l
+nnoremap <silent> <C-Left> <c-w>h
+nnoremap <silent> <C-Up> <c-w>k
+nnoremap <silent> <C-Down> <c-w>j
