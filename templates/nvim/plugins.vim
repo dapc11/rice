@@ -35,7 +35,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {'python': ['pylint', 'flake8']}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['add_blank_lines_for_python_control_statements', 'black', 'isort'],
+\   'python': ['add_blank_lines_for_python_control_statements', 'yapf', 'isort'],
 \}
 if executable('pyls')
     au User lsp_setup call lsp#register_server({
