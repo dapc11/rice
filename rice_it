@@ -163,13 +163,20 @@ def main():
 
 def render_vim(ricer):
     """Render Vim templates."""
-    ricer.render_template("nvim/init.vim")
+    ricer.render_template("nvim/lua/dapc/telescope.lua")
+    ricer.render_template("nvim/lua/dapc/init.lua")
+    ricer.render_template("nvim/options.vim")
     ricer.render_template("nvim/mappings.vim")
+    ricer.render_template("nvim/dapc11.vim")
+    ricer.render_template("nvim/fzf.vim")
+    ricer.render_template("nvim/init.vim")
+    ricer.render_template("nvim/plugin/plenary.vim")
+    ricer.render_template("nvim/plugin/telescope.vim")
+    ricer.render_template("nvim/plugin/navigation.vim")
+    ricer.render_template("nvim/plugin/netrw.vim")
+    ricer.render_template("nvim/plugin/vimspector.vim")
     ricer.render_template("nvim/plugins.vim")
     ricer.render_template("nvim/statusline.vim")
-    ricer.render_template("nvim/fzf.vim")
-    ricer.render_template("nvim/options.vim")
-    ricer.render_template("nvim/dapc11.vim")
 
 
 def render_awesome(ricer):
@@ -236,10 +243,11 @@ def render_polybar(ricer):
 def render_utils(ricer):
     """Render utility scripts."""
     ricer.set_target_dir(f"/home/{ricer.user}/.local")
-    #ricer.render_template("bin/dimmer", Ricer.EXECUTABLE)
-    #ricer.render_template("bin/nightmode", Ricer.EXECUTABLE)
-    #ricer.render_template("bin/gita", Ricer.EXECUTABLE)
 
+
+#   ricer.render_template("bin/dimmer", Ricer.EXECUTABLE)
+#   ricer.render_template("bin/nightmode", Ricer.EXECUTABLE)
+#   ricer.render_template("bin/gita", Ricer.EXECUTABLE)
 
 if __name__ == "__main__":
     main()

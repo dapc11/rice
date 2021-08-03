@@ -1,10 +1,11 @@
+set path+=**
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
 so ~/.config/nvim/plugins.vim
 set background=dark
 so ~/.config/nvim/dapc11.vim
-"colorscheme gruvbox
+" colorscheme gruvbox
 so ~/.config/nvim/options.vim
 so ~/.config/nvim/statusline.vim
 so ~/.config/nvim/mappings.vim
@@ -26,3 +27,7 @@ autocmd BufWritePre * :call TrimWhitespace()
 " Automatically deletes all trailing whitespace and newlines at end of file on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
+
+lua require("dapc")
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
