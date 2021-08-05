@@ -29,7 +29,7 @@ class Ricer:
             self.target = f"/home/{self.user}/.config"
         else:
             self.target = f"{os.getcwd()}/target"
-        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./templates/"), )
+        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./templates/"))
         self.context = utils.get_context(args.theme)
 
     def _get_destination(self, template):
@@ -247,6 +247,7 @@ def render_utils(ricer):
 #   ricer.render_template("bin/dimmer", Ricer.EXECUTABLE)
 #   ricer.render_template("bin/nightmode", Ricer.EXECUTABLE)
 #   ricer.render_template("bin/gita", Ricer.EXECUTABLE)
+
 
 if __name__ == "__main__":
     main()
