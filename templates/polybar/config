@@ -35,7 +35,7 @@ font-6 = Iosevka Nerd Font;2
 tray-position = right
 
 modules-center = date
-modules-left = bspwm i3
+modules-left = i3
 modules-right = spotify weather updates alsa wireless-network wired-network battery powermenu
 [module/xwindow]
 type = internal/xwindow
@@ -81,56 +81,6 @@ animation-discharging-2 = 
 animation-discharging-3 = 
 animation-discharging-4 = 
 animation-discharging-framerate = 1000
-
-[module/bspwm]
-type = internal/bspwm
-format = <label-state> <label-mode>
-label-mode-background = {{base08}}
-
-label-focused = " "
-label-focused-padding = 0
-
-label-urgent = %icon%
-label-urgent-padding = 0
-label-urgent-foreground = {{base08}}
-label-unfocused = %icon%
-label-unfocused-padding = 0
-
-label-visible = %icon%
-label-visible-underline = {{base03}}
-label-visible-padding = 0
-label-empty = ""
-label-empty-padding = 0
-
-; Only show workspaces defined on the same output as the bar
-; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
-; But if you rename your bspwm monitors with bspc -n this option will no longer
-; behave correctly.
-; Default: true
-pin-workspaces = true
-
-; Output mode flags after focused state label
-; Default: false
-inline-mode = false
-
-; Create click handler used to focus workspace
-; Default: true
-enable-click = true
-
-; Create scroll handlers used to cycle workspaces
-; Default: true
-enable-scroll = false
-
-; Set the scroll cycle direction
-; Default: true
-reverse-scroll = false
-
-; Use fuzzy (partial) matching on labels when assigning
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces
-; containing 'code' in the label
-; Default: false
-fuzzy-match = true
 
 [module/i3]
 type = internal/i3

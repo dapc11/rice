@@ -2,14 +2,13 @@ set path+=**
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
-so ~/.config/nvim/plugins.vim
+runtime plugins.vim
 set background=dark
-so ~/.config/nvim/dapc11.vim
-" colorscheme gruvbox
-so ~/.config/nvim/options.vim
-so ~/.config/nvim/statusline.vim
-so ~/.config/nvim/mappings.vim
-so ~/.config/nvim/fzf.vim
+colorscheme dapc11
+runtime options.vim
+runtime statusline.vim
+runtime mappings.vim
+runtime fzf.vim
 
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -30,4 +29,3 @@ autocmd BufWritepre * %s/\n\+\%$//e
 
 lua require("dapc")
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
-nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>

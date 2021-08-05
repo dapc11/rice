@@ -167,7 +167,7 @@ def render_vim(ricer):
     ricer.render_template("nvim/lua/dapc/init.lua")
     ricer.render_template("nvim/options.vim")
     ricer.render_template("nvim/mappings.vim")
-    ricer.render_template("nvim/dapc11.vim")
+    ricer.render_template("nvim/colors/dapc11.vim")
     ricer.render_template("nvim/fzf.vim")
     ricer.render_template("nvim/init.vim")
     ricer.render_template("nvim/plugin/plenary.vim")
@@ -243,7 +243,6 @@ def render_polybar(ricer):
 def render_utils(ricer):
     """Render utility scripts."""
     ricer.set_target_dir(f"/home/{ricer.user}/.local")
-
 
 #   ricer.render_template("bin/dimmer", Ricer.EXECUTABLE)
 #   ricer.render_template("bin/nightmode", Ricer.EXECUTABLE)

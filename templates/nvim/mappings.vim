@@ -31,15 +31,11 @@ cnoremap <M-Right> <S-Right>
 cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
 
-" Fugitive
-nnoremap <Leader>fa :Git add<Space>
-nnoremap <Leader>fd :Git diff<Space>
-nnoremap <Leader>fc :Git commit<Space>
-nnoremap <silent> <Leader>fs :Gstatus<cr>
-nnoremap <silent> <Leader>fl :Glog<cr>
-nnoremap <silent> <Leader>fb :Gblame<cr>
-nnoremap <silent> <Leader>fh :Git show HEAD<cr>
-nnoremap <Leader>fp :Git push
+
+" Goyo
+nmap <C-w> :Goyo 120<CR>
+nmap <C-e> :Goyo!<CR>
+
 
 " Select and search
 vnoremap <C-f> y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -54,8 +50,7 @@ cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " Search and replace with prompt
-nnoremap <leader>r yiw:%s/\<<C-r>"\>//gc<left><left><left>
-nnoremap <leader>s yiw/<C-r>"<CR>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Navigate errors
 nnoremap <C-n> :cn<CR>

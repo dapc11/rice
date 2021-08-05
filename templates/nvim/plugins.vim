@@ -7,10 +7,10 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
@@ -80,7 +80,6 @@ let g:ale_keep_list_window_open = 1
 
 map <C-w> <Plug>(expand_region_expand)
 map <C-W> <Plug>(expand_region_shrink)
-
 
 " Treesitter
 
