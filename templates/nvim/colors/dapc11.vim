@@ -377,6 +377,13 @@ call <sid>hi("SpellLocal",   "", "", "", "", "undercurl", s:gui0C)
 call <sid>hi("SpellCap",     "", "", "", "", "undercurl", s:gui0D)
 call <sid>hi("SpellRare",    "", "", "", "", "undercurl", s:gui0E)
 
+" Statusline
+call <sid>hi("NormalColor",     s:gui06,   s:gui02, "", "", "", "")
+call <sid>hi("InsertColor",     s:gui01,   s:gui0B, "", "", "", "")
+call <sid>hi("ReplaceColor",    s:gui01,   s:gui08, "", "", "", "")
+call <sid>hi("VisualColor",     s:gui01,   s:gui0C, "", "", "", "")
+call <sid>hi("StatusLine",      "",        s:gui01, "", "", "", "")
+
 " Startify highlighting
 call <sid>hi("StartifyBracket",  s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("StartifyFile",     s:gui07, "", s:cterm07, "", "", "")

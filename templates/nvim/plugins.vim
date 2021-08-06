@@ -9,14 +9,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'ap/vim-css-color'
-Plug 'chriskempson/base16-vim'
-Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'terryma/vim-expand-region'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
@@ -24,7 +21,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'puremourning/vimspector'
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
@@ -78,11 +74,7 @@ let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 1
 " inoremap <silent> <C-Space> <C-\><C-O>:ALEComplete<CR>
 
-map <C-w> <Plug>(expand_region_expand)
-map <C-W> <Plug>(expand_region_shrink)
-
 " Treesitter
-
 " Hightlight definitions
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -141,3 +133,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+
+" Goyo
+let g:goyo_width = 120
+let g:goyo_linenr = 1
+nmap <C-w> :Goyo<CR>
+nmap <C-e> :Goyo!<CR>

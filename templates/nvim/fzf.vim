@@ -30,9 +30,10 @@ command! -nargs=? -complete=dir AFF
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)
   \ }))
-nnoremap <silent> <leader>G :GGrep<cr>
+nnoremap <silent> <leader>g :GGrep<cr>
 nnoremap <C-f> :BLines<cr>
 nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>

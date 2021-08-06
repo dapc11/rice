@@ -1,4 +1,5 @@
 function! GitBranch()
+    "TODO: fix this so it gives instant respone
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
@@ -21,7 +22,6 @@ function! LinterStatus() abort
     \)
 endfunction
 
-
 let g:currentmode={
        \ 'n'  : 'n',
        \ 'v'  : 'v',
@@ -36,12 +36,6 @@ let g:currentmode={
        \ 's'  : 'test',
        \}
 
-hi NormalColor guibg={{base02}} guifg={{base06}}
-hi InsertColor guibg={{base0B}} guifg={{base01}}
-hi ReplaceColor guibg={{base08}} guifg={{base01}}
-hi VisualColor  guibg={{base0C}} guifg={{base01}}
-hi StatusLine guibg={{base01}}
-
 set laststatus=2
 set statusline=
 set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='n')?'\ \ normal\ ':''}
@@ -54,6 +48,7 @@ set statusline+=%#VisualColor#%{(g:currentmode[mode()]=='vb')?'\ \ v-block\ ':''
 set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='c')?'\ \ command\ ':''}
 set statusline+=%#NormalColor#%{(g:currentmode[mode()]=='f')?'\ \ finder\ ':''}
 set statusline+=%#PmenuSel#
+" Dont use Git in statusline due to major performance loss
 " set statusline+=%{StatuslineGit()}
 set statusline+=%#Statusline#
 set statusline+=\ %f
@@ -65,4 +60,4 @@ set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\ 
+set statusline+=\
