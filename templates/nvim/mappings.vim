@@ -20,6 +20,7 @@ noremap <Leader>p "+p<CR>
 
 " Close buffer
 nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>Q :qa<CR>
 
 " Commandline
 cnoremap <C-a> <Home>
