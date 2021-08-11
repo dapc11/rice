@@ -47,7 +47,7 @@ nnoremap <C-s> :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Navigate errors
 nnoremap <C-n> :cn<CR>
-nnoremap <C-p> :cp<CR>
+nnoremap <C-b> :cp<CR>
 
 " Paste without overwrite default register
 xnoremap p pgvy

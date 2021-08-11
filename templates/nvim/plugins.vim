@@ -26,7 +26,7 @@ call plug#end()
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
-let g:python3_host_prog = '~/venv/dev/bin/python3'
+let g:python3_host_prog = '~/dev/bin/python3'
 " let g:jedi#environment_path = "dev"
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 let g:ale_sign_error = '●'
@@ -67,7 +67,7 @@ let g:jedi#rename_command = "<leader>r"
 " Write this in your vimrc file
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
