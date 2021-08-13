@@ -1,6 +1,6 @@
 lua require("dapc")
 
-nnoremap <leader>pg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+" nnoremap <leader>pg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>ps :lua require('telescope.builtin').live_grep()<CR>
 nnoremap <C-f> :lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
