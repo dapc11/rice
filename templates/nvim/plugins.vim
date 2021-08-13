@@ -10,6 +10,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
 Plug 'airblade/vim-rooter'
 Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
@@ -134,9 +136,50 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-
 " Goyo
 let g:goyo_width = 120
 let g:goyo_linenr = 1
 nmap <C-w> :Goyo<CR>
 nmap <C-e> :Goyo!<CR>
+
+" Nerdtree
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("g:NERDTree") && exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufRead * call SyncTree()
+" nmap <C-t> :NERDTreeToggle<CR>
+" map nerdtree to the ctrl+n
+function MyNerdToggle()
+    if &filetype == 'nerdtree' || exists("g:NERDTree") && g:NERDTree.IsOpen()
+        :NERDTreeToggle
+        wincmd p
+    else
+        :NERDTreeFind
+        wincmd p
+    endif
+endfunction
+
+nnoremap <C-t> :call MyNerdToggle()<CR>
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+
+" Fugitive
+nmap <leader>gs :Git<CR>
+nmap <leader>gf :Git pull --rebase<CR>
+nmap <leader>gp :Git push
+nmap <leader>gc :Git commit
+nmap <leader>ga :Git add
