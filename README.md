@@ -4,7 +4,7 @@
 
 Make __first_setup__ executable and invoke it as following in order to setuo your environment:
 
-```shell
+```
 bash first_setup
 ```
 
