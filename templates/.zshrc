@@ -8,9 +8,7 @@ plugins=(
 autoload -Uz compinit; compinit
 
 export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
 
 if type rg &> /dev/null; then
     # --files: List files that would be searched but do not search
@@ -21,22 +19,6 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
     export FZF_DEFAULT_OPTS='-m --height 50% --border --layout=reverse'
 fi
-
-#function git_prompt_info() {
-#  local ref
-#  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
-#    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-#    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-#    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-#  fi
-#}
-
-#ZSH_THEME="{{zsh_theme}}"
-#ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}"
-#ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-#local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-#PROMPT=' %{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)%{$reset_color%}%(?..%{$fg[red]%})› %{$reset_color%}'
-#RPROMPT='${return_code} '
 
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -67,6 +49,6 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ~/dev/bin/activate
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/dev/bin/activate ]] || source ~/dev/bin/activate
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
