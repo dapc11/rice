@@ -177,5 +177,5 @@ bindsym $mod+plus scratchpad show
 bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+m exec nightmode
-bindsym $mod+w exec {{browser}}
+bindsym $mod+w exec x-www-browser
 bindsym $mod+p exec ~/.config/rofi/rofi-randr
