@@ -147,3 +147,7 @@ nmap <leader>gf :Git pull --rebase<CR>
 nmap <leader>gp :Git push
 nmap <leader>gc :Git commit
 nmap <leader>ga :Git add
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gdd :Gdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
