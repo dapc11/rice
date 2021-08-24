@@ -1,7 +1,7 @@
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -37,15 +37,15 @@ let g:ale_lint_on_text_changed = 'never'
 " Make sure to pip install python-language-server yamllint
 let g:ale_linters = {'python': ['pylint', 'flake8']}
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['add_blank_lines_for_python_control_statements', 'yapf', 'isort'],
-\}
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'python': ['add_blank_lines_for_python_control_statements', 'yapf', 'isort'],
+            \}
 if executable('pyls')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
+                \ 'name': 'pyls',
+                \ 'cmd': {server_info->['pyls']},
+                \ 'whitelist': ['python'],
+                \ })
 endif
 "set omnifunc=ale#completion#OmniFunc
 let g:ale_python_auto_pipenv = 1
@@ -80,59 +80,59 @@ let g:ale_keep_list_window_open = 1
 " Hightlight definitions
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  refactor = {
-    highlight_definitions = { enable = true },
-  },
-}
+    refactor = {
+        highlight_definitions = { enable = true },
+        },
+    }
 EOF
 
 " TS Highlighting
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  highlight = {
+    highlight = {
     enable = true,
     custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
+        -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+        ["foo.bar"] = "Identifier",
+        },
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
-  },
+    },
 }
 EOF
 
 " TS Rename
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  refactor = {
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "grr",
-      },
+    refactor = {
+        smart_rename = {
+        enable = true,
+        keymaps = {
+            smart_rename = "grr",
+            },
+        },
     },
-  },
 }
 EOF
 
 " TS Navigation
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  refactor = {
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gnd",
-        list_definitions = "gnD",
-        list_definitions_toc = "gO",
-        goto_next_usage = "<a-*>",
-        goto_previous_usage = "<a-#>",
-      },
+    refactor = {
+        navigation = {
+        enable = true,
+        keymaps = {
+            goto_definition = "gnd",
+            list_definitions = "gnD",
+            list_definitions_toc = "gO",
+            goto_next_usage = "<a-*>",
+            goto_previous_usage = "<a-#>",
+            },
+        },
     },
-  },
 }
 EOF
 
@@ -145,16 +145,16 @@ nmap <C-e> :Goyo!<CR>
 " Nerdtree
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
-  return exists("g:NERDTree") && exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+    return exists("g:NERDTree") && exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+        NERDTreeFind
+        wincmd p
+    endif
 endfunction
 
 " Highlight currently open buffer in NERDTree
@@ -175,7 +175,7 @@ nnoremap <C-t> :call MyNerdToggle()<CR>
 nnoremap <C-A-t> :NERDTreeFind<CR>
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 
 " Fugitive
