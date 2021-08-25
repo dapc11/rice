@@ -3,8 +3,8 @@ window:
     columns: 0
     lines: 0
   padding:
-    x: 15
-    y: 15
+    x: 3
+    y: 1
   dynamic_padding: false
   decorations: full
   title: alacritty
@@ -24,7 +24,7 @@ font:
     style: Bold
   italic:
     style: Italic
-  size: 13.0
+  size: 11.0
 
   offset:
     x: 0
