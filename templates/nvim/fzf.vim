@@ -30,6 +30,10 @@ command! -nargs=? -complete=dir AFF
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)
   \ }))
+command! -nargs=? -complete=dir AD
+  \ call fzf#run(fzf#wrap({
+  \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
+  \ }))
 nnoremap <silent> <leader>pg :GGrep<cr>
 nnoremap <C-f> :BLines<cr>
 nnoremap <silent> <leader>f :Rg<cr>
@@ -40,3 +44,6 @@ nnoremap <silent> <leader>N :GFiles?<cr>
 nnoremap <silent> <leader><Leader> :AFFF<cr>
 nnoremap <silent> <Leader>o :AF<cr>
 nnoremap <silent> <Leader>O :AFF<cr>
+nnoremap <Leader>c :AD<cr>
+
+let loaded_netrwPlugin = 1
