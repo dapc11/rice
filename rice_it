@@ -55,6 +55,7 @@ class Ricer:
         """
         dest = self._get_destination(name)
         self.template_handler.render(name, dest)
+
         if executable:
             utils.make_executable(dest)
 
