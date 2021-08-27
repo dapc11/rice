@@ -30,3 +30,5 @@
 #     xsetroot -name "$(__now_playing) $(__wifi) | $(__volume) | $(__battery) | $(__date)"
 #     sleep 5s
 # done &
+
+feh --bg-fill ~/.local/background.jpg
