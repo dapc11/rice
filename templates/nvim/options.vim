@@ -18,7 +18,7 @@ set incsearch                               " Evolve search as I write
 set termguicolors                           " Make colorscheme work
 set scrolloff=8                             " Start scroll when n lines from screen edge
 set noshowmode
-set completeopt=menuone,noinsert,noselect   " Autocompletion
+"set completeopt=menuone,noinsert,noselect   " Autocompletion
 set colorcolumn=100                         " Dont go further
 set updatetime=50                           " Short time to combo key strokes
 set shortmess+=c

@@ -23,7 +23,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Python IDE
 Plug 'dense-analysis/ale' " Asynchronous Lint Engine
-Plug 'davidhalter/jedi-vim' " Autocomplete
+Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Townk/vim-autoclose'
+Plug 'lilydjwg/colorizer'
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
@@ -51,7 +57,8 @@ let g:ale_completion_autoimport = 0
 nmap L <Plug>(ale_fix)
 nmap l <Plug>(ale_lint)
 """ Jedi
-let g:jedi#popup_select_first = 0
+let g:jedi#show_call_signatures = 1
+let g:jedi#smart_auto_mappings = 1
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_stubs_command = "<leader>s"
@@ -60,6 +67,20 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
+" set completeopt+=noinsert
+" set wildmode=list:longest
+let g:jedi#completions_enabled = 0
+
+
+""" Deopplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\   'ignore_case': v:true,
+\   'smart_case': v:true,
+\})
+" complete with words from any opened file
+let g:context_filetype#same_filetypes = {}
+let g:context_filetype#same_filetypes._ = '_'
 
 " Treesitter
 " Hightlight definitions
