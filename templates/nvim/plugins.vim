@@ -23,7 +23,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Python IDE
 Plug 'dense-analysis/ale' " Asynchronous Lint Engine
-Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
