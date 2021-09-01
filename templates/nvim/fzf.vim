@@ -1,4 +1,4 @@
-let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+let g:fzf_nvim_statusline = 0 " disable stpatusline overwriting
 let g:fzf_colors = {
             \ 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
@@ -45,5 +45,7 @@ nnoremap <silent> <leader><Leader> :AFFF<cr>
 nnoremap <silent> <Leader>o :AF<cr>
 nnoremap <silent> <Leader>O :AFF<cr>
 nnoremap <Leader>d :AD<cr>
+nnoremap <C-p> :Files<cr>
+nnoremap <C-f> :Rg<cr>
 
 let loaded_netrwPlugin = 1
