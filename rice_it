@@ -3,57 +3,52 @@
 
 import argparse
 import getpass
-import glob
+import json
 import os
 import subprocess
 import sys
 from distutils.dir_util import copy_tree
 from pathlib import Path
 from shutil import copyfile
+from jinja2.exceptions import TemplateNotFound
 
-from lib.TemplateHandler import TemplateHandler
+from lib.TemplateHandler import View
+from lib.ThemeController import ThemeController
 
 from lib import utils
 
 
-class Ricer:
+class TemplateController:
     """Class for transforming the templates into actual config files for various software."""
-
-    EXECUTABLE = True
-
-    def __init__(self, args):
+    def __init__(self, theme: str, overwrite: bool):
         self.user = getpass.getuser()
-        self.overwrite = args.overwrite
-        self.template_handler = TemplateHandler(args.theme)
+        self.view = View(theme)
+        self.overwrite = overwrite
+        self.target = self._set_target()
 
-        if self.overwrite:
-            self.target = f"/home/{self.user}/.config"
-        else:
-            self.target = f"{os.getcwd()}/target"
+    def _set_target(self) -> str:
+        return f"/home/{self.user}/.config" if self.overwrite else f"{os.getcwd()}/target"
 
-    def _get_destination(self, template):
-        dest = f"{self.target}/{template}"
-        parent = Path(dest).parent
+    def _get_destination(self, target, template):
+        destination = target if target and self.overwrite else self.target
+        destination = Path(f"{destination}/{template}".replace('~', f'/home/{self.user}'))
 
-        if not os.path.exists(parent):
-            os.makedirs(parent)
+        if not os.path.exists(destination.parent):
+            os.makedirs(destination.parent)
 
-        return dest
+        return destination
 
-    def set_target_dir(self, target):
-        """More or less changing current working dir for template rendering."""
-        if self.overwrite:
-            self.target = target
-
-    def _render(self, name, executable=False):
-        """Render the template into the destination.
-
-        Destination is decided based on overwrite flag.
-        If true, destination will be relative path inside the home dir.
-        If false, the template will be rendered into a target dir within this project.
-        """
-        dest = self._get_destination(name)
-        self.template_handler.render(name, dest)
+    def _render(self, entry):
+        """Render the template into the destination."""
+        target = entry.get('target')
+        template = entry.get('template')
+        executable = entry.get('executable')
+        dest = self._get_destination(target, template)
+        try:
+            self.view.render(template, dest)
+        except TemplateNotFound:
+            print(f'Template not found {template}')
+            return
 
         if executable:
             utils.make_executable(dest)
@@ -71,74 +66,11 @@ class Ricer:
         else:
             copyfile(source, str(target))
 
-    def render_templates(self):
-
-        self.render_vim()
-        self.render_rofi()
-
-        if self.template_handler.get_context_value("window_manager") == "awesome":
-            self.render_awesome()
-        else:
-            self._render("i3/config")
-            self.render_background()
-            self.render_polybar()
-        self.render_vs_code()
-        self._render("alacritty/alacritty.yml")
-        self._render("dunst/dunstrc")
-        self._render("ranger/rc.conf")
-        self._render("yamllint/config")
-        self._render("compton/compton.conf")
-        self._render("qtile/config.py")
-        self.set_target_dir(f"/home/{self.user}")
-        self._render(".tmux.conf")
-        self._render(".zshrc")
-        self._render(".xprofile")
-        self._render(".zprofile")
-        self._render(".Xresources")
-        self.render_utils()
-
-    def render_vim(self):
-        """Render Vim templates."""
-        self._render("nvim/lua/dapc/telescope.lua")
-        self._render("nvim/lua/dapc/init.lua")
-        self._render("nvim/options.vim")
-        self._render("nvim/mappings.vim")
-        self._render("nvim/colors/dapc11.vim")
-        self._render("nvim/fzf.vim")
-        self._render("nvim/init.vim")
-        self._render("nvim/plugin/plenary.vim")
-        self._render("nvim/plugin/telescope.vim")
-        self._render("nvim/plugin/navigation.vim")
-        self._render("nvim/plugin/netrw.vim")
-        self._render("nvim/plugin/vimspector.vim")
-        self._render("nvim/plugins.vim")
-        self._render("nvim/statusline.vim")
-
-    def render_awesome(self):
-        """Render AwesomeWM templates."""
-        self._render("awesome/rc.lua")
-        self._render("awesome/theme.lua")
-        self.copy_file("templates/awesome/sysact", f"/home/{self.user}/.local/bin/sysact")
-        utils.make_executable(f"/home/{self.user}/.local/bin/sysact")
-        background = self.template_handler.get_context_value("bg")
-        self.copy_file(
-            f"templates/images/{background}",
-            f"/home/{self.user}/.config/awesome/background.jpg",
-        )
-        self.copy_file(
-            "templates/awesome/widgets",
-            f"/home/{self.user}/.config/awesome/widgets",
-        )
-        self.copy_file(
-            "templates/awesome/icons",
-            f"/home/{self.user}/.config/awesome/icons",
-        )
-
-    def render_background(self):
+    def _render_background(self):
         """Render background to ~/.local/background.jpg.
         If overwrite is set to True, set background with 'feh'
         """
-        background = self.template_handler.get_context_value("bg")
+        background = self.view.get_context_value("bg")
         self.copy_file(
             f"templates/images/{background}",
             f"/home/{self.user}/.local/background.jpg",
@@ -150,29 +82,13 @@ class Ricer:
                 check=True,
             )
 
-    def render_vs_code(self):
-        """Render VS Code templates."""
-        self._render("Code/User/settings.json")
-        self._render("Code/User/keybindings.json")
-
-    def render_rofi(self):
-        """Render Rofi templates."""
-        self._render("rofi/config.rasi")
-        self._render("rofi/powermenu.rasi")
-        self._render("rofi/rofi-power", self.EXECUTABLE)
-        self._render("rofi/rofi-randr", self.EXECUTABLE)
-
-    def render_polybar(self):
-        """Render Polybar templates."""
-        self._render("polybar/config")
-        self._render("polybar/startup.sh", self.EXECUTABLE)
-        self._render("polybar/updates.sh", self.EXECUTABLE)
-        self._render("polybar/now_playing.py", self.EXECUTABLE)
-        self._render("polybar/weather.sh", self.EXECUTABLE)
-
-    def render_utils(self):
-        """Render utility scripts."""
-        self.set_target_dir(f"/home/{self.user}/.local")
+    def render_templates(self):
+        """Render templates defined in templates.json."""
+        with open('templates.json', 'r') as file:
+            templates_to_be_rendered = json.load(file)
+        for entry in templates_to_be_rendered:
+            self._render(entry)
+        self._render_background()
 
 
 def setup_argparser():
@@ -184,9 +100,9 @@ def setup_argparser():
     arg_parser.add_argument(
         "-o",
         "--overwrite",
-        help="Make rice_it overwrite existing dotfiles in your home directory,"
-        " use with caution!",
+        help="Make rice_it overwrite existing dotfiles in your home directory, use with caution!",
         action="store_true",
+        default=False,
     )
     arg_parser.add_argument(
         "-t",
@@ -205,33 +121,14 @@ def setup_argparser():
     return arg_parser
 
 
-def get_themes():
-    """Utility function for visualizing which themes that are available."""
-    theme_names = []
-
-    for theme_path in glob.glob("themes/*.json"):
-        if "settings" in theme_path:
-            continue
-        theme_names.append(os.path.splitext(os.path.basename(theme_path))[0])
-
-    return theme_names
-
-
 def main():
-    """Entrypoint to the Ricer."""
+    """Entrypoint to the Controller."""
     parser = setup_argparser()
-    themes = get_themes()
     args = parser.parse_args()
-
-    if args.list or args.theme is None:
-        print("Specify theme with --theme (-t) flag.\nAvailable themes:")
-
-        for theme in themes:
-            print(f"- {theme}")
-        sys.exit(0)
-
-    ricer = Ricer(args)
-    ricer.render_templates()
+    tc = ThemeController(args)
+    theme = tc.get_theme()
+    controller = TemplateController(theme, args.overwrite)
+    controller.render_templates()
 
     sys.exit(0)
 

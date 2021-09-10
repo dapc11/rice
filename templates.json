@@ -1,0 +1,103 @@
+[
+    {
+        "template": "i3/config",
+        "executable": false
+    },
+    {
+        "template": "polybar/config",
+        "executable": false
+    },
+    {
+        "template": "polybar/startup.sh",
+        "executable": true
+    },
+    {
+        "template": "polybar/updates.sh",
+        "executable": true
+    },
+    {
+        "template": "polybar/now_playing.py",
+        "executable": true
+    },
+    {
+        "template": "polybar/weather.sh",
+        "executable": true
+    },
+    {
+        "template": "rofi/config.rasi",
+        "executable": false
+    },
+    {
+        "template": "rofi/powermenu.rasi",
+        "executable": false
+    },
+    {
+        "template": "rofi/config.rasi",
+        "executable": true
+    },
+    {
+        "template": "rofi/rofi-power",
+        "executable": true
+    },
+    {
+        "template": "rofi/rofi-randr",
+        "executable": true
+    },
+    {
+        "template": "Code/User/settings.json",
+        "executable": false
+    },
+    {
+        "template": "Code/User/keybindings.json",
+        "executable": false
+    },
+    {
+        "template": "alacritty/alacritty.yml",
+        "executable": false
+    },
+    {
+        "template": "dunst/dunstrc",
+        "executable": false
+    },
+    {
+        "template": "ranger/rc.conf",
+        "executable": false
+    },
+    {
+        "template": "yamllint/config",
+        "executable": false
+    },
+    {
+        "template": "compton/compton.conf",
+        "executable": false
+    },
+    {
+        "template": "qtile/config.py",
+        "executable": false
+    },
+    {
+        "template": ".tmux.conf",
+        "executable": false,
+        "target": "/home/epedape"
+    },
+    {
+        "template": ".zshrc",
+        "executable": false,
+        "target": "/home/epedape"
+    },
+    {
+        "template": ".xprofile",
+        "executable": false,
+        "target": "/home/epedape"
+    },
+    {
+        "template": ".zprofile",
+        "executable": false,
+        "target": "/home/epedape"
+    },
+    {
+        "template": ".Xresources",
+        "executable": false,
+        "target": "/home/epedape"
+    }
+]

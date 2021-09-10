@@ -3,7 +3,7 @@ import jinja2
 from lib import utils
 
 
-class TemplateHandler:
+class View:
     """Class for handling templates."""
     def __init__(self, theme):
         super().__init__()
@@ -14,10 +14,10 @@ class TemplateHandler:
         template = self.env.get_template(name)
         return template.render(self.context)
 
-    def get_context_value(self, key):
+    def get_context_value(self, key) -> str:
         return self.context[key]
 
-    def render(self, name, destination):
+    def render(self, name, destination) -> None:
         print(f"Writing to {destination}")
 
         template = self._get_template(name)
