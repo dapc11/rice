@@ -87,27 +87,53 @@
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.insertModeKeyBindings": [
-    {
-        "before": ["j", "j"],
-        "after": ["<Esc>"]
-    }
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "d"],
-            "after": ["d", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
         },
         {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
         },
         {
-            "before": ["<C-w>"],
-            "after": ["v", "i", "\""]
+            "before": [
+                "<C-w>"
+            ],
+            "after": [
+                "v",
+                "i",
+                "\""
+            ]
         },
         {
-            "before": ["<leader>", "q"],
-            "commands": [":bd"]
+            "before": [
+                "<leader>",
+                "q"
+            ],
+            "commands": [
+                ":bd"
+            ]
         },
     ],
     "vim.leader": "<space>",
@@ -116,4 +142,13 @@
         "<C-f>": false,
         "<C-k>": false,
     },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/bob/*/**": true,
+        "**/.bob/*/**": true,
+        "**/.idea/*/**": true,
+        "**/.vscode/*/**": true,
+    }
 }
