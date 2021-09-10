@@ -42,7 +42,6 @@ class Ricer:
 
     def set_target_dir(self, target):
         """More or less changing current working dir for template rendering."""
-
         if self.overwrite:
             self.target = target
 
@@ -60,7 +59,7 @@ class Ricer:
             utils.make_executable(dest)
 
     def copy_file(self, source, target):
-        """Moving source to target, without rendering any template value placeholders."""
+        """Move source to target, without render any template value placeholders."""
 
         if not self.overwrite:
             basename = os.path.basename(source)
@@ -120,7 +119,7 @@ class Ricer:
         self._render("awesome/rc.lua")
         self._render("awesome/theme.lua")
         self.copy_file("templates/awesome/sysact", f"/home/{self.user}/.local/bin/sysact")
-        self.make_executable(f"/home/{self.user}/.local/bin/sysact")
+        utils.make_executable(f"/home/{self.user}/.local/bin/sysact")
         background = self.template_handler.get_context_value("bg")
         self.copy_file(
             f"templates/images/{background}",
