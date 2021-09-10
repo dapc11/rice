@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/env python3
 """Software for setting up Dapc Linux development environment."""
 
 import argparse
@@ -29,21 +29,20 @@ class TemplateController:
     def _set_target(self) -> str:
         return f"/home/{self.user}/.config" if self.overwrite else f"{os.getcwd()}/target"
 
-    def _get_destination(self, target, template):
+    def _get_destination(self, target, template) -> Path:
         destination = target if target and self.overwrite else self.target
-        destination = Path(f"{destination}/{template}".replace('~', f'/home/{self.user}'))
+        return Path(f"{destination}/{template}".replace('~', f'/home/{self.user}'))
 
-        if not os.path.exists(destination.parent):
-            os.makedirs(destination.parent)
-
-        return destination
-
-    def _render(self, entry):
+    def _render(self, entry) -> None:
         """Render the template into the destination."""
         target = entry.get('target')
         template = entry.get('template')
         executable = entry.get('executable')
+
         dest = self._get_destination(target, template)
+        if not os.path.exists(dest.parent):
+            os.makedirs(dest.parent)
+
         try:
             self.view.render(template, dest)
         except TemplateNotFound:
@@ -53,7 +52,7 @@ class TemplateController:
         if executable:
             utils.make_executable(dest)
 
-    def copy_file(self, source, target):
+    def copy_file(self, source, target) -> None:
         """Move source to target, without render any template value placeholders."""
 
         if not self.overwrite:
@@ -66,23 +65,23 @@ class TemplateController:
         else:
             copyfile(source, str(target))
 
-    def _render_background(self):
+    def _render_background(self) -> None:
         """Render background to ~/.local/background.jpg.
         If overwrite is set to True, set background with 'feh'
         """
+        if not self.overwrite:
+            return
         background = self.view.get_context_value("bg")
         self.copy_file(
             f"templates/images/{background}",
             f"/home/{self.user}/.local/background.jpg",
         )
+        subprocess.run(
+            ["feh", "--bg-fill", f"/home/{self.user}/.local/background.jpg"],
+            check=True,
+        )
 
-        if self.overwrite:
-            subprocess.run(
-                ["feh", "--bg-fill", f"/home/{self.user}/.local/background.jpg"],
-                check=True,
-            )
-
-    def render_templates(self):
+    def render_templates(self) -> None:
         """Render templates defined in templates.json."""
         with open('templates.json', 'r') as file:
             templates_to_be_rendered = json.load(file)
