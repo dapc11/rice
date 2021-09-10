@@ -12,7 +12,7 @@ from pathlib import Path
 from shutil import copyfile
 from jinja2.exceptions import TemplateNotFound
 
-from lib.TemplateHandler import View
+from lib.View import View
 from lib.ThemeController import ThemeController
 
 from lib import utils

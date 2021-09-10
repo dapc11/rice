@@ -1,6 +1,5 @@
-"""Controller class for handling of the themes."""
 #!/usr/bin/python3
-
+"""Controller class for handling of the themes."""
 import glob
 import os
 import sys

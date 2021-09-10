@@ -1,7 +1,7 @@
 {
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.external.linuxExec": "{{terminal}}",
-    "terminal.integrated.defaultProfile.linux": "{{shell}}",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
@@ -18,14 +18,14 @@
     ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Default Dark+",
     "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
         "VISUAL": "vim",
         "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
     },
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Pylance",
     "python.pythonPath": "${env:HOME}/dev/bin/python3",
     "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
     "python.linting.enabled": true,
@@ -33,7 +33,7 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
-    "python.formatting.provider": "yapf",
+    "python.formatting.provider": "ycd ~apf",
     "python.autoComplete.addBrackets": true,
     "python.formatting.autopep8Args": [
         "--max-line-length",
@@ -63,6 +63,7 @@
         "filenamePattern": "*.ipynb"
     },
     "workbench.colorCustomizations": {
+        "statusBar.background": "{{base01}}",
         "terminal.foreground": "{{base06}}",
         "terminal.ansiBrightBlack": "{{base02}}",
         "terminal.ansiBrightCyan": "{{base0C}}",

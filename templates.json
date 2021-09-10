@@ -1,103 +1,31 @@
 [
-    {
-        "template": "i3/config",
-        "executable": false
-    },
-    {
-        "template": "polybar/config",
-        "executable": false
-    },
-    {
-        "template": "polybar/startup.sh",
-        "executable": true
-    },
-    {
-        "template": "polybar/updates.sh",
-        "executable": true
-    },
-    {
-        "template": "polybar/now_playing.py",
-        "executable": true
-    },
-    {
-        "template": "polybar/weather.sh",
-        "executable": true
-    },
-    {
-        "template": "rofi/config.rasi",
-        "executable": false
-    },
-    {
-        "template": "rofi/powermenu.rasi",
-        "executable": false
-    },
-    {
-        "template": "rofi/config.rasi",
-        "executable": true
-    },
-    {
-        "template": "rofi/rofi-power",
-        "executable": true
-    },
-    {
-        "template": "rofi/rofi-randr",
-        "executable": true
-    },
-    {
-        "template": "Code/User/settings.json",
-        "executable": false
-    },
-    {
-        "template": "Code/User/keybindings.json",
-        "executable": false
-    },
-    {
-        "template": "alacritty/alacritty.yml",
-        "executable": false
-    },
-    {
-        "template": "dunst/dunstrc",
-        "executable": false
-    },
-    {
-        "template": "ranger/rc.conf",
-        "executable": false
-    },
-    {
-        "template": "yamllint/config",
-        "executable": false
-    },
-    {
-        "template": "compton/compton.conf",
-        "executable": false
-    },
-    {
-        "template": "qtile/config.py",
-        "executable": false
-    },
-    {
-        "template": ".tmux.conf",
-        "executable": false,
-        "target": "/home/epedape"
-    },
-    {
-        "template": ".zshrc",
-        "executable": false,
-        "target": "/home/epedape"
-    },
-    {
-        "template": ".xprofile",
-        "executable": false,
-        "target": "/home/epedape"
-    },
-    {
-        "template": ".zprofile",
-        "executable": false,
-        "target": "/home/epedape"
-    },
-    {
-        "template": ".Xresources",
-        "executable": false,
-        "target": "/home/epedape"
-    }
+    { "template": "i3/config" },
+    { "template": "polybar/config" },
+    { "template": "polybar/startup.sh", "executable": true },
+    { "template": "polybar/updates.sh", "executable": true },
+    { "template": "polybar/now_playing.py", "executable": true },
+    { "template": "polybar/weather.sh", "executable": true },
+    { "template": "rofi/config.rasi" },
+    { "template": "rofi/powermenu.rasi" },
+    { "template": "rofi/config.rasi", "executable": true },
+    { "template": "rofi/rofi-power", "executable": true },
+    { "template": "rofi/rofi-randr", "executable": true },
+    { "template": "Code/User/settings.json" },
+    { "template": "Code/User/keybindings.json" },
+    { "template": "alacritty/alacritty.yml" },
+    { "template": "dunst/dunstrc" },
+    { "template": "ranger/rc.conf" },
+    { "template": "yamllint/config" },
+    { "template": "compton/compton.conf" },
+    { "template": "qtile/config.py" },
+    { "template": "dimmer", "executable": true, "target": "~/.local/bin" },
+    { "template": "nightmode", "executable": true, "target": "~/.local/bin" },
+    { "template": "sysact", "executable": true, "target": "~/.local/bin" },
+    { "template": "gita", "executable": true, "target": "~/.local/bin" },
+    { "template": "colortest", "executable": true, "target": "~/.local/bin" },
+    { "template": ".tmux.conf", "target": "~" },
+    { "template": ".zshrc", "target": "~" },
+    { "template": ".xprofile", "target": "~" },
+    { "template": ".zprofile", "target": "~" },
+    { "template": ".Xresources", "target": "~" }
 ]

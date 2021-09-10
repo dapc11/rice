@@ -3,6 +3,7 @@
 # zsh profile file. Runs on login. Environmental variables are set here.
 
 export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH=$PATH:/usr/local/go/bin
 
 # Default programs:
 export VISUAL="{{editor}}"
