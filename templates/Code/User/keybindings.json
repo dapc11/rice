@@ -105,5 +105,15 @@
     {
         "key": "ctrl+numpad_subtract",
         "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditor",
+        "when": "!inEditorsPicker"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.quickOpenLeastRecentlyUsedEditor",
+        "when": "!inEditorsPicker"
     }
 ]
