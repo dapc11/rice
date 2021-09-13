@@ -33,6 +33,7 @@ class ThemeController():
         return self.theme is not None and self.theme in themes
 
     def get_theme(self) -> str:
+        """Get theme if valid, otherwise print lsit of available themes."""
         themes = self._get_themes()
         if not self._validate_theme(themes) or self.list_themes:
             self._print_available_themes()

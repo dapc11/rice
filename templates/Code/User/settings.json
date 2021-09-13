@@ -33,12 +33,29 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
-    "python.formatting.provider": "ycd ~apf",
+    "python.formatting.provider": "yapf",
     "python.autoComplete.addBrackets": true,
-    "python.formatting.autopep8Args": [
-        "--max-line-length",
-        "99",
-        "--experimental"
+    "python.sortImports.path": "${env:HOME}/dev/bin/isort",
+    "python.sortImports.arhs": [
+        "--line-lenght 99",
+    ],
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{",
+        " split_before_logical_operator: true,",
+        " split_all_comma_separated_values: false,",
+        " split_before_first_argument: true,",
+        " each_dict_entry_on_separate_line: true,",
+        " allow_split_before_dict_value: false,",
+        " allow_split_before_default_or_named_assigns: false,",
+        " column_limit: 99,",
+        " indent_width: 4",
+        "}"
+    ],
+    "python.linting.pylintArgs": [
+        "--disable",
+        "C0115,C0301,C0114,W0611",
+        "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
     ],
     "[python]": {
         "editor.rulers": [

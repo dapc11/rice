@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
-import os
-import subprocess as sp
-from subprocess import PIPE
 import getpass
-from subprocess import check_output
+import subprocess as sp
+from subprocess import PIPE, check_output
 
 
 def get_pid(name):
@@ -31,8 +29,8 @@ if __name__ == '__main__':
     )
     rofi_input = '\n'.join(x for x in options)
 
-    cp = sp.run(rofi, input=rofi_input, encoding='utf-8', stdout=PIPE, stderr=PIPE)
+    cp = sp.run(rofi, input=rofi_input, encoding='utf-8', stdout=PIPE, stderr=PIPE, check=True)
     if not cp.returncode:
         selection = cp.stdout.strip()
         if selection in commands:
-            sp.run(commands[selection].split())
+            sp.run(commands[selection].split(), check=True)
