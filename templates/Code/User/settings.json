@@ -33,7 +33,7 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
-    "python.formatting.provider": "yapf",
+    "python.formatting.provider": "black",
     "python.autoComplete.addBrackets": true,
     "python.sortImports.path": "${env:HOME}/dev/bin/isort",
     "python.sortImports.arhs": [

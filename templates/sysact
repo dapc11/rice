@@ -9,27 +9,28 @@ def get_pid(name):
     return check_output(["pidof", "-s", name])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     user = getpass.getuser()
     pid = get_pid("{{window_manager}}").decode("utf-8")
     commands = {
-        ' Exit': "kill -TERM {}".format(pid),
-        ' Renew': "kill -HUP {}".format(pid),
-        ' Lock': 'slock',
-        ' Suspend': 'systemctl suspend',
-        ' Hibernate': 'systemctl hibernate',
-        ' Reboot': 'systemctl reboot',
-        ' Shutdown': 'systemctl poweroff',
+        " Exit": "kill -TERM {}".format(pid),
+        " Renew": "kill -HUP {}".format(pid),
+        " Lock": "slock",
+        " Suspend": "systemctl suspend",
+        " Hibernate": "systemctl hibernate",
+        " Reboot": "systemctl reboot",
+        " Shutdown": "systemctl poweroff",
     }
 
     options = commands.keys()
-    title = 'rofi-power'
-    rofi = f'rofi -dmenu -i -theme /home/{user}/.config/rofi/config -lines 7 -width 20 -p {title}'.split(
-    )
-    rofi_input = '\n'.join(x for x in options)
+    title = "rofi-power"
+    rofi = f"rofi -dmenu -i -theme /home/{user}/.config/rofi/config -lines 7 -width 20 -p {title}".split()
+    rofi_input = "\n".join(x for x in options)
 
-    cp = sp.run(rofi, input=rofi_input, encoding='utf-8', stdout=PIPE, stderr=PIPE, check=True)
+    cp = sp.run(
+        rofi, input=rofi_input, encoding="utf-8", stdout=PIPE, stderr=PIPE, check=True
+    )
     if not cp.returncode:
         selection = cp.stdout.strip()
         if selection in commands:

@@ -5,7 +5,7 @@ import os
 import sys
 
 
-class ThemeController():
+class ThemeController:
     def __init__(self, args) -> None:
         self.list_themes = args.list
         self.theme = args.theme

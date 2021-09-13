@@ -5,9 +5,12 @@ from lib import utils
 
 class View:
     """Class for handling templates."""
+
     def __init__(self, theme):
         super().__init__()
-        self.env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./templates/"))
+        self.env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(searchpath="./templates/")
+        )
         self.context = utils.get_context(theme)
 
     def _get_template(self, name):
