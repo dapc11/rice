@@ -20,6 +20,7 @@ from lib import utils
 
 class TemplateController:
     """Class for transforming the templates into actual config files for various software."""
+
     def __init__(self, theme: str, overwrite: bool):
         self.user = getpass.getuser()
         self.view = View(theme)

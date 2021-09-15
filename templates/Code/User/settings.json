@@ -30,13 +30,13 @@
     "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
     "python.formatting.provider": "black",
     "python.autoComplete.addBrackets": true,
     "python.sortImports.path": "${env:HOME}/dev/bin/isort",
-    "python.sortImports.arhs": [
+    "python.sortImports.args": [
         "--line-lenght 99",
     ],
     "python.formatting.yapfArgs": [
@@ -51,11 +51,6 @@
         " column_limit: 99,",
         " indent_width: 4",
         "}"
-    ],
-    "python.linting.pylintArgs": [
-        "--disable",
-        "C0115,C0301,C0114,W0611",
-        "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
     ],
     "[python]": {
         "editor.rulers": [
@@ -168,5 +163,7 @@
         "**/.bob/*/**": true,
         "**/.idea/*/**": true,
         "**/.vscode/*/**": true,
-    }
+    },
+    "git.detectSubmodules": false,
+    "git.autoRepositoryDetection": "openEditors",
 }
