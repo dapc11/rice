@@ -52,6 +52,17 @@
         " indent_width: 4",
         "}"
     ],
+<<<<<<< HEAD
+=======
+    "python.linting.pylintArgs": [
+        "--disable",
+        "C0115,C0301,C0114,W0611",
+        "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
+    ],
+    "python.linting.flake8Args": [
+        "--extend-ignore=W503"
+    ],
+>>>>>>> VsCode improvements
     "[python]": {
         "editor.rulers": [
             100,
@@ -166,4 +177,5 @@
     },
     "git.detectSubmodules": false,
     "git.autoRepositoryDetection": "openEditors",
+    "python.analysis.completeFunctionParens": true
 }
