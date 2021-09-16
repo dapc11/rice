@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import jinja2
+
 from lib import utils
 
 
@@ -20,9 +21,9 @@ class View:
     def get_context_value(self, key) -> str:
         return self.context[key]
 
-    def render(self, name, destination) -> None:
-        print(f"Writing to {destination}")
+    def render(self, template) -> None:
+        print(f"Writing to {template.target}")
 
-        template = self._get_template(name)
-        with open(destination, "w") as destination_file:
-            destination_file.write(template)
+        content = self._get_template(template.path)
+        with open(template.target, "w") as target:
+            target.write(content)

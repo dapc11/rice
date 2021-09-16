@@ -10,48 +10,66 @@ import sys
 from distutils.dir_util import copy_tree
 from pathlib import Path
 from shutil import copyfile
+
 from jinja2.exceptions import TemplateNotFound
 
-from lib.View import View
-from lib.ThemeController import ThemeController
-
 from lib import utils
+from lib.ThemeController import ThemeController
+from lib.View import View
+
+
+class Templates:
+    def __init__(self, templates_path, overwrite) -> None:
+        self.templates_path = templates_path
+        self.overwrite = overwrite
+
+    def __enter__(self):
+        with open(self.templates_path, "r") as file:
+            templates = json.load(file)
+            return [Template(t, self.overwrite) for t in templates]
+
+    def __exit__(self, exception_type, exception_value, exception_traceback):
+        pass
+
+
+class Template:
+    def __init__(self, template_as_json, overwrite) -> None:
+        self.template = template_as_json
+        self.overwrite = overwrite
+
+    @property
+    def path(self) -> str:
+        return self.template.get("template")
+
+    @property
+    def target(self) -> Path:
+        target = self.template.get("target")
+        if not self.overwrite or not target:
+            target = (
+                f"/home/{getpass.getuser()}/.config"
+                if self.overwrite
+                else f"{os.getcwd()}/target"
+            )
+        return Path(f"{target}/{self.path}".replace("~", f"/home/{getpass.getuser()}"))
+
+    @property
+    def executable(self) -> bool:
+        return self.template["executable"] if self.template.get("executable") else False
+
+    def __repr__(self) -> str:
+        return f"{self.path}"
+
+    def create_parents(self) -> None:
+        if not os.path.exists(self.target.parent):
+            os.makedirs(self.target.parent)
 
 
 class TemplateController:
     """Class for transforming the templates into actual config files for various software."""
 
     def __init__(self, theme: str, overwrite: bool):
-        self.user = getpass.getuser()
         self.view = View(theme)
         self.overwrite = overwrite
-        self.target = self._set_target()
-
-    def _set_target(self) -> str:
-        return f"/home/{self.user}/.config" if self.overwrite else f"{os.getcwd()}/target"
-
-    def _get_destination(self, target, template) -> Path:
-        destination = target if target and self.overwrite else self.target
-        return Path(f"{destination}/{template}".replace('~', f'/home/{self.user}'))
-
-    def _render(self, entry) -> None:
-        """Render the template into the destination."""
-        target = entry.get('target')
-        template = entry.get('template')
-        executable = entry.get('executable')
-
-        dest = self._get_destination(target, template)
-        if not os.path.exists(dest.parent):
-            os.makedirs(dest.parent)
-
-        try:
-            self.view.render(template, dest)
-        except TemplateNotFound:
-            print(f'Template not found {template}')
-            return
-
-        if executable:
-            utils.make_executable(dest)
 
     def copy_file(self, source, target) -> None:
         """Move source to target, without render any template value placeholders."""
@@ -75,23 +93,31 @@ class TemplateController:
         background = self.view.get_context_value("bg")
         self.copy_file(
             f"templates/images/{background}",
-            f"/home/{self.user}/.local/background.jpg",
+            f"/home/{getpass.getuser()}/.local/background.jpg",
         )
         subprocess.run(
-            ["feh", "--bg-fill", f"/home/{self.user}/.local/background.jpg"],
+            ["feh", "--bg-fill", f"/home/{getpass.getuser()}/.local/background.jpg"],
             check=True,
         )
 
     def render_templates(self) -> None:
         """Render templates defined in templates.json."""
-        with open('templates.json', 'r') as file:
-            templates_to_be_rendered = json.load(file)
-        for entry in templates_to_be_rendered:
-            self._render(entry)
-        self._render_background()
+        with Templates("templates.json", self.overwrite) as templates:
+            for template in templates:
+                template.create_parents()
+
+                try:
+                    self.view.render(template)
+                except TemplateNotFound:
+                    print(f"Template not found {template}")
+                    continue
+
+                if template.executable:
+                    utils.make_executable(template.target)
+            self._render_background()
 
 
-def setup_argparser():
+def setup_argparser() -> argparse.ArgumentParser:
     """Setup the arguments of the program."""
     arg_parser = argparse.ArgumentParser(
         prog="rice_it",

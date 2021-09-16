@@ -37,7 +37,8 @@
     "python.autoComplete.addBrackets": true,
     "python.sortImports.path": "${env:HOME}/dev/bin/isort",
     "python.sortImports.args": [
-        "--line-lenght 99",
+        "-w",
+        "99",
     ],
     "python.formatting.yapfArgs": [
         "--style",
@@ -52,8 +53,6 @@
         " indent_width: 4",
         "}"
     ],
-<<<<<<< HEAD
-=======
     "python.linting.pylintArgs": [
         "--disable",
         "C0115,C0301,C0114,W0611",
@@ -62,7 +61,6 @@
     "python.linting.flake8Args": [
         "--extend-ignore=W503"
     ],
->>>>>>> VsCode improvements
     "[python]": {
         "editor.rulers": [
             100,
