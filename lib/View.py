@@ -24,6 +24,6 @@ class View:
     def render(self, template) -> None:
         print(f"Writing to {template.target}")
 
-        content = self._get_template(template.path)
+        content = self._get_template(template.template)
         with open(template.target, "w") as target:
             target.write(content)

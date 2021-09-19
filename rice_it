@@ -33,31 +33,33 @@ class Templates:
 
 
 class Template:
-    def __init__(self, template_as_json, overwrite) -> None:
-        self.template = template_as_json
+    def __init__(self, metadata, overwrite) -> None:
+        self.metadata = metadata
         self.overwrite = overwrite
 
     @property
-    def path(self) -> str:
-        return self.template.get("template")
+    def template(self) -> str:
+        return self.metadata.get("template")
 
     @property
     def target(self) -> Path:
-        target = self.template.get("target")
+        target = self.metadata.get("destination")
         if not self.overwrite or not target:
             target = (
                 f"/home/{getpass.getuser()}/.config"
                 if self.overwrite
                 else f"{os.getcwd()}/target"
             )
-        return Path(f"{target}/{self.path}".replace("~", f"/home/{getpass.getuser()}"))
+        return Path(
+            f"{target}/{self.template}".replace("~", f"/home/{getpass.getuser()}")
+        )
 
     @property
     def executable(self) -> bool:
-        return self.template["executable"] if self.template.get("executable") else False
+        return self.metadata["executable"] if self.metadata.get("executable") else False
 
     def __repr__(self) -> str:
-        return f"{self.path}"
+        return f"{self.template}"
 
     def create_parents(self) -> None:
         if not os.path.exists(self.target.parent):
@@ -71,13 +73,9 @@ class TemplateController:
         self.view = View(theme)
         self.overwrite = overwrite
 
-    def copy_file(self, source, target) -> None:
+    @staticmethod
+    def copy_file(source, target) -> None:
         """Move source to target, without render any template value placeholders."""
-
-        if not self.overwrite:
-            basename = os.path.basename(source)
-            target = f"{self.target}/{basename}"
-        print(f"Copying {source} to {target}")
 
         if os.path.isdir(source):
             copy_tree(source, target)
