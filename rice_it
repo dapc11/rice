@@ -56,7 +56,8 @@ class Template:
 
     @property
     def executable(self) -> bool:
-        return self.metadata["executable"] if self.metadata.get("executable") else False
+        executable = self.metadata["executable"]
+        return executable if executable else False
 
     def __repr__(self) -> str:
         return f"{self.template}"
@@ -82,7 +83,7 @@ class TemplateController:
         else:
             copyfile(source, str(target))
 
-    def _render_background(self) -> None:
+    def render_background(self) -> None:
         """Render background to ~/.local/background.jpg.
         If overwrite is set to True, set background with 'feh'
         """
@@ -112,7 +113,6 @@ class TemplateController:
 
                 if template.executable:
                     utils.make_executable(template.target)
-            self._render_background()
 
 
 def setup_argparser() -> argparse.ArgumentParser:
@@ -153,6 +153,7 @@ def main():
     theme = tc.get_theme()
     controller = TemplateController(theme, args.overwrite)
     controller.render_templates()
+    controller.render_background()
 
     sys.exit(0)
 

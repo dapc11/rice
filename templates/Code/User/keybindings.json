@@ -115,5 +115,14 @@
         "key": "ctrl+shift+tab",
         "command": "workbench.action.quickOpenLeastRecentlyUsedEditor",
         "when": "!inEditorsPicker"
+    },
+    {
+        "key": "ctrl+alt+v",
+        "command": "-editor.action.codeAction",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+v",
+        "command": "python.refactorExtractVariable"
     }
 ]
