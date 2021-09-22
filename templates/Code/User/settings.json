@@ -18,7 +18,7 @@
     ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Monokai Dimmed",
     "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
@@ -90,6 +90,21 @@
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
     },
+    "editor.semanticTokenColorCustomizations": {
+        "[*]": {
+            "enabled": true,
+            "rules": {
+                "class": "{{base08}}",
+                "module": "{{base06}}",
+                "function": "{{base09}}",
+                "method": "{{base09}}",
+                "parameter": "{{base0D}}",
+                "variable": "{{base05}}",
+                "property": "{{base06}}",
+                "selfParameter": "{{base0C}}"
+            }
+        }
+    },
     "vim.easymotion": true,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
@@ -160,6 +175,9 @@
         "**/.idea/*/**": true,
         "**/.vscode/*/**": true,
     },
+    "git.ignoredRepositories": [
+        "bob"
+    ],
     "git.detectSubmodules": false,
     "git.autoRepositoryDetection": "openEditors",
     "python.analysis.completeFunctionParens": true

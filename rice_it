@@ -56,7 +56,7 @@ class Template:
 
     @property
     def executable(self) -> bool:
-        executable = self.metadata["executable"]
+        executable = self.metadata.get("executable")
         return executable if executable else False
 
     def __repr__(self) -> str:
