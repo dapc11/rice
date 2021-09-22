@@ -90,6 +90,42 @@
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
     },
+    "editor.tokenColorCustomizations": {
+        "[*]": {
+            "textMateRules": [
+                {
+                    "scope": "punctuation.definition.decorator.python",
+                    "settings": {
+                        "foreground": "{{base08}}"
+                    }
+                },
+                // {
+                //     "scope": "keyword.operator.logical.python",
+                //     "settings": {
+                //         "foreground": "{{base09}}"
+                //     }
+                // },
+                // {
+                //     "scope": "keyword.control.flow.python",
+                //     "settings": {
+                //         "foreground": "{{base09}}"
+                //     }
+                // },
+                // {
+                //     "scope": "storage.type.class.python",
+                //     "settings": {
+                //         "foreground": "{{base0E}}"
+                //     }
+                // },
+                // {
+                //     "scope": "storage.type.function.python",
+                //     "settings": {
+                //         "foreground": "{{base0E}}"
+                //     }
+                // },
+            ]
+        }
+    },
     "editor.semanticTokenColorCustomizations": {
         "[*]": {
             "enabled": true,
