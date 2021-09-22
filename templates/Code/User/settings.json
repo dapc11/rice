@@ -30,7 +30,7 @@
     "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
+    "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.linting.pylintUseMinimalCheckers": false,
     "python.formatting.provider": "black",
@@ -39,19 +39,6 @@
     "python.sortImports.args": [
         "-w",
         "99",
-    ],
-    "python.formatting.yapfArgs": [
-        "--style",
-        "{",
-        " split_before_logical_operator: true,",
-        " split_all_comma_separated_values: false,",
-        " split_before_first_argument: true,",
-        " each_dict_entry_on_separate_line: true,",
-        " allow_split_before_dict_value: false,",
-        " allow_split_before_default_or_named_assigns: false,",
-        " column_limit: 99,",
-        " indent_width: 4",
-        "}"
     ],
     "python.linting.pylintArgs": [
         "--disable",

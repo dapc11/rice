@@ -12,7 +12,7 @@ class ThemeController:
 
     @staticmethod
     def _get_themes():
-        """Utility function for visualizing which themes that are available."""
+        """Visualize which themes that are available."""
         theme_names = []
 
         for theme_path in glob.glob("themes/*.json"):
