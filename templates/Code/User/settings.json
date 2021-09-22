@@ -90,55 +90,67 @@
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
     },
-    "editor.tokenColorCustomizations": {
-        "[*]": {
-            "textMateRules": [
-                {
-                    "scope": "punctuation.definition.decorator.python",
-                    "settings": {
-                        "foreground": "{{base08}}"
-                    }
-                },
-                // {
-                //     "scope": "keyword.operator.logical.python",
-                //     "settings": {
-                //         "foreground": "{{base09}}"
-                //     }
-                // },
-                // {
-                //     "scope": "keyword.control.flow.python",
-                //     "settings": {
-                //         "foreground": "{{base09}}"
-                //     }
-                // },
-                // {
-                //     "scope": "storage.type.class.python",
-                //     "settings": {
-                //         "foreground": "{{base0E}}"
-                //     }
-                // },
-                // {
-                //     "scope": "storage.type.function.python",
-                //     "settings": {
-                //         "foreground": "{{base0E}}"
-                //     }
-                // },
-            ]
-        }
-    },
     "editor.semanticTokenColorCustomizations": {
         "[*]": {
             "enabled": true,
             "rules": {
-                "class": "{{base08}}",
                 "module": "{{base06}}",
                 "function": "{{base09}}",
                 "method": "{{base09}}",
-                "parameter": "{{base0D}}",
-                "variable": "{{base05}}",
-                "property": "{{base06}}",
+                "parameter": "{{base06}}",
                 "selfParameter": "{{base0C}}"
             }
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[*]": {
+            "textMateRules": [
+                {
+                    "scope": "entity.name.type.class",
+                    "settings": {
+                        "foreground": "{{base08}}"
+                    }
+                },
+                {
+                    "scope": "punctuation.definition.decorator.python",
+                    "settings": {
+                        "foreground": "{{base04}}"
+                    }
+                },
+                {
+                    "scope": "keyword.operator.logical.python",
+                    "settings": {
+                        "foreground": "{{base06}}",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "keyword.operator.assignment.python",
+                    "settings": {
+                        "foreground": "{{base06}}"
+                    }
+                },
+                {
+                    "scope": "string.quoted.single.python",
+                    "settings": {
+                        "foreground": "{{base0B}}"
+                    }
+                },
+                {
+                    "scope": "string.quoted.docstring.multi.python",
+                    "settings": {
+                        "foreground": "{{base0F}}",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": "meta.function.decorator.python",
+                    "settings": {
+                        "foreground": "{{base04}}",
+                        "fontStyle": "italic"
+                    }
+                },
+            ]
         }
     },
     "vim.easymotion": true,
