@@ -18,7 +18,7 @@
     ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Atom One Dark",
     "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
@@ -90,63 +90,63 @@
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
     },
-    "editor.semanticTokenColorCustomizations": {
-        "[*]": {
-            "enabled": true,
-            "rules": {
-                "module": "{{base06}}",
-                "function": "{{base09}}",
-                "method": "{{base09}}",
-                "parameter": "{{base06}}",
-                "selfParameter": "{{base0C}}"
-            }
-        }
-    },
+    // "editor.semanticTokenColorCustomizations": {
+    //     "[*]": {
+    //         "enabled": true,
+    //         "rules": {
+    //             "module": "{{base06}}",
+    //             "function": "{{base09}}",
+    //             "method": "{{base09}}",
+    //             "parameter": "{{base06}}",
+    //             "selfParameter": "{{base0C}}"
+    //         }
+    //     }
+    // },
     "editor.tokenColorCustomizations": {
         "[*]": {
             "textMateRules": [
-                {
-                    "scope": "entity.name.type.class",
-                    "settings": {
-                        "foreground": "{{base08}}"
-                    }
-                },
-                {
-                    "scope": "punctuation.definition.decorator.python",
-                    "settings": {
-                        "foreground": "{{base04}}"
-                    }
-                },
+                // {
+                //     "scope": "entity.name.type.class",
+                //     "settings": {
+                //         "foreground": "{{base08}}"
+                //     }
+                // },
+                // {
+                //     "scope": "punctuation.definition.decorator.python",
+                //     "settings": {
+                //         "foreground": "{{base04}}"
+                //     }
+                // },
                 {
                     "scope": "keyword.operator.logical.python",
                     "settings": {
-                        "foreground": "{{base06}}",
+                        // "foreground": "{{base06}}",
                         "fontStyle": "bold"
                     }
                 },
-                {
-                    "scope": "keyword.operator.assignment.python",
-                    "settings": {
-                        "foreground": "{{base06}}"
-                    }
-                },
-                {
-                    "scope": "string.quoted.single.python",
-                    "settings": {
-                        "foreground": "{{base0B}}"
-                    }
-                },
+                // {
+                //     "scope": "keyword.operator.assignment.python",
+                //     "settings": {
+                //         "foreground": "{{base06}}"
+                //     }
+                // },
+                // {
+                //     "scope": "string.quoted.single.python",
+                //     "settings": {
+                //         "foreground": "{{base0B}}"
+                //     }
+                // },
                 {
                     "scope": "string.quoted.docstring.multi.python",
                     "settings": {
-                        "foreground": "{{base0F}}",
+                        // "foreground": "{{base0F}}",
                         "fontStyle": "italic"
                     }
                 },
                 {
                     "scope": "meta.function.decorator.python",
                     "settings": {
-                        "foreground": "{{base04}}",
+                        // "foreground": "{{base04}}",
                         "fontStyle": "italic"
                     }
                 },
