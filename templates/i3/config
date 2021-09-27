@@ -36,8 +36,8 @@ bar {
     focused_workspace  {{base04}} {{base03}} {{base07}}
     active_workspace   {{base02}} {{base02}} {{base07}}
     inactive_workspace {{base02}} {{base01}} {{base04}}
-    urgent_workspace   {{base02}} {{base08}} {{base07}}
-    binding_mode       {{base02}} {{base08}} {{base07}}
+    urgent_workspace   {{base08}} {{base08}} {{base07}}
+    binding_mode       {{base09}} {{base09}} {{base07}}
   }
 }
 
