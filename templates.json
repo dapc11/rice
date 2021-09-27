@@ -1,5 +1,6 @@
 [
     {"template": "i3/config"},
+    {"template": "i3status/config"},
     {"template": "polybar/config"},
     {"template": "polybar/startup.sh", "executable": true},
     {"template": "polybar/updates.sh", "executable": true},

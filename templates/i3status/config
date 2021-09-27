@@ -5,8 +5,11 @@
 
 general {
         output_format = "i3bar"
-        colors = false
+        colors = true
         interval = 1
+        color_good = "{{base0B}}"
+        color_bad = "{{base08}}"
+        color_degraded = "{{base0A}}"
 }
 
 order += "disk /"

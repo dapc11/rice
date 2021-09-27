@@ -17,7 +17,29 @@ font pango:{{font}} 11
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
+# exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
+
+bar {
+  status_command i3status
+  font pango:{{font}} 11
+  position top
+
+  # Disable changing workspace with mouse scroll
+  bindsym button4 nop
+  bindsym button5 nop
+
+  colors {
+    background {{base01}}
+    statusline {{base06}}
+    separator {{base03}}
+
+    focused_workspace  {{base04}} {{base03}} {{base07}}
+    active_workspace   {{base02}} {{base02}} {{base07}}
+    inactive_workspace {{base02}} {{base01}} {{base04}}
+    urgent_workspace   {{base02}} {{base08}} {{base07}}
+    binding_mode       {{base02}} {{base08}} {{base07}}
+  }
+}
 
 ############################################################
 #
@@ -165,7 +187,6 @@ bindsym XF86MonBrightnessUp exec dimmer -i
 
 bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
 bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
-bindsym $mod+n exec find -name "*.xls" -o -name "*.docx" -o -name "*.pdf" -o -name "*.pptx" -o -name "*.xlsm" | rofi -dmenu -i | open_file
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
 
 bindsym $mod+Tab workspace back_and_forth
