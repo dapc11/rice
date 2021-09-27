@@ -79,3 +79,4 @@ yamllint
 libiw-dev
 feh
 jq
+i3status

@@ -29,6 +29,12 @@ function setup_alacritty
     rm -r alacritty
 }
 
+function setup_enact
+{
+    cargo install --git https://github.com/dapc11/enact
+    export PATH=$PATH:${HOME}/.cargo/bin
+}
+
 function install_deps
 {
     echo -e "\n\tInstalling dependecies"
@@ -127,12 +133,13 @@ install_deps
 setup_zsh
 setup_fonts
 setup_alacritty
-setup_polybar
-generate_dotfiles monokai-dimmed
+setup_enact
+# setup_polybar
+generate_dotfiles ocean
 [[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
 git config --global alias.st status
 git config --global alias.ci 'commit -v'
-git config --global user.email "daniel.tingelof@gmail.com"
+# git config --global user.email "daniel.tingelof@gmail.com"
 git config --global user.name "Daniel Tingelöf"
 echo -e "\nDone"
 exit 0
