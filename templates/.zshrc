@@ -32,6 +32,7 @@ alias vim="nvim"
 alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
+alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
 
 function pb-kill-line () {
   zle kill-line
