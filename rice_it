@@ -5,7 +5,6 @@ import argparse
 import getpass
 import json
 import os
-import subprocess
 import sys
 from distutils.dir_util import copy_tree
 from pathlib import Path
