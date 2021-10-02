@@ -11,31 +11,38 @@ from distutils.dir_util import copy_tree
 from pathlib import Path
 from shutil import copyfile
 
+import jinja2
 from jinja2.exceptions import TemplateNotFound
 
 from lib import utils
 from lib.ThemeController import ThemeController
-from lib.View import View
 
 
 class Templates:
-    def __init__(self, templates_path, overwrite) -> None:
+    def __init__(self, templates_path, overwrite, theme) -> None:
         self.templates_path = templates_path
         self.overwrite = overwrite
+        self.env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(searchpath="./templates/"),
+        )
+        self.context = utils.get_context(theme)
+        self._file = None
 
     def __enter__(self):
-        with open(self.templates_path, "r") as file:
-            templates = json.load(file)
-            return [Template(t, self.overwrite) for t in templates]
+        self._file = open(self.templates_path, "r")
+        templates = json.load(self._file)
+        return [Template(t, self.overwrite, self.env, self.context) for t in templates]
 
-    def __exit__(self, exception_type, exception_value, exception_traceback):
-        pass
+    def __exit__(self, *args):
+        self._file.close()
 
 
 class Template:
-    def __init__(self, metadata, overwrite) -> None:
+    def __init__(self, metadata, overwrite, env, context) -> None:
         self.metadata = metadata
         self.overwrite = overwrite
+        self.env = env
+        self.context = context
 
     @property
     def template(self) -> str:
@@ -59,6 +66,11 @@ class Template:
         executable = self.metadata.get("executable")
         return executable if executable else False
 
+    @property
+    def content(self) -> bool:
+        t = self.env.get_template(self.template)
+        return t.render(self.context)
+
     def __repr__(self) -> str:
         return f"{self.template}"
 
@@ -66,12 +78,27 @@ class Template:
         if not os.path.exists(self.target.parent):
             os.makedirs(self.target.parent)
 
+    def render(self) -> None:
+        print(f"Writing to {self.target}")
+
+        try:
+            with open(self.target, "w") as target:
+                target.write(self.content)
+        except TemplateNotFound:
+            print(f"Template not found {self.template}")
+
+    def make_executable(self):
+        """Make given file executeable."""
+        mode = os.stat(self.target).st_mode
+        mode |= (mode & 0o444) >> 2  # copy R bits to X
+        os.chmod(self.target, mode)
+
 
 class TemplateController:
     """Class for transforming the templates into actual config files for various software."""
 
     def __init__(self, theme: str, overwrite: bool):
-        self.view = View(theme)
+        self.theme = theme
         self.overwrite = overwrite
 
     @staticmethod
@@ -83,36 +110,15 @@ class TemplateController:
         else:
             copyfile(source, str(target))
 
-    def render_background(self) -> None:
-        """Render background to ~/.local/background.jpg.
-        If overwrite is set to True, set background with 'feh'
-        """
-        if not self.overwrite:
-            return
-        background = self.view.get_context_value("bg")
-        self.copy_file(
-            f"templates/images/{background}",
-            f"/home/{getpass.getuser()}/.local/background.jpg",
-        )
-        subprocess.run(
-            ["feh", "--bg-fill", f"/home/{getpass.getuser()}/.local/background.jpg"],
-            check=True,
-        )
-
     def render_templates(self) -> None:
         """Render templates defined in templates.json."""
-        with Templates("templates.json", self.overwrite) as templates:
+        with Templates("templates.json", self.overwrite, self.theme) as templates:
             for template in templates:
                 template.create_parents()
-
-                try:
-                    self.view.render(template)
-                except TemplateNotFound:
-                    print(f"Template not found {template}")
-                    continue
+                template.render()
 
                 if template.executable:
-                    utils.make_executable(template.target)
+                    template.make_executable()
 
 
 def setup_argparser() -> argparse.ArgumentParser:
@@ -153,7 +159,6 @@ def main():
     theme = tc.get_theme()
     controller = TemplateController(theme, args.overwrite)
     controller.render_templates()
-    controller.render_background()
 
     sys.exit(0)
 
