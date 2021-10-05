@@ -57,7 +57,7 @@ class Template:
                 else f"{os.getcwd()}/target"
             )
         return Path(
-            f"{target}/{self.template}".replace("~", f"/home/{getpass.getuser()}")
+            f"{target}/{self.template}".replace("~", f"/home/{getpass.getuser()}"),
         )
 
     @property

@@ -118,24 +118,33 @@
                 //     }
                 // },
                 {
-                    "scope": "keyword.operator.logical.python",
+                    "scope": "keyword.operator.comparison.python",
                     "settings": {
                         // "foreground": "{{base06}}",
                         "fontStyle": "bold"
                     }
                 },
-                // {
-                //     "scope": "keyword.operator.assignment.python",
-                //     "settings": {
-                //         "foreground": "{{base06}}"
-                //     }
-                // },
-                // {
-                //     "scope": "string.quoted.single.python",
-                //     "settings": {
-                //         "foreground": "{{base0B}}"
-                //     }
-                // },
+                {
+                    "scope": "keyword.operator.logical.python",
+                    "settings": {
+                        // "foreground": "{{base06}}",
+                        "fontStyle": "italic bold"
+                    }
+                },
+                {
+                    "scope": "entity.name.type.class",
+                    "settings": {
+                        "foreground": "{{base0F}}",
+                        // "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": "entity.name.namespace",
+                    "settings": {
+                        "foreground": "{{base08}}",
+                        // "fontStyle": "italic"
+                    }
+                },
                 {
                     "scope": "string.quoted.docstring.multi.python",
                     "settings": {
