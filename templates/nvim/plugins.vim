@@ -21,13 +21,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-" Python IDE
-Plug 'dense-analysis/ale' " Asynchronous Lint Engine
-Plug 'davidhalter/jedi-vim'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'neovim/nvim-lspconfig'
 Plug 'Townk/vim-autoclose'
 Plug 'lilydjwg/colorizer'
 call plug#end()
@@ -37,50 +31,6 @@ let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/dev/bin/python3'
 
-
-""" ALE
-let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_linters = {'python': ['pylint', 'flake8']}
-let g:ale_fixers = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \   'python': ['add_blank_lines_for_python_control_statements', 'yapf', 'isort'],
-            \}
-let g:ale_python_auto_pipenv = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-let g:ale_completion_enabled = 0
-let g:ale_completion_autoimport = 0
-nmap L <Plug>(ale_fix)
-nmap l <Plug>(ale_lint)
-""" Jedi
-let g:jedi#show_call_signatures = 1
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_stubs_command = "<leader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-" set completeopt+=noinsert
-" set wildmode=list:longest
-let g:jedi#completions_enabled = 0
-
-
-""" Deopplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-\   'ignore_case': v:true,
-\   'smart_case': v:true,
-\})
-" complete with words from any opened file
-let g:context_filetype#same_filetypes = {}
-let g:context_filetype#same_filetypes._ = '_'
 
 " Treesitter
 " Hightlight definitions

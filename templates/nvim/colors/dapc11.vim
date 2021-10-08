@@ -399,6 +399,29 @@ call <sid>hi("StartifySpecial",  s:gui03, "", s:cterm03, "", "", "")
 " Java highlighting
 call <sid>hi("javaOperator",     s:gui0D, "", s:cterm0D, "", "", "")
 
+call <sid>hi("LspDiagnosticsDefaultError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("LspDiagnosticsDefaultWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("LspDiagnosticsDefaultInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("LspDiagnosticsDefaultHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("LspDiagnosticsVirtualTextError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("LspDiagnosticsVirtualTextWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("LspDiagnosticsVirtualTextInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("LspDiagnosticsVirtualTextHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("LspDiagnosticsUnderlineError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("LspDiagnosticsUnderlineWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("LspDiagnosticsUnderlineInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("LspDiagnosticsUnderlineHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("LspDiagnosticsFloatingError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("LspDiagnosticsFloatingWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("LspDiagnosticsFloatingInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("LspDiagnosticsFloatingHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("LspDiagnosticsSignError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("LspDiagnosticsSignWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("LspDiagnosticsSignInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("LspDiagnosticsSignHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("LspCodeLens",     s:gui0D, "", s:cterm0D, "", "", "")
+
+
 " Remove functions
 delf <sid>hi
 
