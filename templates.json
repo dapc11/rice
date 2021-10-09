@@ -15,6 +15,7 @@
     {"template": "nvim/plugins.vim"},
     {"template": "nvim/statusline.vim"},
     {"template": "nvim/colors/dapc11.vim"},
+    {"template": "nvim/lua/lsp_config.lua"},
     {"template": "rofi/config.rasi", "executable": true},
     {"template": "rofi/rofi-power", "executable": true},
     {"template": "rofi/rofi-randr", "executable": true},
