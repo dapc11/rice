@@ -30,7 +30,13 @@ Plug 'hrsh7th/nvim-cmp'
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-path'
 Plug 'mfussenegger/nvim-lint'
+" Track the engine.
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']

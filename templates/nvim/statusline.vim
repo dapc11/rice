@@ -55,10 +55,10 @@ set statusline+=\ %f
 set statusline+=%m
 set statusline+=%=
 set statusline+=%#StatusLineNc#
-set statusline+=%{LinterStatus()}
+" set statusline+=%{LinterStatus()}
 set statusline+=\ %{FugitiveStatusline()}
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\ 
+set statusline+=\
