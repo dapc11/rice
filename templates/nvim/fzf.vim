@@ -40,7 +40,6 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
-nnoremap <silent> <leader>c :Commits<cr>
 nnoremap <silent> <leader><Leader> :AFFF<cr>
 nnoremap <silent> <Leader>o :AF<cr>
 nnoremap <silent> <Leader>O :AFF<cr>
