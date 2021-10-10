@@ -1,10 +1,28 @@
 local nvim_lsp = require("lspconfig")
 
------- Setup lint.
+------- Setup lint.
 local lint = require("lint")
 lint.linters_by_ft = {
-  python = {"flake8", "pylint",}
+    python = {"flake8", "pylint",}
 }
+------ Setup formatting.
+local null_ls = require("null-ls")
+
+-- register any number of sources simultaneously
+local sources = {
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.diagnostics.write_good,
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.lua_format,
+}
+
+null_ls.config({ sources = sources })
+nvim_lsp["null-ls"].setup({})
+
 
 ------ Setup treesitter.
 local treesitter = require("nvim-treesitter.configs")
@@ -91,7 +109,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "<C-l>", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "<space>f>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "bf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and

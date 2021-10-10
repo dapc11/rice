@@ -38,6 +38,7 @@ Plug 'SirVer/ultisnips' " Snippets
 Plug 'honza/vim-snippets' " Snippets
 Plug 'quangnguyen30192/cmp-nvim-ultisnips' " Snippets
 Plug 'ray-x/lsp_signature.nvim' " Signature help
+Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
