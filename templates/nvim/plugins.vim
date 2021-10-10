@@ -7,36 +7,37 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'ap/vim-css-color'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf.vim' " Find everything
+Plug 'junegunn/goyo.vim' " Zen mode
+Plug 'ap/vim-css-color' " CSS Colors ?
+Plug 'tpope/vim-commentary' " Neat comments
+Plug 'tpope/vim-fugitive' " Git integration
+Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
 Plug 'Yggdroot/indentLine'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlgiht current block
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'Townk/vim-autoclose'
-Plug 'lilydjwg/colorizer'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
+Plug 'Townk/vim-autoclose' " Autoclose quotes and brackets
+Plug 'lilydjwg/colorizer' " CSS colors
+Plug 'neovim/nvim-lspconfig' " LSP
+Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
+Plug 'hrsh7th/cmp-buffer' " Auto suggestions
+Plug 'hrsh7th/nvim-cmp' " Auto suggestions
 " For vsnip user.
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-path'
-Plug 'mfussenegger/nvim-lint'
+Plug 'hrsh7th/cmp-vsnip' " Snippets
+Plug 'hrsh7th/vim-vsnip' " Snippets
+Plug 'hrsh7th/cmp-path' " Auto complete paths
+Plug 'mfussenegger/nvim-lint' " Linting
 " Track the engine.
 " Snippets are separated from the engine. Add this if you want them:
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'SirVer/ultisnips' " Snippets
+Plug 'honza/vim-snippets' " Snippets
+Plug 'quangnguyen30192/cmp-nvim-ultisnips' " Snippets
+Plug 'ray-x/lsp_signature.nvim' " Signature help
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']

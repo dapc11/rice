@@ -34,3 +34,6 @@ lua << EOF
 require("lsp_config")
 EOF
 au BufWritePost <buffer> lua require("lint").try_lint()
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"

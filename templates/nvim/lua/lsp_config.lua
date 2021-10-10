@@ -1,6 +1,6 @@
 local nvim_lsp = require("lspconfig")
 
-
+------ Setup lint.
 local lint = require("lint")
 lint.linters_by_ft = {
   python = {"flake8", "pylint",}
@@ -11,9 +11,18 @@ local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
     highlight = { enable = true },
     incremental_selection = { enable = true },
-    textobjects = { enable = true }
+    textobjects = { enable = true },
+    refactor = {
+        highlight_definitions = { enable = true },
+        highlight_current_scope = { enable = true },
+        smart_rename = {
+            enable = true,
+            keymaps = {
+                smart_rename = "<Space>r",
+            },
+        },
+    },
 }
-
 
 ------ Setup nvim-cmp.
 local cmp = require("cmp")
@@ -31,10 +40,10 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
         { name = "nvim_lsp" },
@@ -44,7 +53,6 @@ cmp.setup({
         { name = "path" },
     }
 })
-
 
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
@@ -69,7 +77,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
     buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
@@ -84,7 +91,16 @@ end
 local servers = { "pyright" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+            require "lsp_signature".on_attach({
+                bind = true, -- This is mandatory, otherwise border config won"t get registered.
+                handler_opts = {
+                    border = "single"
+                },
+                hint_prefix = " ",
+                max_height = 8,
+            }, bufnr)
+        end,
         capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         flags = {
             debounce_text_changes = 150,
