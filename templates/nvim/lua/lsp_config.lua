@@ -60,6 +60,14 @@ cmp.setup({
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    require "lsp_signature".on_attach({
+        bind = true, -- This is mandatory, otherwise border config won"t get registered.
+        handler_opts = {
+            border = "single"
+        },
+        hint_prefix = " ",
+        max_height = 8,
+    }, bufnr)
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -82,8 +90,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<C-l>", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+    buf_set_keymap("n", "<space>f>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
@@ -91,16 +99,7 @@ end
 local servers = { "pyright" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-        on_attach = function(client, bufnr)
-            require "lsp_signature".on_attach({
-                bind = true, -- This is mandatory, otherwise border config won"t get registered.
-                handler_opts = {
-                    border = "single"
-                },
-                hint_prefix = " ",
-                max_height = 8,
-            }, bufnr)
-        end,
+        on_attach = on_attach,
         capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         flags = {
             debounce_text_changes = 150,
