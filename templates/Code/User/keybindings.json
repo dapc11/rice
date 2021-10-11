@@ -24,7 +24,7 @@
         "command": "-workbench.action.closeActiveEditor"
     },
     {
-        "key": "ctrl+shift+t",
+        "key": "ctrl+e",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
@@ -124,5 +124,9 @@
     {
         "key": "ctrl+alt+v",
         "command": "python.refactorExtractVariable"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "-workbench.action.files.saveAll"
     }
 ]
