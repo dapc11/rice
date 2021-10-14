@@ -67,7 +67,7 @@ class Template:
         return executable if executable else False
 
     @property
-    def content(self) -> bool:
+    def content(self):
         t = self.env.get_template(self.template)
         return t.render(self.context)
 
