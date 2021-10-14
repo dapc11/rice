@@ -22,6 +22,17 @@ function! LinterStatus() abort
     \)
 endfunction
 
+function! LspStatus() abort
+    let sl = ''
+    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+        let sl.='E:' .luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])") . ', '
+        let sl.='W:' .luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])")
+    else
+        let sl.='Lsp off'
+    endif
+    return sl
+endfunction
+
 let g:currentmode={
        \ 'n'  : 'n',
        \ 'v'  : 'v',
@@ -57,8 +68,9 @@ set statusline+=%=
 set statusline+=%#StatusLineNc#
 " set statusline+=%{LinterStatus()}
 set statusline+=\ %{FugitiveStatusline()}
+set statusline+=\ %{LspStatus()}
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\
+set statusline+=\ 
