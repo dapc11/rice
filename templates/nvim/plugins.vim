@@ -15,7 +15,7 @@ Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlgiht current block
+Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlight current block
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -39,6 +39,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips' " Snippets
 Plug 'ray-x/lsp_signature.nvim' " Signature help
 Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
+Plug 'akinsho/toggleterm.nvim' " Terminal in vim
 call plug#end()
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
