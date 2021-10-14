@@ -70,8 +70,4 @@ nnoremap <S-Up> :m .-2<CR>==
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 vnoremap <S-Up> :m '<-2<CR>gv=gv
 
-
-" Run
-command R !./%
-
 nnoremap <Leader>gb :Gitsigns toggle_current_line_blame<CR>
