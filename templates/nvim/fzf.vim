@@ -35,7 +35,7 @@ command! -nargs=? -complete=dir AD
   \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
   \ }))
 nnoremap <silent> <leader>pg :GGrep<cr>
-nnoremap <silent> <leader>f :BLines<cr>
+nnoremap <silent> <leader>f :Rg<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
@@ -45,6 +45,6 @@ nnoremap <silent> <Leader>o :AF<cr>
 nnoremap <silent> <Leader>O :AFF<cr>
 nnoremap <Leader>d :AD<cr>
 nnoremap <C-p> :Files<cr>
-nnoremap <C-f> :Rg<cr>
+nnoremap <C-f> :BLines<cr>
 
 let loaded_netrwPlugin = 1
