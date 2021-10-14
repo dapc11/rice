@@ -6,7 +6,6 @@ map ä }
 map ga <Nop>
 
 inoremap <C-Space> <C-x><C-n>
-
 nnoremap <silent> <A-left> :bp<CR>
 nnoremap <silent> <A-right> :bn<CR>
 
@@ -19,7 +18,7 @@ noremap <Leader>y "+y<CR>
 noremap <Leader>p "+p<CR>
 
 " Close buffer
-nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>q <c-w>q<CR>
 nnoremap <Leader>Q :qa<CR>
 
 " Commandline
@@ -64,6 +63,10 @@ nnoremap <silent> <C-Right> <c-w>l
 nnoremap <silent> <C-Left> <c-w>h
 nnoremap <silent> <C-Up> <c-w>k
 nnoremap <silent> <C-Down> <c-w>j
+map <C-k> <Nop>
+nnoremap <C-k> :vsplit<CR>
+map <C-j> <Nop>
+nnoremap <C-j> :split<CR>
 
 nnoremap <S-Down> :m .+1<CR>==
 nnoremap <S-Up> :m .-2<CR>==

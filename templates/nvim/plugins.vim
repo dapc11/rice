@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find everything
-Plug 'junegunn/goyo.vim' " Zen mode
 Plug 'ap/vim-css-color' " CSS Colors ?
 Plug 'tpope/vim-commentary' " Neat comments
 Plug 'tpope/vim-fugitive' " Git integration
@@ -20,9 +19,9 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlgih
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'Townk/vim-autoclose' " Autoclose quotes and brackets
 Plug 'lilydjwg/colorizer' " CSS colors
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig' " LSP
 Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
 Plug 'hrsh7th/cmp-buffer' " Auto suggestions
@@ -107,12 +106,6 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
-
-" Goyo
-let g:goyo_width = 120
-let g:goyo_linenr = 1
-nmap <C-w> :Goyo<CR>
-nmap <C-e> :Goyo!<CR>
 
 " Fugitive
 nmap <leader>gs :Git<CR>
