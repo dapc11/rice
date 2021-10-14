@@ -25,15 +25,16 @@ class Templates:
             loader=jinja2.FileSystemLoader(searchpath="./templates/"),
         )
         self.context = utils.get_context(theme)
-        self._file = None
 
     def __enter__(self):
-        self._file = open(self.templates_path, "r")
-        templates = json.load(self._file)
-        return [Template(t, self.overwrite, self.env, self.context) for t in templates]
+        with open(self.templates_path, "r") as file:
+            templates = json.load(file)
+            return [
+                Template(t, self.overwrite, self.env, self.context) for t in templates
+            ]
 
     def __exit__(self, *args):
-        self._file.close()
+        pass
 
 
 class Template:
