@@ -1,8 +1,8 @@
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
-map ö {
-map ä }
+map ö <C-d>
+map ä <C-u>
 map ga <Nop>
 
 inoremap <C-Space> <C-x><C-n>
