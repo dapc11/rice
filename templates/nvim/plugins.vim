@@ -44,80 +44,29 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-
 nnoremap <C-e> :NvimTreeToggle<CR>
+let g:nvim_tree_icons = {}
+let g:nvim_tree_show_icons = {
+    \ 'git': 0,
+    \ 'folders': 1,
+    \ 'files': 0,
+    \ 'folder_arrows': 1,
+    \ }
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/dev/bin/python3'
 
-
-" Treesitter
-" Hightlight definitions
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    refactor = {
-        highlight_definitions = { enable = true },
-        },
-    }
-EOF
-
-" TS Highlighting
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    highlight = {
-    enable = true,
-    custom_captures = {
-        -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-        ["foo.bar"] = "Identifier",
-        },
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-    },
-}
-EOF
-
-" TS Rename
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    refactor = {
-        smart_rename = {
-        enable = true,
-        keymaps = {
-            smart_rename = "grr",
-            },
-        },
-    },
-}
-EOF
-
-" TS Navigation
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    refactor = {
-        navigation = {
-        enable = true,
-        keymaps = {
-            goto_definition = "gnd",
-            list_definitions = "gnD",
-            list_definitions_toc = "gO",
-            goto_next_usage = "<a-*>",
-            goto_previous_usage = "<a-#>",
-            },
-        },
-    },
-}
-EOF
-
-" Fugitive
 nmap <leader>gs :Git<CR>
-nmap <leader>gr :Git pull --rebase<CR>
-nmap <leader>gp :Git push
-nmap <leader>gc :Git commit
-nmap <leader>ga :Git add
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>gdd :Gdiff<CR>
+
+" unmap <space>hR
+" unmap <space>hu
+" unmap <space>hb
+" unmap <space>hs
+" unmap <space>hS
+" unmap <space>hs
+" unmap <space>hU
+" unmap <space>hp
+" unmap <space>hr
+" unmap <space>hr
