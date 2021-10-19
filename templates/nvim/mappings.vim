@@ -4,6 +4,7 @@ let mapleader =" "
 map ä <C-d>
 map ö <C-u>
 map ga <Nop>
+map ¨ <C-^>
 
 inoremap <C-Space> <C-x><C-n>
 nnoremap <silent> <A-left> :bp<CR>
@@ -59,14 +60,23 @@ nnoremap N Nzzzv
 map <Leader>a :cclose <bar> lclose <bar> pclose<CR>
 
 " set moving between windows to ctrl+arrows
-nnoremap <silent> <C-Right> <c-w>l
-nnoremap <silent> <C-Left> <c-w>h
-nnoremap <silent> <C-Up> <c-w>k
-nnoremap <silent> <C-Down> <c-w>j
-map <C-k> <Nop>
-nnoremap <C-k> :vsplit<CR>
-map <C-j> <Nop>
-nnoremap <C-j> :split<CR>
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
+nnoremap <silent> <C-Left> :call WinMove('h')<CR>
+nnoremap <silent> <C-Down> :call WinMove('j')<CR>
+nnoremap <silent> <C-Up> :call WinMove('k')<CR>
+nnoremap <silent> <C-Right> :call WinMove('l')<CR>
 
 nnoremap <S-Down> :m .+1<CR>==
 nnoremap <S-Up> :m .-2<CR>==
