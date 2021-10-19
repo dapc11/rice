@@ -40,7 +40,12 @@ Plug 'ray-x/lsp_signature.nvim' " Signature help
 Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
 Plug 'akinsho/toggleterm.nvim' " Terminal in vim
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
+
+
+nnoremap <C-e> :NvimTreeToggle<CR>
 
 let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
