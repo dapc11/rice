@@ -27,13 +27,12 @@ autocmd BufWritePre * :call TrimWhitespace()
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
 
-" lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
-"
 set completeopt=menu,menuone,noselect
 lua << EOF
 require("lsp_config")
 EOF
-au BufWritePost <buffer> lua require("lint").try_lint()
+au BufRead * lua require('lint').try_lint()
+au BufWrite * lua require('lint').try_lint()
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
