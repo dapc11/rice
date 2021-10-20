@@ -31,17 +31,3 @@ set splitbelow splitright
 if maparg('<C-l>', 'n') ==# ''
   nnoremap <silent> <C-L> :let @/ = ""<CR>
 endif
-
-" Python
-" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \| set softtabstop=4
-    \| set shiftwidth=4
-    \| set textwidth=99
-    \| set expandtab
-    \| set autoindent
-    \| set fileformat=unix
-
-" Yaml
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

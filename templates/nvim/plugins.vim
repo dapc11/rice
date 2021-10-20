@@ -59,14 +59,3 @@ let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/dev/bin/python3'
 
 nmap <leader>gs :Git<CR>
-
-" unmap <space>hR
-" unmap <space>hu
-" unmap <space>hb
-" unmap <space>hs
-" unmap <space>hS
-" unmap <space>hs
-" unmap <space>hU
-" unmap <space>hp
-" unmap <space>hr
-" unmap <space>hr

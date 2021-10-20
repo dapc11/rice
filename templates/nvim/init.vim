@@ -21,18 +21,34 @@ function! HighlightTodo()
     match Error /TODO/
 endfunc
 
-autocmd BufReadPost,BufNewFile * :call HighlightTodo()
-autocmd BufWritePre * :call TrimWhitespace()
-" Automatically deletes all trailing whitespace and newlines at end of file on save
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritepre * %s/\n\+\%$//e
 
 set completeopt=menu,menuone,noselect
 lua << EOF
 require("lsp_config")
 EOF
-au BufRead * lua require('lint').try_lint()
-au BufWrite * lua require('lint').try_lint()
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" Python
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \| set softtabstop=4
+    \| set shiftwidth=4
+    \| set textwidth=99
+    \| set expandtab
+    \| set autoindent
+    \| set fileformat=unix
+
+augroup dapc
+    autocmd!
+    " Yaml
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd BufRead * lua require('lint').try_lint()
+    autocmd BufWrite * lua require('lint').try_lint()
+    autocmd BufReadPost,BufNewFile * :call HighlightTodo()
+    autocmd BufWritePre * :call TrimWhitespace()
+    " Automatically deletes all trailing whitespace and newlines at end of file on save
+    autocmd BufWritePre * %s/\s\+$//e
+    autocmd BufWritepre * %s/\n\+\%$//e
+augroup END

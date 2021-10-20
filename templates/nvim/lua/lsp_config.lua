@@ -1,7 +1,12 @@
 local nvim_lsp = require("lspconfig")
 
 ------ Setup gitsigns.
-require('gitsigns').setup()
+require('gitsigns').setup{
+    keymaps = {
+        -- Default keymap options
+        noremap = false,
+    },
+}
 
 ------- Setup lint.
 local lint = require("lint")
