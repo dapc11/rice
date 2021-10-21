@@ -46,7 +46,8 @@
         "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
     ],
     "python.linting.flake8Args": [
-        "--extend-ignore=W503"
+        "--extend-ignore=W503",
+        "--format='pylint'"
     ],
     "[python]": {
         "editor.rulers": [
@@ -59,7 +60,8 @@
     },
     "colorize.languages": [
         "json",
-        "vim"
+        "vim",
+        "yaml"
     ],
     "[git-commit]": {
         "editor.rulers": [
