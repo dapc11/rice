@@ -10,8 +10,66 @@ require('gitsigns').setup{
 
 ------- Setup lint.
 local lint = require("lint")
+
+local pattern = '[^:]+:(%d+):(%d+):(%w+):(.+)'
+local groups = { 'line', 'start_col', 'code', 'message' }
+lint.linters.dapc_flake8 = {
+    cmd = 'flake8',
+    stdin = true,
+    args = {
+        '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
+        '--no-show-source',
+        '-',
+    },
+    ignore_exitcode = true,
+    parser = require('lint.parser').from_pattern(pattern, groups, nil, {
+        ['source'] = 'flake8',
+        ['severity'] = vim.lsp.protocol.DiagnosticSeverity.Warning,
+    }),
+}
+
+local severities = {
+    error = vim.lsp.protocol.DiagnosticSeverity.Error,
+    warning = vim.lsp.protocol.DiagnosticSeverity.Warning,
+    refactor = vim.lsp.protocol.DiagnosticSeverity.Information,
+    convention = vim.lsp.protocol.DiagnosticSeverity.Hint,
+}
+lint.linters.dapc_pylint = {
+    cmd = 'pylint',
+    stdin = false,
+    args = {
+        '-f', 'json'
+    },
+    ignore_exitcode = true,
+    parser = function(output)
+        local decoded = vim.fn.json_decode(output)
+        local diagnostics = {}
+        for _, item in ipairs(decoded or {}) do
+            local column = 0
+            if item.column > 0 then
+                column = item.column - 1
+            end
+            table.insert(diagnostics, {
+                range = {
+                    ['start'] = {
+                        line = item.line - 1,
+                        character = column,
+                    },
+                    ['end'] = {
+                    line = item.line - 1,
+                    character = column,
+                },
+            },
+            severity = assert(severities[item.type], 'missing mapping for severity ' .. item.type),
+            message = item.message,
+        })
+    end
+    return diagnostics
+end,
+}
+
 lint.linters_by_ft = {
-    python = {"flake8", "pylint",}
+    python = {"dapc_flake8", "dapc_pylint",}
 }
 ------ Setup formatting.
 local null_ls = require("null-ls")
@@ -132,6 +190,26 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         update_in_insert = false,
     }
 )
+
+do
+    local method = "textDocument/publishDiagnostics"
+    local default_handler = vim.lsp.handlers[method]
+    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
+        default_handler(err, method, result, client_id, bufnr, config)
+        local diagnostics = vim.lsp.diagnostic.get_all()
+        local qflist = {}
+        for bufnr, diagnostic in pairs(diagnostics) do
+            for _, d in ipairs(diagnostic) do
+                d.bufnr = bufnr
+                d.lnum = d.range.start.line + 1
+                d.col = d.range.start.character + 1
+                d.text = d.message
+                table.insert(qflist, d)
+            end
+        end
+        vim.lsp.util.set_qflist(qflist)
+    end
+end
 
 
 ------ Toggle term
