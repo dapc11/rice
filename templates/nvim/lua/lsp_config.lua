@@ -174,7 +174,7 @@ end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright" , "gopls" }
+local servers = { "gopls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -184,6 +184,29 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+local util = require("lspconfig/util")
+nvim_lsp.pyright.setup {
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    },
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+        python = {
+            analysis = {
+                extraPaths = {"/home/daniel/repos/dapc11-rice/"},
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'workspace',
+            },
+        },
+    },
+    root_dir = function(fname)
+        return util.root_pattern(".git", "setup.py",  "setup.cfg", "pyproject.toml", "requirements.txt")(fname) or
+        util.path.dirname(fname)
+    end,
+}
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
