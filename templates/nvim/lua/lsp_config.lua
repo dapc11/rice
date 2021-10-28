@@ -198,7 +198,7 @@ nvim_lsp.pyright.setup {
                 extraPaths = {"/home/daniel/repos/dapc11-rice/"},
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = 'workspace',
+                diagnosticMode = 'openFilesOnly',
             },
         },
     },

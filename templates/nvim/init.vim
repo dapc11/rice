@@ -52,3 +52,13 @@ augroup dapc
     autocmd BufWritePre * %s/\s\+$//e
     autocmd BufWritepre * %s/\n\+\%$//e
 augroup END
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <silent> <F2> :call ToggleQuickFix()<cr>

@@ -53,7 +53,7 @@ let g:nvim_tree_show_icons = {
     \ 'folder_arrows': 1,
     \ }
 
-let g:rooter_patterns = ['.git', 'src', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
+let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/dev/bin/python3'
