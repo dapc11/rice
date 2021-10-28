@@ -38,7 +38,7 @@ lint.linters.dapc_pylint = {
     cmd = 'pylint',
     stdin = false,
     args = {
-        '-f', 'json'
+        '-f', 'json', '-d', 'R0801,W1508,C0114,C0115,C0116,C0301,W0611,W1309'
     },
     ignore_exitcode = true,
     parser = function(output)
@@ -61,7 +61,9 @@ lint.linters.dapc_pylint = {
                 },
             },
             severity = assert(severities[item.type], 'missing mapping for severity ' .. item.type),
-            message = item.message,
+            source = 'pylint',
+            code = (item["message-id"] and item["message-id"] or nil),
+            message = item.message .. "(" .. item.symbol .. ")",
         })
     end
     return diagnostics
@@ -226,7 +228,7 @@ do
                 d.bufnr = bufnr
                 d.lnum = d.range.start.line + 1
                 d.col = d.range.start.character + 1
-                d.text = d.message
+                d.text = (d.source and "[" .. d.source .. "] " or "") .. (d.code and "[" .. d.code .. "] " or "") .. d.message
                 table.insert(qflist, d)
             end
         end
