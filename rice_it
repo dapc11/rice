@@ -6,9 +6,8 @@ import getpass
 import json
 import os
 import sys
-from distutils.dir_util import copy_tree
 from pathlib import Path
-from shutil import copyfile
+from shutil import copyfile, copytree, rmtree
 
 import jinja2
 from jinja2.exceptions import TemplateNotFound
@@ -67,6 +66,11 @@ class Template:
         return executable if executable else False
 
     @property
+    def onlyCopy(self) -> bool:
+        copy_only = self.metadata.get("onlyCopy")
+        return copy_only if copy_only else False
+
+    @property
     def content(self):
         t = self.env.get_template(self.template)
         return t.render(self.context)
@@ -102,11 +106,16 @@ class TemplateController:
         self.overwrite = overwrite
 
     @staticmethod
-    def copy_file(source, target) -> None:
+    def copy_file(template: Template) -> None:
         """Move source to target, without render any template value placeholders."""
+        source = f"templates/{template.template}"
+        target = template.target
 
+        print(f"Writing to {target}")
         if os.path.isdir(source):
-            copy_tree(source, target)
+            if os.path.exists(target):
+                rmtree(target)
+            copytree(source, target, dirs_exist_ok=False)
         else:
             copyfile(source, str(target))
 
@@ -115,10 +124,13 @@ class TemplateController:
         with Templates("templates.json", self.overwrite, self.theme) as templates:
             for template in templates:
                 template.create_parents()
-                template.render()
+                if template.onlyCopy:
+                    TemplateController.copy_file(template)
+                else:
+                    template.render()
 
-                if template.executable:
-                    template.make_executable()
+                    if template.executable:
+                        template.make_executable()
 
 
 def setup_argparser() -> argparse.ArgumentParser:

@@ -37,8 +37,8 @@ command! -nargs=? -complete=dir AD
 nnoremap <silent> <leader>pg :GGrep<cr>
 nnoremap <silent> <leader>f :Telescope grep_string<cr>
 nnoremap <silent> <leader>b :Telescope buffers<cr>
-nnoremap <silent> <leader>n :Telescope git_files<cr>
-nnoremap <silent> <leader>h :Telescope oldfiles<cr>
+nnoremap <silent> <leader>n :GFiles<cr>
+nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
 nnoremap <silent> <leader><Leader> :AFFF<cr>
 nnoremap <silent> <Leader>o :AF<cr>

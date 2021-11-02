@@ -1,40 +1,155 @@
 [
-    {"template": "i3/config"},
-    {"template": "i3status/config"},
-    {"template": "polybar/config"},
-    {"template": "polybar/startup.sh", "executable": true},
-    {"template": "polybar/updates.sh", "executable": true},
-    {"template": "polybar/now_playing.py", "executable": true},
-    {"template": "polybar/weather.sh", "executable": true},
-    {"template": "rofi/config.rasi"},
-    {"template": "rofi/powermenu.rasi"},
-    {"template": "nvim/init.vim"},
-    {"template": "nvim/fzf.vim"},
-    {"template": "nvim/mappings.vim"},
-    {"template": "nvim/options.vim"},
-    {"template": "nvim/plugins.vim"},
-    {"template": "nvim/statusline.vim"},
-    {"template": "nvim/colors/dapc11.vim"},
-    {"template": "nvim/lua/lsp_config.lua"},
-    {"template": "rofi/config.rasi", "executable": true},
-    {"template": "rofi/rofi-power", "executable": true},
-    {"template": "rofi/rofi-randr", "executable": true},
-    {"template": "Code/User/settings.json"},
-    {"template": "Code/User/keybindings.json"},
-    {"template": "alacritty/alacritty.yml"},
-    {"template": "dunst/dunstrc"},
-    {"template": "ranger/rc.conf"},
-    {"template": "yamllint/config"},
-    {"template": "compton/compton.conf"},
-    {"template": "qtile/config.py"},
-    {"template": "dimmer", "executable": true, "destination": "~/.local/bin"},
-    {"template": "nightmode", "executable": true, "destination": "~/.local/bin"},
-    {"template": "sysact", "executable": true, "destination": "~/.local/bin"},
-    {"template": "gita", "executable": true, "destination": "~/.local/bin"},
-    {"template": "colortest", "executable": true, "destination": "~/.local/bin"},
-    {"template": ".tmux.conf", "destination": "~"},
-    {"template": ".zshrc", "destination": "~"},
-    {"template": ".xprofile", "destination": "~"},
-    {"template": ".zprofile", "destination": "~"},
-    {"template": ".Xresources", "destination": "~"}
+    {
+        "template": "i3/config"
+    },
+    {
+        "template": "i3status/config"
+    },
+    {
+        "template": "polybar/config"
+    },
+    {
+        "template": "polybar/startup.sh",
+        "executable": true
+    },
+    {
+        "template": "polybar/updates.sh",
+        "executable": true
+    },
+    {
+        "template": "polybar/now_playing.py",
+        "executable": true
+    },
+    {
+        "template": "polybar/weather.sh",
+        "executable": true
+    },
+    {
+        "template": "rofi/config.rasi"
+    },
+    {
+        "template": "rofi/powermenu.rasi"
+    },
+    {
+        "template": "nvim/init.vim"
+    },
+    {
+        "template": "nvim/fzf.vim"
+    },
+    {
+        "template": "nvim/mappings.vim"
+    },
+    {
+        "template": "nvim/options.vim"
+    },
+    {
+        "template": "nvim/plugins.vim"
+    },
+    {
+        "template": "nvim/statusline.vim"
+    },
+    {
+        "template": "nvim/colors/dapc11.vim"
+    },
+    {
+        "template": "nvim/lua/lsp_config.lua"
+    },
+    {
+        "template": "rofi/config.rasi",
+        "executable": true
+    },
+    {
+        "template": "rofi/rofi-power",
+        "executable": true
+    },
+    {
+        "template": "rofi/rofi-randr",
+        "executable": true
+    },
+    {
+        "template": "Code/User/settings.json"
+    },
+    {
+        "template": "Code/User/keybindings.json"
+    },
+    {
+        "template": "alacritty/alacritty.yml"
+    },
+    {
+        "template": "dunst/dunstrc"
+    },
+    {
+        "template": "ranger/rc.conf"
+    },
+    {
+        "template": "yamllint/config"
+    },
+    {
+        "template": "compton/compton.conf"
+    },
+    {
+        "template": "qtile/config.py"
+    },
+    {
+        "template": "dimmer",
+        "executable": true,
+        "destination": "~/.local/bin"
+    },
+    {
+        "template": "nightmode",
+        "executable": true,
+        "destination": "~/.local/bin"
+    },
+    {
+        "template": "sysact",
+        "executable": true,
+        "destination": "~/.local/bin"
+    },
+    {
+        "template": "gita",
+        "executable": true,
+        "destination": "~/.local/bin"
+    },
+    {
+        "template": "colortest",
+        "executable": true,
+        "destination": "~/.local/bin"
+    },
+    {
+        "template": ".tmux.conf",
+        "destination": "~"
+    },
+    {
+        "template": ".zshrc",
+        "destination": "~"
+    },
+    {
+        "template": ".xprofile",
+        "destination": "~"
+    },
+    {
+        "template": ".zprofile",
+        "destination": "~"
+    },
+    {
+        "template": ".Xresources",
+        "destination": "~"
+    },
+    {
+        "template": "awesome/rc.lua"
+    },
+    {
+        "template": "awesome/icons",
+        "onlyCopy": true
+    },
+    {
+        "template": "awesome/widgets",
+        "onlyCopy": true
+    },
+    {
+        "template": "awesome/sysact"
+    },
+    {
+        "template": "awesome/theme.lua"
+    }
 ]
