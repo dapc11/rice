@@ -139,6 +139,9 @@
         "template": "awesome/rc.lua"
     },
     {
+        "template": "awesome/bar.lua"
+    },
+    {
         "template": "awesome/icons",
         "onlyCopy": true
     },
@@ -147,7 +150,12 @@
         "onlyCopy": true
     },
     {
-        "template": "awesome/sysact"
+        "template": "awesome/sysact",
+        "executable": true
+    },
+    {
+        "template": "awesome/xrandr.lua",
+        "executable": true
     },
     {
         "template": "awesome/theme.lua"
