@@ -169,6 +169,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<F4>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
@@ -268,21 +269,6 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
-
-
------- nvim tree
-require'nvim-tree'.setup{
-    update_focused_file = {
-        -- enables the feature
-        enable      = true,
-        -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
-        -- only relevant when `update_focused_file.enable` is true
-        update_cwd  = false,
-        -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
-        -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-        ignore_list = {}
-    }
-}
 
 
 ------ telescope

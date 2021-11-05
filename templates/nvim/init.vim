@@ -44,13 +44,10 @@ augroup dapc
     autocmd!
     " Yaml
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd BufRead * lua require('lint').try_lint()
-    autocmd BufWrite * lua require('lint').try_lint()
+    " autocmd BufRead * lua require('lint').try_lint()
+    " autocmd BufWrite * lua require('lint').try_lint()
     autocmd BufReadPost,BufNewFile * :call HighlightTodo()
     autocmd BufWritePre * :call TrimWhitespace()
-    " Automatically deletes all trailing whitespace and newlines at end of file on save
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd BufWritepre * %s/\n\+\%$//e
 augroup END
 
 function! ToggleQuickFix()
@@ -62,3 +59,4 @@ function! ToggleQuickFix()
 endfunction
 
 nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
+nnoremap <silent> <F3> :lua require('lint').try_lint()<cr>

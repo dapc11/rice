@@ -40,18 +40,15 @@ Plug 'ray-x/lsp_signature.nvim' " Signature help
 Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
 Plug 'akinsho/toggleterm.nvim' " Terminal in vim
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
-nnoremap <C-e> :NvimTreeToggle<CR>
-let g:nvim_tree_icons = {}
-let g:nvim_tree_show_icons = {
-    \ 'git': 0,
-    \ 'folders': 1,
-    \ 'files': 0,
-    \ 'folder_arrows': 1,
-    \ }
+nnoremap <C-e> :lua require('harpoon.ui').toggle_quick_menu()<CR>
+nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>
+nnoremap 1 :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap 2 :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap 3 :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap 4 :lua require("harpoon.ui").nav_file(4)<CR>
 
 let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'

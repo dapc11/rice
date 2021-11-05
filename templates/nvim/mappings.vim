@@ -30,8 +30,6 @@ cnoremap <M-Right> <S-Right>
 cnoremap <M-BS> <C-W>
 cnoremap <C-BS> <C-W>
 
-" Select and search
-vnoremap <C-f> y/\V<C-R>=escape(@",'/\')<CR><CR>
 " Paste over select and keep register
 vnoremap <leader>p "_dP
 
@@ -41,9 +39,6 @@ cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
 cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
-
-" Search and replace with prompt
-nnoremap <C-s> :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Navigate errors
 nnoremap <C-n> :cn<CR>
@@ -84,3 +79,5 @@ vnoremap <S-Down> :m '>+1<CR>gv=gv
 vnoremap <S-Up> :m '<-2<CR>gv=gv
 
 nnoremap <Leader>gb :Gitsigns toggle_current_line_blame<CR>
+
+nnoremap <C-s> :w<cr>

@@ -35,7 +35,7 @@ command! -nargs=? -complete=dir AD
   \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
   \ }))
 nnoremap <silent> <leader>pg :GGrep<cr>
-nnoremap <silent> <leader>f :Telescope grep_string<cr>
+nnoremap <silent> <leader>f :Telescope live_grep<cr>
 nnoremap <silent> <leader>b :Telescope buffers<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
