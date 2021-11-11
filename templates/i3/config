@@ -180,8 +180,8 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
-bindsym XF86AudioLowerVolume exec amixer set Master 2db- unmute
-bindsym XF86AudioRaiseVolume exec amixer set Master 2db+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 3%- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 3%+ unmute
 bindsym XF86MonBrightnessDown exec dimmer -d
 bindsym XF86MonBrightnessUp exec dimmer -i
 
