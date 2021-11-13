@@ -29,6 +29,7 @@ lint.linters.dapc_flake8 = {
 }
 
 local severities = {
+    fatal = vim.lsp.protocol.DiagnosticSeverity.Fatal,
     error = vim.lsp.protocol.DiagnosticSeverity.Error,
     warning = vim.lsp.protocol.DiagnosticSeverity.Warning,
     refactor = vim.lsp.protocol.DiagnosticSeverity.Information,
@@ -112,10 +113,13 @@ treesitter.setup{
 ------ Setup nvim-cmp.
 local cmp = require("cmp")
 cmp.setup({
+    completion = {
+        keyword_pattern  = "ääääääää",
+        keyword_length = 1
+    },
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-            -- vim.fn["UltiSnips#Anon"](args.body)
+            vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
     mapping = {
@@ -124,18 +128,66 @@ cmp.setup({
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-x>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<Tab>"] = function(fallback)
+            if not cmp.select_next_item() then
+                if vim.bo.buftype ~= "prompt" and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+        ["<S-Tab>"] = function(fallback)
+            if not cmp.select_prev_item() then
+                if vim.bo.buftype ~= "prompt" and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+        ["<Down>"] = function(fallback)
+            if not cmp.select_next_item() then
+                if vim.bo.buftype ~= "prompt" and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+        ["<Up>"] = function(fallback)
+            if not cmp.select_prev_item() then
+                if vim.bo.buftype ~= "prompt" and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+        -- ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        -- ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
         { name = "nvim_lsp" },
         { name = "ultisnips" },
-        { name = "vsnip" },
         { name = "buffer" },
         { name = "path" },
+    },
+    formatting = {
+        format = function(entry, vim_item)
+            -- fancy icons and a name of kind
+            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+
+            -- set a name for each source
+            -- vim_item.menu = ({
+            --     buffer = "[Buffer]",
+            --     nvim_lsp = "[LSP]",
+            --     path = "[Path]",
+            --     ultisnips = "[Ultisnips]",
+            -- })[entry.source.name]
+
+            return vim_item
+        end
     }
 })
 

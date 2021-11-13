@@ -26,9 +26,9 @@ Plug 'neovim/nvim-lspconfig' " LSP
 Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
 Plug 'hrsh7th/cmp-buffer' " Auto suggestions
 Plug 'hrsh7th/nvim-cmp' " Auto suggestions
+Plug 'onsails/lspkind-nvim'
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip' " Snippets
-Plug 'hrsh7th/vim-vsnip' " Snippets
 Plug 'hrsh7th/cmp-path' " Auto complete paths
 Plug 'mfussenegger/nvim-lint' " Linting
 " Track the engine.
@@ -44,11 +44,14 @@ Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 nnoremap <C-e> :lua require('harpoon.ui').toggle_quick_menu()<CR>
-nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>
-nnoremap 1 :lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap 2 :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap 3 :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap 4 :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
+nnoremap 1 :lua require('harpoon.ui').nav_file(1)<CR>
+nnoremap 2 :lua require('harpoon.ui').nav_file(2)<CR>
+nnoremap 3 :lua require('harpoon.ui').nav_file(3)<CR>
+nnoremap 4 :lua require('harpoon.ui').nav_file(4)<CR>
+
+let g:UltiSnipsSnippetDirectories=["~/.config/nvim/UltiSnips"]
+
 
 let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
 let g:rooter_change_directory_for_non_project_files = 'home'
