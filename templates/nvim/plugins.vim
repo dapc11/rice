@@ -41,9 +41,10 @@ Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
 Plug 'akinsho/toggleterm.nvim' " Terminal in vim
 Plug 'ThePrimeagen/harpoon'
+Plug 'towolf/vim-helm'
 call plug#end()
 
-nnoremap <C-e> :lua require('harpoon.ui').toggle_quick_menu()<CR>
+nnoremap <C-q> :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
 nnoremap 1 :lua require('harpoon.ui').nav_file(1)<CR>
 nnoremap 2 :lua require('harpoon.ui').nav_file(2)<CR>
