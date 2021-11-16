@@ -112,13 +112,13 @@ treesitter.setup{
 
 
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
 ------ Setup nvim-cmp.
 local cmp = require("cmp")
-cmp.setup({
+cmp.setup{
     completion = {
         keyword_pattern  = "ääääääää",
         keyword_length = 1
@@ -183,19 +183,10 @@ cmp.setup({
         format = function(entry, vim_item)
             -- fancy icons and a name of kind
             vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-
-            -- set a name for each source
-            -- vim_item.menu = ({
-            --     buffer = "[Buffer]",
-            --     nvim_lsp = "[LSP]",
-            --     path = "[Path]",
-            --     ultisnips = "[Ultisnips]",
-            -- })[entry.source.name]
-
             return vim_item
         end
     }
-})
+}
 
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
@@ -269,10 +260,10 @@ nvim_lsp.pyright.setup {
     end,
 }
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        update_in_insert = false,
-    }
+vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    update_in_insert = false,
+}
 )
 
 do
@@ -321,26 +312,33 @@ require("toggleterm").setup{
 }
 
 function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+    local opts = {noremap = true}
+    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
-
 ------ telescope
 require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
+    extensions = {
+        fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        }
     }
-  }
 }
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzy_native')
+
+--- indentation guide
+vim.opt.list = true
+vim.cmd [[highlight IndentBlanklineChar guifg={{base02}} gui=nocombine]]
+
+require("indent_blankline").setup {
+    show_end_of_line = false,
+}

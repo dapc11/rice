@@ -34,9 +34,8 @@ command! -nargs=? -complete=dir AD
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
   \ }))
-nnoremap <silent> <leader>pg :GGrep<cr>
-nnoremap <silent> <leader>f :Telescope live_grep<cr>
-nnoremap <silent> <leader>b :Telescope buffers<cr>
+command! -bang ProjectFiles call fzf#vim#files('~/repos', <bang>0)
+nnoremap <silent> <leader>f :Rg<cr>
 nnoremap <silent> <leader>n :GFiles<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <silent> <leader>N :GFiles?<cr>
@@ -44,7 +43,7 @@ nnoremap <silent> <leader><Leader> :AFFF<cr>
 nnoremap <silent> <Leader>o :AF<cr>
 nnoremap <silent> <Leader>O :AFF<cr>
 nnoremap <Leader>d :AD<cr>
-nnoremap <C-p> :Telescope find_files<cr>
-nnoremap <C-f> :Telescope current_buffer_fuzzy_find<cr>
+nnoremap <C-f> :BLines<cr>
+nnoremap <C-p> :ProjectFiles<cr>
 
 let loaded_netrwPlugin = 1

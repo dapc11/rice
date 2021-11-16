@@ -42,7 +42,12 @@ Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
 Plug 'akinsho/toggleterm.nvim' " Terminal in vim
 Plug 'ThePrimeagen/harpoon'
 Plug 'towolf/vim-helm'
+Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
 call plug#end()
+
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_show_first_indent_level = v:false
+let g:indent_blankline_filetype_exclude = ['help']
 
 nnoremap <C-q> :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
