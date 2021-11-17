@@ -18,6 +18,7 @@ lint.linters.dapc_flake8 = {
     stdin = true,
     args = {
         '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
+        '--ignore=W503',
         '--no-show-source',
         '-',
     },
@@ -341,4 +342,5 @@ vim.cmd [[highlight IndentBlanklineChar guifg={{base02}} gui=nocombine]]
 
 require("indent_blankline").setup {
     show_end_of_line = false,
+    space_char_blankline = " "
 }
