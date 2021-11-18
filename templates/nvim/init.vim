@@ -58,4 +58,4 @@ function! ToggleQuickFix()
     endif
 endfunction
 
-nnoremap <silent> <C-l> :lua require('lint').try_lint()<cr>
+nnoremap <silent> <leader>cl :lua require('lint').try_lint()<cr>

@@ -19,6 +19,7 @@ lint.linters.dapc_flake8 = {
     args = {
         '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
         '--ignore=W503',
+        '--per-file-ignores = **/test_*:D100,D103',
         '--no-show-source',
         '-',
     },
@@ -97,7 +98,7 @@ nvim_lsp["null-ls"].setup({})
 local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
     highlight = { enable = true },
-    incremental_selection = { enable = true },
+    incremental_selection = { enable = false },
     textobjects = { enable = true },
     refactor = {
         highlight_definitions = { enable = true },
@@ -176,8 +177,8 @@ cmp.setup{
     },
     sources = {
         { name = "nvim_lsp" },
-        { name = "ultisnips" },
-        { name = "buffer" },
+        -- { name = "ultisnips" },
+        -- { name = "buffer" },
         { name = "path" },
     },
     formatting = {

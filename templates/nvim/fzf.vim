@@ -49,8 +49,6 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, <bang>0)
-command! -bang -nargs=* History call s:history(<q-args>, fzf#vim#with_preview(), <bang>0)
-
 
 nnoremap <silent> <leader>f :RG<cr>
 nnoremap <silent> <leader>n :GFiles<cr>

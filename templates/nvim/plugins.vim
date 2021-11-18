@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find everything
-Plug 'ap/vim-css-color' " CSS Colors ?
 Plug 'tpope/vim-commentary' " Neat comments
 Plug 'tpope/vim-fugitive' " Git integration
 Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
@@ -20,7 +19,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'Townk/vim-autoclose' " Autoclose quotes and brackets
-Plug 'lilydjwg/colorizer' " CSS colors
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig' " LSP
 Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
@@ -46,15 +44,15 @@ Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
 call plug#end()
 
 let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_show_first_indent_level = v:false
+let g:indent_blankline_show_first_indent_level = v:true
 let g:indent_blankline_filetype_exclude = ['help']
 
-nnoremap <C-q> :lua require('harpoon.ui').toggle_quick_menu()<CR>
+nnoremap <leader>e :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
-nnoremap 1 :lua require('harpoon.ui').nav_file(1)<CR>
-nnoremap 2 :lua require('harpoon.ui').nav_file(2)<CR>
-nnoremap 3 :lua require('harpoon.ui').nav_file(3)<CR>
-nnoremap 4 :lua require('harpoon.ui').nav_file(4)<CR>
+nnoremap <leader>1 :lua require('harpoon.ui').nav_file(1)<CR>
+nnoremap <leader>2 :lua require('harpoon.ui').nav_file(2)<CR>
+nnoremap <leader>3 :lua require('harpoon.ui').nav_file(3)<CR>
+nnoremap <leader>4 :lua require('harpoon.ui').nav_file(4)<CR>
 
 let g:UltiSnipsSnippetDirectories=["~/.config/nvim/UltiSnips"]
 
