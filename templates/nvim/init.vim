@@ -6,7 +6,7 @@ runtime plugins.vim
 set background=dark
 colorscheme dapc11
 runtime options.vim
-runtime statusline.vim
+" runtime statusline.vim
 runtime mappings.vim
 runtime fzf.vim
 
@@ -49,13 +49,5 @@ augroup dapc
     autocmd BufReadPost,BufNewFile * :call HighlightTodo()
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
-
-function! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
-endfunction
 
 nnoremap <silent> <leader>cl :lua require('lint').try_lint()<cr>

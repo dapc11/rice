@@ -41,6 +41,9 @@ Plug 'akinsho/toggleterm.nvim' " Terminal in vim
 Plug 'ThePrimeagen/harpoon'
 Plug 'towolf/vim-helm'
 Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 let g:indent_blankline_use_treesitter = v:true
