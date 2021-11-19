@@ -51,9 +51,6 @@ xnoremap p pgvy
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Close all buffers but the opened one
-map <Leader>a :cclose <bar> lclose <bar> pclose<CR>
-
 " set moving between windows to ctrl+arrows
 function! WinMove(key)
     let t:curwin = winnr()
@@ -78,6 +75,10 @@ nnoremap <S-Up> :m .-2<CR>==
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 vnoremap <S-Up> :m '<-2<CR>gv=gv
 
+" Gitsigns
 nnoremap <Leader>gb :Gitsigns toggle_current_line_blame<CR>
+nnoremap <Leader>gp :Gitsigns preview_hunk<CR>
+nnoremap <Leader>grh :Gitsigns reset_hunk<CR>
+nnoremap <Leader>grb :Gitsigns reset_buffer<CR>
 
 nnoremap <C-s> :w<cr>

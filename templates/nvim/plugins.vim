@@ -50,7 +50,7 @@ let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_first_indent_level = v:true
 let g:indent_blankline_filetype_exclude = ['help']
 
-nnoremap <leader>e :lua require('harpoon.ui').toggle_quick_menu()<CR>
+nnoremap <leader>a :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
 nnoremap <leader>1 :lua require('harpoon.ui').nav_file(1)<CR>
 nnoremap <leader>2 :lua require('harpoon.ui').nav_file(2)<CR>
