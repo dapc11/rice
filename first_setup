@@ -131,6 +131,8 @@ export PATH="$HOME/.local/bin:$PATH"
 
 install_deps
 setup_zsh
+# Setup zoxide - smarter cd
+curl -sS https://webinstall.dev/zoxide | bash
 setup_fonts
 setup_alacritty
 setup_enact

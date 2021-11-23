@@ -18,7 +18,7 @@
     ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Atom One Dark",
     "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",

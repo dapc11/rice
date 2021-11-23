@@ -10,7 +10,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find everything
 Plug 'tpope/vim-commentary' " Neat comments
 Plug 'tpope/vim-fugitive' " Git integration
-Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
+" Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -42,6 +42,7 @@ Plug 'towolf/vim-helm' " Support for helm
 Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
 Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
 Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
+Plug 'jvgrootveld/telescope-zoxide'
 call plug#end()
 
 let g:indent_blankline_use_treesitter = v:true
@@ -58,8 +59,8 @@ nnoremap <leader>4 :lua require('harpoon.ui').nav_file(4)<CR>
 let g:UltiSnipsSnippetDirectories=["~/.config/nvim/UltiSnips"]
 
 
-let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
-let g:rooter_change_directory_for_non_project_files = 'home'
+" let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
+" let g:rooter_change_directory_for_non_project_files = 'home'
 let g:indentLine_setConceal = 0
 let g:python3_host_prog = '~/dev/bin/python3'
 

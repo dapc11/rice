@@ -82,4 +82,5 @@ fi
 [[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/dev/bin/activate ]] || source ~/dev/bin/activate
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
 ZLE_RPROMPT_INDENT=0
