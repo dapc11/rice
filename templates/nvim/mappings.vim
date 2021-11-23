@@ -82,3 +82,6 @@ nnoremap <Leader>grh :Gitsigns reset_hunk<CR>
 nnoremap <Leader>grb :Gitsigns reset_buffer<CR>
 
 nnoremap <C-s> :w<cr>
+
+" Profiling
+nnoremap <Leader>zp :profile start nvim-profile.log \| profile func * \| profile file *

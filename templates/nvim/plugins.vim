@@ -25,7 +25,6 @@ Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
 Plug 'hrsh7th/cmp-buffer' " Auto suggestions
 Plug 'hrsh7th/nvim-cmp' " Auto suggestions
 Plug 'onsails/lspkind-nvim'
-" For vsnip user.
 Plug 'hrsh7th/cmp-vsnip' " Snippets
 Plug 'hrsh7th/cmp-path' " Auto complete paths
 Plug 'mfussenegger/nvim-lint' " Linting
@@ -39,11 +38,10 @@ Plug 'jose-elias-alvarez/null-ls.nvim' " formatting and possibly linting
 Plug 'lewis6991/gitsigns.nvim' " Lua gitsigns
 Plug 'akinsho/toggleterm.nvim' " Terminal in vim
 Plug 'ThePrimeagen/harpoon'
-Plug 'towolf/vim-helm'
+Plug 'towolf/vim-helm' " Support for helm
 Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
-Plug 'nvim-lualine/lualine.nvim'
-" If you want to have icons in your statusline choose one of these
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
+Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 call plug#end()
 
 let g:indent_blankline_use_treesitter = v:true

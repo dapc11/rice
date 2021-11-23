@@ -52,6 +52,9 @@
         "template": "nvim/colors/dapc11.vim"
     },
     {
+        "template": "nvim/colors/neosolarized.vim"
+    },
+    {
         "template": "nvim/lua/lsp_config.lua"
     },
     {
