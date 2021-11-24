@@ -424,7 +424,7 @@ require("indent_blankline").setup {
 local z_utils = require("telescope._extensions.zoxide.utils")
 
 require("telescope._extensions.zoxide.config").setup({
-  prompt_title = "[ Walking on the shoulders of TJ ]",
+  prompt_title = "Change working dir",
   mappings = {
     default = {
       after_action = function(selection)
