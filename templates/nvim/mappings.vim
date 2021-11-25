@@ -1,5 +1,4 @@
-nnoremap <SPACE> <Nop>
-let mapleader =" "
+" nnoremap <SPACE> <Nop>
 
 map ä <C-d>
 map ö <C-u>
@@ -70,18 +69,3 @@ nnoremap <silent> <C-Down> :call WinMove('j')<CR>
 nnoremap <silent> <C-Up> :call WinMove('k')<CR>
 nnoremap <silent> <C-Right> :call WinMove('l')<CR>
 
-nnoremap <S-Down> :m .+1<CR>==
-nnoremap <S-Up> :m .-2<CR>==
-vnoremap <S-Down> :m '>+1<CR>gv=gv
-vnoremap <S-Up> :m '<-2<CR>gv=gv
-
-" Gitsigns
-nnoremap <Leader>gb :Gitsigns toggle_current_line_blame<CR>
-nnoremap <Leader>gp :Gitsigns preview_hunk<CR>
-nnoremap <Leader>grh :Gitsigns reset_hunk<CR>
-nnoremap <Leader>grb :Gitsigns reset_buffer<CR>
-
-nnoremap <C-s> :w<cr>
-
-" Profiling
-nnoremap <Leader>zp :profile start nvim-profile.log \| profile func * \| profile file *

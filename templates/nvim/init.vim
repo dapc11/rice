@@ -5,7 +5,6 @@ let mapleader =" "
 runtime plugins.vim
 set background=dark
 colorscheme dapc11
-runtime options.vim
 " runtime statusline.vim
 runtime mappings.vim
 runtime fzf.vim
