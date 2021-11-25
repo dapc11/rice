@@ -10,7 +10,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find everything
 Plug 'tpope/vim-commentary' " Neat comments
 Plug 'tpope/vim-fugitive' " Git integration
-" Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
+Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
 Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -43,25 +43,6 @@ Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
 Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
 Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'jvgrootveld/telescope-zoxide'
+Plug 'tjdevries/nlua.nvim'
 call plug#end()
 
-let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_show_first_indent_level = v:true
-let g:indent_blankline_filetype_exclude = ['help']
-
-nnoremap <leader>a :lua require('harpoon.ui').toggle_quick_menu()<CR>
-nnoremap <C-a> :lua require('harpoon.mark').add_file()<CR>
-nnoremap <leader>1 :lua require('harpoon.ui').nav_file(1)<CR>
-nnoremap <leader>2 :lua require('harpoon.ui').nav_file(2)<CR>
-nnoremap <leader>3 :lua require('harpoon.ui').nav_file(3)<CR>
-nnoremap <leader>4 :lua require('harpoon.ui').nav_file(4)<CR>
-
-let g:UltiSnipsSnippetDirectories=["~/.config/nvim/UltiSnips"]
-
-
-" let g:rooter_patterns = ['setup.cfg', '.git', 'pom.xml', 'Makefile', '*.sln', 'build/env.sh']
-" let g:rooter_change_directory_for_non_project_files = 'home'
-let g:indentLine_setConceal = 0
-let g:python3_host_prog = '~/dev/bin/python3'
-
-nmap <leader>gs :Git<CR>

@@ -321,21 +321,22 @@ require'lspconfig'.sumneko_lua.setup {
                 -- Setup your lua path
                 path = runtime_path,
             },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
+        diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+        },
+        workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+            enable = false,
+        },
         },
     },
 }
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
@@ -440,7 +441,6 @@ require("telescope._extensions.zoxide.config").setup({
     ["<C-q>"] = { action = z_utils.create_basic_command("split") },
   }
 })
-
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>cd",

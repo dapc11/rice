@@ -21,14 +21,11 @@ function! HighlightTodo()
     match Error /TODO/
 endfunc
 
-
-set completeopt=menu,menuone,noselect
 lua << EOF
+require("options")
 require("lsp_config")
+require("keymaps")
 EOF
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Python
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
@@ -50,4 +47,3 @@ augroup dapc
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
-nnoremap <silent> <leader>cl :lua require('lint').try_lint()<cr>

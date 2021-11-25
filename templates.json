@@ -58,6 +58,12 @@
         "template": "nvim/lua/lsp_config.lua"
     },
     {
+        "template": "nvim/lua/options.lua"
+    },
+    {
+        "template": "nvim/lua/keymaps.lua"
+    },
+    {
         "template": "rofi/config.rasi",
         "executable": true
     },
