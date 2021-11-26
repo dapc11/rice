@@ -16,6 +16,11 @@ local map = function(key)
     end
 end
 
+-- Terminal
+map{"n", "<Leader>h", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>"}
+map{"n", "<Leader>v", ":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>"}
+map{"n", "<Leader>t", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>"}
+
 -- Harpoon
 map {'n', '<C-a>', ":lua require('harpoon.mark').add_file()<CR>"}
 map {'n', '<A-a>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
@@ -32,19 +37,21 @@ map {'n', '<leader>gs', ':Git<CR>'}
 
 -- Misc
 -- Use <C-L> to clear the highlighting of :set hlsearch.
-map {silent = true, 'n', '<C-l>', ':let @/ = ""<CR>'}
-map {'n', '<Leader>zp', ':profile start nvim-profile.log \\| profile func * \\| profile file *'}
-
-
--- TODO
 map {'n', '<SPACE>', '<Nop>'}
 vim.g.mapleader = " "
 
---map ä <C-d>
---map ö <C-u>
---map ga <Nop>
---map ¨ <C-^>
+-- Clear highlight search
+map {silent = true, 'n', '<C-l>', ':let @/ = ""<CR>'}
+map {'n', '<Leader>zp', ':profile start nvim-profile.log \\| profile func * \\| profile file *'}
 
+map {'n', 'ä', '<C-d>'}
+map {'n', 'ö', '<C-u>'}
+map {'n', '¨', '<C-^>'}
+map {'t', '<Esc>', '<C-\\><C-n>'}
+-- Don't copy the replaced text after pasting in visual mode
+map {"v", "p", '"_dP'}
+
+-- TODO
 --inoremap <C-Space> <C-x><C-n>
 --nnoremap <silent> <A-left> :bp<CR>
 --nnoremap <silent> <A-right> :bn<CR>

@@ -185,26 +185,8 @@ cmp.setup{
                 end
             end
         end,
-        ["<Down>"] = function(fallback)
-            if not cmp.select_next_item() then
-                if vim.bo.buftype ~= "prompt" and has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end
-        end,
-        ["<Up>"] = function(fallback)
-            if not cmp.select_prev_item() then
-                if vim.bo.buftype ~= "prompt" and has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end
-        end,
-        -- ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        -- ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
         { name = "nvim_lsp", priority = 5 },

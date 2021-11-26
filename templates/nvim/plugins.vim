@@ -29,7 +29,7 @@ Plug 'hrsh7th/cmp-vsnip' " Snippets
 Plug 'hrsh7th/cmp-path' " Auto complete paths
 Plug 'mfussenegger/nvim-lint' " Linting
 " Track the engine.
-" Snippets are separated from the engine. Add this if you want them:
+" Snippets are separated from the engine.
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'honza/vim-snippets' " Snippets
 Plug 'quangnguyen30192/cmp-nvim-ultisnips' " Snippets
@@ -45,4 +45,3 @@ Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'tjdevries/nlua.nvim'
 call plug#end()
-

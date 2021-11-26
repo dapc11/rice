@@ -1,9 +1,5 @@
-" nnoremap <SPACE> <Nop>
+inoremap <M-t> <C-\><C-n>
 
-map ä <C-d>
-map ö <C-u>
-map ga <Nop>
-map ¨ <C-^>
 
 inoremap <C-Space> <C-x><C-n>
 nnoremap <silent> <A-left> :bp<CR>

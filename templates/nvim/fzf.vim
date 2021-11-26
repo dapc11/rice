@@ -33,10 +33,6 @@ command! -nargs=? -complete=dir AFF
   \ call fzf#run(fzf#wrap({
   \   'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)
   \ }))
-command! -nargs=? -complete=dir AD
-  \ call fzf#run(fzf#wrap({
-  \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
-  \ }))
 command! -bang ProjectFiles call fzf#vim#files('~/repos', <bang>0)
 
 function! RipgrepFzf(query, fullscreen)
@@ -50,15 +46,22 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, <bang>0)
 
-nnoremap <silent> <leader>f :RG<cr>
-nnoremap <silent> <leader>n :GFiles<cr>
-nnoremap <silent> <leader>h :History<cr>
-nnoremap <silent> <leader>N :GFiles?<cr>
-nnoremap <silent> <leader><Leader> :AFFF<cr>
-nnoremap <silent> <Leader>o :AF<cr>
-nnoremap <silent> <Leader>O :AFF<cr>
-nnoremap <Leader>d :AD<cr>
-nnoremap <C-f> :BLines<cr>
-nnoremap <C-p> :ProjectFiles<cr>
+" nnoremap <silent> <leader><Leader>f :RG<cr>
+" nnoremap <silent> <leader><Leader>n :GFiles<cr>
+" nnoremap <silent> <leader><Leader>h :History<cr>
+" nnoremap <silent> <leader><Leader>N :GFiles?<cr>
+" nnoremap <silent> <leader><Leader><Leader> :AFFF<cr>
+" nnoremap <silent> <Leader><Leader>o :AF<cr>
+" nnoremap <silent> <Leader><Leader>O :AFF<cr>
+" nnoremap <C-f> :BLines<cr>
+" nnoremap <C-p> :ProjectFiles<cr>
 
 let loaded_netrwPlugin = 1
+nnoremap <C-f> :Telescope current_buffer_fuzzy_find<CR>
+nnoremap <Leader>n :Telescope git_files<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fa :Telescope find_files hidden=true<CR>
+nnoremap <leader><leader> :Telescope live_grep<CR>
+nnoremap <leader>fo :Telescope oldfiles<CR>
+nnoremap <leader>fm :Telescope keymaps<CR>
