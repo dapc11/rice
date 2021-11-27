@@ -17,10 +17,10 @@ local map = function(key)
 end
 
 -- Resize buffers
-map {'n', '<C-w>+', ':resize +5<CR>'}
-map {'n', '<C-w>-', ':resize -5<CR>'}
-map {'n', '<C-w><', ':vertical:resize -5<CR>'}
-map {'n', '<C-w>>', ':vertical:resize +5<CR>'}
+map {'n', silent = true, '<C-w>+', ':resize +8<CR>'}
+map {'n', silent = true, '<C-w>-', ':resize -8<CR>'}
+map {'n', silent = true, '<C-w><', ':vertical:resize -8<CR>'}
+map {'n', silent = true, '<C-w>>', ':vertical:resize +8<CR>'}
 
 -- Telescope
 map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
@@ -33,12 +33,14 @@ map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
 map {'n', '<leader>m', ':Telescope keymaps<CR>'}
 
 -- Harpoon
-map {'n', '<C-a>', ":lua require('harpoon.mark').add_file()<CR>"}
-map {'n', '<A-a>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
-map {'n', '<A-q>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
-map {'n', '<A-w>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
-map {'n', '<A-e>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
-map {'n', '<A-r>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
+map {'n', silent = true, '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
+map {'n', silent = true, '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
+map {'n', silent = true, '<Leader>a', ":lua require('harpoon.mark').add_file()<CR>"}
+map {'n', silent = true, '<Leader>l', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
+map {'n', silent = true, '<A-q>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
+map {'n', silent = true, '<A-w>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
+map {'n', silent = true, '<A-e>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
+map {'n', silent = true, '<A-r>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
 
 -- Nvim lint
 map {silent = true, 'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}

@@ -1,8 +1,8 @@
-nnoremap <C-M-Right> :cnext<CR>zz
-nnoremap <C-M-Left> :cprev<CR>zz
-nnoremap <leader>Right :lnext<CR>zz
-nnoremap <leader>Left :lprev<CR>zz
-nnoremap <C-q> :call ToggleQFList(1)<CR>
+" nnoremap <C-M-Right> :cnext<CR>zz
+" nnoremap <C-M-Left> :cprev<CR>zz
+" nnoremap <leader>Right :lnext<CR>zz
+" nnoremap <leader>Left :lprev<CR>zz
+" nnoremap <C-q> :call ToggleQFList(1)<CR>
 
 let g:dapc_qf_l = 0
 let g:dapc_qf_g = 0

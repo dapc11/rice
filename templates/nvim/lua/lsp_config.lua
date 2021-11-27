@@ -233,7 +233,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    buf_set_keymap("n", "<F4>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
@@ -348,40 +347,40 @@ end
 
 
 ------ Toggle term
-require("toggleterm").setup{
-    open_mapping = [[<c-z>]],
-    hide_numbers = true, -- hide the number column in toggleterm buffers
-    shade_filetypes = {},
-    shade_terminals = false,
-    shading_factor = '2', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-    start_in_insert = false,
-    insert_mappings = true, -- whether or not the open mapping applies in insert mode
-    persist_size = true,
-    direction = 'horizontal',
-    close_on_exit = true, -- close the terminal window when the process exits
-    shell = vim.o.shell, -- change the default shell
-    -- This field is only relevant if direction is set to 'float'
-    float_opts = {
-        border = 'single',
-        winblend = 3,
-        highlights = {
-            border = "Normal",
-            background = "Normal",
-        }
-    },
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
-}
+-- require("toggleterm").setup{
+--     open_mapping = [[<c-z>]],
+--     hide_numbers = true, -- hide the number column in toggleterm buffers
+--     shade_filetypes = {},
+--     shade_terminals = false,
+--     shading_factor = '2', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+--     start_in_insert = false,
+--     insert_mappings = true, -- whether or not the open mapping applies in insert mode
+--     persist_size = true,
+--     direction = 'horizontal',
+--     close_on_exit = true, -- close the terminal window when the process exits
+--     shell = vim.o.shell, -- change the default shell
+--     -- This field is only relevant if direction is set to 'float'
+--     float_opts = {
+--         border = 'single',
+--         winblend = 3,
+--         highlights = {
+--             border = "Normal",
+--             background = "Normal",
+--         }
+--     },
+--     highlights = {
+--       border = "Normal",
+--       background = "Normal",
+--     }
+-- }
 
-function _G.set_terminal_keymaps()
-    local opts = {noremap = true}
-    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-end
+-- function _G.set_terminal_keymaps()
+--     local opts = {noremap = true}
+--     vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+-- end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
+-- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+-- vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
 ------ telescope
 require('telescope').setup {
