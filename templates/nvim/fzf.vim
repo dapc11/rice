@@ -57,11 +57,3 @@ command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, <bang>0)
 " nnoremap <C-p> :ProjectFiles<cr>
 
 let loaded_netrwPlugin = 1
-nnoremap <C-f> :Telescope current_buffer_fuzzy_find<CR>
-nnoremap <Leader>n :Telescope git_files<CR>
-nnoremap <leader>fb :Telescope buffers<CR>
-nnoremap <leader>ff :Telescope find_files<CR>
-nnoremap <leader>fa :Telescope find_files hidden=true<CR>
-nnoremap <leader><leader> :Telescope live_grep<CR>
-nnoremap <leader>fo :Telescope oldfiles<CR>
-nnoremap <leader>fm :Telescope keymaps<CR>

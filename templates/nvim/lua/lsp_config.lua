@@ -349,7 +349,7 @@ end
 
 ------ Toggle term
 require("toggleterm").setup{
-    open_mapping = [[<c-t>]],
+    open_mapping = [[<c-z>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shade_terminals = false,

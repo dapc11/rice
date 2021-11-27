@@ -16,10 +16,21 @@ local map = function(key)
     end
 end
 
--- Terminal
-map{"n", "<Leader>h", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>"}
-map{"n", "<Leader>v", ":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>"}
-map{"n", "<Leader>t", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>"}
+-- Resize buffers
+map {'n', '<C-w>+', ':resize +5<CR>'}
+map {'n', '<C-w>-', ':resize -5<CR>'}
+map {'n', '<C-w><', ':vertical:resize -5<CR>'}
+map {'n', '<C-w>>', ':vertical:resize +5<CR>'}
+
+-- Telescope
+map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
+map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
+map {'n', '<Leader>n', ':Telescope git_files<CR>'}
+map {'n', '<leader>b', ':Telescope buffers<CR>'}
+map {'n', '<leader>ff', ':Telescope find_files<CR>'}
+map {'n', '<leader>fa', ':Telescope find_files hidden=true<CR>'}
+map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
+map {'n', '<leader>m', ':Telescope keymaps<CR>'}
 
 -- Harpoon
 map {'n', '<C-a>', ":lua require('harpoon.mark').add_file()<CR>"}
