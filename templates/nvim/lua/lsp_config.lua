@@ -1,5 +1,13 @@
 local nvim_lsp = require("lspconfig")
 
+
+--Autopairs
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
+-- Setup colorizer
+require'colorizer'.setup()
+
 ------ Setup lualine
 require'lualine'.setup {
     options = {
@@ -151,6 +159,12 @@ end
 
 ------ Setup nvim-cmp.
 local cmp = require("cmp")
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+
+-- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
+cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 cmp.setup{
     completion = {
         keyword_pattern  = "ääääääää",

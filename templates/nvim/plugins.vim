@@ -43,5 +43,7 @@ Plug 'lukas-reineke/indent-blankline.nvim' " Indentation guide
 Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
 Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'jvgrootveld/telescope-zoxide'
-Plug 'tjdevries/nlua.nvim'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tjdevries/train.nvim'
+Plug 'windwp/nvim-autopairs'
 call plug#end()
