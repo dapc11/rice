@@ -52,6 +52,9 @@
         "template": "nvim/colors/dapc11.vim"
     },
     {
+        "template": "nvim/syntax/python.vim"
+    },
+    {
         "template": "nvim/colors/neosolarized.vim"
     },
     {

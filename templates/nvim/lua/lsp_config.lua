@@ -1,10 +1,10 @@
 local nvim_lsp = require("lspconfig")
 
+-- Setup neoscroll
+require('neoscroll').setup()
+-- Setup nvim-commment
+require('nvim_comment').setup()
 
---Autopairs
-require('nvim-autopairs').setup({
-  disable_filetype = { "TelescopePrompt" , "vim" },
-})
 -- Setup colorizer
 require'colorizer'.setup()
 
@@ -446,3 +446,8 @@ vim.api.nvim_set_keymap(
 	":lua require'telescope'.extensions.zoxide.list{}<CR>",
 	{noremap = true, silent = true}
 )
+
+--Autopairs
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})

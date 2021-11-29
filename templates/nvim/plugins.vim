@@ -8,7 +8,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find everything
-Plug 'tpope/vim-commentary' " Neat comments
+Plug 'terrortylor/nvim-comment' " Neat comments
 Plug 'tpope/vim-fugitive' " Git integration
 Plug 'airblade/vim-rooter' " Change PWD to project root of open buffer
 Plug 'Yggdroot/indentLine'
@@ -45,5 +45,8 @@ Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tjdevries/train.nvim'
+Plug 'andymass/vim-matchup'
 Plug 'windwp/nvim-autopairs'
+Plug 'karb94/neoscroll.nvim'
+Plug 'nathom/filetype.nvim'
 call plug#end()
