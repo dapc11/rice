@@ -54,5 +54,5 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
 ## Samples
 
 ### Onedark
-![Onedark theme](./onedark.png?raw=true "Onedark theme")
+<img src="./onedarker.png" alt="onedarker" width="400px">
 
