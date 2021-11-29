@@ -134,10 +134,20 @@ map {'n', '<S-Up>', ':m .-2<CR>=='}
 map {'v', '<S-Down>', ":m '>+1<CR>gv=gv"}
 map {'v', '<S-Up>', ":m '<-2<CR>gv=gv"}
 
---" Gitsigns
+-- Gitsigns
 map {'n', '<Leader>gb', ':Gitsigns toggle_current_line_blame<CR>'}
 map {'n', '<Leader>gp', ':Gitsigns preview_hunk<CR>'}
 map {'n', '<Leader>grh', ':Gitsigns reset_hunk<CR>'}
 map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
 
 map {'n', '<C-s>', ':w<cr>'}
+
+-- Beginning and end of line
+map {noremap = false, 'i', '<C-a>', '<home>'}
+map {noremap = false, 'i', '<C-e>', '<end>'}
+map {noremap = false, 'c', '<C-a>', '<home>'}
+map {noremap = false, 'c', '<C-e>', '<end>'}
+
+-- Control-V Paste in insert and command mode
+map {noremap = false, 'i', '<C-V>', '<esc>pa'}
+map {noremap = false, 'c', '<C-V>', '<C-r>0'}

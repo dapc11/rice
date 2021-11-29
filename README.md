@@ -13,14 +13,15 @@ One can at any time after first setup invoke __rice_it__ in order to re-generate
 ### Usage
 
 ```shell
-usage: rice_it [-h] [--overwrite] [-t THEME] [-l]
+❯ python3 rice_it -h
+usage: rice_it [-h] [-o] [-t THEME] [-l]
 
-Dapc ricer, make your environment consistent from a color perspective.
+Dapc ricer, make your environment consistent from a color perspective with a declarative approach.
 
 optional arguments:
   -h, --help            show this help message and exit
-  --overwrite, -o       Make rice_it overwrite existing dotfiles in your home
-                        directory, use with caution!
+  -o, --overwrite       Make rice_it overwrite existing dotfiles in your home directory, use with
+                        caution!
   -t THEME, --theme THEME
                         Specify which theme the context will be loaded from.
   -l, --list            List available themes
