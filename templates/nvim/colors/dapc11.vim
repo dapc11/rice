@@ -2,38 +2,38 @@
 " vi:syntax=vim
 
 " GUI color definitions
-let s:gui00        = "{{base00_hex}}"
-let g:base16_gui00 = "{{base00_hex}}"
-let s:gui01        = "{{base01_hex}}"
-let g:base16_gui01 = "{{base01_hex}}"
-let s:gui02        = "{{base02_hex}}"
-let g:base16_gui02 = "{{base02_hex}}"
-let s:gui03        = "{{base03_hex}}"
-let g:base16_gui03 = "{{base03_hex}}"
-let s:gui04        = "{{base04_hex}}"
-let g:base16_gui04 = "{{base04_hex}}"
-let s:gui05        = "{{base05_hex}}"
-let g:base16_gui05 = "{{base05_hex}}"
-let s:gui06        = "{{base06_hex}}"
-let g:base16_gui06 = "{{base06_hex}}"
-let s:gui07        = "{{base07_hex}}"
-let g:base16_gui07 = "{{base07_hex}}"
-let s:gui08        = "{{base08_hex}}"
-let g:base16_gui08 = "{{base08_hex}}"
-let s:gui09        = "{{base09_hex}}"
-let g:base16_gui09 = "{{base09_hex}}"
-let s:gui0A        = "{{base0A_hex}}"
-let g:base16_gui0A = "{{base0A_hex}}"
-let s:gui0B        = "{{base0B_hex}}"
-let g:base16_gui0B = "{{base0B_hex}}"
-let s:gui0C        = "{{base0C_hex}}"
-let g:base16_gui0C = "{{base0C_hex}}"
-let s:gui0D        = "{{base0D_hex}}"
-let g:base16_gui0D = "{{base0D_hex}}"
-let s:gui0E        = "{{base0E_hex}}"
-let g:base16_gui0E = "{{base0E_hex}}"
-let s:gui0F        = "{{base0F_hex}}"
-let g:base16_gui0F = "{{base0F_hex}}"
+let s:gui00        = "{{base00}}"
+let g:base16_gui00 = "{{base00}}"
+let s:gui01        = "{{base01}}"
+let g:base16_gui01 = "{{base01}}"
+let s:gui02        = "{{base02}}"
+let g:base16_gui02 = "{{base02}}"
+let s:gui03        = "{{base03}}"
+let g:base16_gui03 = "{{base03}}"
+let s:gui04        = "{{base04}}"
+let g:base16_gui04 = "{{base04}}"
+let s:gui05        = "{{base05}}"
+let g:base16_gui05 = "{{base05}}"
+let s:gui06        = "{{base06}}"
+let g:base16_gui06 = "{{base06}}"
+let s:gui07        = "{{base07}}"
+let g:base16_gui07 = "{{base07}}"
+let s:gui08        = "{{base08}}"
+let g:base16_gui08 = "{{base08}}"
+let s:gui09        = "{{base09}}"
+let g:base16_gui09 = "{{base09}}"
+let s:gui0A        = "{{base0A}}"
+let g:base16_gui0A = "{{base0A}}"
+let s:gui0B        = "{{base0B}}"
+let g:base16_gui0B = "{{base0B}}"
+let s:gui0C        = "{{base0C}}"
+let g:base16_gui0C = "{{base0C}}"
+let s:gui0D        = "{{base0D}}"
+let g:base16_gui0D = "{{base0D}}"
+let s:gui0E        = "{{base0E}}"
+let g:base16_gui0E = "{{base0E}}"
+let s:gui0F        = "{{base0F}}"
+let g:base16_gui0F = "{{base0F}}"
 
 " Terminal color definitions
 let s:cterm00        = "00"
@@ -86,22 +86,22 @@ endif
 
 " Neovim terminal colours
 if has("nvim")
-  let g:terminal_color_0 =  "#{{base00_hex}}"
-  let g:terminal_color_1 =  "#{{base08_hex}}"
-  let g:terminal_color_2 =  "#{{base0B_hex}}"
-  let g:terminal_color_3 =  "#{{base0A_hex}}"
-  let g:terminal_color_4 =  "#{{base0D_hex}}"
-  let g:terminal_color_5 =  "#{{base0E_hex}}"
-  let g:terminal_color_6 =  "#{{base0C_hex}}"
-  let g:terminal_color_7 =  "#{{base07_hex}}"
-  let g:terminal_color_8 =  "#{{base03_hex}}"
-  let g:terminal_color_9 =  "#{{base08_hex}}"
-  let g:terminal_color_10 = "#{{base0B_hex}}"
-  let g:terminal_color_11 = "#{{base0A_hex}}"
-  let g:terminal_color_12 = "#{{base0D_hex}}"
-  let g:terminal_color_13 = "#{{base0E_hex}}"
-  let g:terminal_color_14 = "#{{base0C_hex}}"
-  let g:terminal_color_15 = "#{{base07_hex}}"
+  let g:terminal_color_0 =  "{{base00}}"
+  let g:terminal_color_1 =  "{{base08}}"
+  let g:terminal_color_2 =  "{{base0B}}"
+  let g:terminal_color_3 =  "{{base0A}}"
+  let g:terminal_color_4 =  "{{base0D}}"
+  let g:terminal_color_5 =  "{{base0E}}"
+  let g:terminal_color_6 =  "{{base0C}}"
+  let g:terminal_color_7 =  "{{base07}}"
+  let g:terminal_color_8 =  "{{base03}}"
+  let g:terminal_color_9 =  "{{base08}}"
+  let g:terminal_color_10 = "{{base0B}}"
+  let g:terminal_color_11 = "{{base0A}}"
+  let g:terminal_color_12 = "{{base0D}}"
+  let g:terminal_color_13 = "{{base0E}}"
+  let g:terminal_color_14 = "{{base0C}}"
+  let g:terminal_color_15 = "{{base07}}"
   let g:terminal_color_background = g:terminal_color_0
   let g:terminal_color_foreground = g:terminal_color_7
   if &background == "light"
@@ -110,22 +110,22 @@ if has("nvim")
   endif
 elseif has("terminal")
   let g:terminal_ansi_colors = [
-        \ "#{{base00_hex}}",
-        \ "#{{base08_hex}}",
-        \ "#{{base0B_hex}}",
-        \ "#{{base0A_hex}}",
-        \ "#{{base0D_hex}}",
-        \ "#{{base0E_hex}}",
-        \ "#{{base0C_hex}}",
-        \ "#{{base07_hex}}",
-        \ "#{{base03_hex}}",
-        \ "#{{base08_hex}}",
-        \ "#{{base0B_hex}}",
-        \ "#{{base0A_hex}}",
-        \ "#{{base0D_hex}}",
-        \ "#{{base0E_hex}}",
-        \ "#{{base0C_hex}}",
-        \ "#{{base07_hex}}",
+        \ "{{base00}}",
+        \ "{{base08}}",
+        \ "{{base0B}}",
+        \ "{{base0A}}",
+        \ "{{base0D}}",
+        \ "{{base0E}}",
+        \ "{{base0C}}",
+        \ "{{base07}}",
+        \ "{{base03}}",
+        \ "{{base08}}",
+        \ "{{base0B}}",
+        \ "{{base0A}}",
+        \ "{{base0D}}",
+        \ "{{base0E}}",
+        \ "{{base0C}}",
+        \ "{{base07}}",
         \ ]
 endif
 
@@ -141,10 +141,10 @@ function! g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
   let l:guisp = get(a:, 2, "")
 
   if a:guifg != ""
-    exec "hi " . a:group . " guifg=#" . a:guifg
+    exec "hi " . a:group . " guifg=" . a:guifg
   endif
   if a:guibg != ""
-    exec "hi " . a:group . " guibg=#" . a:guibg
+    exec "hi " . a:group . " guibg=" . a:guibg
   endif
   if a:ctermfg != ""
     exec "hi " . a:group . " ctermfg=" . a:ctermfg
@@ -156,7 +156,7 @@ function! g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
     exec "hi " . a:group . " gui=" . l:attr . " cterm=" . l:attr
   endif
   if l:guisp != ""
-    exec "hi " . a:group . " guisp=#" . l:guisp
+    exec "hi " . a:group . " guisp=" . l:guisp
   endif
 endfunction
 

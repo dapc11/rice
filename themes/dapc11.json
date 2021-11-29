@@ -15,21 +15,5 @@
     "base0C": "#8080ff",
     "base0D": "#80b3ff",
     "base0E": "#ff80ff",
-    "base0F": "#80ff80",
-    "base00_hex": "1e2229",
-    "base01_hex": "35383e",
-    "base02_hex": "4b4e54",
-    "base03_hex": "626469",
-    "base04_hex": "808389",
-    "base05_hex": "95989d",
-    "base06_hex": "ececec",
-    "base07_hex": "ececec",
-    "base08_hex": "ff8080",
-    "base09_hex": "bf80ff",
-    "base0A_hex": "e6ff80",
-    "base0B_hex": "80ff80",
-    "base0C_hex": "8080ff",
-    "base0D_hex": "80b3ff",
-    "base0E_hex": "ff80ff",
-    "base0F_hex": "80ff80"
+    "base0F": "#80ff80"
 }
