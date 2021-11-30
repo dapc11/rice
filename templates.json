@@ -28,6 +28,9 @@
         "template": "rofi/config.rasi"
     },
     {
+        "template": "rofi/colors.rasi"
+    },
+    {
         "template": "rofi/powermenu.rasi"
     },
     {
@@ -65,10 +68,6 @@
     },
     {
         "template": "nvim/lua/keymaps.lua"
-    },
-    {
-        "template": "rofi/config.rasi",
-        "executable": true
     },
     {
         "template": "rofi/rofi-power",

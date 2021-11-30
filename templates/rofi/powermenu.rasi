@@ -9,23 +9,52 @@
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    1px 0px 0px -5px;
   menu-element-padding:                  6px 0px 6px 6px;
-  accent:                                {{base05}};
-  background:                            {{base00}};
-  background-light:                      {{base08}};
-  foreground:                            {{base04}};
 }
 
 /* ########### */
 
-#window {
+window {
+    background-color: @xbg;
+    border: 0;
+    border-color: @x14;
+    border-radius: 0px;
+    padding: 40;
+    width: 580px;
+    height: 165px;
 }
 
 /* ########### */
 
 * {
-  background-color: @background;
-  text-color: @foreground;
-  font: @icon-font;
+    selected-normal-foreground:  rgba ( 52, 60, 72, 100 % );
+    foreground:                  rgba ( 224, 224, 224, 100 % );
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 52, 60, 72, 100 % );
+    red:                         rgba ( 220, 50, 47, 100 % );
+    selected-urgent-foreground:  rgba ( 224, 224, 224, 100 % );
+    blue:                        rgba ( 38, 139, 210, 100 % );
+    urgent-foreground:           rgba ( 240, 98, 146, 100 % );
+    alternate-urgent-background: rgba ( 52, 60, 72, 100 % );
+    active-foreground:           rgba ( 224, 224, 224, 100 % );
+    lightbg:                     rgba ( 238, 232, 213, 100 % );
+    selected-active-foreground:  rgba ( 52, 60, 72, 100 % );
+    alternate-active-background: rgba ( 52, 60, 72, 100 % );
+    background:                  rgba ( 52, 60, 72, 100 % );
+    alternate-normal-foreground: @foreground;
+    normal-background:           rgba ( 52, 60, 72, 100 % );
+    lightfg:                     rgba ( 88, 104, 117, 100 % );
+    selected-normal-background:  rgba ( 224, 224, 224, 100 % );
+    border-color:                rgba ( 240, 98, 146, 100 % );
+    spacing:                     2;
+    separatorcolor:              rgba ( 224, 224, 224, 100 % );
+    urgent-background:           rgba ( 52, 60, 72, 100 % );
+    selected-urgent-background:  rgba ( 240, 98, 146, 100 % );
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 52, 60, 72, 100 % );
+    selected-active-background:  rgba ( 224, 224, 224, 100 % );
+    font: @icon-font;
 }
 
 #horibox {
@@ -51,19 +80,19 @@
 prompt,
 textbox-prompt-colon {
   padding: @menu-prompt-padding;
-  border: 2px;
+  border: 5px;
   border-color: {{base02}};
 }
-#prompt {
-  margin: @menu-prompt-margin;
-  background-color: {{base00}};
-  text-color: {{base06}};
+prompt {
+    spacing:    0;
+    border:     0;
+    text-color: @xfg;
 }
 #textbox-prompt-colon {
-  expand: false;
-  str: "Uptime";
-  background-color: {{base04}};
-  text-color: {{base00}};
+    str: "Uptime";
+    expand:     false;
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    text-color: inherit;
 }
 #listview {
   spacing: @option-6-listview-spacing;
@@ -74,3 +103,5 @@ textbox-prompt-colon {
   padding: @menu-element-padding;
   horizontal-align: 0.5;
 }
+
+@import "colors.rasi"

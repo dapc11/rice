@@ -185,8 +185,8 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 3%+ unmute
 bindsym XF86MonBrightnessDown exec dimmer -d
 bindsym XF86MonBrightnessUp exec dimmer -i
 
-bindsym $mod+d exec rofi -show drun -display-drun "" -modi drun -theme ~/.config/rofi/config
-bindsym $mod+s exec rofi -show window -theme ~/.config/rofi/config
+bindsym $mod+d exec rofi -show drun -modi drun
+bindsym $mod+s exec rofi -show window -modi window
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
 
 bindsym $mod+Tab workspace back_and_forth

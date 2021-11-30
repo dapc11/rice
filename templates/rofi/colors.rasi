@@ -1,0 +1,20 @@
+* {
+    xbg:    {{base01}};
+    xfg:    {{base06}};
+    x0:     {{base00}};
+    x1:     {{base01}};
+    x2:     {{base02}};
+    x3:     {{base03}};
+    x4:     {{base04}};
+    x5:     {{base05}};
+    x6:     {{base06}};
+    x7:     {{base07}};
+    x8:     {{base08}};
+    x9:     {{base09}};
+    x10:    {{base0A}};
+    x11:    {{base0B}};
+    x12:    {{base0C}};
+    x13:    {{base0D}};
+    x14:    {{base0E}};
+    x15:    {{base0F}};
+}
