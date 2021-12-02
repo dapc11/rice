@@ -55,5 +55,5 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
 ## Samples
 
 ### Onedark
-<img src="./onedarker.png" alt="onedarker" width="400px">
+<img src="./samples/onedarker.png" alt="onedarker" width="400px">
 

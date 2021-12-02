@@ -67,3 +67,9 @@ augroup neovim_terminal
     " allows you to use Ctrl-c on terminal window
     autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
 augroup END
+highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}
+highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg={{base0D}}
+highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
+highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
+highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
+highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}

@@ -420,8 +420,17 @@ call <sid>hi("LspDiagnosticsSignError",     s:gui08, "", s:cterm08, "", "", "")
 call <sid>hi("LspDiagnosticsSignWarning",     s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("LspDiagnosticsSignInformation",     s:gui07, "", s:cterm07, "", "", "")
 call <sid>hi("LspDiagnosticsSignHint",     s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("DiagnosticSignError",     s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("DiagnosticSignWarning",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("DiagnosticSignInformation",     s:gui07, "", s:cterm07, "", "", "")
+call <sid>hi("DiagnosticSignHint",     s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("LspCodeLens",     s:gui0D, "", s:cterm0D, "", "", "")
-
+call <sid>hi("CmpItemAbbrMatchFuzzy", "", "s:gui0C", "", "", "", "")
+call <sid>hi("CmpItemAbbrMatch", "", "s:gui0C", "", "", "", "")
+call <sid>hi("CmpItemKindFunction", "", "s:gui0E", "", "", "", "")
+call <sid>hi("CmpItemKindMethod", "", "s:gui0E", "", "", "", "")
+call <sid>hi("CmpItemKindVariable", "", "s:gui0D", "", "", "", "")
+call <sid>hi("CmpItemKindKeyword", "", "s:gui07", "", "", "", "")
 
 " Remove functions
 delf <sid>hi

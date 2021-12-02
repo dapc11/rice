@@ -247,9 +247,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-    buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+    buf_set_keymap("n", "<C-b>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
@@ -331,33 +331,46 @@ require'lspconfig'.sumneko_lua.setup {
         },
     },
 }
+vim.diagnostic.config({
+    underline = false,
+    virtual_text = false,
+    signs = true,
+    severity_sort = true,
+})
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+})
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        update_in_insert = false,
-    }
-)
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--         virtual_text = false,
+--         update_in_insert = false,
+--     }
+-- )
+vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
-do
-    local method = "textDocument/publishDiagnostics"
-    local default_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
-        default_handler(err, method, result, client_id, bufnr, config)
-        local diagnostics = vim.lsp.diagnostic.get_all()
-        local qflist = {}
-        for bufnr, diagnostic in pairs(diagnostics) do
-            for _, d in ipairs(diagnostic) do
-                d.bufnr = bufnr
-                d.lnum = d.range.start.line + 1
-                d.col = d.range.start.character + 1
-                d.text = (d.source and "[" .. d.source .. "] " or "") .. (d.code and "[" .. d.code .. "] " or "") .. d.message
-                table.insert(qflist, d)
-            end
-        end
-        vim.lsp.util.set_qflist(qflist)
-    end
-end
+-- do
+--     local method = "textDocument/publishDiagnostics"
+--     local default_handler = vim.lsp.handlers[method]
+--     vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
+--         default_handler(err, method, result, client_id, bufnr, config)
+--         local diagnostics = vim.diagnostic.get_all()
+--         local qflist = {}
+--         for bufnr, diagnostic in pairs(diagnostics) do
+--             for _, d in ipairs(diagnostic) do
+--                 d.bufnr = bufnr
+--                 d.lnum = d.range.start.line + 1
+--                 d.col = d.range.start.character + 1
+--                 d.text = (d.source and "[" .. d.source .. "] " or "") .. (d.code and "[" .. d.code .. "] " or "") .. d.message
+--                 table.insert(qflist, d)
+--             end
+--         end
+--         vim.lsp.util.set_qflist(qflist)
+--     end
+-- end
 
 
 ------ Toggle term

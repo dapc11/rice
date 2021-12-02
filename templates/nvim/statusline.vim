@@ -7,9 +7,9 @@ endfunction
 function! LspStatus() abort
     let sl = ''
     if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let sl.='E:' .luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])") . ', '
-        let sl.='W:' .luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])") . ', '
-        let sl.='H:' .luaeval("vim.lsp.diagnostic.get_count(0, [[Hint]])")
+        let sl.='E:' .luaeval("vim.diagnostic.get_count(0, [[Error]])") . ', '
+        let sl.='W:' .luaeval("vim.diagnostic.get_count(0, [[Warning]])") . ', '
+        let sl.='H:' .luaeval("vim.diagnostic.get_count(0, [[Hint]])")
     else
         let sl.=''
     endif
@@ -53,4 +53,4 @@ set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\ 
+set statusline+=\
