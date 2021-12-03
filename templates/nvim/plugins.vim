@@ -48,5 +48,6 @@ Plug 'tjdevries/train.nvim'
 Plug 'andymass/vim-matchup'
 Plug 'windwp/nvim-autopairs'
 Plug 'karb94/neoscroll.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
 " Plug 'nathom/filetype.nvim'
 call plug#end()

@@ -15,7 +15,7 @@ require'lualine'.setup {
         theme = 'auto',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
+        disabled_filetypes = { "NvimTree" },
         always_divide_middle = true,
     },
     sections = {
@@ -316,18 +316,16 @@ require'lspconfig'.sumneko_lua.setup {
                 -- Setup your lua path
                 path = runtime_path,
             },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-            enable = false,
-        },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
         },
     },
 }
@@ -378,9 +376,8 @@ require("toggleterm").setup{
     open_mapping = [[<c-z>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
-    shade_terminals = true,
-    shading_factor = '1', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-    start_in_insert = true,
+    shade_terminals = false,
+    start_in_insert = false,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     persist_size = true,
     direction = 'horizontal',
@@ -464,3 +461,71 @@ vim.api.nvim_set_keymap(
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
 })
+
+-- Nvim tree
+local g = vim.g
+g.nvim_tree_highlight_opened_files = 1
+g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
+require'nvim-tree'.setup {
+   disable_netrw = true,
+   hijack_netrw = true,
+   ignore_ft_on_setup = { "dashboard" },
+   auto_close = false,
+   open_on_tab = false,
+   hijack_cursor = true,
+   update_cwd = true,
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = true,
+    ignore_list = {}
+  },
+   diagnostics = {
+      enable = true,
+      icons = {
+         hint = "",
+         info = "",
+         warning = "",
+         error = "",
+      },
+   },
+
+  view = {
+    width = 30,
+    side = 'left',
+    auto_resize = true,
+    mappings = {
+      custom_only = false,
+      list = {}
+    }
+  }
+}
+
+g.nvim_tree_show_icons = {
+    git = 0,
+    folder_arrows = 1,
+    folders = 1,
+    files = 0
+}
+g.nvim_tree_icons = {
+    default = "",
+    symlink = "",
+      git = {
+        unstaged = "",
+        staged = "S",
+        unmerged = "",
+        renamed = "➜",
+        deleted = "",
+        untracked = "U",
+        ignored = "◌",
+      },
+    folder = {
+        arrow_open = "",
+        arrow_closed = "",
+        default = "",
+        open = "",
+        empty = "", -- 
+        empty_open = "",
+        symlink = "",
+        symlink_open = ""
+    }
+}
