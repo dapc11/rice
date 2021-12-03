@@ -58,6 +58,26 @@
         "template": "nvim/syntax/python.vim"
     },
     {
+        "template": "nvim/snippets/python.snippets",
+        "onlyCopy": true
+    },
+    {
+        "template": "nvim/snippets/markdown.snippets",
+        "onlyCopy": true
+    },
+    {
+        "template": "nvim/snippets/lua.snippets",
+        "onlyCopy": true
+    },
+    {
+        "template": "nvim/snippets/jinja2.snippets",
+        "onlyCopy": true
+    },
+    {
+        "template": "nvim/snippets/go.snippets",
+        "onlyCopy": true
+    },
+    {
         "template": "nvim/colors/neosolarized.vim"
     },
     {

@@ -217,6 +217,9 @@ cmp.setup{
     }
 }
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -329,14 +332,31 @@ require'lspconfig'.sumneko_lua.setup {
         },
     },
 }
+
+vim.cmd [[
+  highlight DiagnosticLineNrError guifg={{base08}} gui=bold
+  highlight DiagnosticLineNrWarn guifg={{base09}} gui=bold
+  highlight DiagnosticLineNrInfo guifg={{base0C}} gui=bold
+  highlight DiagnosticLineNrHint guifg={{base0D}} gui=bold
+
+  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+  sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+]]
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+
 vim.diagnostic.config({
     underline = false,
     virtual_text = false,
     signs = true,
     severity_sort = true,
-})
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
 })
 
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -377,7 +397,7 @@ require("toggleterm").setup{
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shade_terminals = false,
-    start_in_insert = false,
+    start_in_insert = true,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     persist_size = true,
     direction = 'horizontal',
