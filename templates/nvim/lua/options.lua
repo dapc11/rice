@@ -37,7 +37,7 @@ set.splitright = true
 set_global["UltiSnipsExpandTrigger"] = "<tab>"
 set_global["UltiSnipsJumpForwardTrigger"] = "<tab>"
 set_global["UltiSnipsJumpBackwardTrigger"] = "<s-tab>"
-set_global["UltiSnipsSnippetDirectories"] = {"~/.config/nvim/snippets/"}
+set_global["UltiSnipsSnippetDirectories"] = {"~/.config/nvim/UltiSnips/"}
 
 set_global["indent_blankline_use_treesitter"] = true
 set_global["indent_blankline_show_first_indent_level"] = true

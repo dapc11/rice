@@ -58,23 +58,23 @@
         "template": "nvim/syntax/python.vim"
     },
     {
-        "template": "nvim/snippets/python.snippets",
+        "template": "nvim/UltiSnips/python.snippets",
         "onlyCopy": true
     },
     {
-        "template": "nvim/snippets/markdown.snippets",
+        "template": "nvim/UltiSnips/markdown.snippets",
         "onlyCopy": true
     },
     {
-        "template": "nvim/snippets/lua.snippets",
+        "template": "nvim/UltiSnips/lua.snippets",
         "onlyCopy": true
     },
     {
-        "template": "nvim/snippets/jinja2.snippets",
+        "template": "nvim/UltiSnips/jinja2.snippets",
         "onlyCopy": true
     },
     {
-        "template": "nvim/snippets/go.snippets",
+        "template": "nvim/UltiSnips/go.snippets",
         "onlyCopy": true
     },
     {
