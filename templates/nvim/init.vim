@@ -22,7 +22,7 @@ function! HighlightTodo()
 endfunc
 
 lua << EOF
-vim.g.did_load_filetypes = 1
+-- vim.g.did_load_filetypes = 1
 require("options")
 require("lsp_config")
 require("keymaps")
@@ -73,3 +73,8 @@ highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
 highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}
+function ClearQuickfixList()
+  call setqflist([])
+endfunction
+command! ClearQuickfixList call ClearQuickfixList()
+nmap <leader>cc :ClearQuickfixList<cr>
