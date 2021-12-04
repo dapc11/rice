@@ -36,7 +36,7 @@ require'lualine'.setup {
         lualine_z = {}
     },
     tabline = {},
-    extensions = {}
+    extensions = {'toggleterm', 'fzf', 'fugitive', 'nvim-tree'}
 }
 
 ------ Setup gitsigns.
