@@ -55,7 +55,8 @@
         "template": "nvim/colors/dapc11.vim"
     },
     {
-        "template": "nvim/syntax/python.vim"
+        "template": "nvim/after/syntax/python.vim",
+        "onlyCopy": true
     },
     {
         "template": "nvim/UltiSnips/python.snippets",
