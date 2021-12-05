@@ -57,3 +57,10 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
 ### Onedark
 <img src="./samples/onedarker.png" alt="onedarker" width="400px">
 
+
+## TODO
+
+### Vim
+- Zoomable split
+- Bold operators
+- Dim inactive splits
