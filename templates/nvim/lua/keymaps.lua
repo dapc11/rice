@@ -151,4 +151,4 @@ map {noremap = false, 'c', '<C-e>', '<end>'}
 -- Control-V Paste in insert and command mode
 map {noremap = false, 'i', '<C-V>', '<esc>pa'}
 map {noremap = false, 'c', '<C-V>', '<C-r>0'}
-map {'n', '<leader>e', ':NvimTreeToggle<CR>'}
+map {'n', '<leader>t', ':NvimTreeToggle<CR>'}

@@ -12,7 +12,7 @@ One can at any time after first setup invoke __rice_it__ in order to re-generate
 
 ### Usage
 
-```shell
+```
 ❯ python3 rice_it -h
 usage: rice_it [-h] [-o] [-t THEME] [-l]
 
