@@ -5,7 +5,6 @@ let mapleader =" "
 runtime plugins.vim
 set background=dark
 colorscheme dapc11
-syn region Comment start=/"""/ end=/"""/
 " runtime statusline.vim
 runtime mappings.vim
 runtime fzf.vim
