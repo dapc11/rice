@@ -27,7 +27,6 @@ require("lsp_config")
 require("keymaps")
 EOF
 " Python
-" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
     \ set tabstop=4
     \| set softtabstop=4
@@ -56,24 +55,10 @@ augroup dapc
 augroup END
 
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}
-au TermOpen * setlocal nonumber norelativenumber
-augroup neovim_terminal
-    autocmd!
-    " Enter Terminal-mode (insert) automatically
-    autocmd TermOpen * startinsert
-    " Disables number lines on terminal buffers
-    autocmd TermOpen * :set nonumber norelativenumber
-    " allows you to use Ctrl-c on terminal window
-    autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
-augroup END
+
 highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}
 highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg={{base0D}}
 highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
 highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}
-function ClearQuickfixList()
-  call setqflist([])
-endfunction
-command! ClearQuickfixList call ClearQuickfixList()
-nmap <leader>cc :ClearQuickfixList<cr>

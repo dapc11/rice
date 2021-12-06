@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highligh
 " Languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'towolf/vim-helm' " Support for helm
+Plug 'renerocksai/telekasten.nvim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

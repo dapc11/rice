@@ -169,3 +169,40 @@ map {'c', '<C-Tab>', 'gt<CR>'}
 map {'n', '<C-S-Tab>', 'gT<CR>'}
 map {'i', '<C-S-Tab>', 'gT<CR>'}
 map {'c', '<C-S-Tab>', 'gT<CR>'}
+
+map {'n', '<C-z>', ':tabe %<CR>'}
+
+-- Zettelkasten
+map {'n', '<leader>zf', ':lua require("telekasten").find_notes()<CR>'}
+map {'n', '<leader>zd', ':lua require("telekasten").find_daily_notes()<CR>'}
+map {'n', '<leader>zg', ':lua require("telekasten").search_notes()<CR>'}
+map {'n', '<leader>zz', ':lua require("telekasten").follow_link()<CR>'}
+map {'n', '<leader>zT', ':lua require("telekasten").goto_today()<CR>'}
+map {'n', '<leader>zW', ':lua require("telekasten").goto_thisweek()<CR>'}
+map {'n', '<leader>zw', ':lua require("telekasten").find_weekly_notes()<CR>'}
+map {'n', '<leader>zn', ':lua require("telekasten").new_note()<CR>'}
+map {'n', '<leader>zN', ':lua require("telekasten").new_templated_note()<CR>'}
+map {'n', '<leader>zy', ':lua require("telekasten").yank_notelink()<CR>'}
+map {'n', '<leader>zc', ':lua require("telekasten").show_calendar()<CR>'}
+map {'n', '<leader>zC', ':CalendarT<CR>'}
+map {'n', '<leader>zi', ':lua require("telekasten").paste_img_and_link()<CR>'}
+map {'n', '<leader>zt', ':lua require("telekasten").toggle_todo()<CR>'}
+map {'n', '<leader>zb', ':lua require("telekasten").show_backlinks()<CR>'}
+map {'n', '<leader>zF', ':lua require("telekasten").find_friends()<CR>'}
+map {'n', '<leader>zI', ':lua require("telekasten").insert_img_link({ i=true })<CR>'}
+map {'n', '<leader>zp', ':lua require("telekasten").preview_img()<CR>'}
+map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
+-- we could define [[ in **insert mode** to call insert link
+-- inoremap [[ <ESC>:lua require("telekasten").insert_link()<CR>
+-- alternatively: leader [
+map {'i', '<leader>[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
+map {'i', '<leader>zt', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
+
+nvim.cmd[[
+    function ClearQuickfixList()
+        call setqflist([])
+    endfunction
+    command! ClearQuickfixList call ClearQuickfixList()
+]]
+map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
+
