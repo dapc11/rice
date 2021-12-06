@@ -22,7 +22,7 @@ map {'n', silent = true, '<C-w>-', ':resize -8<CR>'}
 map {'n', silent = true, '<C-w><', ':vertical:resize -8<CR>'}
 map {'n', silent = true, '<C-w>>', ':vertical:resize +8<CR>'}
 
--- Telescope
+-- Fuzzy find
 map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
 map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
 map {'n', '<Leader>n', ':Telescope git_files<CR>'}
@@ -31,6 +31,14 @@ map {'n', '<leader>ff', ':Telescope find_files<CR>'}
 map {'n', '<leader>fa', ':Telescope find_files hidden=true<CR>'}
 map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
 map {'n', '<leader>m', ':Telescope keymaps<CR>'}
+vim.cmd [[
+    command! -nargs=? -complete=dir AD
+        \ call fzf#run(fzf#wrap({
+        \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
+        \ }))
+]]
+map {'n', silent = true, '<leader>d', ':AD<CR>'}
+map {'n', silent = true, '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
 
 -- Harpoon
 map {'n', silent = true, '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
@@ -64,24 +72,23 @@ map {'t', '<Esc>', '<C-\\><C-n>'}
 -- Don't copy the replaced text after pasting in visual mode
 map {"v", "p", '"_dP'}
 
--- TODO
---inoremap <C-Space> <C-x><C-n>
---nnoremap <silent> <A-left> :bp<CR>
---nnoremap <silent> <A-right> :bn<CR>
+map {'n', silent=true, '<C-Space>', '<C-x><C-n>'}
+map {'n', silent=true, '<A-left>', ':bp<CR>'}
+map {'n', silent=true, '<A-right>', ':bn<CR>'}
 
 --" Requires gvim
 --" paste with shift+insert
---noremap <Leader>Y "*y<CR>
---noremap <Leader>P "*p<CR>
+map {'n', silent=true, '<Leader>Y', '"*y<CR>'}
+map {'n', silent=true, '<Leader>P', '"*p<CR>'}
 --" paste with ctrl+v
---noremap <Leader>y "+y<CR>
---noremap <Leader>p "+p<CR>
+map {'n', silent=true, '<Leader>y', '"+y<CR>'}
+map {'n', silent=true, '<Leader>p', '"+p<CR>'}
 
---" Close buffer
+-- Close buffer
 map {'n', '<Leader>q', '<c-w>q<CR>'}
 map {'n', '<Leader>Q', ':qa<CR>'}
 
---" Commandline
+-- Commandline
 map {'c', '<C-a>', '<Home>'}
 map {'c', '<C-e>', '<End>'}
 map {'c', '<M-Left>', '<S-Left>'}
@@ -89,9 +96,10 @@ map {'c', '<M-Right>', '<S-Right>'}
 map {'c', '<M-BS>', '<C-W>'}
 map {'c', '<C-BS>', '<C-W>'}
 
---" Paste over select and keep register
---vnoremap <leader>p "_dP
+-- Paste over select and keep register
+map {'v', '<leader>p', '"_dP'}
 
+-- TODO
 --" :e sane mappings
 --set wildcharm=<C-Z>
 --cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
@@ -110,24 +118,26 @@ map {'x', 'p', 'pgvy'}
 map {'n', 'n', 'nzzzv'}
 map {'n', 'N', 'Nzzzv'}
 
---" set moving between windows to ctrl+arrows
---function! WinMove(key)
---    let t:curwin = winnr()
---    exec "wincmd ".a:key
---    if (t:curwin == winnr())
---        if (match(a:key,'[jk]'))
---            wincmd v
---        else
---            wincmd s
---        endif
---        exec "wincmd ".a:key
---    endif
---endfunction
+-- set moving between windows to ctrl+arrows
+vim.cmd[[
+    function! WinMove(key)
+        let t:curwin = winnr()
+        exec "wincmd ".a:key
+        if (t:curwin == winnr())
+            if (match(a:key,'[jk]'))
+                wincmd v
+            else
+                wincmd s
+            endif
+            exec "wincmd ".a:key
+        endif
+    endfunction
+]]
 
---nnoremap <silent> <C-Left> :call WinMove('h')<CR>
---nnoremap <silent> <C-Down> :call WinMove('j')<CR>
---nnoremap <silent> <C-Up> :call WinMove('k')<CR>
---nnoremap <silent> <C-Right> :call WinMove('l')<CR>
+map {'n', silent=true, '<C-Left>', ":call WinMove('h')<CR>"}
+map {'n', silent=true, '<C-Down>', ":call WinMove('j')<CR>"}
+map {'n', silent=true, '<C-Up>', ":call WinMove('k')<CR>"}
+map {'n', silent=true, '<C-Right>', ":call WinMove('l')<CR>"}
 
 map {'n', '<S-Down>', ':m .+1<CR>=='}
 map {'n', '<S-Up>', ':m .-2<CR>=='}
@@ -151,4 +161,11 @@ map {noremap = false, 'c', '<C-e>', '<end>'}
 -- Control-V Paste in insert and command mode
 map {noremap = false, 'i', '<C-V>', '<esc>pa'}
 map {noremap = false, 'c', '<C-V>', '<C-r>0'}
-map {'n', '<leader>t', ':NvimTreeToggle<CR>'}
+map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
+
+map {'n', '<C-Tab>', 'gt<CR>'}
+map {'i', '<C-Tab>', 'gt<CR>'}
+map {'c', '<C-Tab>', 'gt<CR>'}
+map {'n', '<C-S-Tab>', 'gT<CR>'}
+map {'i', '<C-S-Tab>', 'gT<CR>'}
+map {'c', '<C-S-Tab>', 'gT<CR>'}

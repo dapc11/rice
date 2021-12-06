@@ -136,12 +136,26 @@ nvim_lsp["null-ls"].setup({})
 ------ Setup treesitter.
 local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
-    highlight = { enable = true, additional_vim_regex_highlighting = { "python" } },
-    incremental_selection = { enable = false },
-    textobjects = { enable = true },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { "python" }
+    },
+    incremental_selection = {
+        enable = false
+    },
+    textobjects = {
+        enable = true
+    },
+    matchup = {
+        enable = true
+    },
     refactor = {
-        highlight_definitions = { enable = true },
-        highlight_current_scope = { enable = true },
+        highlight_definitions = {
+            enable = true
+        },
+        highlight_current_scope = {
+            enable = true
+        },
         smart_rename = {
             enable = true,
             keymaps = {
@@ -310,7 +324,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
             runtime = {
@@ -359,41 +373,14 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---     vim.lsp.diagnostic.on_publish_diagnostics, {
---         virtual_text = false,
---         update_in_insert = false,
---     }
--- )
 vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
--- do
---     local method = "textDocument/publishDiagnostics"
---     local default_handler = vim.lsp.handlers[method]
---     vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
---         default_handler(err, method, result, client_id, bufnr, config)
---         local diagnostics = vim.diagnostic.get_all()
---         local qflist = {}
---         for bufnr, diagnostic in pairs(diagnostics) do
---             for _, d in ipairs(diagnostic) do
---                 d.bufnr = bufnr
---                 d.lnum = d.range.start.line + 1
---                 d.col = d.range.start.character + 1
---                 d.text = (d.source and "[" .. d.source .. "] " or "") .. (d.code and "[" .. d.code .. "] " or "") .. d.message
---                 table.insert(qflist, d)
---             end
---         end
---         vim.lsp.util.set_qflist(qflist)
---     end
--- end
-
-
 ------ Toggle term
 require("toggleterm").setup{
-    open_mapping = [[<c-z>]],
+    open_mapping = [[<c-x>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shade_terminals = false,
@@ -470,12 +457,6 @@ require("telescope._extensions.zoxide.config").setup({
     ["<C-q>"] = { action = z_utils.create_basic_command("split") },
   }
 })
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>cd",
-	":lua require'telescope'.extensions.zoxide.list{}<CR>",
-	{noremap = true, silent = true}
-)
 
 --Autopairs
 require('nvim-autopairs').setup({
@@ -549,3 +530,15 @@ g.nvim_tree_icons = {
         symlink_open = ""
     }
 }
+
+
+-- Shade inactive buffers
+require'shade'.setup({
+  overlay_opacity = 50,
+  opacity_step = 1,
+  keys = {
+    -- brightness_up    = '<C-Up>',
+    -- brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
+})

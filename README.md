@@ -63,4 +63,3 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
 ### Vim
 - Zoomable split
 - Bold operators
-- Dim inactive splits
