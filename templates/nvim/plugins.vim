@@ -51,7 +51,7 @@ Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
 Plug 'norcalli/nvim-colorizer.lua' " Highlight CSS colors in buffers
 Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'karb94/neoscroll.nvim' " Smooth scrolling
-Plug 'sunjon/shade.nvim' " Shade inactive buffers
+" Plug 'sunjon/shade.nvim' " Shade inactive buffers -- Buggy as hell.
 Plug 'kyazdani42/nvim-tree.lua' " File Explorer
 Plug 'akinsho/toggleterm.nvim' " Toggleable Terminal in vim
 

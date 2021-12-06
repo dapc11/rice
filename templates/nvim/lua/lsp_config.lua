@@ -304,48 +304,6 @@ nvim_lsp.pyright.setup {
         util.path.dirname(fname)
     end,
 }
-local system_name
-if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-    system_name = "Windows"
-else
-    print("Unsupported system for sumneko")
-end
-
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = os.getenv("HOME")..'/.local/bin'
-local sumneko_binary = sumneko_root_path.."/lua-language-server"
-
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-require'lspconfig'.sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path,
-            },
-            diagnostics = {
-                globals = {'vim'},
-            },
-            workspace = {
-                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-}
 
 vim.cmd [[
   highlight DiagnosticLineNrError guifg={{base08}} gui=bold
@@ -425,8 +383,6 @@ require('telescope').setup {
         }
     }
 }
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzy_native')
 
 --- indentation guide
@@ -441,26 +397,26 @@ require("indent_blankline").setup {
 local z_utils = require("telescope._extensions.zoxide.utils")
 
 require("telescope._extensions.zoxide.config").setup({
-  prompt_title = "Change working dir",
-  mappings = {
-    default = {
-      after_action = function(selection)
-        print("Update to (" .. selection.z_score .. ") " .. selection.path)
-      end
-    },
-    ["<C-s>"] = {
-      before_action = function(selection) print("before C-s") end,
-      action = function(selection)
-        vim.cmd("edit " .. selection.path)
-      end
-    },
-    ["<C-q>"] = { action = z_utils.create_basic_command("split") },
-  }
+    prompt_title = "Change working dir",
+    mappings = {
+        default = {
+            after_action = function(selection)
+                print("Update to (" .. selection.z_score .. ") " .. selection.path)
+            end
+        },
+        ["<C-s>"] = {
+            before_action = function(selection) print("before C-s") end,
+            action = function(selection)
+                vim.cmd("edit " .. selection.path)
+            end
+        },
+        ["<C-q>"] = { action = z_utils.create_basic_command("split") },
+    }
 })
 
 --Autopairs
 require('nvim-autopairs').setup({
-  disable_filetype = { "TelescopePrompt" , "vim" },
+    disable_filetype = { "TelescopePrompt" , "vim" },
 })
 
 -- Nvim tree
@@ -468,37 +424,37 @@ local g = vim.g
 g.nvim_tree_highlight_opened_files = 1
 g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
 require'nvim-tree'.setup {
-   disable_netrw = true,
-   hijack_netrw = true,
-   ignore_ft_on_setup = { "dashboard" },
-   auto_close = false,
-   open_on_tab = false,
-   hijack_cursor = true,
-   update_cwd = true,
-  update_focused_file = {
-    enable      = true,
-    update_cwd  = true,
-    ignore_list = {}
-  },
-   diagnostics = {
-      enable = true,
-      icons = {
-         hint = "",
-         info = "",
-         warning = "",
-         error = "",
-      },
-   },
+    disable_netrw = true,
+    hijack_netrw = true,
+    ignore_ft_on_setup = { "dashboard" },
+    auto_close = false,
+    open_on_tab = false,
+    hijack_cursor = true,
+    update_cwd = true,
+    update_focused_file = {
+        enable      = true,
+        update_cwd  = true,
+        ignore_list = {}
+    },
+    diagnostics = {
+        enable = true,
+        icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+        },
+    },
 
-  view = {
-    width = 30,
-    side = 'left',
-    auto_resize = true,
-    mappings = {
-      custom_only = false,
-      list = {}
+    view = {
+        width = 30,
+        side = 'left',
+        auto_resize = true,
+        mappings = {
+            custom_only = false,
+            list = {}
+        }
     }
-  }
 }
 
 g.nvim_tree_show_icons = {
@@ -510,7 +466,7 @@ g.nvim_tree_show_icons = {
 g.nvim_tree_icons = {
     default = "",
     symlink = "",
-      git = {
+    git = {
         unstaged = "",
         staged = "S",
         unmerged = "",
@@ -518,7 +474,7 @@ g.nvim_tree_icons = {
         deleted = "",
         untracked = "U",
         ignored = "◌",
-      },
+    },
     folder = {
         arrow_open = "",
         arrow_closed = "",
@@ -533,12 +489,12 @@ g.nvim_tree_icons = {
 
 
 -- Shade inactive buffers
-require'shade'.setup({
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    -- brightness_up    = '<C-Up>',
-    -- brightness_down  = '<C-Down>',
-    toggle           = '<Leader>s',
-  }
-})
+-- require'shade'.setup({
+--     overlay_opacity = 50,
+--     opacity_step = 1,
+--     keys = {
+--         -- brightness_up    = '<C-Up>',
+--         -- brightness_down  = '<C-Down>',
+--         toggle           = '<Leader>s',
+--     }
+-- })
