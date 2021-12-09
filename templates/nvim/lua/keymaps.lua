@@ -198,11 +198,11 @@ map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
 map {'i', '<leader>[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
 map {'i', '<leader>zt', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
 
-nvim.cmd[[
-    function ClearQuickfixList()
-        call setqflist([])
-    endfunction
-    command! ClearQuickfixList call ClearQuickfixList()
-]]
-map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
+-- nvim.cmd[[
+--     function ClearQuickfixList()
+--         call setqflist([])
+--     endfunction
+--     command! ClearQuickfixList call ClearQuickfixList()
+-- ]]
+-- map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
 
