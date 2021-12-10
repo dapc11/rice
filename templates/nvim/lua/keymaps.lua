@@ -159,6 +159,7 @@ map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
 map {'n', '<C-z>', ':tabe %<CR>'}
 
 -- Zettelkasten
+map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
 map {'n', '<leader>zf', ':lua require("telekasten").find_notes()<CR>'}
 map {'n', '<leader>zd', ':lua require("telekasten").find_daily_notes()<CR>'}
 map {'n', '<leader>zg', ':lua require("telekasten").search_notes()<CR>'}
@@ -178,11 +179,8 @@ map {'n', '<leader>zF', ':lua require("telekasten").find_friends()<CR>'}
 map {'n', '<leader>zI', ':lua require("telekasten").insert_img_link({ i=true })<CR>'}
 map {'n', '<leader>zp', ':lua require("telekasten").preview_img()<CR>'}
 map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
--- we could define [[ in **insert mode** to call insert link
--- inoremap [[ <ESC>:lua require("telekasten").insert_link()<CR>
--- alternatively: leader [
--- map {'i', '<leader>[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
--- map {'i', '<leader>zt', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
+map {'i', '[[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
+map {'i', '<C-z>t', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
 
 
 -- Clean quickfix list
