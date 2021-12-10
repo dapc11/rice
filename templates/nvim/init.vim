@@ -5,9 +5,6 @@ let mapleader =" "
 runtime plugins.vim
 set background=dark
 colorscheme dapc11
-" runtime statusline.vim
-runtime mappings.vim
-runtime fzf.vim
 
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -24,6 +21,7 @@ lua << EOF
 require("options")
 require("lsp_config")
 require("keymaps")
+require("fzf")
 EOF
 
 " Python

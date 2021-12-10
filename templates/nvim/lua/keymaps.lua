@@ -99,14 +99,6 @@ map {'c', '<C-BS>', '<C-W>'}
 -- Paste over select and keep register
 map {'v', '<leader>p', '"_dP'}
 
--- TODO
---" :e sane mappings
---set wildcharm=<C-Z>
---cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
---cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
---cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
---cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
-
 --" Navigate errors
 map {'n', '<C-n>', ':cn<CR>'}
 map {'n', '<C-b>', ':cp<CR>'}
@@ -139,6 +131,7 @@ map {'n', silent=true, '<C-Down>', ":call WinMove('j')<CR>"}
 map {'n', silent=true, '<C-Up>', ":call WinMove('k')<CR>"}
 map {'n', silent=true, '<C-Right>', ":call WinMove('l')<CR>"}
 
+-- Shift lines up and down
 map {'n', '<S-Down>', ':m .+1<CR>=='}
 map {'n', '<S-Up>', ':m .-2<CR>=='}
 map {'v', '<S-Down>', ":m '>+1<CR>gv=gv"}
@@ -162,13 +155,6 @@ map {noremap = false, 'c', '<C-e>', '<end>'}
 map {noremap = false, 'i', '<C-V>', '<esc>pa'}
 map {noremap = false, 'c', '<C-V>', '<C-r>0'}
 map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
-
-map {'n', '<C-Tab>', 'gt<CR>'}
-map {'i', '<C-Tab>', 'gt<CR>'}
-map {'c', '<C-Tab>', 'gt<CR>'}
-map {'n', '<C-S-Tab>', 'gT<CR>'}
-map {'i', '<C-S-Tab>', 'gT<CR>'}
-map {'c', '<C-S-Tab>', 'gT<CR>'}
 
 map {'n', '<C-z>', ':tabe %<CR>'}
 
@@ -195,9 +181,11 @@ map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
 -- we could define [[ in **insert mode** to call insert link
 -- inoremap [[ <ESC>:lua require("telekasten").insert_link()<CR>
 -- alternatively: leader [
-map {'i', '<leader>[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
-map {'i', '<leader>zt', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
+-- map {'i', '<leader>[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
+-- map {'i', '<leader>zt', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
 
+
+-- Clean quickfix list
 vim.cmd[[
     function ClearQuickfixList()
         call setqflist([])
@@ -206,3 +194,11 @@ vim.cmd[[
 ]]
 map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
 
+-- Sane navigation in command mode
+vim.cmd[[
+    set wildcharm=<C-Z>
+    cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
+    cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
+    cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+    cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+]]

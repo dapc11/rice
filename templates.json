@@ -88,6 +88,9 @@
         "template": "nvim/lua/options.lua"
     },
     {
+        "template": "nvim/lua/fzf.lua"
+    },
+    {
         "template": "nvim/lua/keymaps.lua"
     },
     {
