@@ -156,7 +156,6 @@ map {noremap = false, 'i', '<C-V>', '<esc>pa'}
 map {noremap = false, 'c', '<C-V>', '<C-r>0'}
 map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
 
-map {'n', '<C-z>', ':tabe %<CR>'}
 
 -- Zettelkasten
 map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
@@ -234,3 +233,15 @@ vim.cmd[[
 
     command! -nargs=1 -bang -complete=command P call s:capture(<q-args>, <bang>0)
 ]]
+
+function toggle_zoom()
+    if zoomed then
+        vim.cmd 'wincmd ='
+        zoomed = false
+    else
+        vim.cmd 'resize'
+        vim.cmd 'vertical resize'
+        zoomed = true
+    end
+end
+map {'n', '<C-z>', '<cmd>lua toggle_zoom()<CR>'}
