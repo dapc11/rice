@@ -21,11 +21,11 @@ function! HighlightTodo()
 endfunc
 
 lua << EOF
--- vim.g.did_load_filetypes = 1
 require("options")
 require("lsp_config")
 require("keymaps")
 EOF
+
 " Python
 au BufNewFile,BufRead *.py
     \ set tabstop=4
