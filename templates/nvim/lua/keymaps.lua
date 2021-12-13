@@ -1,6 +1,6 @@
 local map = function(key)
     -- get the extra options
-    local opts = {noremap = true}
+    local opts = {noremap = true, silent = true}
     for i, v in pairs(key) do
         if type(i) == 'string' then opts[i] = v end
     end
@@ -17,41 +17,45 @@ local map = function(key)
 end
 
 -- Resize buffers
-map {'n', silent = true, '<C-w>+', ':resize +8<CR>'}
-map {'n', silent = true, '<C-w>-', ':resize -8<CR>'}
-map {'n', silent = true, '<C-w><', ':vertical:resize -8<CR>'}
-map {'n', silent = true, '<C-w>>', ':vertical:resize +8<CR>'}
+map {'n', '<C-w>+', ':resize +8<CR>'}
+map {'n', '<C-w>-', ':resize -8<CR>'}
+map {'n', '<C-w><', ':vertical:resize -8<CR>'}
+map {'n', '<C-w>>', ':vertical:resize +8<CR>'}
 
 -- Fuzzy find
-map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
-map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
-map {'n', '<Leader>n', ':Telescope git_files<CR>'}
 map {'n', '<leader>b', ':Telescope buffers<CR>'}
-map {'n', '<leader>ff', ':Telescope find_files<CR>'}
-map {'n', '<leader>fa', ':Telescope find_files hidden=true<CR>'}
-map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
 map {'n', '<leader>m', ':Telescope keymaps<CR>'}
+map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
+map {'n', '<Leader>n', ':Telescope git_files<CR>'}
+map {'n', '<leader>ff', ':Telescope find_files<CR>'}
+map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
+map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
+map {'n', '<leader>fa', ':Telescope find_files hidden=true<CR>'}
 vim.cmd [[
-    command! -nargs=? -complete=dir AD
-        \ call fzf#run(fzf#wrap({
-        \   'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)
-        \ }))
+    command! -nargs=? -complete=dir AD call fzf#run(fzf#wrap({'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)}))
+    command! -nargs=? -complete=dir AF call fzf#run(fzf#wrap({'source': 'rg --no-heading --files ~/ '.expand(<q-args>)}))
+    command! -nargs=? -complete=dir AFF call fzf#run(fzf#wrap({'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)}))
+    command! -bang ProjectFiles call fzf#vim#files('~/repos', <bang>0)
 ]]
-map {'n', silent = true, '<leader>d', ':AD<CR>'}
-map {'n', silent = true, '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
+map {'n', '<leader>d', ':AD<CR>'}
+map {'n', '<Leader>o', ':AF<CR>'}
+map {'n', '<Leader>O', ':AFF<CR>'}
+map {'n', '<C-f>', ':BLines<cr>'}
+map {'n', '<C-p>', ':ProjectFiles<CR>'}
+map {'n', '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
 
 -- Harpoon
-map {'n', silent = true, '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
-map {'n', silent = true, '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
-map {'n', silent = true, '<Leader>a', ":lua require('harpoon.mark').add_file()<CR>"}
-map {'n', silent = true, '<Leader>l', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
-map {'n', silent = true, '<A-q>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
-map {'n', silent = true, '<A-w>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
-map {'n', silent = true, '<A-e>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
-map {'n', silent = true, '<A-r>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
+map {'n', '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
+map {'n', '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
+map {'n', '<Leader>a', ":lua require('harpoon.mark').add_file()<CR>"}
+map {'n', '<Leader>l', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
+map {'n', '<A-q>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
+map {'n', '<A-w>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
+map {'n', '<A-e>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
+map {'n', '<A-r>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
 
 -- Nvim lint
-map {silent = true, 'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}
+map {'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}
 
 -- Fugitive
 map {'n', '<leader>gs', ':Git<CR>'}
@@ -72,17 +76,17 @@ map {'t', '<Esc>', '<C-\\><C-n>'}
 -- Don't copy the replaced text after pasting in visual mode
 map {"v", "p", '"_dP'}
 
-map {'n', silent=true, '<C-Space>', '<C-x><C-n>'}
-map {'n', silent=true, '<A-left>', ':bp<CR>'}
-map {'n', silent=true, '<A-right>', ':bn<CR>'}
+map {'n', '<C-Space>', '<C-x><C-n>'}
+map {'n', '<A-left>', ':bp<CR>'}
+map {'n', '<A-right>', ':bn<CR>'}
 
 --" Requires gvim
 --" paste with shift+insert
-map {'n', silent=true, '<Leader>Y', '"*y<CR>'}
-map {'n', silent=true, '<Leader>P', '"*p<CR>'}
+map {'n', '<Leader>Y', '"*y<CR>'}
+map {'n', '<Leader>P', '"*p<CR>'}
 --" paste with ctrl+v
-map {'n', silent=true, '<Leader>y', '"+y<CR>'}
-map {'n', silent=true, '<Leader>p', '"+p<CR>'}
+map {'n', '<Leader>y', '"+y<CR>'}
+map {'n', '<Leader>p', '"+p<CR>'}
 
 -- Close buffer
 map {'n', '<Leader>q', '<c-w>q<CR>'}
@@ -126,10 +130,10 @@ vim.cmd[[
     endfunction
 ]]
 
-map {'n', silent=true, '<C-Left>', ":call WinMove('h')<CR>"}
-map {'n', silent=true, '<C-Down>', ":call WinMove('j')<CR>"}
-map {'n', silent=true, '<C-Up>', ":call WinMove('k')<CR>"}
-map {'n', silent=true, '<C-Right>', ":call WinMove('l')<CR>"}
+map {'n', '<C-Left>', ":call WinMove('h')<CR>"}
+map {'n', '<C-Down>', ":call WinMove('j')<CR>"}
+map {'n', '<C-Up>', ":call WinMove('k')<CR>"}
+map {'n', '<C-Right>', ":call WinMove('l')<CR>"}
 
 -- Shift lines up and down
 map {'n', '<S-Down>', ':m .+1<CR>=='}
