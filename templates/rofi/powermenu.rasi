@@ -1,31 +1,12 @@
 * {
-  /* General */
-  icon-font:                             "Hurmit Nerd Font Mono 28";
-  icon-font-small:                       "Hurmit Nerd Font Mono 20";
-
-
-  menu-window-padding:                   10px 10px;
-  menu-inputbar-margin:                  10px 0px;
-  menu-prompt-padding:                   10px 20px 10px 20px;
-  menu-prompt-margin:                    1px 0px 0px -5px;
-  menu-element-padding:                  6px 0px 6px 6px;
-}
-
-/* ########### */
-
-window {
-    background-color: @xbg;
-    border: 0;
-    border-color: @x14;
-    border-radius: 0px;
-    padding: 40;
-    width: 580px;
-    height: 165px;
-}
-
-/* ########### */
-
-* {
+    /* General */
+    icon-font:                             "Hurmit Nerd Font Mono 28";
+    icon-font-small:                       "Hurmit Nerd Font Mono 20";
+    menu-window-padding:                   10px 10px;
+    menu-inputbar-margin:                  10px 0px;
+    menu-prompt-padding:                   10px 20px 10px 20px;
+    menu-prompt-margin:                    1px 0px 0px -5px;
+    menu-element-padding:                  6px 0px 6px 6px;
     selected-normal-foreground:  rgba ( 52, 60, 72, 100 % );
     foreground:                  rgba ( 224, 224, 224, 100 % );
     normal-foreground:           @foreground;
@@ -55,53 +36,54 @@ window {
     active-background:           rgba ( 52, 60, 72, 100 % );
     selected-active-background:  rgba ( 224, 224, 224, 100 % );
     font: @icon-font;
+    font: "{{font}} 12";
 }
 
-#horibox {
+horibox {
   children: [ listview ];
 }
-#listview {
+listview {
   layout: horizontal;
 }
 
-/* ########### */
-
-* {
-  font: "{{font}} 12";
+window {
+    padding: @menu-window-padding;
+    children: [ inputbar, horibox ];
+    border: 2px;
+    border-color: @x4;
+    border-radius: 2px;
+    width: 580px;
+    height: 165px;
 }
-#window {
-  padding: @menu-window-padding;
-  children: [ inputbar, horibox ];
-}
-#inputbar {
-  children: [ textbox-prompt-colon, prompt ];
-  margin: @menu-inputbar-margin;
+inputbar {
+    children: [ textbox-prompt-colon, prompt ];
+    margin: @menu-inputbar-margin;
 }
 prompt,
 textbox-prompt-colon {
-  padding: @menu-prompt-padding;
-  border: 5px;
-  border-color: {{base02}};
+    padding: @menu-prompt-padding;
+    border: 2px;
+    border-color: {{base04}};
 }
 prompt {
     spacing:    0;
     border:     0;
     text-color: @xfg;
 }
-#textbox-prompt-colon {
+textbox-prompt-colon {
     str: "Uptime";
     expand:     false;
     margin:     0px 0.3000em 0.0000em 0.0000em ;
     text-color: inherit;
 }
-#listview {
-  spacing: @option-6-listview-spacing;
-  lines: 6;
+listview {
+    spacing: @option-6-listview-spacing;
+    lines: 6;
 }
-#element {
-  font: @icon-font;
-  padding: @menu-element-padding;
-  horizontal-align: 0.5;
+element {
+    font: @icon-font;
+    padding: @menu-element-padding;
+    horizontal-align: 0.5;
 }
 
 @import "colors.rasi"
