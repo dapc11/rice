@@ -1,5 +1,9 @@
 local nvim_lsp = require("lspconfig")
 
+-- Setup nvim-ts-autotag
+require('nvim-ts-autotag').setup({
+  filetypes = { "html" , "xml" },
+})
 -- Setup neoscroll
 require('neoscroll').setup()
 -- Setup nvim-commment
@@ -136,7 +140,7 @@ nvim_lsp["null-ls"].setup({})
 local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
     highlight = {
-        enable = true,
+        enable = false,
         additional_vim_regex_highlighting = { "python" }
     },
     incremental_selection = {
@@ -153,7 +157,7 @@ treesitter.setup{
             enable = true
         },
         highlight_current_scope = {
-            enable = true
+            enable = false
         },
         smart_rename = {
             enable = true,
