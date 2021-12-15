@@ -4,7 +4,7 @@ let mapleader =" "
 
 runtime plugins.vim
 set background=dark
-colorscheme dapc11
+colorscheme gruvbox
 
 function! TrimWhitespace()
     let l:save = winsaveview()

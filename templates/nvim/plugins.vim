@@ -17,6 +17,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlight current block
 Plug 'windwp/nvim-ts-autotag' " Auto complete html tags with more.
 
+
 " Languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
 Plug 'towolf/vim-helm' " Support for helm
@@ -53,7 +54,8 @@ Plug 'nvim-lualine/lualine.nvim' " Statusline written in Lua, duuh..
 Plug 'norcalli/nvim-colorizer.lua' " Highlight CSS colors in buffers
 Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'karb94/neoscroll.nvim' " Smooth scrolling
-Plug 'rose-pine/neovim' " Theme
+Plug 'rktjmp/lush.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 " Plug 'sunjon/shade.nvim' " Shade inactive buffers -- Buggy as hell.
 Plug 'kyazdani42/nvim-tree.lua' " File Explorer
 Plug 'akinsho/toggleterm.nvim' " Toggleable Terminal in vim
