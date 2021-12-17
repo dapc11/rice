@@ -32,7 +32,6 @@ s.clipboard:append("unnamedplus")   -- System clipboard
 -- Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 s.splitbelow = true
 s.splitright = true
-
 g["UltiSnipsExpandTrigger"] = "<tab>"
 g["UltiSnipsJumpForwardTrigger"] = "<tab>"
 g["UltiSnipsJumpBackwardTrigger"] = "<s-tab>"

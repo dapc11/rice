@@ -1,9 +1,5 @@
 local nvim_lsp = require("lspconfig")
 
--- Setup nvim-ts-autotag
-require('nvim-ts-autotag').setup({
-  filetypes = { "html" , "xml" },
-})
 -- Setup neoscroll
 require('neoscroll').setup()
 -- Setup nvim-commment
@@ -543,3 +539,14 @@ require("telekasten").setup({
     insert_after_inserting = true,
 
 })
+
+
+-- Setup lua-dev
+local luadev = require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+  -- lspconfig = {
+  --   cmd = {"lua-language-server"}
+  -- },
+})
+
+require("lspconfig").sumneko_lua.setup(luadev)

@@ -15,8 +15,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-refactor' " Refactor with LST and highlight current block
-Plug 'windwp/nvim-ts-autotag' " Auto complete html tags with more.
-
 
 " Languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go support
@@ -33,6 +31,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig' " Configure LSP
 Plug 'onsails/lspkind-nvim' " Icons for floating windows of LSP.
 Plug 'ray-x/lsp_signature.nvim' " Signature help
+Plug 'folke/lua-dev.nvim'
 
 " Snippets
 Plug 'hrsh7th/cmp-nvim-lsp' " Auto suggestions from LSP
