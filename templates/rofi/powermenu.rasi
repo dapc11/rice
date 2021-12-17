@@ -51,7 +51,7 @@ window {
     children: [ inputbar, horibox ];
     border: 2px;
     border-color: @x4;
-    border-radius: 2px;
+    border-radius: 0;
     width: 580px;
     height: 165px;
 }
