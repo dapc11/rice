@@ -28,6 +28,7 @@
     { "template": "Code/User/settings.json" },
     { "template": "Code/User/keybindings.json" },
     { "template": "alacritty/alacritty.yml" },
+    { "template": "wezterm/wezterm.lua", "executable": true },
     { "template": "dunst/dunstrc" },
     { "template": "ranger/rc.conf" },
     { "template": "yamllint/config" },
