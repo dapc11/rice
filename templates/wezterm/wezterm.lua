@@ -11,7 +11,7 @@ local colors = {
     magenta = "{{base0E}}",
     cyan = "{{base0D}}",
     white = "{{base07}}",
-    cursor = "{{base05}}",
+    cursor = "{{base66}}",
 }
 
 local colors_normal = {
@@ -42,11 +42,10 @@ end)
 
 return {
     font = wezterm.font("{{font}}"),
-    font_size = 12,
+    font_size = 11,
     window_close_confirmation = "NeverPrompt",
     window_padding = { left = 5, right = 5, top = 5, bottom = 5 },
     tab_max_width = 25,
-    force_reverse_video_cursor = true,
     colors = {
         foreground = colors.fg,
         background = colors.bg,

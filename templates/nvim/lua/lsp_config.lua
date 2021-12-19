@@ -136,8 +136,8 @@ nvim_lsp["null-ls"].setup({})
 local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
     highlight = {
-        enable = false,
-        additional_vim_regex_highlighting = { "python" }
+        enable = true,
+        -- additional_vim_regex_highlighting = { "python" }
     },
     incremental_selection = {
         enable = false
