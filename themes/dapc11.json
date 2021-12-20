@@ -1,5 +1,6 @@
 {
     "bg": "atom_ocean.jpg",
+    "nvim_theme": "dapc11",
     "base00": "#1e2229",
     "base01": "#35383e",
     "base02": "#4b4e54",

@@ -55,6 +55,7 @@ Plug 'kyazdani42/nvim-web-devicons' " Devicons for statusline
 Plug 'karb94/neoscroll.nvim' " Smooth scrolling
 Plug 'rktjmp/lush.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
+Plug 'navarasu/onedark.nvim'
 " Plug 'sunjon/shade.nvim' " Shade inactive buffers -- Buggy as hell.
 Plug 'kyazdani42/nvim-tree.lua' " File Explorer
 Plug 'akinsho/toggleterm.nvim' " Toggleable Terminal in vim
