@@ -42,7 +42,7 @@ end)
 
 return {
     font = wezterm.font("{{font}}"),
-    font_size = 11,
+    font_size = 12,
     window_close_confirmation = "NeverPrompt",
     window_padding = { left = 5, right = 5, top = 5, bottom = 5 },
     tab_max_width = 25,
@@ -50,29 +50,35 @@ return {
         foreground = colors.fg,
         background = colors.bg,
         ansi = colors_normal,
-        -- cursor_fg = colors.cursor,
-        -- cursor_bg = colors.cursor,
-        -- cursor_border = colors.cursor,
         brights = colors_bright,
         tab_bar = {
-            background = colors.bg,
+            background = "{{base01}}",
             active_tab = {
-                bg_color = colors.black,
-                fg_color = colors.fg,
-                intensity = "Bold",
+                bg_color = "{{base03}}",
+                fg_color = "{{base00}}",
             },
             inactive_tab = {
-                bg_color = "#282828",
+                bg_color = "{{base01}}",
                 fg_color = colors.fg,
             },
             inactive_tab_hover = {
-                bg_color = "#282828",
+                bg_color = "{{base02}}",
                 fg_color = colors.fg,
-                -- italic = true,
+                italic = true,
+            },
+            new_tab = {
+                bg_color = "{{base03}}",
+                fg_color = "{{base00}}",
+                bold = true,
+            },
+            new_tab_hover = {
+                bg_color = "{{base04}}",
+                fg_color = "{{base00}}",
+                italic = true,
             },
         },
     },
-    leader = { key="k", mods="CTRL" },
+    leader = { key="ö", mods="CTRL" },
     keys = {
         { key = "a",          mods = "CTRL",        action=wezterm.action{SendString="\x01"}},
         { key = "h",          mods = "CTRL",        action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
