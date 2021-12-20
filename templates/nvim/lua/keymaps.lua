@@ -249,3 +249,9 @@ function toggle_zoom()
     end
 end
 map {'n', '<C-z>', '<cmd>lua toggle_zoom()<CR>'}
+
+-- Remap number increment to alt
+map {'n', '<A-a>', '<C-a>'}
+map {'v', '<A-a>', '<C-a>'}
+map {'n', '<A-x>', '<C-x>'}
+map {'v', '<A-x>', '<C-x>'}
