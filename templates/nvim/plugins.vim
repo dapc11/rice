@@ -71,4 +71,4 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'tjdevries/train.nvim' " Train movements
 Plug 'andymass/vim-matchup' " Improved navigation with %-sign, now language specific
 Plug 'windwp/nvim-autopairs' " Auto pair single quotes, double qoutes and more
-cal  plug#end()
+call  plug#end()
