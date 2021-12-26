@@ -64,22 +64,20 @@ func initArgs() (bool, string, bool) {
 	return *overwrite, *theme, *list
 }
 
-func listThemes(list bool, exitCode int) {
-	if list {
-		files, err := ioutil.ReadDir("./themes/")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		fmt.Println("Choose between themes:")
-		for _, file := range files {
-			if strings.Contains(file.Name(), "settings") {
-				continue
-			}
-			fmt.Println("- " + strings.TrimSuffix(file.Name(), ".json"))
-		}
-		os.Exit(exitCode)
+func listThemes(exitCode int) {
+	files, err := ioutil.ReadDir("./themes/")
+	if err != nil {
+		log.Fatal(err)
 	}
+
+	fmt.Println("Choose between themes:")
+	for _, file := range files {
+		if strings.Contains(file.Name(), "settings") {
+			continue
+		}
+		fmt.Println("- " + strings.TrimSuffix(file.Name(), ".json"))
+	}
+	os.Exit(exitCode)
 }
 
 func unmarshal(file string, obj interface{}) {
@@ -138,11 +136,13 @@ func saveFile(content []byte, destination string, fileMode fs.FileMode) {
 
 func main() {
 	overwrite, theme, list := initArgs()
-	listThemes(list, 0)
+	if list {
+		listThemes(0)
+	}
 
 	if theme == "" {
 		fmt.Println("No theme selected. Add -t <theme>")
-		listThemes(true, 0)
+		listThemes(0)
 	}
 
 	//TODO link files

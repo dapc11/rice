@@ -84,3 +84,5 @@ fi
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 eval "$(zoxide init zsh)"
 ZLE_RPROMPT_INDENT=0
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
