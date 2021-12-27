@@ -1,5 +1,4 @@
 local g, s = vim.g, vim.opt
-
 s.tabstop        = 4
 s.softtabstop    = 4
 s.shiftwidth     = 4               -- 4 spaces
@@ -46,3 +45,6 @@ g["rooter_patterns"] = {"setup.cfg", ".git", "pom.xml", "Makefile", "*.sln", "bu
 -- vim.g["rooter_change_directory_for_non_project_files"] = "home"
 
 g["python3_host_prog"] = "~/dev/bin/python3"
+
+-- Not load with default plugin.
+g["did_load_filetypes"] = 1

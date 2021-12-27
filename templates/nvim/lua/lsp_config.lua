@@ -7,9 +7,9 @@ require('nvim_comment').setup()
 
 -- Setup colorizer
 require'colorizer'.setup()
-
 ------ Setup lualine
 require'lualine'.setup {
+
     options = {
         icons_enabled = true,
         theme = 'auto',
@@ -241,7 +241,7 @@ local on_attach = function(client, bufnr)
     require "lsp_signature".on_attach({
         bind = true, -- This is mandatory, otherwise border config won"t get registered.
         handler_opts = {
-            border = "single"
+            border = "double"
         },
         hint_prefix = " ",
         max_height = 8,
@@ -302,6 +302,18 @@ nvim_lsp.pyright.setup {
         util.path.dirname(fname)
     end,
 }
+
+-- Setup lua-dev
+local luadev = require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+  lspconfig = {
+    cmd = {"lua-language-server"},
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  },
+})
+
+require("lspconfig").sumneko_lua.setup(luadev)
 
 vim.cmd [[
   highlight DiagnosticLineNrError guifg={{base08}} gui=bold
@@ -539,13 +551,3 @@ require("telekasten").setup({
 
 })
 
-
--- Setup lua-dev
-local luadev = require("lua-dev").setup({
-  -- add any options here, or leave empty to use the default settings
-  -- lspconfig = {
-  --   cmd = {"lua-language-server"}
-  -- },
-})
-
-require("lspconfig").sumneko_lua.setup(luadev)
