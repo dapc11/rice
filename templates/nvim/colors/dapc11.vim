@@ -227,7 +227,7 @@ call <sid>hi("Include",      s:gui0D, "", s:cterm0D, "", "", "")
 call <sid>hi("Keyword",      s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("Label",        s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("Number",       s:gui09, "", s:cterm09, "", "", "")
-call <sid>hi("Operator",     s:gui05, "", s:cterm05, "", "bold", "")
+call <sid>hi("Operator",     s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("PreProc",      s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("Repeat",       s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("Special",      s:gui0C, "", s:cterm0C, "", "", "")
@@ -347,7 +347,7 @@ call <sid>hi("phpParent",          s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("phpMethodsVar",      s:gui0C, "", s:cterm0C, "", "", "")
 
 " Python highlighting
-call <sid>hi("pythonOperator",  s:gui0E, "", s:cterm0E, "", "bold", "")
+call <sid>hi("pythonOperator",  s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("pythonRepeat",    s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("pythonInclude",   s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("pythonStatement", s:gui0E, "", s:cterm0E, "", "", "")
@@ -443,4 +443,3 @@ delf <sid>hi
 unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07  s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
 unlet s:cterm00 s:cterm01 s:cterm02 s:cterm03 s:cterm04 s:cterm05 s:cterm06 s:cterm07 s:cterm08 s:cterm09 s:cterm0A s:cterm0B s:cterm0C s:cterm0D s:cterm0E s:cterm0F
 highlight Comment cterm=italic gui=italic
-highlight pythonOperator cterm=bold gui=bold

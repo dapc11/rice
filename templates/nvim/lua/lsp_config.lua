@@ -9,7 +9,6 @@ require('nvim_comment').setup()
 require'colorizer'.setup()
 ------ Setup lualine
 require'lualine'.setup {
-
     options = {
         icons_enabled = true,
         theme = 'auto',
@@ -221,7 +220,7 @@ cmp.setup{
         { name = "ultisnips", max_item_count = 3 },
     },
     formatting = {
-        format = function(entry, vim_item)
+        format = function(vim_item)
             -- fancy icons and a name of kind
             vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
             return vim_item
@@ -235,7 +234,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     require "lsp_signature".on_attach({
@@ -415,7 +414,7 @@ require("telescope._extensions.zoxide.config").setup({
             end
         },
         ["<C-s>"] = {
-            before_action = function(selection) print("before C-s") end,
+            before_action = function() print("before C-s") end,
             action = function(selection)
                 vim.cmd("edit " .. selection.path)
             end
@@ -551,3 +550,23 @@ require("telekasten").setup({
 
 })
 
+
+
+require("filetype").setup({
+    overrides = {
+        extensions = {
+            -- Set the filetype of *.pn files to potion
+            py = "python",
+        },
+        complex = {
+            -- Set the filetype of any full filename matching the regex to gitconfig
+            [".*git/config"] = "gitconfig", -- Included in the plugin
+        },
+        shebang = {
+            -- Set the filetype of files with a dash shebang to sh
+            python = "python",
+            python3 = "python",
+            env = "python",
+        },
+    },
+})
