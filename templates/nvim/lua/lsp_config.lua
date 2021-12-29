@@ -220,7 +220,7 @@ cmp.setup{
         { name = "ultisnips", max_item_count = 3 },
     },
     formatting = {
-        format = function(vim_item)
+        format = function(entry, vim_item)
             -- fancy icons and a name of kind
             vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
             return vim_item
@@ -234,7 +234,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(bufnr)
+local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     require "lsp_signature".on_attach({
@@ -414,7 +414,7 @@ require("telescope._extensions.zoxide.config").setup({
             end
         },
         ["<C-s>"] = {
-            before_action = function() print("before C-s") end,
+            before_action = function(selection) print("before C-s") end,
             action = function(selection)
                 vim.cmd("edit " .. selection.path)
             end

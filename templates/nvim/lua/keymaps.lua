@@ -47,12 +47,12 @@ map {'n', '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
 -- Harpoon
 map {'n', '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
 map {'n', '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
-map {'n', '<Leader>a', ":lua require('harpoon.mark').add_file()<CR>"}
-map {'n', '<Leader>l', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
-map {'n', '<A-q>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
-map {'n', '<A-w>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
-map {'n', '<A-e>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
-map {'n', '<A-r>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
+map {'n', '<A-a>', ":lua require('harpoon.mark').add_file()<CR>"}
+map {'n', '<A-l>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
+map {'n', '<A-1>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
+map {'n', '<A-2>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
+map {'n', '<A-3>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
+map {'n', '<A-4>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
 
 -- Nvim lint
 map {'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}

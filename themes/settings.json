@@ -1,7 +1,7 @@
 {
     "font": "MesloLGS NF",
     "shell": "/usr/bin/zsh",
-    "terminal": "wezterm",
+    "terminal": "alacritty",
     "browser": "firefox",
     "editor": "vim",
     "keymap": "se",
