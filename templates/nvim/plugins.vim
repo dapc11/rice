@@ -71,5 +71,5 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'tjdevries/train.nvim' " Train movements
 Plug 'andymass/vim-matchup' " Improved navigation with %-sign, now language specific
 Plug 'windwp/nvim-autopairs' " Auto pair single quotes, double qoutes and more
-Plug 'nathom/filetype.nvim' " Faster filetype loading
+Plug 'nathom/filetype.nvim', { 'branch': 'dev' } " Faster filetype loading
 call  plug#end()
