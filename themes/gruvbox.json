@@ -1,7 +1,7 @@
 {
     "bg": "abstract.png",
     "nvim_theme": "dapc11",
-    "base00": "#32302f",
+    "base00": "#282828",
     "base01": "#3c3836",
     "base02": "#504945",
     "base03": "#665c54",

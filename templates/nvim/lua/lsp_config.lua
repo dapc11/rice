@@ -235,14 +235,14 @@ cmp.setup.cmdline('/', {
     }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path', max_item_count = 5 }
-    }, {
-        { name = 'cmdline', max_item_count = 5 }
-    })
-})
+-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline(':', {
+--     sources = cmp.config.sources({
+--         { name = 'path', max_item_count = 5 }
+--     }, {
+--         { name = 'cmdline', max_item_count = 5 }
+--     })
+-- })
 local border = {
 {"╭", "FloatBorder"},
 {"─", "FloatBorder"},
