@@ -4,7 +4,6 @@ local nvim_lsp = require("lspconfig")
 require('neoscroll').setup()
 -- Setup nvim-commment
 require('nvim_comment').setup()
-
 -- Setup colorizer
 require'colorizer'.setup()
 ------ Setup lualine
@@ -47,7 +46,6 @@ require('gitsigns').setup{
 
 ------- Setup lint.
 local lint = require("lint")
-
 local pattern = '[^:]+:(%d+):(%d+):(%w+):(.+)'
 local groups = { 'line', 'start_col', 'code', 'message' }
 lint.linters.dapc_flake8 = {
@@ -127,8 +125,10 @@ local sources = {
     null_ls.builtins.formatting.lua_format,
 }
 
-null_ls.config({ sources = sources })
-nvim_lsp["null-ls"].setup({})
+null_ls.setup({
+    sources = sources,
+    on_attach = on_attach,
+})
 
 
 ------ Setup treesitter.
@@ -215,9 +215,9 @@ cmp.setup{
     },
     sources = {
         { name = "nvim_lsp", priority = 5 },
-        { name = "path" },
-        { name = "buffer", max_item_count = 3, priority = 3 },
         { name = "ultisnips", max_item_count = 3 },
+        { name = "buffer", max_item_count = 3, priority = 3 },
+        { name = "path" },
     },
     formatting = {
         format = function(entry, vim_item)
@@ -549,7 +549,6 @@ require("telekasten").setup({
     insert_after_inserting = true,
 
 })
-
 
 
 require("filetype").setup({

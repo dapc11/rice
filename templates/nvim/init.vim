@@ -24,26 +24,8 @@ require("keymaps")
 require("fzf")
 EOF
 
-" Python
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \| set softtabstop=4
-    \| set shiftwidth=4
-    \| set textwidth=99
-    \| set expandtab
-    \| set autoindent
-    \| set fileformat=unix
-
 augroup dapc
     autocmd!
-    au BufNewFile,BufRead *.py
-        \ set tabstop=4
-        \ set softtabstop=4
-        \ set shiftwidth=4
-        \ set textwidth=79
-        \ set expandtab
-        \ set autoindent
-        \ set fileformat=unix
     " Yaml
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
     " autocmd BufRead * lua require('lint').try_lint()
