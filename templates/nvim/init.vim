@@ -43,3 +43,5 @@ highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
 highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}
 highlight! PMenu guibg={{base01}} guifg={{base06}}
+highlight! NormalFloat guifg={{base06}} guibg={{base00}}
+highlight! NormalFloatBorder guifg={{base06}} guibg={{base00}}

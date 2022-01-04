@@ -1,6 +1,6 @@
 {
     "bg": "abstract.png",
-    "nvim_theme": "dapc11",
+    "nvim_theme": "gruvbox",
     "base00": "#282828",
     "base01": "#3c3836",
     "base02": "#504945",
