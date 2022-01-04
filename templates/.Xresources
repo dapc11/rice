@@ -47,3 +47,18 @@ Xft.lcdfilter: 		     lcddefault
 !! white dark/light
 *color7:                 {{base05}}
 *color15:                {{base07}}
+
+dwm.dmenufont:          {{font}}
+dwm.normbgcolor:        {{base01}}
+dwm.normbordercolor:    {{base02}}
+dwm.normfgcolor:        {{base06}}
+dwm.selbgcolor:         {{base03}}
+dwm.selbordercolor:     {{base04}}
+dwm.selfgcolor:         {{base06}}
+dwm.borderpx:           1
+dwm.snap:               1
+dwm.showbar:            1
+dwm.topbar:             1
+dwm.nmaster:            1
+dwm.resizehints:        1
+dwm.mfact:              0.55
