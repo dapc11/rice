@@ -206,7 +206,9 @@ call <sid>hi("CursorColumn",  "", s:gui00, "", s:cterm00, "none", "")
 call <sid>hi("CursorLine",    "", s:gui01, "", s:cterm01, "", "")
 call <sid>hi("CursorLineNr",  s:gui05, s:gui01, s:cterm05, s:cterm01, "", "")
 call <sid>hi("QuickFixLine",  "", s:gui01, "", s:cterm01, "none", "")
-call <sid>hi("PMenu",         s:gui05, s:gui01, s:cterm05, s:cterm01, "none", "")
+call <sid>hi("PMenu",         s:gui06, s:gui00, s:cterm01, s:cterm01, "none", "")
+call <sid>hi("NormalFloat",         s:gui06, s:gui00, s:cterm01, s:cterm01, "none", "")
+call <sid>hi("NormalFloatBorder",   s:gui06, s:gui06, s:cterm06, s:cterm06, "none", "")
 call <sid>hi("PMenuSel",      s:gui01, s:gui05, s:cterm01, s:cterm05, "", "")
 call <sid>hi("TabLine",       s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
 call <sid>hi("TabLineFill",   s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
@@ -429,12 +431,22 @@ call <sid>hi("DiagnosticSignWarning",     s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("DiagnosticSignInformation",     s:gui0D, "", s:cterm0D, "", "", "")
 call <sid>hi("DiagnosticSignHint",     s:gui0D, "", s:cterm0D, "", "", "")
 call <sid>hi("LspCodeLens",     s:gui0D, "", s:cterm0D, "", "", "")
-call <sid>hi("CmpItemAbbrMatchFuzzy", "", "s:gui0C", "", "", "", "")
-call <sid>hi("CmpItemAbbrMatch", "", "s:gui0C", "", "", "", "")
-call <sid>hi("CmpItemKindFunction", "", "s:gui0E", "", "", "", "")
-call <sid>hi("CmpItemKindMethod", "", "s:gui0E", "", "", "", "")
-call <sid>hi("CmpItemKindVariable", "", "s:gui0D", "", "", "", "")
-call <sid>hi("CmpItemKindKeyword", "", "s:gui07", "", "", "", "")
+" gray
+highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg={{base04}}
+" blue
+highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}
+highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg={{base0D}}
+" light blue
+highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
+highlight! CmpItemKindInterface guibg=NONE guifg={{base0C}}
+highlight! CmpItemKindText guibg=NONE guifg={{base0C}}
+" pink
+highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
+highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
+" front
+highlight! CmpItemKindKeyword guibg=NONE guifg={{base06}}
+highlight! CmpItemKindProperty guibg=NONE guifg={{base06}}
+highlight! CmpItemKindUnit guibg=NONE guifg={{base06}}
 
 " Remove functions
 delf <sid>hi

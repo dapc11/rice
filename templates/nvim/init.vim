@@ -42,3 +42,4 @@ highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
 highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
 highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}
+highlight! PMenu guibg={{base01}} guifg={{base06}}

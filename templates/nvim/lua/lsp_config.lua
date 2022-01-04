@@ -214,10 +214,10 @@ cmp.setup{
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
-        { name = "nvim_lsp", priority = 5 },
-        { name = "ultisnips", max_item_count = 3 },
-        { name = "buffer", max_item_count = 3, priority = 3 },
-        { name = "path" },
+        {name = "nvim_lsp"},
+        {name = "ultisnips", max_item_count = 3},
+        {name = "buffer", max_item_count = 3},
+        {name = "path"},
     },
     formatting = {
         format = function(entry, vim_item)
@@ -228,8 +228,43 @@ cmp.setup{
     }
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+    sources = {
+        { name = 'buffer', max_item_count = 5 }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+        { name = 'path', max_item_count = 5 }
+    }, {
+        { name = 'cmdline', max_item_count = 5 }
+    })
+})
+local border = {
+{"╭", "FloatBorder"},
+{"─", "FloatBorder"},
+{"╮", "FloatBorder"},
+{"│", "FloatBorder"},
+{"╯", "FloatBorder"},
+{"─", "FloatBorder"},
+{"╰", "FloatBorder"},
+{"│", "FloatBorder"},
+}
+local handlers =  {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single", scope = "line"}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single", scope = "line" }),
+}
+
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 ------ Setup lsp_config.
 -- Use an on_attach function to only map the following keys
@@ -272,6 +307,7 @@ local servers = { "gopls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
+        handlers = handlers,
         capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         flags = {
             debounce_text_changes = 150,
@@ -285,6 +321,7 @@ nvim_lsp.pyright.setup {
     flags = {
         debounce_text_changes = 150,
     },
+    handlers = handlers,
     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     settings = {
         python = {
@@ -308,6 +345,7 @@ local luadev = require("lua-dev").setup({
   lspconfig = {
     cmd = {"lua-language-server"},
     on_attach = on_attach,
+    handlers = handlers,
     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   },
 })
