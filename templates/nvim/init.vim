@@ -18,10 +18,25 @@ function! HighlightTodo()
 endfunc
 
 lua << EOF
-require("options")
-require("lsp_config")
-require("keymaps")
 require("fzf")
+require("keymaps")
+require("options")
+require("plugins.autopairs")
+require("plugins.colorizer")
+require("plugins.filetype")
+require("plugins.gitsigns")
+require("plugins.indent_blankline")
+require("plugins.lint")
+require("plugins.lsp_config")
+require("plugins.lualine")
+require("plugins.neoscroll")
+require("plugins.nvim_cmp")
+require("plugins.nvim_comment")
+require("plugins.nvim_tree")
+require("plugins.telekasten")
+require("plugins.telescope")
+require("plugins.toggleterm")
+require("plugins.treesitter")
 EOF
 
 augroup dapc

@@ -59,3 +59,4 @@ vim.cmd[[
 
     let loaded_netrwPlugin = 1
 ]]
+
