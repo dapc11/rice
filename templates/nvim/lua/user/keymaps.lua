@@ -1,8 +1,13 @@
 local map = function(key)
     -- get the extra options
-    local opts = {noremap = true, silent = true}
+    local opts = {
+        noremap = true,
+        silent = true
+    }
     for i, v in pairs(key) do
-        if type(i) == 'string' then opts[i] = v end
+        if type(i) == 'string' then
+            opts[i] = v
+        end
     end
 
     -- basic support for buffer-scoped keybindings
@@ -66,7 +71,12 @@ map {'n', '<SPACE>', '<Nop>'}
 vim.g.mapleader = " "
 
 -- Clear highlight search
-map {silent = true, 'n', '<C-l>', ':let @/ = ""<CR>'}
+map {
+    silent = true,
+    'n',
+    '<C-l>',
+    ':let @/ = ""<CR>'
+}
 map {'n', '<Leader>zp', ':profile start nvim-profile.log \\| profile func * \\| profile file *'}
 
 map {'n', 'ä', '<C-d>'}
@@ -80,11 +90,11 @@ map {'n', '<C-Space>', '<C-x><C-n>'}
 map {'n', '<A-left>', ':bp<CR>'}
 map {'n', '<A-right>', ':bn<CR>'}
 
---" Requires gvim
---" paste with shift+insert
+-- " Requires gvim
+-- " paste with shift+insert
 map {'n', '<Leader>Y', '"*y<CR>'}
 map {'n', '<Leader>P', '"*p<CR>'}
---" paste with ctrl+v
+-- " paste with ctrl+v
 map {'n', '<Leader>y', '"+y<CR>'}
 map {'n', '<Leader>p', '"+p<CR>'}
 
@@ -103,19 +113,19 @@ map {'c', '<C-BS>', '<C-W>'}
 -- Paste over select and keep register
 map {'v', '<leader>p', '"_dP'}
 
---" Navigate errors
+-- " Navigate errors
 map {'n', '<C-n>', ':cn<CR>'}
 map {'n', '<C-b>', ':cp<CR>'}
 
---" Paste without overwrite default register
+-- " Paste without overwrite default register
 map {'x', 'p', 'pgvy'}
 
---" center search results
+-- " center search results
 map {'n', 'n', 'nzzzv'}
 map {'n', 'N', 'Nzzzv'}
 
 -- set moving between windows to ctrl+arrows
-vim.cmd[[
+vim.cmd [[
     function! WinMove(key)
         let t:curwin = winnr()
         exec "wincmd ".a:key
@@ -150,16 +160,45 @@ map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
 map {'n', '<C-s>', ':w<cr>'}
 
 -- Beginning and end of line
-map {noremap = false, 'i', '<C-a>', '<home>'}
-map {noremap = false, 'i', '<C-e>', '<end>'}
-map {noremap = false, 'c', '<C-a>', '<home>'}
-map {noremap = false, 'c', '<C-e>', '<end>'}
+map {
+    noremap = false,
+    'i',
+    '<C-a>',
+    '<home>'
+}
+map {
+    noremap = false,
+    'i',
+    '<C-e>',
+    '<end>'
+}
+map {
+    noremap = false,
+    'c',
+    '<C-a>',
+    '<home>'
+}
+map {
+    noremap = false,
+    'c',
+    '<C-e>',
+    '<end>'
+}
 
 -- Control-V Paste in insert and command mode
-map {noremap = false, 'i', '<C-V>', '<esc>pa'}
-map {noremap = false, 'c', '<C-V>', '<C-r>0'}
+map {
+    noremap = false,
+    'i',
+    '<C-V>',
+    '<esc>pa'
+}
+map {
+    noremap = false,
+    'c',
+    '<C-V>',
+    '<C-r>0'
+}
 map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
-
 
 -- Zettelkasten
 map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
@@ -185,9 +224,8 @@ map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
 map {'i', '[[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
 map {'i', '<C-z>t', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
 
-
 -- Clean quickfix list
-vim.cmd[[
+vim.cmd [[
     function ClearQuickfixList()
         call setqflist([])
     endfunction
@@ -196,14 +234,14 @@ vim.cmd[[
 map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
 
 -- Sane navigation in command mode
-vim.cmd[[
+vim.cmd [[
     set wildcharm=<C-Z>
     cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
     cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
     cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
     cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 ]]
-vim.cmd[[
+vim.cmd [[
     function! s:split(expr) abort
     let lines = split(execute(a:expr, 'silent'), "[\n\r]")
     let name = printf('capture://%s', a:expr)

@@ -1,23 +1,40 @@
--- Install packer. You don't have to necessarily understand this code. Just know that it will grab packer from the Internet and install it for you.
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local fn = vim.fn
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- Automatically install packer
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+                                  install_path})
+    print("Installing packer close and reopen Neovim...")
 end
 
-vim.api.nvim_exec(
-  [[
-  augroup Packer
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]],
-  false
-)
+]])
 
--- Here we can declare the plugins we'll be using.
-local use = require('packer').use
-require('packer').startup(function()
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+-- Have packer use a popup window
+packer.init({
+    display = {
+        open_fn = function()
+            return require('packer.util').float({
+                border = 'single'
+            })
+        end
+    }
+})
+
+-- Install your plugins here
+return packer.startup(function(use)
     use 'wbthomason/packer.nvim' -- Package manager itself.
 
     use 'tpope/vim-fugitive' -- Git integration
@@ -26,16 +43,25 @@ require('packer').startup(function()
     -- Treesitter
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }  -- We recommend updating the parsers on update
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    } -- We recommend updating the parsers on update
     use 'nvim-treesitter/nvim-treesitter-refactor' -- Refactor with LST and highlight current block
 
     -- Languages
-    use { 'fatih/vim-go', run = ':GoUpdateBinaries' } -- Go support
+    use {
+        'fatih/vim-go',
+        run = ':GoUpdateBinaries'
+    } -- Go support
     use 'towolf/vim-helm' -- Support for helm
     use 'renerocksai/telekasten.nvim'
 
     -- Fuzzy finder
-    use { 'junegunn/fzf', run = './install --bin', }
+    use {
+        'junegunn/fzf',
+        run = './install --bin'
+    }
     use 'junegunn/fzf.vim' -- Find everything
     use 'nvim-telescope/telescope.nvim' -- Navigation and fzf search
     use 'nvim-telescope/telescope-fzy-native.nvim'
@@ -84,5 +110,13 @@ require('packer').startup(function()
     use 'tjdevries/train.nvim' -- Train movements
     use 'andymass/vim-matchup' -- Improved navigation with %-sign, now language specific
     use 'windwp/nvim-autopairs' -- Auto pair single quotes, double qoutes and more
-    use { 'nathom/filetype.nvim',  branch = 'dev' } -- Faster filetype loading
+    use {
+        'nathom/filetype.nvim',
+        branch = 'dev'
+    } -- Faster filetype loading
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if PACKER_BOOTSTRAP then
+        require('packer').sync()
+    end
 end)
