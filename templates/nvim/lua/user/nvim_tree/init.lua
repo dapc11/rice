@@ -43,8 +43,17 @@ require'nvim-tree'.setup {
         update_cwd  = true,
         ignore_list = {}
     },
-    diagnostics = {
+    git = {
         enable = true,
+        ignore = false,
+        timeout = 500,
+    },
+    filters = {
+        dotfiles = false,
+        custom = {'.git'}
+    },
+    diagnostics = {
+        enable = false,
         icons = {
             hint = "",
             info = "",
