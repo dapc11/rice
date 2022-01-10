@@ -50,8 +50,8 @@ map {'n', '<C-p>', ':ProjectFiles<CR>'}
 map {'n', '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
 
 -- Harpoon
-map {'n', '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
-map {'n', '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
+-- map {'n', '<F1>', ":lua require('harpoon.term').gotoTerminal(1)<CR>"}
+-- map {'n', '<F2>', ":lua require('harpoon.term').gotoTerminal(2)<CR>"}
 map {'n', '<A-m>', ":lua require('harpoon.mark').add_file()<CR>"}
 map {'n', '<A-l>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>"}
 map {'n', '<A-1>', ":lua require('harpoon.ui').nav_file(1)<CR>"}
