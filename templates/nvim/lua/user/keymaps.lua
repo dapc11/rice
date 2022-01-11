@@ -32,21 +32,15 @@ map {'n', '<leader>b', ':Telescope buffers<CR>'}
 map {'n', '<leader>m', ':Telescope keymaps<CR>'}
 map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
 map {'n', '<Leader>n', ':Telescope git_files<CR>'}
-map {'n', '<leader>ff', ':Telescope find_files<CR>'}
+map {'n', '<Leader>o', ':Telescope find_files search_dirs={"~"}<CR>'}
+map {'n', '<Leader>O', ':Telescope find_files hidden=true no_ignore=true search_dirs={"~"}<CR>'}
 map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
+map {'n', '<C-p>', ':Telescope find_files<CR>'}
 map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
-map {'n', '<leader>fa', ':Telescope find_files hidden=true<CR>'}
 vim.cmd [[
     command! -nargs=? -complete=dir AD call fzf#run(fzf#wrap({'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)}))
-    command! -nargs=? -complete=dir AF call fzf#run(fzf#wrap({'source': 'rg --no-heading --files ~/ '.expand(<q-args>)}))
-    command! -nargs=? -complete=dir AFF call fzf#run(fzf#wrap({'source': 'rg --no-heading --files --hidden ~/ '.expand(<q-args>)}))
-    command! -bang ProjectFiles call fzf#vim#files('~/repos', <bang>0)
 ]]
 map {'n', '<leader>d', ':AD<CR>'}
-map {'n', '<Leader>o', ':AF<CR>'}
-map {'n', '<Leader>O', ':AFF<CR>'}
-map {'n', '<C-f>', ':BLines<cr>'}
-map {'n', '<C-p>', ':ProjectFiles<CR>'}
 map {'n', '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
 
 -- Harpoon
@@ -77,7 +71,7 @@ map {
     '<C-l>',
     ':let @/ = ""<CR>'
 }
-map {'n', '<Leader>zp', ':profile start nvim-profile.log \\| profile func * \\| profile file *'}
+map {'n', '<Leader>zp', ':profile start nvim-profile.log | profile func * | profile file *'}
 
 map {'n', 'ä', '<C-d>'}
 map {'n', 'ö', '<C-u>'}
@@ -203,26 +197,9 @@ map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
 -- Zettelkasten
 map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
 map {'n', '<leader>zf', ':lua require("telekasten").find_notes()<CR>'}
-map {'n', '<leader>zd', ':lua require("telekasten").find_daily_notes()<CR>'}
 map {'n', '<leader>zg', ':lua require("telekasten").search_notes()<CR>'}
 map {'n', '<leader>zz', ':lua require("telekasten").follow_link()<CR>'}
-map {'n', '<leader>zT', ':lua require("telekasten").goto_today()<CR>'}
-map {'n', '<leader>zW', ':lua require("telekasten").goto_thisweek()<CR>'}
-map {'n', '<leader>zw', ':lua require("telekasten").find_weekly_notes()<CR>'}
 map {'n', '<leader>zn', ':lua require("telekasten").new_note()<CR>'}
-map {'n', '<leader>zN', ':lua require("telekasten").new_templated_note()<CR>'}
-map {'n', '<leader>zy', ':lua require("telekasten").yank_notelink()<CR>'}
-map {'n', '<leader>zc', ':lua require("telekasten").show_calendar()<CR>'}
-map {'n', '<leader>zC', ':CalendarT<CR>'}
-map {'n', '<leader>zi', ':lua require("telekasten").paste_img_and_link()<CR>'}
-map {'n', '<leader>zt', ':lua require("telekasten").toggle_todo()<CR>'}
-map {'n', '<leader>zb', ':lua require("telekasten").show_backlinks()<CR>'}
-map {'n', '<leader>zF', ':lua require("telekasten").find_friends()<CR>'}
-map {'n', '<leader>zI', ':lua require("telekasten").insert_img_link({ i=true })<CR>'}
-map {'n', '<leader>zp', ':lua require("telekasten").preview_img()<CR>'}
-map {'n', '<leader>zm', ':lua require("telekasten").browse_media()<CR>'}
-map {'i', '[[', '<ESC>:lua require("telekasten").insert_link({ i=true })<CR>'}
-map {'i', '<C-z>t', '<ESC>:lua require("telekasten").toggle_todo({ i=true })<CR>'}
 
 -- Clean quickfix list
 vim.cmd [[
@@ -275,18 +252,6 @@ vim.cmd [[
 
     command! -nargs=1 -bang -complete=command P call s:capture(<q-args>, <bang>0)
 ]]
-
-function toggle_zoom()
-    if zoomed then
-        vim.cmd 'wincmd ='
-        zoomed = false
-    else
-        vim.cmd 'resize'
-        vim.cmd 'vertical resize'
-        zoomed = true
-    end
-end
-map {'n', '<C-z>', '<cmd>lua toggle_zoom()<CR>'}
 
 -- Remap number increment to alt
 map {'n', '<A-a>', '<C-a>'}
