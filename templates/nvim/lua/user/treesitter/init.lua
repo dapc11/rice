@@ -23,7 +23,7 @@ treesitter.setup{
         smart_rename = {
             enable = true,
             keymaps = {
-                smart_rename = "<Space>r",
+                smart_rename = "<Space>rr",
             },
         },
     },
