@@ -58,6 +58,7 @@ map {'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}
 
 -- Fugitive
 map {'n', '<leader>gs', ':Git<CR>'}
+map {'n', '<leader>gl', ':Git log --stat<CR>'}
 
 -- Misc
 -- Use <C-L> to clear the highlighting of :set hlsearch.
