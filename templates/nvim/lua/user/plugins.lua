@@ -1,9 +1,3 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
 local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager itself.
@@ -18,7 +12,6 @@ require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     } -- We recommend updating the parsers on update
-    use 'nvim-treesitter/nvim-treesitter-refactor' -- Refactor with LST and highlight current block
 
     -- Languages
     use { 'fatih/vim-go', run = ':GoUpdateBinaries', ft = 'go' } -- Go support
@@ -44,7 +37,6 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp' -- Auto suggestions from LSP
     use 'hrsh7th/cmp-buffer' -- Auto suggestions
     use 'hrsh7th/nvim-cmp' -- Auto suggestions
-    use 'hrsh7th/cmp-vsnip' -- Snippets
     use 'hrsh7th/cmp-path' -- Auto complete paths
     use 'SirVer/ultisnips' -- Snippets
     use 'honza/vim-snippets' -- Snippets

@@ -24,9 +24,9 @@ cmp.setup{
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
-        {name = "nvim_lsp"},
+        {name = "nvim_lsp", max_item_count = 8},
         {name = "ultisnips", max_item_count = 3},
-        {name = "path"},
+        {name = "path", max_item_count = 8},
         {name = "buffer", max_item_count = 3, keyword_length = 5},
     },
     formatting = {
@@ -45,7 +45,9 @@ cmp.setup.cmdline("/", {
         { name = "buffer", max_item_count = 5, keyword_length = 5 }
     }
 })
-
+vim.cmd [[
+autocmd FileType gitcommit,fugitive lua require('cmp').setup.buffer { sources = { { name = "buffer", max_item_count = 5 }, } }
+]]
 -- -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won"t work anymore).
 -- cmp.setup.cmdline(":", {
 --     sources = cmp.config.sources({

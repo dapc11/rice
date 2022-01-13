@@ -20,6 +20,7 @@
     { "template": "nvim/colors/neosolarized.vim" },
     { "template": "nvim/lua/user/options.lua" },
     { "template": "nvim/lua/user/fzf.lua" },
+    { "template": "nvim/lua/user/first_load.lua" },
     { "template": "nvim/lua/user/plugins.lua" },
     { "template": "nvim/lua/user/keymaps.lua" },
     { "template": "nvim/lua/user/lsp_config/init.lua" },

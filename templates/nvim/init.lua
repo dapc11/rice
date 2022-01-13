@@ -1,3 +1,6 @@
+if require "user.first_load"() then
+  return
+end
 require("user.options")
 require("user.plugins")
 require("user.keymaps")
