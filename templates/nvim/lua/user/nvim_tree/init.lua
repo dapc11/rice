@@ -44,7 +44,7 @@ require'nvim-tree'.setup {
         ignore_list = {}
     },
     git = {
-        enable = true,
+        enable = false,
         ignore = false,
         timeout = 500,
     },

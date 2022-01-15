@@ -58,6 +58,7 @@ require('packer').startup(function()
     -- use 'sunjon/shade.nvim' " Shade inactive buffers -- Buggy as hell.
     use 'kyazdani42/nvim-tree.lua' -- File Explorer
     use 'akinsho/toggleterm.nvim' -- Toggleable Terminal in vim
+    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
     -- Change work dir
     use 'nanotee/zoxide.vim' -- Next gen change working dirs
@@ -71,7 +72,4 @@ require('packer').startup(function()
     use 'andymass/vim-matchup' -- Improved navigation with %-sign, now language specific
     use 'windwp/nvim-autopairs' -- Auto pair single quotes, double qoutes and more
     use { 'nathom/filetype.nvim',  branch = 'dev' } -- Faster filetype loading
-    if packer_bootstrap then
-        require('packer').sync()
-    end
 end)

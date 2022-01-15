@@ -259,3 +259,8 @@ map {'n', '<A-a>', '<C-a>'}
 map {'v', '<A-a>', '<C-a>'}
 map {'n', '<A-x>', '<C-x>'}
 map {'v', '<A-x>', '<C-x>'}
+-- These commands will move the current buffer backwards or forwards in the bufferline
+map {'n', '<Tab>', ':BufferLineCycleNext<CR>'}
+map {'n', '<C-Tab>', ':BufferLineCyclePrev<CR>'}
+map {'n', '<S-Tab>', ':BufferLineMoveNext<CR>'}
+map {'n', '<S-C-Tab>', ':BufferLineMovePrev<CR>'}
