@@ -61,11 +61,12 @@ map {'n', '<leader>gs', ':Git<CR>'}
 map {'n', '<leader>gl', ':Git log --stat<CR>'}
 
 -- Misc
--- Use <C-L> to clear the highlighting of :set hlsearch.
 map {'n', '<SPACE>', '<Nop>'}
+map {'n', '<F1>', '<Nop>'}
 vim.g.mapleader = " "
 
 -- Clear highlight search
+-- Use <C-L> to clear the highlighting of :set hlsearch.
 map {
     silent = true,
     'n',

@@ -24,6 +24,7 @@ s.softtabstop = 4
 s.shiftwidth = 4 -- 4 spaces
 s.shiftround = true -- Round tabs to multiplier of shiftwicth
 s.smartindent = true
+s.ignorecase = true
 s.expandtab = true -- In Insert mode: Use the appropriate number of spaces to insert a tab
 s.relativenumber = true -- relative line numbers to current line
 s.cursorline = true -- Highlgiht cursor line

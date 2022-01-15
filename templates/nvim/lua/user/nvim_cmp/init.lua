@@ -18,7 +18,16 @@ cmp.setup{
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping({
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+            c = function(fallback)
+                if cmp.visible() then
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                else
+                    fallback()
+                end
+            end
+        }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -48,11 +57,3 @@ cmp.setup.cmdline("/", {
 vim.cmd [[
 autocmd FileType gitcommit,fugitive lua require('cmp').setup.buffer { sources = { { name = "buffer", max_item_count = 5 }, } }
 ]]
--- -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won"t work anymore).
--- cmp.setup.cmdline(":", {
---     sources = cmp.config.sources({
---         { name = "path", max_item_count = 5 }
---     }, {
---         { name = "cmdline", max_item_count = 5 }
---     })
--- })
