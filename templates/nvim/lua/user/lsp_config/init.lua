@@ -1,6 +1,5 @@
 local nvim_lsp = require("lspconfig")
 
-
 local border = {
 {"╭", "FloatBorder"},
 {"─", "FloatBorder"},
@@ -57,6 +56,18 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd [[
+        hi LspReferenceRead cterm=bold ctermbg=red guibg={{base01}}
+        hi LspReferenceText cterm=bold ctermbg=red guibg={{base01}}
+        hi LspReferenceWrite cterm=bold ctermbg=red guibg={{base01}}
+        augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+        ]]
+    end
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and

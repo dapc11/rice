@@ -14,15 +14,15 @@ cmp.setup{
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-x>"] = cmp.mapping({
+        ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
         ['<CR>'] = cmp.mapping({
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
             c = function(fallback)
                 if cmp.visible() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
                 else
                     fallback()
                 end
@@ -33,10 +33,10 @@ cmp.setup{
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     },
     sources = {
-        {name = "nvim_lsp", max_item_count = 8},
+        {name = "nvim_lsp", max_item_count = 10},
+        {name = "buffer", max_item_count = 5, keyword_length = 5},
         {name = "ultisnips", max_item_count = 3},
         {name = "path", max_item_count = 8},
-        {name = "buffer", max_item_count = 3, keyword_length = 5},
     },
     formatting = {
         format = function(entry, vim_item)
@@ -51,8 +51,15 @@ cmp.setup{
 -- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).
 cmp.setup.cmdline("/", {
     sources = {
-        { name = "buffer", max_item_count = 5, keyword_length = 5 }
+        { name = "buffer", max_item_count = 10, keyword_length = 5 }
     }
+})
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+        { name = 'path', max_item_count = 5, keyword_length = 2 }
+    }, {
+        { name = 'cmdline', max_item_count = 15, keyword_length = 2 }
+    })
 })
 vim.cmd [[
 autocmd FileType gitcommit,fugitive lua require('cmp').setup.buffer { sources = { { name = "buffer", max_item_count = 5 }, } }

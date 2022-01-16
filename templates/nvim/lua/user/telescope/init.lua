@@ -1,6 +1,26 @@
-local telescope = require('telescope')
+local telescope = require("telescope")
+local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
 
 telescope.setup {
+    defaults = {
+        mappings = {
+            n = {
+                ["<C-p>"] = action_layout.toggle_preview
+            },
+            i = {
+                ["<C-p>"] = action_layout.toggle_preview,
+                ["<esc>"] = actions.close
+            },
+        },
+        preview = {
+            filesize_hook = function(filepath, bufnr, opts)
+                local max_bytes = 10000
+                local cmd = {"head", "-c", max_bytes, filepath}
+                require('telescope.previewers.utils').job_maker(cmd, bufnr, opts)
+            end
+        }
+    },
     extensions = {
         fzf = {
             fuzzy = true,
@@ -10,7 +30,7 @@ telescope.setup {
         }
     }
 }
-telescope.load_extension('fzy_native')
+telescope.load_extension('fzf')
 
 local z_utils = require("telescope._extensions.zoxide.utils")
 

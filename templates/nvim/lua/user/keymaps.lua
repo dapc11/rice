@@ -28,15 +28,16 @@ map {'n', '<C-w><', ':vertical:resize -8<CR>'}
 map {'n', '<C-w>>', ':vertical:resize +8<CR>'}
 
 -- Fuzzy find
-map {'n', '<leader>b', ':Telescope buffers<CR>'}
-map {'n', '<leader>m', ':Telescope keymaps<CR>'}
-map {'n', '<leader>h', ':Telescope oldfiles<CR>'}
-map {'n', '<Leader>n', ':Telescope git_files<CR>'}
-map {'n', '<Leader>o', ':Telescope find_files search_dirs={"~"}<CR>'}
-map {'n', '<Leader>O', ':Telescope find_files hidden=true no_ignore=true search_dirs={"~"}<CR>'}
-map {'n', '<leader><leader>', ':Telescope live_grep<CR>'}
-map {'n', '<C-p>', ':Telescope find_files<CR>'}
-map {'n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>'}
+map {'n', '<leader>b', ':lua require("telescope.builtin").buffers()<CR>'}
+map {'n', '<leader>m', ':lua require("telescope.builtin").keymaps()<CR>'}
+map {'n', '<leader>h', ':lua require("telescope.builtin").oldfiles()<CR>'}
+map {'n', '<Leader>n', ':lua require("telescope.builtin").git_files()<CR>'}
+map {'n', '<Leader>N', ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
+map {'n', '<Leader>o', ':lua require("telescope.builtin").find_files({previewer = false, search_dirs = {"~"}})<CR>'}
+map {'n', '<Leader>O', ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = {"~"}})<CR>'}
+map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep()<CR>'}
+map {'n', '<C-p>', ':lua require("telescope.builtin").find_files()<CR>'}
+map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 vim.cmd [[
     command! -nargs=? -complete=dir AD call fzf#run(fzf#wrap({'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)}))
 ]]
@@ -97,6 +98,7 @@ map {'n', '<Leader>p', '"+p<CR>'}
 -- Close buffer
 map {'n', '<Leader>q', '<c-w>q<CR>'}
 map {'n', '<Leader>Q', ':qa<CR>'}
+map {'n', '<C-q>', ':bdelete<CR>'}
 
 -- Commandline
 map {'c', '<C-a>', '<Home>'}

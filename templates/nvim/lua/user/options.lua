@@ -98,6 +98,7 @@ vim.cmd [[
         autocmd BufWritePre * :call TrimWhitespace()
     augroup END
 
+    autocmd CursorHold,CursorHoldI * lua require('code_action_utils').code_action_listener()
     au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}
 
     highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}

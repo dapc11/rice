@@ -26,6 +26,7 @@ require('packer').startup(function()
     use 'junegunn/fzf.vim' -- Find everything
     use 'nvim-telescope/telescope.nvim' -- Navigation and fzf search
     use 'nvim-telescope/telescope-fzy-native.nvim'
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- Language Server Protocol (LSP)
     use 'neovim/nvim-lspconfig' -- Configure LSP
@@ -38,6 +39,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-buffer' -- Auto suggestions
     use 'hrsh7th/nvim-cmp' -- Auto suggestions
     use 'hrsh7th/cmp-path' -- Auto complete paths
+    use 'hrsh7th/cmp-cmdline'
     use 'SirVer/ultisnips' -- Snippets
     use 'honza/vim-snippets' -- Snippets
     use 'quangnguyen30192/cmp-nvim-ultisnips' -- Snippets
