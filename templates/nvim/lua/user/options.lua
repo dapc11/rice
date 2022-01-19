@@ -66,6 +66,7 @@ g["rooter_patterns"] = {"setup.cfg", ".git", "pom.xml", "Makefile", "*.sln", "bu
 -- vim.g["rooter_change_directory_for_non_project_files"] = "home"
 
 g["python3_host_prog"] = "~/dev/bin/python3"
+g["python_host_prog"] = "~/dev/bin/python"
 
 -- Not load with default plugin.
 g["did_load_filetypes"] = 1
@@ -98,7 +99,6 @@ vim.cmd [[
         autocmd BufWritePre * :call TrimWhitespace()
     augroup END
 
-    autocmd CursorHold,CursorHoldI * lua require('code_action_utils').code_action_listener()
     au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}
 
     highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}

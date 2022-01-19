@@ -35,7 +35,7 @@ map {'n', '<Leader>n', ':lua require("telescope.builtin").git_files()<CR>'}
 map {'n', '<Leader>N', ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
 map {'n', '<Leader>o', ':lua require("telescope.builtin").find_files({previewer = false, search_dirs = {"~"}})<CR>'}
 map {'n', '<Leader>O', ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = {"~"}})<CR>'}
-map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep()<CR>'}
+map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
 map {'n', '<C-p>', ':lua require("telescope.builtin").find_files()<CR>'}
 map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 vim.cmd [[
@@ -196,13 +196,12 @@ map {
     '<C-V>',
     '<C-r>0'
 }
-map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
+-- map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
 
 -- Zettelkasten
 map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
 map {'n', '<leader>zf', ':lua require("telekasten").find_notes()<CR>'}
 map {'n', '<leader>zg', ':lua require("telekasten").search_notes()<CR>'}
-map {'n', '<leader>zz', ':lua require("telekasten").follow_link()<CR>'}
 map {'n', '<leader>zn', ':lua require("telekasten").new_note()<CR>'}
 
 -- Clean quickfix list

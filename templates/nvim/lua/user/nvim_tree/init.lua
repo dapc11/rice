@@ -2,7 +2,7 @@ vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
 vim.g.nvim_tree_show_icons = {
     git = 0,
-    folder_arrows = 1,
+    folder_arrows = 0,
     folders = 1,
     files = 0
 }
@@ -22,7 +22,7 @@ vim.g.nvim_tree_icons = {
         arrow_open = "",
         arrow_closed = "",
         default = "",
-        open = "",
+        open = "",
         empty = "", -- 
         empty_open = "",
         symlink = "",
@@ -31,8 +31,8 @@ vim.g.nvim_tree_icons = {
 }
 
 require'nvim-tree'.setup {
-    disable_netrw = true,
-    hijack_netrw = true,
+    disable_netrw = false,
+    hijack_netrw = false,
     ignore_ft_on_setup = { "dashboard" },
     auto_close = false,
     open_on_tab = false,

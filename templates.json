@@ -33,7 +33,6 @@
     { "template": "nvim/lua/user/lint/init.lua" },
     { "template": "nvim/lua/user/lualine/init.lua" },
     { "template": "nvim/lua/user/bufferline/init.lua" },
-    { "template": "nvim/lua/user/neoscroll/init.lua" },
     { "template": "nvim/lua/user/nvim_cmp/init.lua" },
     { "template": "nvim/lua/user/nvim_comment/init.lua" },
     { "template": "nvim/lua/user/nvim_tree/init.lua" },
