@@ -4,6 +4,16 @@ local action_layout = require("telescope.actions.layout")
 
 telescope.setup {
     defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim" -- add this value
+        },
         mappings = {
             n = {
                 ["<C-p>"] = action_layout.toggle_preview
