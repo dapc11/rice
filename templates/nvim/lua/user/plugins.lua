@@ -37,9 +37,12 @@ require('packer').startup(function()
     use 'hrsh7th/nvim-cmp' -- Auto suggestions
     use 'hrsh7th/cmp-path' -- Auto complete paths
     use 'hrsh7th/cmp-cmdline'
-    use 'SirVer/ultisnips' -- Snippets
-    use 'honza/vim-snippets' -- Snippets
-    use 'quangnguyen30192/cmp-nvim-ultisnips' -- Snippets
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+    use "rafamadriz/friendly-snippets"
+    -- use 'SirVer/ultisnips' -- Snippets
+    -- use 'honza/vim-snippets' -- Snippets
+    -- use 'quangnguyen30192/cmp-nvim-ultisnips' -- Snippets
 
     -- Formatting and linting
     use 'mfussenegger/nvim-lint' -- Linting

@@ -196,7 +196,7 @@ map {
     '<C-V>',
     '<C-r>0'
 }
--- map {'n', '<C-e>', ':NvimTreeToggle<CR>'}
+map {'n', '<C-t>', ':NvimTreeToggle<CR>'}
 
 -- Zettelkasten
 map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
@@ -262,7 +262,7 @@ map {'v', '<A-a>', '<C-a>'}
 map {'n', '<A-x>', '<C-x>'}
 map {'v', '<A-x>', '<C-x>'}
 -- These commands will move the current buffer backwards or forwards in the bufferline
-map {'n', '<Tab>', ':BufferLineCycleNext<CR>'}
-map {'n', '<C-Tab>', ':BufferLineCyclePrev<CR>'}
-map {'n', '<S-Tab>', ':BufferLineMoveNext<CR>'}
-map {'n', '<S-C-Tab>', ':BufferLineMovePrev<CR>'}
+-- map {'n', '<Tab>', ':BufferLineCycleNext<CR>'}
+-- map {'n', '<C-Tab>', ':BufferLineCyclePrev<CR>'}
+-- map {'n', '<S-Tab>', ':BufferLineMoveNext<CR>'}
+-- map {'n', '<S-C-Tab>', ':BufferLineMovePrev<CR>'}

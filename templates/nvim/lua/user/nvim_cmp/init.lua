@@ -1,3 +1,10 @@
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").load()
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))
@@ -8,7 +15,7 @@ cmp.setup{
     completion = {completeopt = 'menu,menuone,noinsert'},
     snippet = {
         expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     mapping = {
@@ -28,6 +35,26 @@ cmp.setup{
                 end
             end
         }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -35,7 +62,7 @@ cmp.setup{
     sources = {
         {name = "nvim_lsp", max_item_count = 10},
         {name = "buffer", max_item_count = 5, keyword_length = 5},
-        {name = "ultisnips", max_item_count = 3},
+        {name = 'luasnip', max_item_count = 8}, -- For luasnip users.
         {name = "path", max_item_count = 8},
     },
     formatting = {
