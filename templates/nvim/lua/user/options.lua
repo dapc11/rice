@@ -71,12 +71,6 @@ vim.cmd [[
     nnoremap <SPACE> <Nop>
     let mapleader =" "
 
-    function! TrimWhitespace()
-        let l:save = winsaveview()
-        keeppatterns %s/\s\+$//e
-        call winrestview(l:save)
-    endfun
-
     function! HighlightTodo()
         match none
         match Error /TODO/
@@ -92,7 +86,6 @@ vim.cmd [[
         " autocmd BufRead * lua require('lint').try_lint()
         " autocmd BufWrite * lua require('lint').try_lint()
         autocmd BufReadPost,BufNewFile * :call HighlightTodo()
-        autocmd BufWritePre * :call TrimWhitespace()
     augroup END
 
     au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}
