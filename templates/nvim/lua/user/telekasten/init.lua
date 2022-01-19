@@ -37,16 +37,7 @@ require("telekasten").setup({
 	image_link_style = "markdown",
 
     -- integrate with calendar-vim
-    plug_into_calendar = true,
-    calendar_opts = {
-        -- calendar week display mode: 1 .. 'WK01', 2 .. 'WK 1', 3 .. 'KW01', 4 .. 'KW 1', 5 .. '1'
-        weeknm = 4,
-        -- use monday as first day of week: 1 .. true, 0 .. false
-        calendar_monday = 1,
-        -- calendar mark: where to put mark for marked days: 'left', 'right', 'left-fit'
-        calendar_mark = 'left-fit',
-    },
-
+    plug_into_calendar = false,
     -- telescope actions behavior
     close_after_yanking = false,
     insert_after_inserting = true,
