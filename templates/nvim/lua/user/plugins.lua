@@ -1,5 +1,5 @@
 local use = require("packer").use
-require("packer").startup(function()
+require("packer").startup({function()
     use "wbthomason/packer.nvim" -- Package manager itself.
 
     use {"tpope/vim-fugitive"} -- Git integration
@@ -15,7 +15,7 @@ require("packer").startup(function()
 
     -- Languages
     use { "fatih/vim-go", run = ":GoUpdateBinaries", ft = "go" } -- Go support
-    use {"renerocksai/telekasten.nvim", ft = {"md", "telekasten"}}
+    use {"renerocksai/telekasten.nvim", ft = {"md", "telekasten"}, config = [[require('user.telekasten')]]}
 
     -- Fuzzy finder
     use {
@@ -42,13 +42,13 @@ require("packer").startup(function()
     use {"rafamadriz/friendly-snippets"}
 
     -- Formatting and linting
-    use {"mfussenegger/nvim-lint", ft = "python"} -- Linting
-    use {"jose-elias-alvarez/null-ls.nvim", ft = {"go", "python"}} -- formatting and possibly linting
+    use {"mfussenegger/nvim-lint", ft = "python", config = [[require('user.lint')]]} -- Linting
+    use {"jose-elias-alvarez/null-ls.nvim", ft = {"go", "python", config = [[require('user.nullls')]]}} -- formatting and possibly linting
 
     -- Look and feel
     use {"lukas-reineke/indent-blankline.nvim"} -- Indentation guide
     use {"nvim-lualine/lualine.nvim"} -- Statusline written in Lua, duuh..
-    use {"norcalli/nvim-colorizer.lua", ft = {"json", "yaml", "css", "html"}} -- Highlight CSS colors in buffers
+    use {"norcalli/nvim-colorizer.lua", ft = {"json", "yaml", "css", "html"}, config = [[require('user.colorizer')]]} -- Highlight CSS colors in buffers
     use {"kyazdani42/nvim-web-devicons"} -- Devicons for statusline
     use {"ellisonleao/gruvbox.nvim"}
     use {"navarasu/onedark.nvim"}
@@ -63,4 +63,5 @@ require("packer").startup(function()
     use {"ThePrimeagen/harpoon"}
     use {"windwp/nvim-autopairs"} -- Auto pair single quotes, double qoutes and more
     use {"nathom/filetype.nvim",  branch = "dev" } -- Faster filetype loading
-end)
+end,
+config = { compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua' },})

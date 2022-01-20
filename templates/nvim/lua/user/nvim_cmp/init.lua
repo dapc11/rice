@@ -12,10 +12,10 @@ cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex 
 
 cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 cmp.setup{
-    completion = {completeopt = 'menu,menuone,noinsert'},
+    completion = {completeopt = "menu,menuone,noinsert"},
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     mapping = {
@@ -25,7 +25,7 @@ cmp.setup{
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping({
+        ["<CR>"] = cmp.mapping({
             i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
             c = function(fallback)
                 if cmp.visible() then
@@ -62,7 +62,7 @@ cmp.setup{
     sources = {
         {name = "nvim_lsp", max_item_count = 10},
         {name = "buffer", max_item_count = 5, keyword_length = 5},
-        {name = 'luasnip', max_item_count = 8}, -- For luasnip users.
+        {name = "luasnip", max_item_count = 8}, -- For luasnip users.
         {name = "path", max_item_count = 8},
     },
     formatting = {
@@ -74,20 +74,19 @@ cmp.setup{
     }
 }
 
-
 -- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).
 cmp.setup.cmdline("/", {
     sources = {
         { name = "buffer", max_item_count = 10, keyword_length = 5 }
     }
 })
-cmp.setup.cmdline(':', {
+cmp.setup.cmdline(":", {
     sources = cmp.config.sources({
-        { name = 'path', max_item_count = 5, keyword_length = 2 }
+        { name = "path", keyword_length = 2 }
     }, {
-        { name = 'cmdline', max_item_count = 15, keyword_length = 2 }
+        { name = "cmdline", keyword_length = 2 }
     })
 })
 vim.cmd [[
-autocmd FileType gitcommit,fugitive lua require('cmp').setup.buffer { sources = { { name = "buffer", max_item_count = 5 }, } }
+autocmd FileType gitcommit,fugitive lua require("cmp").setup.buffer { sources = { { name = "buffer", max_item_count = 10 }, } }
 ]]

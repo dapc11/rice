@@ -26,6 +26,7 @@
     { "template": "nvim/lua/user/gitsigns/init.lua" },
     { "template": "nvim/lua/user/indent_blankline/init.lua" },
     { "template": "nvim/lua/user/lint/init.lua" },
+    { "template": "nvim/lua/user/nullls/init.lua" },
     { "template": "nvim/lua/user/lualine/init.lua" },
     { "template": "nvim/lua/user/bufferline/init.lua" },
     { "template": "nvim/lua/user/nvim_cmp/init.lua" },
