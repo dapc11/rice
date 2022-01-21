@@ -4,6 +4,7 @@ local action_layout = require("telescope.actions.layout")
 
 telescope.setup {
     defaults = {
+        file_ignore_patterns = { "node_modules", ".git" },
         vimgrep_arguments = {
             "rg",
             "--color=never",
@@ -16,18 +17,24 @@ telescope.setup {
         },
         mappings = {
             n = {
-                ["<C-p>"] = action_layout.toggle_preview
+                ["<C-p>"] = action_layout.toggle_preview,
+                ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
             },
             i = {
                 ["<C-p>"] = action_layout.toggle_preview,
-                ["<esc>"] = actions.close
+                ["<esc>"] = actions.close,
+                ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
             },
         },
         preview = {
             filesize_hook = function(filepath, bufnr, opts)
                 local max_bytes = 10000
                 local cmd = {"head", "-c", max_bytes, filepath}
-                require('telescope.previewers.utils').job_maker(cmd, bufnr, opts)
+                require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
             end
         }
     },
@@ -40,4 +47,4 @@ telescope.setup {
         }
     }
 }
-telescope.load_extension('fzf')
+telescope.load_extension("fzf")
