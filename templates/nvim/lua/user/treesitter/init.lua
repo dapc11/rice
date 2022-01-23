@@ -2,15 +2,15 @@ local treesitter = require("nvim-treesitter.configs")
 treesitter.setup{
     highlight = {
         enable = true,
+        disable = function(lang, bufnr)
+            return vim.api.nvim_buf_line_count(bufnr) > 1000
+        end,
         -- additional_vim_regex_highlighting = { "python" }
     },
     incremental_selection = {
         enable = false
     },
     textobjects = {
-        enable = true
-    },
-    matchup = {
         enable = true
     },
     refactor = {
