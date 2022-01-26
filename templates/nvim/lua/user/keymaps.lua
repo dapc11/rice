@@ -52,7 +52,7 @@ function table_to_string(tbl)
     return result.."}"
 end
 
-function get_table_of_find_files_source(path)
+function get_find_files_source(path)
     local file = io.open(path, "r")
     local tbl = {}
     local i = 0
@@ -68,8 +68,8 @@ function get_table_of_find_files_source(path)
     return table_to_string(tbl)
 end
 
-local telescope_open_hidden = get_table_of_find_files_source(os.getenv("HOME") .. "/telescope_open_hidden.txt")
-local telescope_open = get_table_of_find_files_source(os.getenv("HOME") .. "/telescope_open.txt")
+local telescope_open_hidden = get_find_files_source(os.getenv("HOME") .. "/telescope_open_hidden.txt")
+local telescope_open = get_find_files_source(os.getenv("HOME") .. "/telescope_open.txt")
 
 map {'n', '<leader>b', ':lua require("telescope.builtin").buffers()<CR>'}
 map {'n', '<leader>m', ':lua require("telescope.builtin").keymaps()<CR>'}
