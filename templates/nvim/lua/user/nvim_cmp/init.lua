@@ -61,9 +61,9 @@ cmp.setup{
     },
     sources = {
         {name = "nvim_lsp", max_item_count = 10},
-        {name = "buffer", max_item_count = 5, keyword_length = 5},
-        {name = "luasnip", max_item_count = 8}, -- For luasnip users.
-        {name = "path", max_item_count = 8},
+        {name = "buffer", max_item_count = 8, keyword_length = 2},
+        {name = "luasnip", max_item_count = 10}, -- For luasnip users.
+        {name = "path", max_item_count = 10},
     },
     formatting = {
         format = function(entry, vim_item)
