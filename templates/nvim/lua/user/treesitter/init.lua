@@ -18,7 +18,7 @@ treesitter.setup{
             enable = true
         },
         highlight_current_scope = {
-            enable = false
+            enable = true
         },
         smart_rename = {
             enable = true,

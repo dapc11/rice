@@ -12,7 +12,7 @@ telescope.setup {
             "--with-filename",
             "--line-number",
             "--column",
-            "--smart-case",
+            "--ignore-case",
             "--trim" -- add this value
         },
         mappings = {
@@ -43,7 +43,7 @@ telescope.setup {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            case_mode = "ignore_case",        -- or "ignore_case" or "respect_case"
         }
     }
 }

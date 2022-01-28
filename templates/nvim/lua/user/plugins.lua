@@ -1,67 +1,184 @@
-local use = require("packer").use
-require("packer").startup({function()
-    use "wbthomason/packer.nvim" -- Package manager itself.
+local fn = vim.fn
 
-    use {"tpope/vim-fugitive"} -- Git integration
-    use {"lewis6991/gitsigns.nvim"} -- Lua gitsigns
+local function load_plugins()
+    _ = vim.cmd [[packadd packer.nvim]]
 
-    -- Treesitter
-    use {"nvim-lua/popup.nvim"}
-    use {"nvim-lua/plenary.nvim"}
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate"
-    } -- We recommend updating the parsers on update
+    local use = require("packer").use
+    require("packer").startup({
+        function()
+            use "wbthomason/packer.nvim"
+            use 'lewis6991/impatient.nvim'
 
-    -- Languages
-    use { "fatih/vim-go", run = ":GoUpdateBinaries", ft = "go" } -- Go support
-    use {"renerocksai/telekasten.nvim", ft = {"md", "telekasten"}, config = [[require('user.telekasten')]]}
+            use {"tpope/vim-fugitive"} -- Git integration
+            use {
+                "lewis6991/gitsigns.nvim",
+                config = function()
+                    require 'user.gitsigns'
+                end
+            } -- Lua gitsigns
 
-    -- Fuzzy finder
-    use {
-        "junegunn/fzf",
-        run = "./install --bin"
-    }
-    use {"junegunn/fzf.vim"} -- Find everything
-    use {"nvim-telescope/telescope.nvim"} -- Navigation and fzf search
-    use {"nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+            -- Treesitter
+            use {"nvim-lua/popup.nvim"}
+            use {"nvim-lua/plenary.nvim"}
+            use {
+                "nvim-treesitter/nvim-treesitter",
+                requires = {'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textsubjects'},
+                config = function()
+                    require 'user.treesitter'
+                end,
+                run = ':TSUpdate'
+            } -- We recommend updating the parsers on update
 
-    -- Language Server Protocol (LSP)
-    use {"neovim/nvim-lspconfig"} -- Configure LSP
-    use {"onsails/lspkind-nvim"} -- Icons for floating windows of LSP.
-    use {"ray-x/lsp_signature.nvim"} -- Signature help
+            -- Languages
+            use {
+                "fatih/vim-go",
+                run = ":GoUpdateBinaries",
+                ft = {"go"}
+            } -- Go support
+            use {
+                "renerocksai/telekasten.nvim",
+                config = function()
+                    require('user.telekasten')
+                end, 
+                ft = {"markdown", "md", "telekasten"}
+            }
 
-    -- Snippets
-    use {"hrsh7th/cmp-nvim-lsp"} -- Auto suggestions from LSP
-    use {"hrsh7th/cmp-buffer"} -- Auto suggestions
-    use {"hrsh7th/nvim-cmp"} -- Auto suggestions
-    use {"hrsh7th/cmp-path"} -- Auto complete paths
-    use {"hrsh7th/cmp-cmdline"}
-    use {"L3MON4D3/LuaSnip"}
-    use {"saadparwaiz1/cmp_luasnip"}
-    use {"rafamadriz/friendly-snippets"}
+            -- Fuzzy finder
+            use {
+                "junegunn/fzf",
+                run = "./install --bin"
+            }
+            use {"junegunn/fzf.vim"} -- Find everything
+            use {
+                "nvim-telescope/telescope.nvim",
+                config = function()
+                    require 'user.telescope'
+                end
+            } -- Navigation and fzf search
+            use {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                run = "make"
+            }
 
-    -- Formatting and linting
-    use {"mfussenegger/nvim-lint", ft = "python", config = [[require('user.lint')]]} -- Linting
-    use {"jose-elias-alvarez/null-ls.nvim", ft = {"go", "python", config = [[require('user.nullls')]]}} -- formatting and possibly linting
+            -- Language Server Protocol (LSP)
+            use {
+                "neovim/nvim-lspconfig",
+                config = function()
+                    require 'user.lsp_config'
+                end
+            } -- Configure LSP
+            use {"onsails/lspkind-nvim"} -- Icons for floating windows of LSP.
+            use {"ray-x/lsp_signature.nvim"} -- Signature help
 
-    -- Look and feel
-    use {"lukas-reineke/indent-blankline.nvim"} -- Indentation guide
-    use {"nvim-lualine/lualine.nvim"} -- Statusline written in Lua, duuh..
-    use {"norcalli/nvim-colorizer.lua", ft = {"json", "yaml", "css", "html"}, config = [[require('user.colorizer')]]} -- Highlight CSS colors in buffers
-    use {"kyazdani42/nvim-web-devicons"} -- Devicons for statusline
-    use {"ellisonleao/gruvbox.nvim"}
-    use {"navarasu/onedark.nvim"}
-    -- use "sunjon/shade.nvim" " Shade inactive buffers -- Buggy as hell.
-    use {"kyazdani42/nvim-tree.lua"} -- File Explorer
-    use {"akinsho/toggleterm.nvim"} -- Toggleable Terminal in vim
-    use {"akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons"}
+            -- Snippets
+            use {"hrsh7th/cmp-nvim-lsp"} -- Auto suggestions from LSP
+            use {"hrsh7th/cmp-buffer"} -- Auto suggestions
+            use {
+                "hrsh7th/nvim-cmp",
+                config = function()
+                    require 'user.nvim_cmp'
+                end
+            } -- Auto suggestions
+            use {"hrsh7th/cmp-path"} -- Auto complete paths
+            use {"hrsh7th/cmp-cmdline"}
+            use {"L3MON4D3/LuaSnip"}
+            use {"saadparwaiz1/cmp_luasnip"}
+            use {"rafamadriz/friendly-snippets"}
 
-    -- Misc
-    use {"terrortylor/nvim-comment"} -- Neat comments
-    use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
-    use {"ThePrimeagen/harpoon"}
-    use {"windwp/nvim-autopairs"} -- Auto pair single quotes, double qoutes and more
-    use {"nathom/filetype.nvim",  branch = "dev" } -- Faster filetype loading
-end,
-config = { compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua' },})
+            -- Formatting and linting
+            use {
+                "mfussenegger/nvim-lint",
+                ft = "python",
+                config = function()
+                    require('user.lint')
+                end
+            } -- Linting
+            use {
+                "jose-elias-alvarez/null-ls.nvim",
+                config = function()
+                    require('user.nullls')
+                end,
+                ft = {"go", "python"}
+            } -- formatting and possibly linting
+
+            -- Look and feel
+            use {
+                "lukas-reineke/indent-blankline.nvim",
+                config = function()
+                    require 'user.indent_blankline'
+                end
+            } -- Indentation guide
+            use {
+                "nvim-lualine/lualine.nvim",
+                config = function()
+                    require 'user.lualine'
+                end
+            } -- Statusline written in Lua, duuh..
+            use {
+                "norcalli/nvim-colorizer.lua",
+                config = function()
+                    require'colorizer'.setup()
+                end,
+                ft = {"json", "yaml", "css", "html"}
+            } -- Highlight CSS colors in buffers
+            use {"kyazdani42/nvim-web-devicons"} -- Devicons for statusline
+            use {"ellisonleao/gruvbox.nvim"}
+            use {"navarasu/onedark.nvim"}
+            -- use "sunjon/shade.nvim" " Shade inactive buffers -- Buggy as hell.
+            use {
+                "kyazdani42/nvim-tree.lua",
+                config = function()
+                    require 'user.nvim_tree'
+                end
+            } -- File Explorer
+            use {
+                "akinsho/toggleterm.nvim",
+                config = function()
+                    require 'user.toggleterm'
+                end
+            } -- Toggleable Terminal in vim
+            -- use {
+            --     "akinsho/bufferline.nvim",
+            --     requires = "kyazdani42/nvim-web-devicons"
+            -- }
+
+            -- Misc
+            use {
+                "terrortylor/nvim-comment",
+                config = function()
+                    require 'user.nvim_comment'
+                end
+            } -- Neat comments
+            use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
+            use {"ThePrimeagen/harpoon"}
+            use {
+                "windwp/nvim-autopairs",
+                config = function()
+                    require 'user.autopairs'
+                end
+            } -- Auto pair single quotes, double qoutes and more
+            use {
+                "nathom/filetype.nvim",
+                branch = "dev",
+                config = function()
+                    require 'user.filetype'
+                end
+            } -- Faster filetype loading
+        end,
+        config = {
+            package_root = fn.stdpath('data') .. '/site/pack/',
+            compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua'
+        }
+    })
+end
+
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.isdirectory(install_path) == 0 then
+    fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
+    load_plugins()
+    require("packer").sync()
+else
+    load_plugins()
+    require('packer_compiled')
+end
+
