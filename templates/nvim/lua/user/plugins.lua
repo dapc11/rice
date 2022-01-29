@@ -7,13 +7,12 @@ local function load_plugins()
     require("packer").startup({
         function()
             use "wbthomason/packer.nvim"
-            use 'lewis6991/impatient.nvim'
 
             use {"tpope/vim-fugitive"} -- Git integration
             use {
                 "lewis6991/gitsigns.nvim",
                 config = function()
-                    require 'user.gitsigns'
+                    require "user.gitsigns"
                 end
             } -- Lua gitsigns
 
@@ -22,11 +21,11 @@ local function load_plugins()
             use {"nvim-lua/plenary.nvim"}
             use {
                 "nvim-treesitter/nvim-treesitter",
-                requires = {'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'},
+                requires = {"nvim-treesitter/nvim-treesitter-refactor", "nvim-treesitter/nvim-treesitter-textobjects", "mfussenegger/nvim-ts-hint-textobject", "romgrk/nvim-treesitter-context", "windwp/nvim-ts-autotag"},
                 config = function()
-                    require 'user.treesitter'
+                    require "user.treesitter"
                 end,
-                run = ':TSUpdate'
+                run = ":TSUpdate"
             } -- We recommend updating the parsers on update
 
             -- Languages
@@ -38,7 +37,7 @@ local function load_plugins()
             use {
                 "renerocksai/telekasten.nvim",
                 config = function()
-                    require('user.telekasten')
+                    require("user.telekasten")
                 end, 
                 ft = {"markdown", "md", "telekasten"}
             }
@@ -52,7 +51,7 @@ local function load_plugins()
             use {
                 "nvim-telescope/telescope.nvim",
                 config = function()
-                    require 'user.telescope'
+                    require "user.telescope"
                 end
             } -- Navigation and fzf search
             use {
@@ -64,7 +63,7 @@ local function load_plugins()
             use {
                 "neovim/nvim-lspconfig",
                 config = function()
-                    require 'user.lsp_config'
+                    require "user.lsp_config"
                 end
             } -- Configure LSP
             use {"onsails/lspkind-nvim"} -- Icons for floating windows of LSP.
@@ -76,7 +75,7 @@ local function load_plugins()
             use {
                 "hrsh7th/nvim-cmp",
                 config = function()
-                    require 'user.nvim_cmp'
+                    require "user.nvim_cmp"
                 end
             } -- Auto suggestions
             use {"hrsh7th/cmp-path"} -- Auto complete paths
@@ -90,13 +89,13 @@ local function load_plugins()
                 "mfussenegger/nvim-lint",
                 ft = "python",
                 config = function()
-                    require('user.lint')
+                    require("user.lint")
                 end
             } -- Linting
             use {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require('user.nullls')
+                    require("user.nullls")
                 end,
                 ft = {"go", "python"}
             } -- formatting and possibly linting
@@ -105,19 +104,19 @@ local function load_plugins()
             use {
                 "lukas-reineke/indent-blankline.nvim",
                 config = function()
-                    require 'user.indent_blankline'
+                    require "user.indent_blankline"
                 end
             } -- Indentation guide
             use {
                 "nvim-lualine/lualine.nvim",
                 config = function()
-                    require 'user.lualine'
+                    require "user.lualine"
                 end
             } -- Statusline written in Lua, duuh..
             use {
                 "norcalli/nvim-colorizer.lua",
                 config = function()
-                    require'colorizer'.setup()
+                    require"colorizer".setup()
                 end,
                 ft = {"json", "yaml", "css", "html"}
             } -- Highlight CSS colors in buffers
@@ -128,25 +127,21 @@ local function load_plugins()
             use {
                 "kyazdani42/nvim-tree.lua",
                 config = function()
-                    require 'user.nvim_tree'
+                    require "user.nvim_tree"
                 end
             } -- File Explorer
             use {
                 "akinsho/toggleterm.nvim",
                 config = function()
-                    require 'user.toggleterm'
+                    require "user.toggleterm"
                 end
             } -- Toggleable Terminal in vim
-            -- use {
-            --     "akinsho/bufferline.nvim",
-            --     requires = "kyazdani42/nvim-web-devicons"
-            -- }
 
             -- Misc
             use {
                 "terrortylor/nvim-comment",
                 config = function()
-                    require 'user.nvim_comment'
+                    require "user.nvim_comment"
                 end
             } -- Neat comments
             use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
@@ -154,31 +149,29 @@ local function load_plugins()
             use {
                 "windwp/nvim-autopairs",
                 config = function()
-                    require 'user.autopairs'
+                    require "user.autopairs"
                 end
             } -- Auto pair single quotes, double qoutes and more
             use {
                 "nathom/filetype.nvim",
                 branch = "dev",
                 config = function()
-                    require 'user.filetype'
+                    require "user.filetype"
                 end
             } -- Faster filetype loading
         end,
         config = {
-            package_root = fn.stdpath('data') .. '/site/pack/',
-            compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua'
+            package_root = fn.stdpath("data") .. "/site/pack/",
         }
     })
 end
 
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.isdirectory(install_path) == 0 then
     fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
     load_plugins()
     require("packer").sync()
 else
     load_plugins()
-    require('packer_compiled')
 end
 

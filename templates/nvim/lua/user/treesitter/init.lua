@@ -1,4 +1,5 @@
 local treesitter = require("nvim-treesitter.configs")
+require("tsht").config.hint_keys = { "h", "j", "f", "d", "n", "v", "s", "l", "a" }
 treesitter.setup{
     ensure_installed = {"python", "lua", "dockerfile", "json", "yaml", "css", "html", "go", "bash", "java", "vim", "toml", "markdown" },
     highlight = {
@@ -24,6 +25,10 @@ treesitter.setup{
         disable = function(lang, bufnr)
             return vim.api.nvim_buf_line_count(bufnr) > 1000
         end,
+    },
+    autotag = {
+        enable = true,
+        filetypes = { "html" , "xml" },
     },
     refactor = {
         highlight_definitions = {
