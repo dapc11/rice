@@ -33,7 +33,7 @@ treesitter.setup{
             end,
         },
         highlight_current_scope = {
-            enable = true,
+            enable = false,
             disable = function(lang, bufnr)
                 return vim.api.nvim_buf_line_count(bufnr) > 1000
             end,

@@ -71,6 +71,9 @@ cmp.setup{
             vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
             return vim_item
         end
+    },
+    documentation = {
+        border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│" }
     }
 }
 
