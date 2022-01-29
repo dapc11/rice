@@ -22,7 +22,7 @@ local function load_plugins()
             use {"nvim-lua/plenary.nvim"}
             use {
                 "nvim-treesitter/nvim-treesitter",
-                requires = {'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textsubjects'},
+                requires = {'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'},
                 config = function()
                     require 'user.treesitter'
                 end,
