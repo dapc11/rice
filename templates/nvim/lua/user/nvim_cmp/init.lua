@@ -73,7 +73,8 @@ cmp.setup{
         end
     },
     documentation = {
-        border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+        border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
     }
 }
 
