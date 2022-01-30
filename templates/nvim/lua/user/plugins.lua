@@ -21,7 +21,9 @@ local function load_plugins()
             use {"nvim-lua/plenary.nvim"}
             use {
                 "nvim-treesitter/nvim-treesitter",
-                requires = {"nvim-treesitter/nvim-treesitter-refactor", "nvim-treesitter/nvim-treesitter-textobjects", "mfussenegger/nvim-ts-hint-textobject", "romgrk/nvim-treesitter-context", "windwp/nvim-ts-autotag"},
+                requires = {"nvim-treesitter/nvim-treesitter-refactor", "nvim-treesitter/nvim-treesitter-textobjects",
+                            "mfussenegger/nvim-ts-hint-textobject", "romgrk/nvim-treesitter-context",
+                            "windwp/nvim-ts-autotag"},
                 config = function()
                     require "user.treesitter"
                 end,
@@ -38,7 +40,7 @@ local function load_plugins()
                 "renerocksai/telekasten.nvim",
                 config = function()
                     require("user.telekasten")
-                end, 
+                end,
                 ft = {"markdown", "md", "telekasten"}
             }
 
@@ -57,6 +59,16 @@ local function load_plugins()
             use {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 run = "make"
+            }
+            use {
+                'phaazon/hop.nvim',
+                branch = 'v1', -- optional but strongly recommended
+                config = function()
+                    -- you can configure Hop the way you like here; see :h hop-config
+                    require'hop'.setup {
+                        keys = 'etovxqpdygfblzhckisuran'
+                    }
+                end
             }
 
             -- Language Server Protocol (LSP)
@@ -161,7 +173,7 @@ local function load_plugins()
             } -- Faster filetype loading
         end,
         config = {
-            package_root = fn.stdpath("data") .. "/site/pack/",
+            package_root = fn.stdpath("data") .. "/site/pack/"
         }
     })
 end

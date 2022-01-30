@@ -448,6 +448,8 @@ highlight! CmpItemKindKeyword guibg=NONE guifg={{base06}}
 highlight! CmpItemKindProperty guibg=NONE guifg={{base06}}
 highlight! CmpItemKindUnit guibg=NONE guifg={{base06}}
 
+highlight! TreesitterContext guibg={{base01}}
+
 " Remove functions
 delf <sid>hi
 
