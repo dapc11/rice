@@ -7,8 +7,8 @@ telescope.setup {
         file_ignore_patterns = { "node_modules", ".git" },
         vimgrep_arguments = {
             "rg",
-            "--color=never",
             "--no-heading",
+            "--color=never",
             "--with-filename",
             "--line-number",
             "--column",
@@ -48,3 +48,4 @@ telescope.setup {
     }
 }
 telescope.load_extension("fzf")
+telescope.load_extension("projects")

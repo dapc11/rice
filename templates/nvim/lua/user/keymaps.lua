@@ -71,7 +71,7 @@ end
 local telescope_open_hidden = get_find_files_source(os.getenv("HOME") .. "/telescope_open_hidden.txt")
 local telescope_open = get_find_files_source(os.getenv("HOME") .. "/telescope_open.txt")
 
-map {'n', '<leader>b', ':lua require("telescope.builtin").buffers()<CR>'}
+map {'n', '<leader>b', ':lua require("telescope.builtin").git_branches()<CR>'}
 map {'n', '<leader>m', ':lua require("telescope.builtin").keymaps()<CR>'}
 map {'n', '<leader>h', ':lua require("telescope.builtin").oldfiles()<CR>'}
 map {'n', '<Leader>n', ':lua require("telescope.builtin").git_files()<CR>'}
@@ -84,13 +84,8 @@ map {'n', '<Leader>O',
     telescope_open_hidden .. '})<CR>'}
 map {'n', '<leader><leader>',
      ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
-map {'n', '<C-p>', ':lua require("telescope.builtin").find_files()<CR>'}
-map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
-vim.cmd [[
-    command! -nargs=? -complete=dir AD call fzf#run(fzf#wrap({'source': 'rg ~/repos ~/personal_repos --max-depth 2 --hidden --files --null | xargs -0 dirname | sort | uniq '.expand(<q-args>)}))
-]]
-map {'n', '<leader>d', ':AD<CR>'}
-map {'n', '<leader>cd', ':lua require"telescope".extensions.zoxide.list{}<CR>'}
+map {'n', '<C-p>', ':Telescope projects<CR>'}
+map {'n', '<C-s>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 
 -- Harpoon
 map {'n', '<A-m>', ":lua require('harpoon.mark').add_file()<CR>"}
@@ -204,7 +199,7 @@ map {'n', '<Leader>gp', ':Gitsigns preview_hunk<CR>'}
 map {'n', '<Leader>grh', ':Gitsigns reset_hunk<CR>'}
 map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
 
-map {'n', '<C-s>', ':w<cr>'}
+map {'n', '<C-w>', ':w<cr>'}
 
 -- Beginning and end of line
 map {

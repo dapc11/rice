@@ -58,7 +58,7 @@ g["indent_blankline_show_first_indent_level"] = true
 g["indent_blankline_filetype_exclude"] = {"help"}
 g["indentLine_setConceal"] = 0
 
-g["rooter_patterns"] = {"setup.cfg", ".git", "pom.xml", "Makefile", "*.sln", "build/env.sh"}
+-- g["rooter_patterns"] = {"setup.cfg", ".git", "pom.xml", "Makefile", "*.sln", "build/env.sh"}
 -- vim.g["rooter_change_directory_for_non_project_files"] = "home"
 
 g["python3_host_prog"] = "~/dev/bin/python3"

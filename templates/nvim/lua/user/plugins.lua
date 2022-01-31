@@ -36,13 +36,6 @@ local function load_plugins()
                 run = ":GoUpdateBinaries",
                 ft = {"go"}
             } -- Go support
-            use {
-                "renerocksai/telekasten.nvim",
-                config = function()
-                    require("user.telekasten")
-                end,
-                ft = {"markdown", "md", "telekasten"}
-            }
 
             -- Fuzzy finder
             use {
@@ -65,9 +58,7 @@ local function load_plugins()
                 branch = 'v1', -- optional but strongly recommended
                 config = function()
                     -- you can configure Hop the way you like here; see :h hop-config
-                    require'hop'.setup {
-                        keys = 'etovxqpdygfblzhckisuran'
-                    }
+                    require'hop'.setup { }
                 end
             }
 
@@ -156,7 +147,16 @@ local function load_plugins()
                     require "user.nvim_comment"
                 end
             } -- Neat comments
-            use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
+            -- use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
+            use {
+                "ahmedkhalf/project.nvim",
+                config = function()
+                    require("project_nvim").setup {
+                        detection_methods = { ".git", "Makefile", "*.sln", "build/env.sh", "pom.xml", "ruleset2.0.yaml" },
+                        exclude_dirs = { "./bob/*", ".git" },
+                    }
+                end
+            }
             use {"ThePrimeagen/harpoon"}
             use {
                 "windwp/nvim-autopairs",
@@ -171,6 +171,19 @@ local function load_plugins()
                     require "user.filetype"
                 end
             } -- Faster filetype loading
+            use {
+                "preservim/vim-markdown",
+                requires = {"godlygeek/tabular", "preservim/vim-markdown"}
+            }
+            use {
+                "cuducos/yaml.nvim",
+                ft = {"yaml"}, -- optional
+                requires = {"nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" -- optional
+                },
+                config = function()
+                    require("yaml_nvim").init()
+                end
+            }
         end,
         config = {
             package_root = fn.stdpath("data") .. "/site/pack/"
