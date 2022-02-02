@@ -171,10 +171,10 @@ local function load_plugins()
                     require "user.filetype"
                 end
             } -- Faster filetype loading
-            use {
-                "preservim/vim-markdown",
-                requires = {"godlygeek/tabular", "preservim/vim-markdown"}
-            }
+            -- use {
+            --     "preservim/vim-markdown",
+            --     requires = {"godlygeek/tabular", "preservim/vim-markdown"}
+            -- }
             use {
                 "cuducos/yaml.nvim",
                 ft = {"yaml"}, -- optional
