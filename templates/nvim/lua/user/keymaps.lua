@@ -153,8 +153,8 @@ map {'c', '<C-BS>', '<C-W>'}
 map {'v', '<leader>p', '"_dP'}
 
 -- " Navigate errors
-map {'n', '<C-n>', ':cn<CR>'}
-map {'n', '<C-b>', ':cp<CR>'}
+map {'n', '<C-.>', ':cn<CR>'}
+map {'n', '<C-,>', ':cp<CR>'}
 
 -- " Paste without overwrite default register
 map {'x', 'p', 'pgvy'}

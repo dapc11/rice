@@ -152,8 +152,8 @@ local function load_plugins()
                 "ahmedkhalf/project.nvim",
                 config = function()
                     require("project_nvim").setup {
-                        detection_methods = { ".git", "Makefile", "*.sln", "build/env.sh", "pom.xml", "ruleset2.0.yaml" },
                         exclude_dirs = { "./bob/*", ".git" },
+                        hidden = true
                     }
                 end
             }

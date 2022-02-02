@@ -3,8 +3,8 @@ window:
     columns: 0
     lines: 0
   padding:
-    x: 10
-    y: 10
+    x: 0
+    y: 0
   dynamic_padding: false
   decorations: full
   title: alacritty
