@@ -15,8 +15,8 @@ local function load_plugins()
                     require "user.gitsigns"
                 end
             } -- Lua gitsigns
-
             -- Treesitter
+
             use {"nvim-lua/popup.nvim"}
             use {"nvim-lua/plenary.nvim"}
             use {
@@ -58,7 +58,7 @@ local function load_plugins()
                 branch = 'v1', -- optional but strongly recommended
                 config = function()
                     -- you can configure Hop the way you like here; see :h hop-config
-                    require'hop'.setup { }
+                    require'hop'.setup {}
                 end
             }
 
@@ -133,12 +133,12 @@ local function load_plugins()
                     require "user.nvim_tree"
                 end
             } -- File Explorer
-            use {
-                "akinsho/toggleterm.nvim",
-                config = function()
-                    require "user.toggleterm"
-                end
-            } -- Toggleable Terminal in vim
+            -- use {
+            --     "akinsho/toggleterm.nvim",
+            --     config = function()
+            --         require "user.toggleterm"
+            --     end
+            -- } -- Toggleable Terminal in vim
 
             -- Misc
             use {
@@ -149,12 +149,9 @@ local function load_plugins()
             } -- Neat comments
             -- use {"airblade/vim-rooter"} -- Change PWD to project root of open buffer
             use {
-                "ahmedkhalf/project.nvim",
+                "dapc11/project.nvim",
                 config = function()
-                    require("project_nvim").setup {
-                        exclude_dirs = { "./bob/*", ".git" },
-                        hidden = true
-                    }
+                    require("project_nvim").setup({})
                 end
             }
             use {"ThePrimeagen/harpoon"}
