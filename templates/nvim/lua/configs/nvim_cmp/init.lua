@@ -10,6 +10,35 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))
 
 
+local kind_icons = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "",
+    Interface = "",
+    Module = "",
+    Property = "",
+    Unit = "",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+}
+
+
 cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 cmp.setup{
     completion = {completeopt = "menu,menuone,noinsert"},
@@ -66,11 +95,11 @@ cmp.setup{
         {name = "path", max_item_count = 10},
     },
     formatting = {
-        format = function(entry, vim_item)
-            -- fancy icons and a name of kind
-            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-            return vim_item
-        end
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+        return vim_item
+      end,
     },
     documentation = {
         border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│" },

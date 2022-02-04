@@ -28,7 +28,7 @@ map {'n', '<C-w><', ':vertical:resize -8<CR>'}
 map {'n', '<C-w>>', ':vertical:resize +8<CR>'}
 
 -- Fuzzy find
-function table_to_string(tbl)
+local function table_to_string(tbl)
     local result = "{"
     for k, v in pairs(tbl) do
         if type(k) == "string" then
@@ -52,7 +52,7 @@ function table_to_string(tbl)
     return result .. "}"
 end
 
-function get_find_files_source(path)
+local function get_find_files_source(path)
     local file = io.open(path, "r")
     local tbl = {}
     local i = 0
@@ -85,7 +85,7 @@ map {'n', '<Leader>O',
 map {'n', '<leader><leader>',
      ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
 map {'n', '<C-p>', ':Telescope projects<CR>'}
-map {'n', '<C-s>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
+map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 
 -- Harpoon
 map {'n', '<A-m>', ":lua require('harpoon.mark').add_file()<CR>"}
@@ -125,8 +125,8 @@ map {'t', '<Esc>', '<C-\\><C-n>'}
 map {"v", "p", '"_dP'}
 
 map {'n', '<C-Space>', '<C-x><C-n>'}
-map {'n', '<A-left>', ':bp<CR>'}
-map {'n', '<A-right>', ':bn<CR>'}
+map {'n', '<S-Tab>', ':bp<CR>'}
+map {'n', '<Tab>', ':bn<CR>'}
 
 -- " Requires gvim
 -- " paste with shift+insert
@@ -199,7 +199,7 @@ map {'n', '<Leader>gp', ':Gitsigns preview_hunk<CR>'}
 map {'n', '<Leader>grh', ':Gitsigns reset_hunk<CR>'}
 map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
 
-map {'n', '<C-w>', ':w<cr>'}
+map {'n', '<C-s>', ':w<cr>'}
 
 -- Beginning and end of line
 map {
