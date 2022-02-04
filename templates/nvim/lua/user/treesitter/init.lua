@@ -1,5 +1,14 @@
 local treesitter = require("nvim-treesitter.configs")
 require("tsht").config.hint_keys = { "h", "j", "f", "d", "n", "v", "s", "l", "a" }
+local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+parser_config.gotmpl = {
+  install_info = {
+    url = "https://github.com/ngalaiko/tree-sitter-go-template",
+    files = {"src/parser.c"}
+  },
+  filetype = "gotmpl",
+  used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl"}
+}
 treesitter.setup{
     ensure_installed = {"python", "lua", "dockerfile", "json", "yaml", "css", "html", "go", "bash", "java", "vim", "toml", "markdown" },
     highlight = {

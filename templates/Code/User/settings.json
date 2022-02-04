@@ -9,7 +9,7 @@
     "editor.fontFamily": "'{{font}}', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 13,
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnType": true,
     "editor.suggestSelection": "first",
     "editor.rulers": [
@@ -32,9 +32,7 @@
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
-    "python.linting.pylintUseMinimalCheckers": false,
     "python.formatting.provider": "black",
-    "python.autoComplete.addBrackets": true,
     "python.sortImports.path": "${env:HOME}/dev/bin/isort",
     "python.sortImports.args": [
         "-w",
@@ -77,7 +75,7 @@
         "terminal.foreground": "{{base06}}",
         "terminal.ansiBrightBlack": "{{base02}}",
         "terminal.ansiBrightCyan": "{{base0C}}",
-        "terminal.ansiBrightGreen": "{{base0F}}",
+        "terminal.ansiBrightGreen": "{{base0B}}",
         "terminal.ansiBrightMagenta": "{{base0E}}",
         "terminal.ansiBrightRed": "{{base08}}",
         "terminal.ansiBrightWhite": "{{base07}}",
@@ -86,11 +84,18 @@
         "terminal.ansiBlack": "{{base00}}",
         "terminal.ansiCyan": "{{base0D}}",
         "terminal.ansiGreen": "{{base0B}}",
-        "terminal.ansiMagenta": "{{base09}}",
+        "terminal.ansiMagenta": "{{base0E}}",
         "terminal.ansiRed": "{{base08}}",
         "terminal.ansiWhite": "{{base06}}",
         "terminal.ansiYellow": "{{base0A}}",
         "terminal.ansiBlue": "{{base0C}}",
+        "gitDecoration.untrackedResourceForeground": "{{base09}}",
+        "list.errorForeground": "{{base08}}",
+        "list.warningForeground": "{{base0A}}",
+        "gitDecoration.ignoredResourceForeground": "{{base03}}",
+        "gitDecoration.modifiedResourceForeground": "{{base0D}}",
+        "gitDecoration.stageModifiedResourceForeground": "{{base0B}}",
+        "gitDecoration.submoduleResourceForeground": "{{base04}}"
     },
     "editor.semanticTokenColorCustomizations": {
         "[*]": {
@@ -156,67 +161,6 @@
                 },
             ]
         }
-    },
-    "vim.easymotion": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "j"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "d",
-                "d"
-            ]
-        },
-        {
-            "before": [
-                "<C-n>"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        },
-        {
-            "before": [
-                "<C-w>"
-            ],
-            "after": [
-                "v",
-                "i",
-                "\""
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "q"
-            ],
-            "commands": [
-                ":bd"
-            ]
-        },
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false,
-        "<C-k>": false,
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,

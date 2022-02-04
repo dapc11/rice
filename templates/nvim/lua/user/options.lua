@@ -81,6 +81,7 @@ vim.cmd [[
 
     augroup dapc
         autocmd!
+        autocmd BufNewFile,BufRead *.tpl set filetype=gotmpl
         " Yaml
         autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
         " autocmd BufRead * lua require('lint').try_lint()
