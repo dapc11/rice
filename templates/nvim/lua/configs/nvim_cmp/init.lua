@@ -123,3 +123,20 @@ cmp.setup.cmdline(":", {
 vim.cmd [[
 autocmd FileType gitcommit,fugitive lua require("cmp").setup.buffer { sources = { { name = "buffer", max_item_count = 10 }, } }
 ]]
+
+-- _G.vimrc = _G.vimrc or {}
+-- _G.vimrc.cmp = _G.vimrc.cmp or {}
+-- _G.vimrc.cmp.on_text_changed = function()
+--   local cursor = vim.api.nvim_win_get_cursor(0)
+--   local line = vim.api.nvim_get_current_line()
+--   local before = string.sub(line, 1, cursor[2] + 1)
+--   if before:match('%s*$') then
+--     cmp.complete() -- Trigger completion only if the cursor is placed at the end of line.
+--   end
+-- end
+-- vim.cmd([[
+--   augroup cmp
+--     autocmd
+--     autocmd TextChanged,TextChangedI,TextChangedP * call luaeval('vimrc.cmp.on_text_changed()')
+--   augroup END
+-- ]])

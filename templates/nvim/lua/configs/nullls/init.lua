@@ -4,13 +4,34 @@ if not status_ok then
     return
 end
 
+local write_good = null_ls.builtins.diagnostics.write_good.with({
+    filetypes = {"markdown", "gitcommit", "text"}
+})
+local dictionary = null_ls.builtins.hover.dictionary.with({
+    filetypes = {"markdown", "gitcommit", "text"}
+})
+local black = null_ls.builtins.formatting.black.with({
+    filetypes = {"python"}
+})
+local isort = null_ls.builtins.formatting.isort.with({
+    filetypes = {"python"}
+})
+local gofmt = null_ls.builtins.formatting.gofmt.with({
+    filetypes = {"go"}
+})
+local goimports = null_ls.builtins.formatting.goimports.with({
+    filetypes = {"go"}
+})
+
 -- register any number of sources simultaneously
 local sources = {
     null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.isort,
+    black,
+    isort,
+    gofmt,
+    goimports,
+    write_good,
+    dictionary,
 }
 
 null_ls.setup({

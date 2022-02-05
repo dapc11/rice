@@ -111,7 +111,6 @@ packer.startup {
         -- Formatting and linting
         use {
             "mfussenegger/nvim-lint",
-            ft = "python",
             config = function()
                 require("configs.lint")
             end
@@ -120,8 +119,7 @@ packer.startup {
             "jose-elias-alvarez/null-ls.nvim",
             config = function()
                 require("configs.nullls")
-            end,
-            ft = {"go", "python"}
+            end
         } -- formatting and possibly linting
 
         -- Look and feel
