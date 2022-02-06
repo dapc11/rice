@@ -305,6 +305,21 @@ map {'n', '<A-a>', '<C-a>'}
 map {'v', '<A-a>', '<C-a>'}
 map {'n', '<A-x>', '<C-x>'}
 map {'v', '<A-x>', '<C-x>'}
+
+
+
+map {'x', '<',  '<gv'}
+map {'x', '>',  '>gv'}
+vim.cmd[[
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+]]
 -- These commands will move the current buffer backwards or forwards in the bufferline
 -- map {'n', '<Tab>', ':BufferLineCycleNext<CR>'}
 -- map {'n', '<C-Tab>', ':BufferLineCyclePrev<CR>'}
