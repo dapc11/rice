@@ -82,7 +82,7 @@ packer.startup {
         use {
             "neovim/nvim-lspconfig",
             config = function()
-                require "configs.lsp_config"
+                require "configs.lsp.lsp_config"
             end
         } -- Configure LSP
         use {"onsails/lspkind-nvim"} -- Icons for floating windows of LSP.
@@ -118,7 +118,7 @@ packer.startup {
         use {
             "jose-elias-alvarez/null-ls.nvim",
             config = function()
-                require("configs.nullls")
+                require("configs.lsp.nullls")
             end
         } -- formatting and possibly linting
 

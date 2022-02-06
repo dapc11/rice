@@ -2,13 +2,13 @@
 
 ## Getting started
 
-Make __first_setup__ executable and invoke it as following in order to setuo your environment:
+Make __first_setup__ executable and invoke it as following to setuo your environment:
 
 ```shell
 bash first_setup
 ```
 
-One can at any time after first setup invoke __rice_it__ in order to re-generate dotfiles, see below for usage.
+One can at any time after first setup invoke __rice_it__ to re-generate dotfiles, see below for usage.
 
 ### Usage
 

@@ -6,7 +6,7 @@ utils.bootstrap()
 
 utils.impatient()
 
-local sources = {"core.options", "core.fzf", "core.plugins", "core.keymaps"}
+local sources = {"core.options", "core.fzf", "core.plugins", "core.keymaps", "configs.lsp"}
 
 for _, source in ipairs(sources) do
     local status_ok, fault = pcall(require, source)
