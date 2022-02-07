@@ -21,7 +21,7 @@ M.diagnostics_config = {
     float = {
         focusable = false,
         style = "minimal",
-        border = "single",
+        border = "rounded",
         source = "always",
         header = "",
         prefix = ""
@@ -30,11 +30,11 @@ M.diagnostics_config = {
 
 M.handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "single",
+        border = "rounded",
         scope = "line"
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "single",
+        border = "rounded",
         scope = "line"
     })
 }

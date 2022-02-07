@@ -10,7 +10,7 @@ window:
   title: alacritty
   class: alacritty
   dynamic_title: true
-background_opacity: 1.0
+  opacity: 1.0
 
 scrolling:
   history: 10000

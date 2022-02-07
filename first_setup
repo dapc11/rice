@@ -12,7 +12,7 @@ function setup_alacritty
 
     # Add Man-Page entries
     sudo mkdir -p /usr/local/share/man/man1
-    gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+    gzip -c extra/alacritty.man | sulacdo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 
     # Create desktop file
     mkdir -p ~/.local/share/applications
@@ -37,7 +37,7 @@ function setup_enact
 
 function install_deps
 {
-    echo -e "\n\tInstalling dependecies"
+    echo -e "\n\tInstalling dependencies"
     echo "----------------------------------------------------"
     sudo apt-get update
     #cat .installed.txt | cut -d" " -f1 | xargs sudo pacman -S --noconfirm -q --needed
@@ -130,18 +130,18 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
 install_deps
-setup_zsh
-# Setup zoxide - smarter cd
+#setup_zsh
+## Setup zoxide - smarter cd
 curl -sS https://webinstall.dev/zoxide | bash
-setup_fonts
-setup_alacritty
-setup_enact
-# setup_polybar
-generate_dotfiles ocean
-[[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
-git config --global alias.st status
-git config --global alias.ci 'commit -v'
-# git config --global user.email "daniel.tingelof@gmail.com"
-git config --global user.name "Daniel Tingelöf"
-echo -e "\nDone"
+#setup_fonts
+#setup_alacritty
+#setup_enact
+## setup_polybar
+#generate_dotfiles ocean
+#[[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
+#git config --global alias.st status
+#git config --global alias.ci 'commit -v'
+## git config --global user.email "daniel.tingelof@gmail.com"
+#git config --global user.name "Daniel Tingelöf"
+#echo -e "\nDone"
 exit 0

@@ -3,7 +3,7 @@ local status_ok, null_ls = pcall(require, "null-ls")
 if not status_ok then
     return
 end
-local status_ok, lsputils = pcall(require, "utils")
+local status_ok, lsputils = pcall(require, "configs.lsp.utils")
 if not status_ok then
     return
 end
