@@ -152,12 +152,12 @@ packer.startup {
                 require "configs.nvim_tree"
             end
         } -- File Explorer
-        -- use {
-        --     "akinsho/toggleterm.nvim",
-        --     config = function()
-        --         require "configs.toggleterm"
-        --     end
-        -- } -- Toggleable Terminal in vim
+        use {
+            "akinsho/toggleterm.nvim",
+            config = function()
+                require "configs.toggleterm"
+            end
+        } -- Toggleable Terminal in vim
 
         -- Misc
         use {
@@ -181,16 +181,6 @@ packer.startup {
                 require"configs.autopairs".config()
             end
         } -- Auto pair single quotes, double qoutes and more
-
-        use {
-            "cuducos/yaml.nvim",
-            ft = {"yaml"}, -- optional
-            requires = {"nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" -- optional
-            },
-            config = function()
-                require("yaml_nvim").init()
-            end
-        }
     end,
     config = {
         compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",

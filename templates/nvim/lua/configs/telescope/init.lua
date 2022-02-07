@@ -6,8 +6,6 @@ end
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
-telescope.load_extension("fzf")
-telescope.load_extension("projects")
 
 telescope.setup {
     defaults = {
@@ -16,7 +14,7 @@ telescope.setup {
         path_display = {"smart"},
         file_ignore_patterns = {"node_modules", ".git"},
         vimgrep_arguments = {"rg", "--no-heading", "--color=never", "--with-filename", "--line-number", "--column",
-                             "--ignore-case", "--trim" -- add this value
+                             "--smart-case", "--trim" -- add this value
         },
         mappings = {
             n = {
@@ -52,7 +50,9 @@ telescope.setup {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "ignore_case" -- or "ignore_case" or "respect_case"
+            case_mode = "smart_case" -- or "ignore_case" or "respect_case"
         }
     }
 }
+telescope.load_extension("fzf")
+telescope.load_extension("projects")
