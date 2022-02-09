@@ -78,7 +78,7 @@ function M.lsp_signature(bufnr)
     lspsignature.on_attach({
         bind = true, -- This is mandatory, otherwise border config won"t get registered.
         handler_opts = {
-            border = "single"
+            border = "rounded"
         },
         hint_prefix = " ",
         max_height = 8

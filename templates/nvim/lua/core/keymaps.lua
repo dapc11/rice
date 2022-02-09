@@ -117,6 +117,8 @@ map {
 }
 map {'n', '<Leader>zp', ':profile start nvim-profile.log | profile func * | profile file *'}
 
+map {'n', ')', ':cnext<cr>'}
+map {'n', '(', ':cprevious<cr>'}
 map {'n', 'ä', '<C-d>'}
 map {'n', 'ö', '<C-u>'}
 map {'n', '¨', '<C-^>'}

@@ -31,10 +31,10 @@
 "." @punctuation.delimiter
 "," @punctuation.delimiter
 
-"{{" @punctuation.bracket
-"}}" @punctuation.bracket
 "{{-" @punctuation.bracket
 "-}}" @punctuation.bracket
+"{{" @punctuation.bracket
+"}}" @punctuation.bracket
 ")" @punctuation.bracket
 "(" @punctuation.bracket
 

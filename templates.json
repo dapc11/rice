@@ -15,7 +15,7 @@
     { "template": "nvim/queries/gotmpl/highlights.scm", "onlyCopy": true },
     { "template": "nvim/after/syntax/python.vim", "onlyCopy": true },
     { "template": "nvim/colors/neosolarized.vim" },
-    { "template": "nvim/lua/core/options.lua" },
+    { "template": "nvim/lua/core/options.lua", "onlyCopy": true},
     { "template": "nvim/lua/core/fzf.lua" },
     { "template": "nvim/lua/core/plugins.lua" },
     { "template": "nvim/lua/core/keymaps.lua" },

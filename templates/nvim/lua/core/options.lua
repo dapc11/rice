@@ -64,6 +64,7 @@ autocmd!
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 autocmd BufNewFile,BufRead *.tpl set filetype=gotmpl
+autocmd BufNewFile,BufRead *.yaml if search('{{.*}}', 'nw') | setlocal filetype=gotmpl | endif
 " Yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " autocmd BufRead * lua require('lint').try_lint()
@@ -72,20 +73,6 @@ autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 augroup END
 
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}
-
-highlight! CmpItemAbbrMatch guibg=NONE guifg={{base0D}}
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg={{base0D}}
-highlight! CmpItemKindFunction guibg=NONE guifg={{base0E}}
-highlight! CmpItemKindMethod guibg=NONE guifg={{base0E}}
-highlight! CmpItemKindVariable guibg=NONE guifg={{base0C}}
-highlight! CmpItemKindKeyword guibg=NONE guifg={{base07}}
-highlight! PMenu guibg={{base01}} guifg={{base06}}
-highlight! NormalFloat guifg={{base06}} guibg={{base00}}
-highlight! NormalFloatBorder guifg={{base06}} guibg={{base00}}
-highlight DiagnosticLineNrError guifg={{base08}} gui=bold
-highlight DiagnosticLineNrWarn guifg={{base09}} gui=bold
-highlight DiagnosticLineNrInfo guifg={{base0C}} gui=bold
-highlight DiagnosticLineNrHint guifg={{base0D}} gui=bold
 
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
 sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
