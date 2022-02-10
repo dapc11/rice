@@ -30,6 +30,18 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+lspconfig.yamlls.setup{
+    on_attach = on_attach,
+    handlers = lsputils.handlers,
+    capabilities = lsputils.capabilities,
+    flags = lsputils.flags,
+    settings = {
+        yaml = {
+            schemas = { kubernetes = "globPattern" },
+        }
+    }
+}
+
 local util = require("lspconfig/util")
 lspconfig.pyright.setup {
     on_attach = on_attach,

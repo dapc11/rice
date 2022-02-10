@@ -27,7 +27,7 @@ highlight DiagnosticLineNrWarn guifg={{base09}}
 highlight DiagnosticLineNrInfo guifg={{base0C}}
 highlight DiagnosticLineNrHint guifg={{base0D}}
 highlight FloatBorder guifg={{base04}} guibg={{base00}}
-highlight NormalFloat guifg={{base0A}} guibg={{base00}}
+highlight NormalFloat guifg={{base06}} guibg={{base00}}
 highlight PMenu guibg={{base00}} guifg={{base06}}
 ]]
 

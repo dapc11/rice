@@ -11,7 +11,6 @@ telescope.setup {
     defaults = {
         prompt_prefix = " ",
         selection_caret = "❯ ",
-        path_display = {"smart"},
         file_ignore_patterns = {"node_modules", ".git"},
         vimgrep_arguments = {"rg", "--no-heading", "--color=never", "--with-filename", "--line-number", "--column",
                              "--smart-case", "--trim" -- add this value
