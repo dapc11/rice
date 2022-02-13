@@ -40,58 +40,62 @@ local kind_icons = {
 
 
 cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+
+local mapping = {
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+    }),
+    ["<CR>"] = cmp.mapping({
+        i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        c = function(fallback)
+            if cmp.visible() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+            else
+                fallback()
+            end
+        end
+    }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+        elseif has_words_before() then
+            cmp.complete()
+        else
+            fallback()
+        end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+        else
+            fallback()
+        end
+    end, { "i", "s" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {"i", "c"}),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {"i", "c"}),
+}
+
+
 cmp.setup{
     completion = {completeopt = "menu,menuone,noinsert"},
     snippet = {
         expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body)
         end,
     },
-    mapping = {
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        }),
-        ["<CR>"] = cmp.mapping({
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-            c = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-                else
-                    fallback()
-                end
-            end
-        }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    },
+    mapping = mapping,
     sources = {
         {name = "nvim_lsp", max_item_count = 10},
         {name = "buffer", max_item_count = 8, keyword_length = 2},
-        {name = "luasnip", max_item_count = 10}, -- For luasnip users.
+        {name = "luasnip", max_item_count = 10},
         {name = "path", max_item_count = 10},
     },
     formatting = {
@@ -109,34 +113,21 @@ cmp.setup{
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).
 cmp.setup.cmdline("/", {
+    mapping = mapping,
     sources = {
         { name = "buffer", max_item_count = 10, keyword_length = 5 }
     }
 })
 cmp.setup.cmdline(":", {
+    mapping = mapping,
     sources = cmp.config.sources({
         { name = "path", keyword_length = 2 }
     }, {
-        { name = "cmdline", keyword_length = 2 }
+        { name = "cmdline", keyword_length = 2, max_item_count = 5 }
     })
 })
-vim.cmd [[
-autocmd FileType gitcommit,fugitive lua require("cmp").setup.buffer { sources = { { name = "buffer", max_item_count = 10 }, } }
-]]
-
--- _G.vimrc = _G.vimrc or {}
--- _G.vimrc.cmp = _G.vimrc.cmp or {}
--- _G.vimrc.cmp.on_text_changed = function()
---   local cursor = vim.api.nvim_win_get_cursor(0)
---   local line = vim.api.nvim_get_current_line()
---   local before = string.sub(line, 1, cursor[2] + 1)
---   if before:match('%s*$') then
---     cmp.complete() -- Trigger completion only if the cursor is placed at the end of line.
---   end
--- end
--- vim.cmd([[
---   augroup cmp
---     autocmd
---     autocmd TextChanged,TextChangedI,TextChangedP * call luaeval('vimrc.cmp.on_text_changed()')
---   augroup END
--- ]])
+cmp.setup.filetype({ "gitcommit", "fugitive" }, {
+    sources = {
+        { name = "path", max_item_count = 5 },
+    }
+})

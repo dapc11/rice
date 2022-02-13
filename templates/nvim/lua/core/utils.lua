@@ -25,6 +25,7 @@ function M.disabled_builtins()
     g.loaded_zipPlugin = false
     g.loaded_2html_plugin = false
     g.loaded_remote_plugins = false
+    g.loaded_matchit = false
 end
 
 function M.impatient()
