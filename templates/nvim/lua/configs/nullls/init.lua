@@ -18,7 +18,14 @@ local black = null_ls.builtins.formatting.black.with({
     filetypes = {"python"}
 })
 local isort = null_ls.builtins.formatting.isort.with({
-    filetypes = {"python"}
+    filetypes = {"python"},
+    extra_args = {
+        "--profile", "black",
+        "-o", "cassandra",
+        "-o", "yaml",
+        "-p", "lib",
+        "-p", "adp_logging",
+    }
 })
 local gofmt = null_ls.builtins.formatting.gofmt.with({
     filetypes = {"go"}
