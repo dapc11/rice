@@ -29,6 +29,13 @@ function setup_alacritty
     rm -r alacritty
 }
 
+function setup_nvim
+{
+    wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    sudo mv nvim.appimage /usr/bin/nvim 
+    sudo chmod +x /usr/bin/nvim
+}
+
 function setup_enact
 {
     cargo install --git https://github.com/dapc11/enact
@@ -130,11 +137,12 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
 install_deps
-#setup_zsh
+setup_zsh
 ## Setup zoxide - smarter cd
 curl -sS https://webinstall.dev/zoxide | bash
-#setup_fonts
-#setup_alacritty
+setup_fonts
+setup_alacritty
+setup_nvim
 #setup_enact
 ## setup_polybar
 #generate_dotfiles ocean
@@ -143,5 +151,5 @@ curl -sS https://webinstall.dev/zoxide | bash
 #git config --global alias.ci 'commit -v'
 ## git config --global user.email "daniel.tingelof@gmail.com"
 #git config --global user.name "Daniel Tingelöf"
-#echo -e "\nDone"
+echo -e "\nDone"
 exit 0
