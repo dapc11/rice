@@ -93,17 +93,24 @@ cmp.setup{
     },
     mapping = mapping,
     sources = {
-        {name = "nvim_lsp", max_item_count = 10},
-        {name = "buffer", max_item_count = 8, keyword_length = 2},
-        {name = "luasnip", max_item_count = 10},
+        {name = "nvim_lsp"},
+        {name = "buffer", keyword_length = 2},
+        {name = "luasnip"},
         {name = "path", max_item_count = 10},
     },
     formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-        return vim_item
-      end,
+        format = function(entry, vim_item)
+            -- Kind icons
+            vim_item.kind = string.format('%s', kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
+            -- Source
+            vim_item.menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[LuaSnip]",
+                path = "[Path]",
+            })[entry.source.name]
+            return vim_item
+        end
     },
     documentation = {
         border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -115,19 +122,19 @@ cmp.setup{
 cmp.setup.cmdline("/", {
     mapping = mapping,
     sources = {
-        { name = "buffer", max_item_count = 10, keyword_length = 5 }
+        {name = "buffer", keyword_length = 5}
     }
 })
 cmp.setup.cmdline(":", {
     mapping = mapping,
-    sources = cmp.config.sources({
-        { name = "path", keyword_length = 2 }
-    }, {
-        { name = "cmdline", keyword_length = 2, max_item_count = 5 }
-    })
+    sources = {
+        {name = "path", keyword_length = 2},
+        {name = "cmdline", keyword_length = 2}
+    }
 })
 cmp.setup.filetype({ "gitcommit", "fugitive" }, {
     sources = {
-        { name = "path", max_item_count = 5 },
+        {name = "buffer"},
+        {name = "path"},
     }
 })

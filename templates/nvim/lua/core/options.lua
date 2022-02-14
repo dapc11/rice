@@ -28,6 +28,7 @@ s.autoread = true
 s.completeopt = "menu,menuone,noselect"
 s.shortmess:append("c")
 s.clipboard:append("unnamedplus") -- System clipboard
+s.pumheight = 15 -- height of popup menu
 
 -- Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 s.splitbelow = true
