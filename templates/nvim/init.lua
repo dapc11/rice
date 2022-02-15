@@ -29,6 +29,10 @@ highlight DiagnosticLineNrHint guifg={{base0D}}
 highlight FloatBorder guifg={{base04}} guibg={{base00}}
 highlight NormalFloat guifg={{base06}} guibg={{base00}}
 highlight PMenu guibg={{base00}} guifg={{base06}}
+highlight TelescopeResultsBorder guifg={{base05}}
+highlight TelescopePreviewBorder guifg={{base05}}
+highlight TelescopePromptBorder guifg={{base05}}
+highlight TelescopeTitle guifg={{base05}}
 ]]
 
 utils.compiled()

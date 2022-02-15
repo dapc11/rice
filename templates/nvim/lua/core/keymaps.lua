@@ -117,8 +117,6 @@ map {
 }
 map {'n', '<Leader>zp', ':profile start nvim-profile.log | profile func * | profile file *'}
 
-map {'n', ')', ':cnext<cr>'}
-map {'n', '(', ':cprevious<cr>'}
 map {'n', 'ä', '<C-d>'}
 map {'n', 'ö', '<C-u>'}
 map {'n', '¨', '<C-^>'}
@@ -244,12 +242,6 @@ map {
 }
 map {'n', '<C-t>', ':NvimTreeToggle<CR>'}
 
--- Zettelkasten
-map {'n', '<leader>z', ':lua require("telekasten").panel()<CR>'}
-map {'n', '<leader>zf', ':lua require("telekasten").find_notes()<CR>'}
-map {'n', '<leader>zg', ':lua require("telekasten").search_notes()<CR>'}
-map {'n', '<leader>zn', ':lua require("telekasten").new_note()<CR>'}
-
 -- Clean quickfix list
 vim.cmd [[
     function ClearQuickfixList()
@@ -258,6 +250,11 @@ vim.cmd [[
     command! ClearQuickfixList call ClearQuickfixList()
 ]]
 map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
+map {'n', '<leader>co', ':copen<CR>'}
+map {'n', '<leader>cn', ':cnext<CR>'}
+map {'n', '<leader>cp', ':cprevious<CR>'}
+map {'n', ')', ':cnext<cr>'}
+map {'n', '(', ':cprevious<cr>'}
 
 -- Sane navigation in command mode
 vim.cmd [[

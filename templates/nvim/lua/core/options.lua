@@ -58,7 +58,7 @@ match Error /TODO/
 endfunc
 
 set background=dark
-colorscheme dapc11
+colorscheme onedark
 
 augroup dapc
 autocmd!

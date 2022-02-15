@@ -178,6 +178,7 @@ packer.startup {
             "andymass/vim-matchup",
             opt = true,
         }
+        use {'kevinhwang91/nvim-bqf', ft = 'qf'}
     end,
     config = {
         compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
