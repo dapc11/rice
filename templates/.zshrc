@@ -51,6 +51,18 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
 }
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 _gen_fzf_default_opts
 
@@ -69,6 +81,30 @@ alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
+
+# interactive cd
+unalias g 2> /dev/null
+g() {
+  if [ $# -eq 0 ] ; then
+    path_to_cd=$(fd --type d --hidden --follow --exclude .git 2>/dev/null | fzf )
+    [[ -z "$path_to_cd" ]] && return || cd "$path_to_cd"
+  else
+    cd $@
+  fi
+}
+
+# interactive edit
+unalias e 2> /dev/null
+e() {
+  if [ $# -eq 0 ] ; then
+    path_to_cd=$(fd --type f --hidden --follow --exclude .git 2>/dev/null | fzf )
+    [[ -z "$path_to_cd" ]] && return || n "$path_to_cd"
+  else
+    cd $@
+  fi
+}
+
+
 # alias git-clean="git checkout -- $(gsf)"
 
 function pb-kill-line () {
