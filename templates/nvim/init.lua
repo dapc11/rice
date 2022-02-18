@@ -33,7 +33,7 @@ highlight TelescopeResultsBorder guifg={{base05}}
 highlight TelescopePreviewBorder guifg={{base05}}
 highlight TelescopePromptBorder guifg={{base05}}
 highlight TelescopeTitle gui=bold guifg={{base05}}
-highlight TelescopeMatching gui=bold guifg={{base0B}}
+highlight TelescopeMatching guifg={{base0D}}
 ]]
 
 utils.compiled()

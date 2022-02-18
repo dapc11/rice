@@ -249,12 +249,12 @@ vim.cmd [[
     endfunction
     command! ClearQuickfixList call ClearQuickfixList()
 ]]
+map {'n', '<leader>ct', ':TroubleToggle<CR>'}
 map {'n', '<leader>cc', ':ClearQuickfixList<CR>'}
-map {'n', '<leader>co', ':copen<CR>'}
-map {'n', '<leader>cn', ':cnext<CR>'}
-map {'n', '<leader>cp', ':cprevious<CR>'}
-map {'n', ')', ':cnext<cr>'}
-map {'n', '(', ':cprevious<cr>'}
+map {'n', '<leader>cn', ':lua require("trouble").next({skip_groups = true, jump = true})<CR>'}
+map {'n', ')', ':lua require("trouble").next({skip_groups = true, jump = true})<CR>'}
+map {'n', '<leader>cp', ':lua require("trouble").previous({skip_groups = true, jump = true})<CR>'}
+map {'n', '(', ':lua require("trouble").previous({skip_groups = true, jump = true})<CR>'}
 
 -- Sane navigation in command mode
 vim.cmd [[

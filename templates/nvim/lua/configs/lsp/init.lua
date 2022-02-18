@@ -37,7 +37,7 @@ lspconfig.yamlls.setup{
     flags = lsputils.flags,
     settings = {
         yaml = {
-            schemas = { kubernetes = "globPattern" },
+            schemas = { kubernetes = "*.yaml" },
         }
     }
 }

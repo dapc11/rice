@@ -14,7 +14,6 @@ lint.linters.dapc_flake8 = {
     stdin = true,
     args = {
         '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
-        '--ignore=W503',
         '--per-file-ignores = **/test_*:D100,D103',
         '--no-show-source',
         '-',
@@ -30,7 +29,7 @@ lint.linters.dapc_pylint = {
     cmd = 'pylint',
     stdin = false,
     args = {
-        '-f', 'json', '-d', 'R0801,W1508,C0114,C0115,C0116,C0301,W0611,W1309'
+        '-f', 'json', 
     },
     ignore_exitcode = true,
     parser = function(output)

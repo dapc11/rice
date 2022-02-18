@@ -1,15 +1,15 @@
 set $mod Mod4
 set $refresh_i3status killall -SIGUSR1 i3status
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
+set $ws10 "10 "
 
 floating_modifier $mod
 font pango:{{font}} 11
@@ -33,11 +33,11 @@ bar {
     statusline {{base06}}
     separator {{base03}}
 
-    focused_workspace  {{base04}} {{base03}} {{base07}}
-    active_workspace   {{base02}} {{base02}} {{base07}}
-    inactive_workspace {{base02}} {{base01}} {{base04}}
-    urgent_workspace   {{base08}} {{base08}} {{base01}}
-    binding_mode       {{base09}} {{base09}} {{base01}}
+    focused_workspace  {{base01}} {{base01}} {{base0D}}
+    active_workspace   {{base01}} {{base01}} {{base07}}
+    inactive_workspace {{base01}} {{base01}} {{base04}}
+    urgent_workspace   {{base01}} {{base01}} {{base08}}
+    binding_mode       {{base01}} {{base01}} {{base09}}
   }
 }
 
@@ -50,27 +50,18 @@ bar {
 assign [class=".volution"] $ws1
 assign [class=".irefox"] $ws2
 assign [class=".oogle-chrome"] $ws2
-assign [class=".etbrains-idea-ce"] $ws3
-assign [class=".etbrains-pycharm-ce"] $ws3
 assign [instance=".fica"] $ws6
 assign [class=".fica"] $ws6
 assign [instance=".ibreoffice-writer"] $ws7
-assign [class=".idgin"] $ws9
-assign [class=".elegram"] $ws9
 assign [class=".eams-for-linux"] $ws9
 for_window [class=".volution"] move container to workspace $ws1
 for_window [class=".irefox"] move container to workspace $ws2
 for_window [class=".oogle-chrome"] move container to workspace $ws2
-for_window [class=".etbrains-idea-ce"] move container to workspace $ws3
-for_window [class=".etbrains-pycharm-ce"] move container to workspace $ws3
 for_window [instance=".fica"] move container to workspace $ws6
 for_window [instance=".ibreoffice"] move container to workspace $ws7
 for_window [class=".hunar"] floating enable
 for_window [class=".autilus"] floating enable
-for_window [class=".ulseUi"] floating enable
-for_window [class=".idgin"] floating enable
 for_window [class=".volution-alarm-notify"] floating enable
-for_window [class=".elegram"] move container to workspace $ws9
 for_window [class="teams-for-linux"] move container to workspace $ws9
 for_window [class=".icrosoft Teams - Preview"] move container to workspace $ws9
 for_window [class=".potify"] move scratchpad
@@ -136,8 +127,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-bindsym $mod+v split h
-bindsym $mod+c split v
+bindsym $mod+h split h
+bindsym $mod+v split v
 bindsym $mod+x [urgent=latest] focus
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
