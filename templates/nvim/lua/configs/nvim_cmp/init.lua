@@ -112,10 +112,14 @@ cmp.setup{
             return vim_item
         end
     },
-    documentation = {
-        border = {"┌", "─", "┐", "│", "┘", "─", "└", "│" },
-        winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
-    }
+    window = {
+        completion = {
+            border = {"┌", "─", "┐", "│", "┘", "─", "└", "│" },
+        },
+        documentation = {
+            border = {"┌", "─", "┐", "│", "┘", "─", "└", "│" },
+        }
+    },
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).

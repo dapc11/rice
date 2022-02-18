@@ -80,6 +80,7 @@ packer.startup {
         use {"hrsh7th/cmp-buffer"}
         use {
             "hrsh7th/nvim-cmp",
+            branch = "dev", -- optional but strongly recommended
             config = function()
                 require "configs.nvim_cmp"
             end
