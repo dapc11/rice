@@ -75,33 +75,34 @@ bindkey "^[[F" end-of-line
 
 # Aliases
 alias k="kubectl"
-compdef __start_kubectl k
+alias n="nvim"
 alias vim="nvim"
 alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
+compdef __start_kubectl k
 
 # interactive cd
 unalias g 2> /dev/null
 g() {
-  if [ $# -eq 0 ] ; then
-    path_to_cd=$(fd --type d --hidden --follow --exclude .git 2>/dev/null | fzf )
-    [[ -z "$path_to_cd" ]] && return || cd "$path_to_cd"
-  else
-    cd $@
-  fi
+    if [ $# -eq 0 ] ; then
+        path_to_cd=$(fd --type d --hidden --follow --exclude .git 2>/dev/null | fzf )
+        [[ -z "$path_to_cd" ]] && return || cd "$path_to_cd"
+    else
+        cd $@
+    fi
 }
 
 # interactive edit
 unalias e 2> /dev/null
 e() {
-  if [ $# -eq 0 ] ; then
-    path_to_cd=$(fd --type f --hidden --follow --exclude .git 2>/dev/null | fzf )
-    [[ -z "$path_to_cd" ]] && return || n "$path_to_cd"
-  else
-    cd $@
-  fi
+    if [ $# -eq 0 ] ; then
+        path_to_cd=$(fd --type f --hidden --follow --exclude .git 2>/dev/null | fzf )
+        [[ -z "$path_to_cd" ]] && return || vim "$path_to_cd"
+    else
+        cd $@
+    fi
 }
 
 

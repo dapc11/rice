@@ -305,13 +305,11 @@ map {'v', '<A-a>', '<C-a>'}
 map {'n', '<A-x>', '<C-x>'}
 map {'v', '<A-x>', '<C-x>'}
 
-
-map {'x', 'ga', '<Plug>(EasyAlign)'}
-map {'n', 'ga', '<Plug>(EasyAlign)'}
-
 map {'x', '<',  '<gv'}
 map {'x', '>',  '>gv'}
 vim.cmd[[
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 nnoremap <expr> n  'Nn'[v:searchforward]
 xnoremap <expr> n  'Nn'[v:searchforward]
 onoremap <expr> n  'Nn'[v:searchforward]
@@ -321,11 +319,6 @@ xnoremap <expr> N  'nN'[v:searchforward]
 onoremap <expr> N  'nN'[v:searchforward]
 nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 ]]
--- These commands will move the current buffer backwards or forwards in the bufferline
--- map {'n', '<Tab>', ':BufferLineCycleNext<CR>'}
--- map {'n', '<C-Tab>', ':BufferLineCyclePrev<CR>'}
--- map {'n', '<S-Tab>', ':BufferLineMoveNext<CR>'}
--- map {'n', '<S-C-Tab>', ':BufferLineMovePrev<CR>'}
 vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
