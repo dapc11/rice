@@ -96,12 +96,6 @@ packer.startup {
         use {"saadparwaiz1/cmp_luasnip"}
         use {"rafamadriz/friendly-snippets"}
 
-        -- use {
-        --     "mfussenegger/nvim-lint",
-        --     config = function()
-        --         require("configs.lint")
-        --     end
-        -- }
         use {
             "jose-elias-alvarez/null-ls.nvim",
             config = function()
@@ -181,16 +175,18 @@ packer.startup {
         }
         use {'kevinhwang91/nvim-bqf', ft = 'qf'}
         use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-            }
-        end
+            "folke/trouble.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("trouble").setup {
+                    mode = "document_diagnostics"
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+                }
+            end
         }
+        use { "junegunn/vim-easy-align" }
     end,
     config = {
         compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",

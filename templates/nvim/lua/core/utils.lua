@@ -7,25 +7,24 @@ function M.bootstrap()
     local fn = vim.fn
     local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
-        PACKER_BOOTSTRAP = fn.system {"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
-                                      install_path}
+        PACKER_BOOTSTRAP = fn.system {"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path}
         print "Cloning packer...\nSetup DapcVim"
         vim.cmd [[packadd packer.nvim]]
     end
 end
 
 function M.disabled_builtins()
-    g.loaded_gzip = false
-    g.loaded_netrwPlugin = false
-    g.loaded_netrwSettngs = false
+    g.loaded_gzip              = false
+    g.loaded_netrwPlugin       = false
+    g.loaded_netrwSettngs      = false
     g.loaded_netrwFileHandlers = false
-    g.loaded_tar = false
-    g.loaded_tarPlugin = false
-    g.zipPlugin = false
-    g.loaded_zipPlugin = false
-    g.loaded_2html_plugin = false
-    g.loaded_remote_plugins = false
-    g.loaded_matchit = false
+    g.loaded_tar               = false
+    g.loaded_tarPlugin         = false
+    g.zipPlugin                = false
+    g.loaded_zipPlugin         = false
+    g.loaded_2html_plugin      = false
+    g.loaded_remote_plugins    = false
+    g.loaded_matchit           = false
 end
 
 function M.impatient()

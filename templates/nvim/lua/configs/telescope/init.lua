@@ -9,31 +9,29 @@ local action_layout = require("telescope.actions.layout")
 
 telescope.setup {
     defaults = {
-        prompt_prefix = " ",
-        selection_caret = "❯ ",
+        prompt_prefix        = " ",
+        selection_caret      = "❯ ",
         file_ignore_patterns = {"node_modules", ".git"},
-        vimgrep_arguments = {"rg", "--no-heading", "--color=never", "--with-filename", "--line-number", "--column",
-                             "--smart-case", "--trim" -- add this value
-        },
+        vimgrep_arguments    = {"rg", "--no-heading", "--color=never", "--with-filename", "--line-number", "--column", "--smart-case", "--trim"},
         mappings = {
             n = {
-                ["<C-p>"] = action_layout.toggle_preview,
-                ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
-                ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<C-p>"]   = action_layout.toggle_preview,
+                ["<M-q>"]   = actions.send_to_qflist + actions.open_qflist,
+                ["<tab>"]   = actions.toggle_selection + actions.move_selection_next,
                 ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-                ["<C-c>"] = actions.close
+                ["<C-c>"]   = actions.close
             },
             i = {
-                ["<C-p>"] = action_layout.toggle_preview,
-                ["<C-c>"] = actions.close,
-                ["<esc>"] = actions.close,
-                ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
-                ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<C-p>"]   = action_layout.toggle_preview,
+                ["<C-c>"]   = actions.close,
+                ["<esc>"]   = actions.close,
+                ["<M-q>"]   = actions.send_to_qflist + actions.open_qflist,
+                ["<tab>"]   = actions.toggle_selection + actions.move_selection_next,
                 ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-                ["<CR>"] = actions.select_default,
-                ["<C-x>"] = actions.select_horizontal,
-                ["<C-v>"] = actions.select_vertical,
-                ["<C-t>"] = actions.select_tab
+                ["<CR>"]    = actions.select_default,
+                ["<C-x>"]   = actions.select_horizontal,
+                ["<C-v>"]   = actions.select_vertical,
+                ["<C-t>"]   = actions.select_tab
             }
         },
         preview = {
@@ -46,10 +44,10 @@ telescope.setup {
     },
     extensions = {
         fzf = {
-            fuzzy = true,
+            fuzzy                   = true,
             override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+            override_file_sorter    = true,
+            case_mode               = "smart_case" -- or "ignore_case" or "respect_case"
         }
     }
 }

@@ -306,6 +306,8 @@ map {'n', '<A-x>', '<C-x>'}
 map {'v', '<A-x>', '<C-x>'}
 
 
+map {'x', 'ga', '<Plug>(EasyAlign)'}
+map {'n', 'ga', '<Plug>(EasyAlign)'}
 
 map {'x', '<',  '<gv'}
 map {'x', '>',  '>gv'}
