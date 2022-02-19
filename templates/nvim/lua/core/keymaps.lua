@@ -75,15 +75,10 @@ map {'n', '<leader>b', ':lua require("telescope.builtin").git_branches()<CR>'}
 map {'n', '<leader>m', ':lua require("telescope.builtin").keymaps()<CR>'}
 map {'n', '<leader>h', ':lua require("telescope.builtin").oldfiles()<CR>'}
 map {'n', '<Leader>n', ':lua require("telescope.builtin").git_files()<CR>'}
-map {'n', '<Leader>N',
-     ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
-map {'n', '<Leader>o',
-     ':lua require("telescope.builtin").find_files({previewer = false, search_dirs = ' .. telescope_open .. '})<CR>'}
-map {'n', '<Leader>O',
-     ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = ' ..
-    telescope_open_hidden .. '})<CR>'}
-map {'n', '<leader><leader>',
-     ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
+map {'n', '<Leader>N', ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
+map {'n', '<Leader>o', ':lua require("telescope.builtin").find_files({previewer = false, search_dirs = ' .. telescope_open .. '})<CR>'}
+map {'n', '<Leader>O', ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = ' .. telescope_open_hidden .. '})<CR>'}
+map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
 map {'n', '<C-p>', ':Telescope projects<CR>'}
 map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 
@@ -202,44 +197,14 @@ map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
 map {'n', '<C-s>', ':w<cr>'}
 
 -- Beginning and end of line
-map {
-    noremap = false,
-    'i',
-    '<C-a>',
-    '<home>'
-}
-map {
-    noremap = false,
-    'i',
-    '<C-e>',
-    '<end>'
-}
-map {
-    noremap = false,
-    'c',
-    '<C-a>',
-    '<home>'
-}
-map {
-    noremap = false,
-    'c',
-    '<C-e>',
-    '<end>'
-}
+map { noremap = false, 'i', '<C-a>', '<home>' }
+map { noremap = false, 'i', '<C-e>', '<end>' }
+map { noremap = false, 'c', '<C-a>', '<home>' }
+map { noremap = false, 'c', '<C-e>', '<end>' }
 
 -- Control-V Paste in insert and command mode
-map {
-    noremap = false,
-    'i',
-    '<C-V>',
-    '<esc>pa'
-}
-map {
-    noremap = false,
-    'c',
-    '<C-V>',
-    '<C-r>0'
-}
+map { noremap = false, 'i', '<C-V>', '<esc>pa' }
+map { noremap = false, 'c', '<C-V>', '<C-r>0' }
 map {'n', '<C-t>', ':NvimTreeToggle<CR>'}
 
 -- Clean quickfix list
