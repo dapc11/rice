@@ -26,14 +26,11 @@
         "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
     },
     "python.languageServer": "Pylance",
-    "python.pythonPath": "${env:HOME}/dev/bin/python3",
-    "python.pipenvPath": "${env:HOME}/dev/bin/pip3.6",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.formatting.provider": "black",
-    "python.sortImports.path": "${env:HOME}/dev/bin/isort",
     "python.sortImports.args": [
         "-w",
         "99",
@@ -53,8 +50,16 @@
             120
         ],
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": true,
+            "source.formatOnSave": true,
         }
+    },
+    "yaml.completion": true,
+    "yaml.schemas": {
+        "kubernetes": [
+            "templates/*.yaml",
+            "*.tpl",
+        ]
     },
     "colorize.languages": [
         "json",
