@@ -13,6 +13,7 @@ local on_attach = function(client, bufnr)
     lsputils.lsp_signature(bufnr)
     lsputils.lsp_keymaps(bufnr)
     lsputils.lsp_highlight_document(client)
+    require("aerial").on_attach(client, bufnr)
     if client.name == "gopls" or client.name == "pyright" then
         client.resolved_capabilities.document_formatting = false
     end
