@@ -5,16 +5,16 @@
 
 general {
         output_format = "i3bar"
-        colors = true
+        colors = false
         interval = 1
         color_good = "{{base0B}}"
         color_bad = "{{base08}}"
         color_degraded = "{{base0A}}"
 }
 
-order += "disk /"
+# order += "disk /"
 order += "wireless {{wifi_if}}"
-order += "ethernet eth0"
+# order += "ethernet eth0"
 order += "battery 0"
 order += "tztime local"
 order += "volume master"

@@ -25,22 +25,22 @@ bottom = false
 background = {{base01}}
 foreground = {{base06}}
 
-font-0 = "{{font}}":size=12;2
+font-0 = "{{font}}":size=11;2
 font-1 = NotoSans-Regular;2
 font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular;2
 font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid;2
 font-4 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular;2
 font-5 = jua;2
 font-6 = Iosevka Nerd Font;2
-tray-position = right
+#tray-position = right
 
-modules-center = date
-modules-left = i3
-modules-right = spotify weather updates alsa wireless-network wired-network battery powermenu
+modules-left = xwindow
+modules-center = i3
+modules-right = spotify weather alsa wireless-network wired-network battery date
 [module/xwindow]
 type = internal/xwindow
 
-label = %title%
+label = " %title%"
 label-maxlen = 50
 label-font = 0
 

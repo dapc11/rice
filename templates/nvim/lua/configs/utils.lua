@@ -56,6 +56,8 @@ function M.lsp_keymaps(bufnr)
     buf_set_keymap("n", "ge", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "<space>cd", "<cmd>lua vim.diagnostic.disable()<CR>", opts)
+    buf_set_keymap("n", "<space>ce", "<cmd>lua vim.diagnostic.enable()<CR>", opts)
     buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     buf_set_keymap("n", "<C-b>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
@@ -78,7 +80,7 @@ function M.lsp_signature(bufnr)
     lspsignature.on_attach({
         bind = true, -- This is mandatory, otherwise border config won"t get registered.
         handler_opts = {
-            border = "rounded"
+            border = "single"
         },
         hint_prefix = " ",
         max_height = 8

@@ -35,7 +35,7 @@ local function window_for_choiceNode(choiceNode)
         height = h,
         bufpos = choiceNode.mark:pos_begin_end(),
         style = "minimal",
-        border = 'rounded'
+        border = 'single'
     })
 
     -- return with 3 main important so we can use them again

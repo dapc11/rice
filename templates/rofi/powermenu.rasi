@@ -52,8 +52,8 @@ window {
     border: 2px;
     border-color: @x4;
     border-radius: 0;
-    width: 580px;
-    height: 165px;
+    width: 585px;
+    height: 160px;
 }
 inputbar {
     children: [ textbox-prompt-colon, prompt ];

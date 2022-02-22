@@ -100,16 +100,10 @@ map {'n', '<leader>gl', ':Git log --stat<CR>'}
 -- Misc
 map {'n', '<SPACE>', '<Nop>'}
 map {'n', '<F1>', '<Nop>'}
-vim.g.mapleader = " "
 
 -- Clear highlight search
 -- Use <C-L> to clear the highlighting of :set hlsearch.
-map {
-    silent = true,
-    'n',
-    '<C-l>',
-    ':let @/ = ""<CR>'
-}
+map { silent = true, 'n', '<C-l>', ':let @/ = ""<CR>' }
 map {'n', '<Leader>zp', ':profile start nvim-profile.log | profile func * | profile file *'}
 
 map {'n', 'ä', '<C-d>'}

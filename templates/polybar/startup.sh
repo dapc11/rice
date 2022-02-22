@@ -1,23 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-function main
-{
-    if [[ "$1" == "-k" ]] || [[ "$1" == "--kill-all" ]]; then
-        kill $(ps aux | grep 'polybar' | awk '{print $2}') > /dev/null 2>&1 ; shift
-        local i=0;
-        while (( ++i < 5 )) && pgrep -x polybar >/dev/null; do sleep 1; done
-    fi
+# Terminate already running bar instances
+killall -q polybar
 
-    local config="$1" ; shift
-    local -a bars=("${@}")
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-    for m in in $(xrandr | grep -o ".*\ connected" | cut -d" " -f1); do
-        for bar in ${bars[*]}; do
-            echo $bar
-            MONITOR="$m" polybar "$bar" -c "$config" -r 2>"$HOME/.config/polybar/stderr" &
-        done
-    done
+# Launch bar1 and bar2
+MONITORS=$(xrandr --query | grep " connected" | cut -d" " -f1)
 
-}
+MONITORS=$MONITORS polybar top &
+MONITOR=$MONITORS polybar bottom;
 
-main "$@"
+echo "Bars launched..."
