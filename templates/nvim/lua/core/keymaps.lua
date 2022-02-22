@@ -147,10 +147,6 @@ map {'c', '<C-BS>', '<C-W>'}
 -- Paste over select and keep register
 map {'v', '<leader>p', '"_dP'}
 
--- " Navigate errors
-map {'n', '<C-.>', ':cn<CR>'}
-map {'n', '<C-,>', ':cp<CR>'}
-
 -- " Paste without overwrite default register
 map {'x', 'p', 'pgvy'}
 
@@ -197,8 +193,6 @@ map {'n', '<Leader>gb', ':Gitsigns toggle_current_line_blame<CR>'}
 map {'n', '<Leader>gp', ':Gitsigns preview_hunk<CR>'}
 map {'n', '<Leader>grh', ':Gitsigns reset_hunk<CR>'}
 map {'n', '<Leader>grb', ':Gitsigns reset_buffer<CR>'}
-
-map {'n', '<C-s>', ':w<cr>'}
 
 -- Beginning and end of line
 map { noremap = false, 'i', '<C-a>', '<home>' }
