@@ -162,25 +162,29 @@ map {'n', 'm', ':<C-U>lua require("tsht").nodes()<CR>'}
 map {'v', 'm', ':lua require("tsht").nodes()<CR>'}
 
 -- set moving between windows to ctrl+telescope_openows
-vim.cmd [[
-    function! WinMove(key)
-        let t:curwin = winnr()
-        exec "wincmd ".a:key
-        if (t:curwin == winnr())
-            if (match(a:key,'[jk]'))
-                wincmd v
-            else
-                wincmd s
-            endif
-                exec "wincmd ".a:key
-        endif
-    endfunction
-]]
+-- vim.cmd [[
+--     function! WinMove(key)
+--         let t:curwin = winnr()
+--         exec "wincmd ".a:key
+--         if (t:curwin == winnr())
+--             if (match(a:key,'[jk]'))
+--                 wincmd v
+--             else
+--                 wincmd s
+--             endif
+--                 exec "wincmd ".a:key
+--         endif
+--     endfunction
+-- ]]
 
-map {'n', '<C-Left>', ":call WinMove('h')<CR>"}
-map {'n', '<C-Down>', ":call WinMove('j')<CR>"}
-map {'n', '<C-Up>', ":call WinMove('k')<CR>"}
-map {'n', '<C-Right>', ":call WinMove('l')<CR>"}
+-- map {'n', '<C-Left>', ":call WinMove('h')<CR>"}
+-- map {'n', '<C-Down>', ":call WinMove('j')<CR>"}
+-- map {'n', '<C-Up>', ":call WinMove('k')<CR>"}
+-- map {'n', '<C-Right>', ":call WinMove('l')<CR>"}
+map {'n', '<C-Left>', "<C-W>h"}
+map {'n', '<C-Down>', "<C-W>j"}
+map {'n', '<C-Up>', "<C-W>k"}
+map {'n', '<C-Right>', "<C-W>l"}
 
 -- Shift lines up and down
 map {'n', '<S-Down>', ':m .+1<CR>=='}
