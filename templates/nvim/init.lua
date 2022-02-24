@@ -33,5 +33,6 @@ hi("TelescopePreviewBorder", {guifg = "{{base05}}"})
 hi("TelescopePromptBorder",  {guifg = "{{base05}}"})
 hi("TelescopeTitle",         {gui = "bold", guifg = "{{base05}}"})
 hi("TelescopeMatching",      {guifg = "{{base0D}}"})
+hi("TreesitterContext",      {guibg = "{{base01}}"})
 
 utils.compiled()

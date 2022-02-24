@@ -27,6 +27,7 @@ packer.startup {
             end
         }
 
+        use {"nvim-treesitter/playground"}
         use {
             "nvim-treesitter/nvim-treesitter",
             requires = {"nvim-treesitter/nvim-treesitter-refactor", "nvim-treesitter/nvim-treesitter-textobjects",

@@ -133,7 +133,7 @@ cmp.setup.cmdline(":", {
     mapping = mapping,
     sources = {
         {name = "path", keyword_length = 2},
-        {name = "cmdline", keyword_pattern=[=[[^[:blank:]\!]*]=]}
+        {name = "cmdline", keyword_length = 2, keyword_pattern=[=[[^[:blank:]\!]*]=]}
     }
 })
 cmp.setup.filetype({ "gitcommit", "fugitive" }, {
