@@ -288,3 +288,5 @@ vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction =
 
 
 map {'n', '<C-e>', '<cmd>AerialToggle<CR>'}
+map {'n', '<leader>cd', '<cmd>lua vim.diagnostic.disable()<CR>'}
+map {'n', '<leader>ce', '<cmd>lua vim.diagnostic.enable()<CR>'}

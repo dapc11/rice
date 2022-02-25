@@ -20,8 +20,8 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 # exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
 
 bar {
-  i3bar_command $HOME/.config/polybar/startup.sh
-  # status_command i3status
+  # i3bar_command $HOME/.config/polybar/startup.sh
+  status_command i3status
   font pango:{{font}} 11
   position top
 
@@ -62,6 +62,7 @@ for_window [instance=".fica"] move container to workspace $ws6
 for_window [instance=".ibreoffice"] move container to workspace $ws7
 for_window [class=".hunar"] floating enable
 for_window [class=".autilus"] floating enable
+for_window [class=".randr"] floating enable resize set 480 480
 for_window [class=".volution-alarm-notify"] floating enable
 for_window [class="teams-for-linux"] move container to workspace $ws9
 for_window [class=".icrosoft Teams - Preview"] move container to workspace $ws9
@@ -115,7 +116,7 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+Ctrl+r mode "resize"
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
@@ -160,7 +161,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Ctrl+r reload
+bindsym $mod+r exec i3-msg rename workspace to $(rofi -lines 1 -eh 1 -p 'New workspace name')
+
+
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Ctrl+comma exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -192,4 +195,4 @@ bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+m exec nightmode
 bindsym $mod+w exec x-www-browser
-bindsym $mod+p exec ~/.config/rofi/rofi-randr
+bindsym $mod+p exec arandr
