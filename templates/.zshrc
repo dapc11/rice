@@ -136,3 +136,13 @@ fi
 if type helm &> /dev/null; then
   source <(helm completion zsh)
 fi
+
+
+#compdef k8s_tool
+
+_k8s_tool_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _K8S_TOOL_COMPLETE=complete_zsh k8s_tool)
+}
+
+compdef _k8s_tool_completion k8s_tool
+

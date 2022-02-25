@@ -84,6 +84,36 @@ function choice_popup_close()
         current_win.buf = create_win.buf
     end
 end
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
+local fmt = require("luasnip.extras.fmt").fmt
+ls.snippets = {
+	-- When trying to expand a snippet, luasnip first searches the tables for
+	-- each filetype specified in 'filetype' followed by 'all'.
+	-- If ie. the filetype is 'lua.c'
+	--     - luasnip.lua
+	--     - luasnip.c
+	--     - luasnip.all
+	-- are searched in that order.
+	yaml = {
+		s(
+            "cve",
+            fmt("CVE-{}:\n\tmitigation: {}\n\tsce:\n\t\tsce-id: {}\n\t\tstatus: Approved\n\t\texpires: {}", {
+				i(1),
+				i(2),
+                i(3),
+                i(4),
+			})
+		),
+    }
+}
 
 vim.cmd([[
 augroup choice_popup
@@ -93,3 +123,4 @@ au User LuasnipChoiceNodeLeave lua choice_popup_close()
 au User LuasnipChangeChoice lua update_choice_popup(require("luasnip").session.event_node)
 augroup END
 ]])
+
