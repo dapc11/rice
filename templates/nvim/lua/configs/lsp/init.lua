@@ -13,10 +13,9 @@ local on_attach = function(client, bufnr)
     lsputils.lsp_signature(bufnr)
     lsputils.lsp_keymaps(bufnr)
     lsputils.lsp_highlight_document(client)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
     require("aerial").on_attach(client, bufnr)
-    if client.name == "gopls" or client.name == "pyright" then
-        client.resolved_capabilities.document_formatting = false
-    end
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
@@ -54,7 +53,7 @@ lspconfig.pyright.setup {
             analysis = {
                 typeCheckingMode = 'off',
                 autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
+                useLibraryCodeForTypes = false,
                 diagnosticMode = 'openFilesOnly'
             }
         }

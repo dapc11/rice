@@ -154,10 +154,7 @@ def setup_argparser() -> argparse.ArgumentParser:
         help="Specify which theme the context will be loaded from.",
     )
     arg_parser.add_argument(
-        "-l",
-        "--list",
-        action="store_true",
-        help="List available themes",
+        "-l", "--list", action="store_true", help="List available themes"
     )
 
     return arg_parser

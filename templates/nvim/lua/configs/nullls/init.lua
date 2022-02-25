@@ -11,9 +11,7 @@ end
 local write_good = null_ls.builtins.diagnostics.write_good.with({
     filetypes = {"markdown", "gitcommit", "text"}
 })
-local black = null_ls.builtins.formatting.black.with({
-    filetypes = {"python"}
-})
+local black = null_ls.builtins.formatting.black
 local pylint = null_ls.builtins.diagnostics.pylint.with({
     filetypes = {"python"},
     extra_args = {
@@ -26,25 +24,12 @@ local flake8 = null_ls.builtins.diagnostics.flake8.with({
         '--per-file-ignores=**/test_*:D100,D103',
     }
 })
-local isort = null_ls.builtins.formatting.isort.with({
-    filetypes = {"python"},
-    extra_args = {
-        "--profile", "black",
-        "-o", "cassandra",
-        "-o", "yaml",
-        "-p", "lib",
-        "-p", "adp_logging",
-    }
-})
-local gofmt = null_ls.builtins.formatting.gofmt.with({
-    filetypes = {"go"}
-})
-local goimports = null_ls.builtins.formatting.goimports.with({
-    filetypes = {"go"}
-})
+local isort = null_ls.builtins.formatting.isort
+local gofmt = null_ls.builtins.formatting.gofmt
+local goimports = null_ls.builtins.formatting.goimports
 
 -- register any number of sources simultaneously
-local sources = {null_ls.builtins.diagnostics.trail_space, null_ls.builtins.code_actions.gitsigns, black, isort, gofmt, goimports, write_good, pylint, flake8, null_ls.builtins.diagnostics.golangci_lint}
+local sources = {null_ls.builtins.diagnostics.trail_space, null_ls.builtins.code_actions.gitsigns, isort, black, gofmt, goimports, write_good, pylint, flake8, null_ls.builtins.diagnostics.golangci_lint}
 
 vim.diagnostic.config(lsputils.diagnostics_config)
 
