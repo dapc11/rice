@@ -42,7 +42,7 @@ for key, val in pairs({
 }) do vim.g[key] = val end
 
 vim.bo.matchpairs = "(:),{:},[:],<:>"
-
+require('colorbuddy').colorscheme('onebuddy')
 vim.cmd [[
 set path+=**
 nnoremap <SPACE> <Nop>
@@ -53,7 +53,7 @@ match Error /TODO/
 endfunc
 
 set background=dark
-colorscheme onedark
+"colorscheme onedark
 
 augroup dapc
 autocmd!
@@ -140,4 +140,3 @@ vmap <expr> <f28> XTermPasteBegin("c")
 cmap <f28> <nop>
 cmap <f29> <nop>
 ]]
-

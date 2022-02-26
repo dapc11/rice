@@ -131,6 +131,9 @@ packer.startup {
         use {"ellisonleao/gruvbox.nvim"}
 
         use {"navarasu/onedark.nvim"}
+        use {"'Th3Whit3Wolf/one-nvim"}
+        use {'tjdevries/colorbuddy.vim'}
+        use {'Th3Whit3Wolf/onebuddy'}
 
         use {
             "kyazdani42/nvim-tree.lua",
