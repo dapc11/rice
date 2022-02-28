@@ -90,9 +90,6 @@ map {'n', '<A-2>', ":lua require('harpoon.ui').nav_file(2)<CR>"}
 map {'n', '<A-3>', ":lua require('harpoon.ui').nav_file(3)<CR>"}
 map {'n', '<A-4>', ":lua require('harpoon.ui').nav_file(4)<CR>"}
 
--- Nvim lint
-map {'n', '<leader>cl', ":lua require('lint').try_lint()<CR>"}
-
 -- Fugitive
 map {'n', '<leader>gs', ':Git<CR>'}
 map {'n', '<leader>gl', ':Git log --stat<CR>'}

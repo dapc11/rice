@@ -123,7 +123,7 @@ packer.startup {
             config = function()
                 require"colorizer".setup()
             end,
-            ft = {"json", "yaml", "css", "html"}
+            ft = {"json", "yaml", "css", "html", "lua", "vim"}
         }
 
         use {"kyazdani42/nvim-web-devicons"} -- Devicons for statusline

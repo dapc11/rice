@@ -49,7 +49,7 @@ nnoremap <SPACE> <Nop>
 
 function! HighlightTodo()
 match none
-match Error /TODO/
+match Todo /TODO/
 endfunc
 
 set background=dark
@@ -63,8 +63,6 @@ autocmd BufNewFile,BufRead *.tpl set filetype=gotmpl
 autocmd BufNewFile,BufRead *.yaml if search('{{.*}}', 'nw') | setlocal filetype=gotmpl | endif
 " Yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd BufRead * lua require('lint').try_lint()
-" autocmd BufWrite * lua require('lint').try_lint()
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 augroup END
 
