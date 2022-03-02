@@ -105,11 +105,18 @@ ls.snippets = {
 	yaml = {
 		s(
             "cve",
-            fmt("CVE-{}:\n\tmitigation: {}\n\tsce:\n\t\tsce-id: {}\n\t\tstatus: Approved\n\t\texpires: {}", {
+            fmt("{}:\n\tmitigation: {}\n\tsce:\n\t\tsce-id: {}\n\t\tstatus: Approved\n\t\texpires: {}", {
 				i(1),
 				i(2),
                 i(3),
                 i(4),
+			})
+		),
+		s(
+            "cvelow",
+            fmt("{}:\n\tmitigation: {}", {
+				i(1),
+				i(2),
 			})
 		),
     }
