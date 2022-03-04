@@ -76,7 +76,6 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
 # Aliases
-alias k="kubectl"
 alias n="nvim"
 alias vim="nvim"
 alias ssh='TERM=xterm-color ssh'
@@ -84,6 +83,7 @@ alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
 alias watch="watch "
+alias git-clean="git checkout -- $(gsf)"
 compdef __start_kubectl k
 
 # interactive cd
@@ -121,7 +121,6 @@ bindkey '^K' pb-kill-line
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/dev/bin/activate ]] || source ~/dev/bin/activate
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 eval "$(zoxide init zsh)"
 ZLE_RPROMPT_INDENT=0
@@ -132,13 +131,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm bash_completion
-
-if type kubectl &> /dev/null; then
-  source <(kubectl completion zsh)
-fi
-if type helm &> /dev/null; then
-  source <(helm completion zsh)
-fi
 
 
 #compdef k8s_tool
