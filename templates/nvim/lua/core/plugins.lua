@@ -30,9 +30,10 @@ packer.startup {
         use {"nvim-treesitter/playground"}
         use {
             "nvim-treesitter/nvim-treesitter",
-            requires = {"nvim-treesitter/nvim-treesitter-refactor", "nvim-treesitter/nvim-treesitter-textobjects",
-            "mfussenegger/nvim-ts-hint-textobject", "romgrk/nvim-treesitter-context",
-            "windwp/nvim-ts-autotag"},
+            requires = {
+                "mfussenegger/nvim-ts-hint-textobject",
+                -- "romgrk/nvim-treesitter-context",
+            },
             config = function()
                 require "configs.treesitter"
             end,
@@ -81,7 +82,6 @@ packer.startup {
         use {"hrsh7th/cmp-buffer"}
         use {
             "hrsh7th/nvim-cmp",
-            branch = "dev", -- optional but strongly recommended
             config = function()
                 require "configs.nvim_cmp"
             end
@@ -131,7 +131,7 @@ packer.startup {
         use {"ellisonleao/gruvbox.nvim"}
 
         use {"navarasu/onedark.nvim"}
-        use {"'Th3Whit3Wolf/one-nvim"}
+        use {"Th3Whit3Wolf/one-nvim"}
         use {'tjdevries/colorbuddy.vim'}
         use {'Th3Whit3Wolf/onebuddy'}
 
@@ -177,16 +177,19 @@ packer.startup {
             "andymass/vim-matchup",
             opt = true,
         }
-        use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+        use {
+            'kevinhwang91/nvim-bqf',
+            ft = 'qf',
+            config = function()
+                require "configs.bqf"
+            end
+        }
         use {
             "folke/trouble.nvim",
             requires = "kyazdani42/nvim-web-devicons",
             config = function()
                 require("trouble").setup {
                     mode = "document_diagnostics"
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
                 }
             end
         }

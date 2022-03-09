@@ -71,16 +71,17 @@ end
 local telescope_open_hidden = get_find_files_source(os.getenv("HOME") .. "/telescope_open_hidden.txt")
 local telescope_open = get_find_files_source(os.getenv("HOME") .. "/telescope_open.txt")
 
-map {'n', '<leader>b', ':lua require("telescope.builtin").git_branches()<CR>'}
-map {'n', '<leader>m', ':lua require("telescope.builtin").keymaps()<CR>'}
-map {'n', '<leader>h', ':lua require("telescope.builtin").oldfiles()<CR>'}
-map {'n', '<Leader>n', ':lua require("telescope.builtin").git_files()<CR>'}
-map {'n', '<Leader>N', ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
-map {'n', '<Leader>o', ':lua require("telescope.builtin").find_files({previewer = false, search_dirs = ' .. telescope_open .. '})<CR>'}
-map {'n', '<Leader>O', ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = ' .. telescope_open_hidden .. '})<CR>'}
+map {'n', '<leader>b',        ':lua require("telescope.builtin").git_branches()<CR>'}
+map {'n', '<leader>m',        ':lua require("telescope.builtin").keymaps()<CR>'}
+map {'n', '<leader>h',        ':lua require("telescope.builtin").oldfiles()<CR>'}
+map {'n', '<Leader>n',        ':lua require("telescope.builtin").git_files()<CR>'}
+map {'n', '<Leader>N',        ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
+map {'n', '<Leader>O',        ':lua require("telescope.builtin").find_files({hidden = true, previewer = false})<CR>'}
+map {'n', '<Leader>o',        ':lua require("telescope.builtin").find_files({previewer = false})<CR>'}
+map {'n', '<Leader>f',        ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = ' .. telescope_open_hidden .. '})<CR>'}
 map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
-map {'n', '<C-p>', ':Telescope projects<CR>'}
-map {'n', '<C-f>', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
+map {'n', '<C-p>',            ':Telescope projects<CR>'}
+map {'n', '<C-f>',            ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'}
 
 -- Harpoon
 map {'n', '<A-m>', ":lua require('harpoon.mark').add_file()<CR>"}

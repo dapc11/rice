@@ -12,7 +12,7 @@ telescope.setup {
         buffers = {
             mappings = {
                 n = {
-                    ["<C-d>"]   = actions.delete_buffer + actions.move_to_top,
+                    ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
                 },
                 i = {
                     ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
@@ -29,9 +29,9 @@ telescope.setup {
             n = {
                 ["<C-d>"]   = actions.drop_all + actions.move_to_top,
                 ["<C-p>"]   = action_layout.toggle_preview,
-                ["<M-q>"]   = actions.send_to_qflist + actions.open_qflist,
-                ["<tab>"]   = actions.toggle_selection + actions.move_selection_next,
-                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+                ["<M-q>"]   = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<tab>"]   = actions.toggle_selection + actions.move_selection_previous,
                 ["<C-c>"]   = actions.close
             },
             i = {
@@ -39,9 +39,9 @@ telescope.setup {
                 ["<C-p>"]   = action_layout.toggle_preview,
                 ["<C-c>"]   = actions.close,
                 ["<esc>"]   = actions.close,
-                ["<M-q>"]   = actions.send_to_qflist + actions.open_qflist,
-                ["<tab>"]   = actions.toggle_selection + actions.move_selection_next,
-                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+                ["<M-q>"]   = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<tab>"]   = actions.toggle_selection + actions.move_selection_previous,
                 ["<CR>"]    = actions.select_default,
                 ["<C-x>"]   = actions.select_horizontal,
                 ["<C-v>"]   = actions.select_vertical,
