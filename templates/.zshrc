@@ -8,7 +8,9 @@ fi
 plugins=(
     git
     zsh-autosuggestions
-    virtualenv
+    helm
+    kubectl
+    fd
 )
 
 # Enable autocompletion
@@ -81,6 +83,7 @@ alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
+alias watch="watch "
 compdef __start_kubectl k
 
 # interactive cd
@@ -145,4 +148,20 @@ _k8s_tool_completion() {
 }
 
 compdef _k8s_tool_completion k8s_tool
+
+#compdef it_tool
+
+_it_tool_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _IT_TOOL_COMPLETE=complete_zsh it_tool)
+}
+
+compdef _it_tool_completion it_tool
+
+#compdef 3pp_tool
+
+_3pp_tool_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _3PP_TOOL_COMPLETE=complete_zsh 3pp_tool)
+}
+
+compdef _3pp_tool_completion 3pp_tool
 

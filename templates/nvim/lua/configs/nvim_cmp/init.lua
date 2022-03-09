@@ -6,8 +6,8 @@ end
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").load()
 local cmp = require("cmp")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))
 
 
 local kind_icons = {
@@ -39,7 +39,7 @@ local kind_icons = {
 }
 
 
-cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+-- cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 
 local mapping = {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),

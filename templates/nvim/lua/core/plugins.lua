@@ -165,13 +165,13 @@ packer.startup {
 
         use {"ThePrimeagen/harpoon"}
 
-        use {
-            "windwp/nvim-autopairs",
-            event = "InsertEnter",
-            config = function()
-                require("configs.autopairs").config()
-            end
-        }
+        -- use {
+        --     "windwp/nvim-autopairs",
+        --     event = "InsertEnter",
+        --     config = function()
+        --         require("configs.autopairs").config()
+        --     end
+        -- }
 
         use {
             "andymass/vim-matchup",

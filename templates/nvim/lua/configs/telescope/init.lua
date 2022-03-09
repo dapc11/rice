@@ -8,6 +8,18 @@ local action_layout = require("telescope.actions.layout")
 
 
 telescope.setup {
+    pickers = {
+        buffers = {
+            mappings = {
+                n = {
+                    ["<C-d>"]   = actions.delete_buffer + actions.move_to_top,
+                },
+                i = {
+                    ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+                }
+            }
+        }
+    },
     defaults = {
         prompt_prefix        = " ",
         selection_caret      = "❯ ",
@@ -15,6 +27,7 @@ telescope.setup {
         vimgrep_arguments    = {"rg", "--no-heading", "--color=never", "--with-filename", "--line-number", "--column", "--smart-case", "--trim"},
         mappings = {
             n = {
+                ["<C-d>"]   = actions.drop_all + actions.move_to_top,
                 ["<C-p>"]   = action_layout.toggle_preview,
                 ["<M-q>"]   = actions.send_to_qflist + actions.open_qflist,
                 ["<tab>"]   = actions.toggle_selection + actions.move_selection_next,
@@ -22,6 +35,7 @@ telescope.setup {
                 ["<C-c>"]   = actions.close
             },
             i = {
+                ["<C-d>"]   = actions.drop_all + actions.move_to_top,
                 ["<C-p>"]   = action_layout.toggle_preview,
                 ["<C-c>"]   = actions.close,
                 ["<esc>"]   = actions.close,
