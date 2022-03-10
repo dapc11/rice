@@ -6,7 +6,7 @@ utils.bootstrap()
 
 utils.impatient()
 
-local sources = {"core.globals", "core.options", "core.fzf", "core.plugins", "core.keymaps"}
+local sources = {"core.globals", "core.fzf", "core.plugins", "core.options", "core.keymaps"}
 
 for _, source in ipairs(sources) do
     local status_ok, fault = pcall(require, source)
@@ -52,6 +52,6 @@ hi("DiffText",               {guifg = "{{base0D}}"})
 hi("diffline",               {guifg = "{{base0D}}"})
 hi("diffnewfile",            {guifg = "{{base0B}}"})
 hi("difffile",               {guifg = "{{base08}}"})
-hi("gitcommitsummary",              {guifg = "{{base0C}}"})
+hi("gitcommitsummary",       {guifg = "{{base0C}}"})
 
 utils.compiled()

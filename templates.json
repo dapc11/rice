@@ -28,6 +28,7 @@
     { "template": "nvim/ftdetect/gotmpl.vim", "onlyCopy": true },
     { "template": "nvim/init.lua" },
     { "template": "nvim/lua/configs/autopairs/init.lua" },
+    { "template": "nvim/lua/configs/aerial/init.lua" },
     { "template": "nvim/lua/configs/bqf/init.lua" },
     { "template": "nvim/lua/configs/colorizer/init.lua" },
     { "template": "nvim/lua/configs/gitsigns/init.lua" },
