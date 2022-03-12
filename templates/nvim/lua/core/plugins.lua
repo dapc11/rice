@@ -63,10 +63,7 @@ packer.startup {
         }
         use {
             "phaazon/hop.nvim",
-            branch = "v1", -- optional but strongly recommended
-            config = function()
-                require"hop".setup {}
-            end
+            branch = "v1"
         }
 
         use {
@@ -120,9 +117,6 @@ packer.startup {
 
         use {
             "norcalli/nvim-colorizer.lua",
-            config = function()
-                require"colorizer".setup()
-            end,
             ft = {"json", "yaml", "css", "html", "lua", "vim"}
         }
 
@@ -200,6 +194,7 @@ packer.startup {
                 require "configs.aerial"
             end
         }
+        use {"tpope/vim-unimpaired"}
     end,
     config = {
         compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",

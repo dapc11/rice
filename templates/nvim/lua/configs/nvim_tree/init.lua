@@ -1,4 +1,5 @@
 vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
 
 vim.g.nvim_tree_respect_buf_cwd = 1
@@ -23,10 +24,10 @@ vim.g.nvim_tree_icons = {
     folder = {
         arrow_open = "",
         arrow_closed = "",
-        default = "",
+        default = "",
         open = "",
-        empty = "", -- 
-        empty_open = "",
+        empty = "", -- 
+        empty_open = "",
         symlink = "",
         symlink_open = ""
     }
@@ -69,7 +70,9 @@ require'nvim-tree'.setup {
         auto_resize = true,
         mappings = {
             custom_only = false,
-            list = {}
+            list = {
+                { key = "<C-t>", action = "" },
+            }
         }
     }
 }
