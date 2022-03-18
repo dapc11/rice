@@ -20,6 +20,9 @@ packer.startup {
         use {"nvim-lua/popup.nvim"}
 
         use {"tpope/vim-fugitive"}
+        use {"tpope/vim-unimpaired"}
+        use {"test"}
+        use {"tpope/vim-surround"}
         use {
             "lewis6991/gitsigns.nvim",
             config = function()
@@ -32,7 +35,6 @@ packer.startup {
             "nvim-treesitter/nvim-treesitter",
             requires = {
                 "mfussenegger/nvim-ts-hint-textobject",
-                -- "romgrk/nvim-treesitter-context",
             },
             config = function()
                 require "configs.treesitter"
@@ -159,13 +161,13 @@ packer.startup {
 
         use {"ThePrimeagen/harpoon"}
 
-        -- use {
-        --     "windwp/nvim-autopairs",
-        --     event = "InsertEnter",
-        --     config = function()
-        --         require("configs.autopairs").config()
-        --     end
-        -- }
+        use {
+            "windwp/nvim-autopairs",
+            event = "InsertEnter",
+            config = function()
+                require("configs.autopairs").config()
+            end
+        }
 
         use {
             "andymass/vim-matchup",
@@ -194,7 +196,6 @@ packer.startup {
                 require "configs.aerial"
             end
         }
-        use {"tpope/vim-unimpaired"}
     end,
     config = {
         compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
