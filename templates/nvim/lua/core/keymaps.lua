@@ -76,7 +76,7 @@ map {'n', '<leader>m',        ':lua require("telescope.builtin").keymaps()<CR>'}
 map {'n', '<leader>h',        ':lua require("telescope.builtin").oldfiles()<CR>'}
 map {'n', '<Leader>n',        ':lua require("telescope.builtin").git_files()<CR>'}
 map {'n', '<Leader>N',        ':lua require("telescope.builtin").git_files({git_command={"git","ls-files","--modified","--exclude-standard"}})<CR>'}
-map {'n', '<Leader>O',        ':lua require("telescope.builtin").find_files({hidden = true, previewer = false})<CR>'}
+map {'n', '<Leader>O',        ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false})<CR>'}
 map {'n', '<Leader>o',        ':lua require("telescope.builtin").find_files({previewer = false})<CR>'}
 map {'n', '<Leader>f',        ':lua require("telescope.builtin").find_files({hidden = true, no_ignore = true, previewer = false, search_dirs = ' .. telescope_open_hidden .. '})<CR>'}
 map {'n', '<leader><leader>', ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>'}
