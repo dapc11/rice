@@ -21,7 +21,6 @@ packer.startup {
 
         use {"tpope/vim-fugitive"}
         use {"tpope/vim-unimpaired"}
-        use {"test"}
         use {"tpope/vim-surround"}
         use {
             "lewis6991/gitsigns.nvim",
@@ -65,7 +64,10 @@ packer.startup {
         }
         use {
             "phaazon/hop.nvim",
-            branch = "v1"
+            branch = "v1",
+            config = function()
+                require'hop'.setup { keys = 'aqwsdezxcrfvtgbyhnujmikolpöåä' }
+            end
         }
 
         use {
@@ -81,6 +83,7 @@ packer.startup {
         use {"hrsh7th/cmp-buffer"}
         use {
             "hrsh7th/nvim-cmp",
+            branch = "dev",
             config = function()
                 require "configs.nvim_cmp"
             end

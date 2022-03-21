@@ -26,7 +26,7 @@ class Templates:
         self.context = utils.get_context(theme)
 
     def __enter__(self):
-        with open(self.templates_path, "r") as file:
+        with open(self.templates_path, "r", encoding="utf-8") as file:
             templates = json.load(file)
             return [Template(t, self.overwrite, self.env, self.context) for t in templates]
 
