@@ -277,13 +277,16 @@ function! SynGroup()
 endfun
 map gm :call SynGroup()<CR>
 ]]
-map {'n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {}}
-map {'n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {}}
-map {'o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {}}
-map {'o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {}}
-map {'', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {}}
-map {'', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {}}
+map {'n', 'f',          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {}}
+map {'n', 'F',          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {}}
+map {'o', 'f',          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {}}
+map {'o', 'F',          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {}}
+map {'', 't',           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {}}
+map {'', 'T',           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {}}
 
 map {"n", "<C-e>",      "<cmd>AerialToggle<CR>"}
-map {"n", "<leader>cd", "<cmd>lua vim.diagnostic.disable()<CR>"}
-map {"n", "<leader>ce", "<cmd>lua vim.diagnostic.enable()<CR>"}
+map {"n", "<leader>cd", "<cmd>lua vim.diagnostic.hide()<CR>"}
+map {"n", "<leader>ce", "<cmd>lua vim.diagnostic.show()<CR>"}
+
+map {"i", "<C-E>",      "<Plug>luasnip-next-choice", {}}
+map {"s", "<C-E>",      "<Plug>luasnip-next-choice", {}}

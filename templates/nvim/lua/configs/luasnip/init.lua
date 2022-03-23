@@ -102,23 +102,32 @@ ls.snippets = {
 	--     - luasnip.c
 	--     - luasnip.all
 	-- are searched in that order.
-	yaml = {
+	all = {
 		s(
             "cve",
-            fmt("{}:\n\tmitigation: {}\n\tsce:\n\t\tsce-id: {}\n\t\tstatus: Approved\n\t\texpires: {}", {
-				i(1),
-				i(2),
-                i(3),
-                i(4),
-			})
-		),
-		s(
-            "cvelow",
-            fmt("{}:\n\tmitigation: {}", {
-				i(1),
-				i(2),
-			})
-		),
+            {
+                c(1, {
+                    t("CVE-"),
+                    t(""),
+                }),
+                i(2, "cve-id"),
+                t(":"),
+                t({ "", "\tmitigation: " }),
+                i(3, "mitigation"),
+                c(4, {
+                    t(""),
+                    sn(nil, {
+                        t({ "", "\tsce:" }),
+                        t({ "", "\t\tsce-id: " }),
+                        i(1, "sce-id"),
+                        t({ "", "\t\tstatus: Approved" }),
+                        t({ "", "\t\texpires: " }),
+                        i(2, "expires"),
+                    }),
+                }),
+                i(0),
+            }
+        ),
     }
 }
 
@@ -130,4 +139,3 @@ au User LuasnipChoiceNodeLeave lua choice_popup_close()
 au User LuasnipChangeChoice lua update_choice_popup(require("luasnip").session.event_node)
 augroup END
 ]])
-
