@@ -6,7 +6,7 @@ utils.bootstrap()
 
 utils.impatient()
 
-local sources = {"core.globals", "core.fzf", "core.plugins", "core.options", "core.keymaps"}
+local sources = {"core.globals", "core.plugins", "core.options", "core.keymaps"}
 
 for _, source in ipairs(sources) do
     local status_ok, fault = pcall(require, source)
@@ -20,7 +20,7 @@ hi("CmpItemAbbrMatchFuzzy",  {guibg = "none", guifg = "{{base0D}}"})
 hi("CmpItemKindFunction",    {guibg = "none", guifg = "{{base0E}}"})
 hi("CmpItemKindMethod",      {guibg = "none", guifg = "{{base0E}}"})
 hi("CmpItemKindVariable",    {guibg = "none", guifg = "{{base0C}}"})
-hi("CmpItemKindKeyword",     {guibg = "none", guifg="{{base07}}"})
+hi("CmpItemKindKeyword",     {guibg = "none", guifg = "{{base07}}"})
 hi("DiagnosticError",        {guifg = "{{base08}}"})
 hi("DiagnosticWarn",         {guifg = "{{base09}}"})
 hi("DiagnosticInfo",         {guifg = "{{base0C}}"})
@@ -39,7 +39,7 @@ hi("PMenu",                  {guibg = "{{base00}}", guifg = "{{base06}}"})
 hi("TelescopeResultsBorder", {guifg = "{{base05}}"})
 hi("TelescopePreviewBorder", {guifg = "{{base05}}"})
 hi("TelescopePromptBorder",  {guifg = "{{base05}}"})
-hi("TelescopeTitle",         {gui = "bold", guifg = "{{base05}}"})
+hi("TelescopeTitle",         {guifg = "{{base05}}", gui = "bold"})
 hi("TelescopeMatching",      {guifg = "{{base0D}}"})
 hi("TreesitterContext",      {guibg = "{{base01}}"})
 hi("TSVariable",             {guifg = "{{base06}}"})

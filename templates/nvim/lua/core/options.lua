@@ -65,7 +65,7 @@ autocmd BufNewFile,BufRead *.yaml if search('{{.*}}', 'nw') | setlocal filetype=
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()
 
-autocmd BufEnter * lua vim.diagnostic.hide()
+autocmd BufEnter * lua vim.diagnostic.disable()
 augroup END
 
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=true}

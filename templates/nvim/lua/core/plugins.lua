@@ -20,7 +20,6 @@ packer.startup {
         use {"nvim-lua/popup.nvim"}
 
         use {"tpope/vim-fugitive"}
-        use {"tpope/vim-unimpaired"}
         use {"tpope/vim-surround"}
         use {
             "lewis6991/gitsigns.nvim",
@@ -28,8 +27,6 @@ packer.startup {
                 require "configs.gitsigns"
             end
         }
-
-        use {"nvim-treesitter/playground"}
         use {
             "nvim-treesitter/nvim-treesitter",
             requires = {
@@ -48,11 +45,6 @@ packer.startup {
         }
 
         use {
-            "junegunn/fzf",
-            run = "./install --bin"
-        }
-        use {"junegunn/fzf.vim"} -- Find everything
-        use {
             "nvim-telescope/telescope.nvim",
             config = function()
                 require "configs.telescope"
@@ -66,7 +58,7 @@ packer.startup {
             "phaazon/hop.nvim",
             branch = "v1",
             config = function()
-                require'hop'.setup { keys = 'aqwsdezxcrfvtgbyhnujmikolpöåä' }
+                require'hop'.setup { keys = 'asdfgqwertzxcvb' }
             end
         }
 
@@ -76,7 +68,6 @@ packer.startup {
                 require "configs.lsp"
             end
         }
-        use {"onsails/lspkind-nvim"}
         use {"ray-x/lsp_signature.nvim"}
 
         use {"hrsh7th/cmp-nvim-lsp"}
@@ -169,27 +160,6 @@ packer.startup {
             event = "InsertEnter",
             config = function()
                 require("configs.autopairs").config()
-            end
-        }
-
-        use {
-            "andymass/vim-matchup",
-            opt = true,
-        }
-        use {
-            'kevinhwang91/nvim-bqf',
-            ft = 'qf',
-            config = function()
-                require "configs.bqf"
-            end
-        }
-        use {
-            "folke/trouble.nvim",
-            requires = "kyazdani42/nvim-web-devicons",
-            config = function()
-                require("trouble").setup {
-                    mode = "document_diagnostics"
-                }
             end
         }
         use { "junegunn/vim-easy-align" }
