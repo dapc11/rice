@@ -102,6 +102,8 @@ map {"n", "ö", "<C-u>"}
 map {"t", "<Esc>", "<C-\\><C-n>"}
 -- Don't copy the replaced text after pasting in visual mode
 map {"v", "p", '"_dP'}
+map {"v", "c", '"_c'}
+map {"n", "c", '"_c'}
 
 -- Requires gvim
 -- Paste with shift+insert
