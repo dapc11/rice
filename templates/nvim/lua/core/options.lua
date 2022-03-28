@@ -1,49 +1,57 @@
-for key, val in pairs({
-    tabstop        = 4,
-    softtabstop    = 4,
-    shiftwidth     = 4,                                    -- 4 spaces
-    shiftround     = true,                                 -- Round tabs to multiplier of shiftwicth
-    smartindent    = true,
-    ignorecase     = true,
-    expandtab      = true,                                 -- In Insert mode: Use the appropriate number of spaces to insert a tab
-    relativenumber = true,                                 -- relative line numbers to current line
-    cursorline     = true,                                 -- Highlgiht cursor line
-    hlsearch       = true,                                 -- Highlight search
-    hidden         = true,
-    errorbells     = false,                                -- No sound on error
-    nu             = true,                                 -- Line numbers
-    wrap           = false,
-    swapfile       = false,
-    backup         = false,
-    undodir        = os.getenv("HOME") .. "/.vim/undodir",
-    undofile       = true,
-    incsearch      = true,                                 -- Evolve search as I write
-    termguicolors  = true,                                 -- Make colorscheme work
-    scrolloff      = 8,                                    -- Start scroll when n lines from screen edge
-    showmode       = false,
-    colorcolumn    = "100",                                -- Dont go further
-    updatetime     = 50,                                   -- Short time to combo key strokes
-    mouse          = "a",                                  -- Enable mouse
-    autoread       = true,
-    completeopt    = "menu,menuone,noselect",
-    shortmess      = vim.o.shortmess .. "c",
-    clipboard      = vim.o.clipboard .. "unnamedplus",     -- System clipboard
-    pumheight      = 15,                                   -- height of popup menu
-    splitbelow     = true,
-    splitright     = true,
-}) do vim.o[key] = val end
+for key, val in
+	pairs({
+		tabstop = 4,
+		softtabstop = 4,
+		shiftwidth = 4, -- 4 spaces
+		shiftround = true, -- Round tabs to multiplier of shiftwicth
+		smartindent = true,
+		ignorecase = true,
+		expandtab = true, -- In Insert mode: Use the appropriate number of spaces to insert a tab
+		relativenumber = true, -- relative line numbers to current line
+		cursorline = true, -- Highlgiht cursor line
+		hlsearch = true, -- Highlight search
+		hidden = true,
+		errorbells = false, -- No sound on error
+		nu = true, -- Line numbers
+		wrap = false,
+		swapfile = false,
+		backup = false,
+		undodir = os.getenv("HOME") .. "/.vim/undodir",
+		undofile = true,
+		incsearch = true, -- Evolve search as I write
+		termguicolors = true, -- Make colorscheme work
+		scrolloff = 8, -- Start scroll when n lines from screen edge
+		showmode = false,
+		colorcolumn = "100", -- Dont go further
+		updatetime = 50, -- Short time to combo key strokes
+		mouse = "a", -- Enable mouse
+		autoread = true,
+		completeopt = "menu,menuone,noselect",
+		shortmess = vim.o.shortmess .. "c",
+		clipboard = vim.o.clipboard .. "unnamedplus", -- System clipboard
+		pumheight = 15, -- height of popup menu
+		splitbelow = true,
+		splitright = true,
+	})
+do
+	vim.o[key] = val
+end
 
-for key, val in pairs({
-    mapleader                                = " ",
-    indent_blankline_use_treesitter          = true,
-    indent_blankline_show_first_indent_level = true,
-    indent_blankline_filetype_exclude        = {"help"},
-    indentLine_setConceal                    = 0,
-}) do vim.g[key] = val end
+for key, val in
+	pairs({
+		mapleader = " ",
+		indent_blankline_use_treesitter = true,
+		indent_blankline_show_first_indent_level = true,
+		indent_blankline_filetype_exclude = { "help" },
+		indentLine_setConceal = 0,
+	})
+do
+	vim.g[key] = val
+end
 
 vim.bo.matchpairs = "(:),{:},[:],<:>"
-require('colorbuddy').colorscheme('onebuddy')
-vim.cmd [[
+require("colorbuddy").colorscheme("onebuddy")
+vim.cmd([[
 set path+=**
 nnoremap <SPACE> <Nop>
 
@@ -75,39 +83,42 @@ sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=D
 sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
 sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
 sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
-]]
+]])
 
 local signs = {
-    {
-        name = "DiagnosticSignError",
-        text = "",
-        type = "Error"
-    }, {
-        name = "DiagnosticSignWarn",
-        text = "",
-        type = "Warn"
-    }, {
-        name = "DiagnosticSignHint",
-        text = "",
-        type = "Hint"
-    }, {
-        name = "DiagnosticSignInfo",
-        text = "",
-        type = "Info"
-    }
+	{
+		name = "DiagnosticSignError",
+		text = "",
+		type = "Error",
+	},
+	{
+		name = "DiagnosticSignWarn",
+		text = "",
+		type = "Warn",
+	},
+	{
+		name = "DiagnosticSignHint",
+		text = "",
+		type = "Hint",
+	},
+	{
+		name = "DiagnosticSignInfo",
+		text = "",
+		type = "Info",
+	},
 }
 
 for _, sign in ipairs(signs) do
-    local hl = "DiagnosticLineNr" .. sign.type
-    vim.fn.sign_define(sign.name, {
-        texthl = sign.name,
-        text = sign.text,
-        numhl = hl
-    })
+	local hl = "DiagnosticLineNr" .. sign.type
+	vim.fn.sign_define(sign.name, {
+		texthl = sign.name,
+		text = sign.text,
+		numhl = hl,
+	})
 end
 
 -- Bracketed paste
-vim.cmd[[
+vim.cmd([[
 " Code from:
 " http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
 " then https://coderwall.com/p/if9mda
@@ -140,4 +151,4 @@ imap <expr> <f28> XTermPasteBegin("")
 vmap <expr> <f28> XTermPasteBegin("c")
 cmap <f28> <nop>
 cmap <f29> <nop>
-]]
+]])
