@@ -36,6 +36,7 @@ packer.startup({
 				require("configs.treesitter")
 			end,
 			run = ":TSUpdate",
+			event = "BufRead",
 		})
 
 		use({
@@ -46,13 +47,12 @@ packer.startup({
 
 		use({
 			"nvim-telescope/telescope.nvim",
+			requires = {
+				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			},
 			config = function()
 				require("configs.telescope")
 			end,
-		})
-		use({
-			"nvim-telescope/telescope-fzf-native.nvim",
-			run = "make",
 		})
 		use({
 			"phaazon/hop.nvim",
@@ -62,36 +62,39 @@ packer.startup({
 			end,
 		})
 
-		use({
-			"neovim/nvim-lspconfig",
-			config = function()
-				require("configs.lsp")
-			end,
-		})
-		use({ "ray-x/lsp_signature.nvim" })
-
-		use({ "hrsh7th/cmp-nvim-lsp" })
-		use({ "hrsh7th/cmp-buffer" })
-		use({
-			"hrsh7th/nvim-cmp",
-			branch = "dev",
-			config = function()
-				require("configs.nvim_cmp")
-			end,
-		})
-		use({ "hrsh7th/cmp-path" })
-		use({ "hrsh7th/cmp-cmdline" })
+		use({ "rafamadriz/friendly-snippets" })
 		use({
 			"L3MON4D3/LuaSnip",
+			after = "friendly-snippets",
 			config = function()
 				require("configs.luasnip")
 			end,
 		})
-		use({ "saadparwaiz1/cmp_luasnip" })
-		use({ "rafamadriz/friendly-snippets" })
+		use({
+			"hrsh7th/nvim-cmp",
+			branch = "dev",
+			after = "LuaSnip",
+			config = function()
+				require("configs.nvim_cmp")
+			end,
+		})
+		use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
+		use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
+		use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
+		use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
+		use({
+			"neovim/nvim-lspconfig",
+			after = "cmp-nvim-lsp",
+			config = function()
+				require("configs.lsp")
+			end,
+		})
+		use({ "ray-x/lsp_signature.nvim", after = "nvim-lspconfig" })
 
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
+			after = "nvim-lspconfig",
 			config = function()
 				require("configs.nullls")
 			end,
@@ -99,6 +102,7 @@ packer.startup({
 
 		use({
 			"lukas-reineke/indent-blankline.nvim",
+			event = "BufRead",
 			config = function()
 				require("configs.indent_blankline")
 			end,
@@ -106,6 +110,7 @@ packer.startup({
 
 		use({
 			"nvim-lualine/lualine.nvim",
+			after = "nvim-web-devicons",
 			config = function()
 				require("configs.lualine")
 			end,
@@ -119,7 +124,10 @@ packer.startup({
 			end,
 		})
 
-		use({ "kyazdani42/nvim-web-devicons" }) -- Devicons for statusline
+		use({
+			"kyazdani42/nvim-web-devicons",
+			event = "BufRead",
+		})
 
 		use({ "ellisonleao/gruvbox.nvim" })
 

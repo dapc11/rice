@@ -47,6 +47,7 @@
     { "template": "nvim/lua/core/keymaps.lua" },
     { "template": "nvim/lua/core/options.lua", "onlyCopy": true},
     { "template": "nvim/lua/core/plugins.lua" },
+    { "template": "nvim/lua/core/custom-theme.lua" },
     { "template": "nvim/lua/core/utils.lua" },
     { "template": "nvim/queries/gotmpl/highlights.scm", "onlyCopy": true },
     { "template": "lazygit/config.yml", "onlyCopy": true },

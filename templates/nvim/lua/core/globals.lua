@@ -1,4 +1,4 @@
-function _G.map(mode, lhs, rhs, opts)
+function map_utils(rhs, opts)
 	local finalRhs = ""
 	local callback = nil
 	if type(rhs) == "string" then
@@ -13,8 +13,17 @@ function _G.map(mode, lhs, rhs, opts)
 		expr = false,
 		callback = callback,
 	})
+	return rhs, opts
+end
 
-	vim.api.nvim_set_keymap(mode, lhs, finalRhs, opts)
+function _G.map(mode, lhs, rhs, opts)
+	r, o = map_utils(rhs, opts)
+	vim.api.nvim_set_keymap(mode, lhs, r, o)
+end
+
+function _G.bmap(mode, lhs, rhs, opts)
+	r, o = map_utils(rhs, opts)
+	vim.api.nvim_set_bufmap(mode, lhs, r, o)
 end
 
 function _G.au(event, filetype, action)
