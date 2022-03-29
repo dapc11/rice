@@ -5,7 +5,7 @@ window:
   padding:
     x: 0
     y: 0
-  dynamic_padding: false
+  dynamic_padding: true
   decorations: full
   title: alacritty
   class: alacritty
@@ -24,7 +24,7 @@ font:
     style: Bold
   italic:
     style: Italic
-  size: 11.0
+  size: 10.5
 
   offset:
     x: 0
