@@ -39,16 +39,16 @@ M.handlers = {
 }
 
 function M.lsp_keymaps(bufnr)
-    opts = {}
-	bmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	bmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	bmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	bmap("n", "ge", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	bmap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	bmap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-	bmap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	bmap("n", "<C-b>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-	bmap("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	opts = {}
+	bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	bmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	bmap(bufnr, "n", "ge", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	bmap(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	bmap(bufnr, "n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	bmap(bufnr, "n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	bmap(bufnr, "n", "<C-b>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	bmap(bufnr, "n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 end
 
 function M.lsp_highlight_document(client)

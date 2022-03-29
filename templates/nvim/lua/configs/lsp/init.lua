@@ -2,7 +2,7 @@ local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
 	return
 end
-local status_ok, lsputils = pcall(require, "configs.lsp.utils")
+local status_ok, lsputils = pcall(require, "configs.utils")
 if not status_ok then
 	return
 end

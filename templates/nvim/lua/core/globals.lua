@@ -22,10 +22,10 @@ function _G.map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, r, o)
 end
 
-function _G.bmap(mode, lhs, rhs, opts)
+function _G.bmap(bufnr, mode, lhs, rhs, opts)
 	opts = opts or {}
 	r, o = map_utils(rhs, opts)
-	vim.api.nvim_set_bufmap(mode, lhs, r, o)
+	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, r, o)
 end
 
 function _G.au(event, filetype, action)
