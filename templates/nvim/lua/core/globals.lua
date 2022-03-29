@@ -7,7 +7,7 @@ function map_utils(rhs, opts)
 		callback = rhs
 	end
 
-	opts = vim.tbl_extend("keep", opts or {}, {
+	opts = vim.tbl_extend("keep", opts, {
 		noremap = true,
 		silent = true,
 		expr = false,
@@ -17,11 +17,13 @@ function map_utils(rhs, opts)
 end
 
 function _G.map(mode, lhs, rhs, opts)
+	opts = opts or {}
 	r, o = map_utils(rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, r, o)
 end
 
 function _G.bmap(mode, lhs, rhs, opts)
+	opts = opts or {}
 	r, o = map_utils(rhs, opts)
 	vim.api.nvim_set_bufmap(mode, lhs, r, o)
 end
