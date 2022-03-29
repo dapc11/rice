@@ -223,3 +223,5 @@ map("n", "<leader>ce", "<cmd>lua vim.diagnostic.enable()<CR>")
 
 map("i", "<C-E>", "<Plug>luasnip-next-choice")
 map("s", "<C-E>", "<Plug>luasnip-next-choice")
+map("n", "<Tab>", ":tabnext<CR>")
+map("n", "<S-Tab>", ":tabprevious<CR>")
