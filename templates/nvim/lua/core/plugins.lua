@@ -20,7 +20,6 @@ packer.startup({
 		use({ "nvim-lua/popup.nvim" })
 
 		use({ "tpope/vim-fugitive" })
-		use({ "tpope/vim-surround" })
 		use({
 			"lewis6991/gitsigns.nvim",
 			config = function()
@@ -129,11 +128,10 @@ packer.startup({
 			event = "BufRead",
 		})
 
+		use({ "tjdevries/colorbuddy.vim" })
 		use({ "ellisonleao/gruvbox.nvim" })
-
 		use({ "navarasu/onedark.nvim" })
 		use({ "Th3Whit3Wolf/one-nvim" })
-		use({ "tjdevries/colorbuddy.vim" })
 		use({ "Th3Whit3Wolf/onebuddy" })
 
 		use({

@@ -8,7 +8,7 @@ function M.config()
 
 	npairs.setup({
 		disable_in_visualblock = true,
-		check_ts = false,
+		check_ts = true,
 		disable_filetype = { "TelescopePrompt", "spectre_panel" },
 		fast_wrap = {
 			map = "<M-e>",
