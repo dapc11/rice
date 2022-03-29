@@ -1,6 +1,16 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# Enable autocompletionsource ~/powerlevel10k/powerlevel10k.zsh-theme
+autoload -Uz compinit; compinit
+export ZSH="$HOME/.oh-my-zsh"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+ZLE_RPROMPT_INDENT=0
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -13,11 +23,6 @@ plugins=(
     fd
 )
 
-# Enable autocompletion
-autoload -Uz compinit; compinit
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="powerlevel10k/powerlevel10k"
-[[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
 
 if type rg &> /dev/null; then
     # --files: List files that would be searched but do not search
@@ -68,8 +73,6 @@ _fzf_compgen_dir() {
 
 _gen_fzf_default_opts
 
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
 set -g hist_ignore_dups
 # Enable Home & End in rxvt-unicode-256color
 bindkey "^[[H" beginning-of-line
@@ -83,8 +86,7 @@ alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
 alias watch="watch "
-alias git-clean="git checkout -- $(gsf)"
-compdef __start_kubectl k
+alias git-clean="git checkout -- \$(gsf)"
 
 # interactive cd
 unalias g 2> /dev/null
@@ -108,52 +110,37 @@ e() {
     fi
 }
 
-
-# alias git-clean="git checkout -- $(gsf)"
-
-function pb-kill-line () {
+pb-kill-line() {
   zle kill-line
   echo -n $CUTBUFFER | xclip -selection clipboard
 }
+
 zle -N pb-kill-line
 bindkey '^K' pb-kill-line
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 eval "$(zoxide init zsh)"
-ZLE_RPROMPT_INDENT=0
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm bash_completion
-
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 #compdef k8s_tool
-
 _k8s_tool_completion() {
   eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _K8S_TOOL_COMPLETE=complete_zsh k8s_tool)
 }
-
 compdef _k8s_tool_completion k8s_tool
 
 #compdef it_tool
-
 _it_tool_completion() {
   eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _IT_TOOL_COMPLETE=complete_zsh it_tool)
 }
-
 compdef _it_tool_completion it_tool
 
 #compdef 3pp_tool
-
 _3pp_tool_completion() {
   eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _3PP_TOOL_COMPLETE=complete_zsh 3pp_tool)
 }
-
 compdef _3pp_tool_completion 3pp_tool
-
+compdef __start_kubectl k

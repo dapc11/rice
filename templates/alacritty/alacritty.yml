@@ -18,13 +18,13 @@ scrolling:
 
 font:
   normal:
-    family: "Iosevka Term"
+    family: "MesloLGS NF"
     style: Extended
   bold:
     style: Bold
   italic:
     style: Italic
-  size: 10.0
+  size: 11.0
 
   offset:
     x: 0
