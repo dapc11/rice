@@ -1,9 +1,11 @@
 local status_ok, lspsignature = pcall(require, "lsp_signature")
 if not status_ok then
+	error("Failed loading lsp_signature")
 	return
 end
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
+	error("Failed loading cmp_nvim_lsp")
 	return
 end
 

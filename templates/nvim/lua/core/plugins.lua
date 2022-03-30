@@ -82,20 +82,20 @@ packer.startup({
 		use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 		use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
+		use({ "ray-x/lsp_signature.nvim", after = "cmp-nvim-lsp" })
 		use({
 			"neovim/nvim-lspconfig",
-			after = "cmp-nvim-lsp",
+			after = "lsp_signature.nvim",
 			config = function()
-				require("configs.lsp")
+				require("configs.lsp.lsp")
 			end,
 		})
-		use({ "ray-x/lsp_signature.nvim", after = "nvim-lspconfig" })
 
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
-			after = "nvim-lspconfig",
+			after = "lsp_signature.nvim",
 			config = function()
-				require("configs.nullls")
+				require("configs.lsp.nullls")
 			end,
 		})
 
