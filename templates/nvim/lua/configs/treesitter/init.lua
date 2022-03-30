@@ -31,10 +31,8 @@ treesitter.setup({
 		"markdown",
 	},
 	highlight = {
-		enable = true,
-		disable = function(_, bufnr)
-			return vim.api.nvim_buf_line_count(bufnr) > 1000
-		end,
+		enable = false,
+		disable = disable_large_files,
 		-- additional_vim_regex_highlighting = { "python" }
 	},
 	incremental_selection = {
