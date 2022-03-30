@@ -50,7 +50,7 @@ do
 end
 
 vim.bo.matchpairs = "(:),{:},[:],<:>"
-require("colorbuddy").colorscheme("onebuddy")
+-- require("colorbuddy").colorscheme("onebuddy")
 vim.cmd([[
 set path+=**
 nnoremap <SPACE> <Nop>
@@ -61,7 +61,7 @@ match Todo /TODO/
 endfunc
 
 set background=dark
-"colorscheme onedark
+colorscheme onedark
 
 augroup dapc
 autocmd!
