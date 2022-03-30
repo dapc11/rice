@@ -1,9 +1,6 @@
-function map_utils(rhs, opts)
-	local finalRhs = ""
+local function map_utils(rhs, opts)
 	local callback = nil
-	if type(rhs) == "string" then
-		finalRhs = rhs
-	else
+	if type(rhs) ~= "string" then
 		callback = rhs
 	end
 
@@ -18,13 +15,13 @@ end
 
 function _G.map(mode, lhs, rhs, opts)
 	opts = opts or {}
-	r, o = map_utils(rhs, opts)
+	local r, o = map_utils(rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, r, o)
 end
 
 function _G.bmap(bufnr, mode, lhs, rhs, opts)
 	opts = opts or {}
-	r, o = map_utils(rhs, opts)
+	local r, o = map_utils(rhs, opts)
 	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, r, o)
 end
 

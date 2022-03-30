@@ -1,6 +1,11 @@
 local treesitter = require("nvim-treesitter.configs")
 require("tsht").config.hint_keys = { "h", "j", "f", "d", "n", "v", "s", "l", "a" }
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+local disable_large_files = function(_, bufnr)
+	return vim.api.nvim_buf_line_count(bufnr) > 1000
+end
+
 parser_config.gotmpl = {
 	install_info = {
 		url = "https://github.com/ngalaiko/tree-sitter-go-template",
@@ -27,7 +32,7 @@ treesitter.setup({
 	},
 	highlight = {
 		enable = true,
-		disable = function(lang, bufnr)
+		disable = function(_, bufnr)
 			return vim.api.nvim_buf_line_count(bufnr) > 1000
 		end,
 		-- additional_vim_regex_highlighting = { "python" }
@@ -45,9 +50,7 @@ treesitter.setup({
 				["<leader>A"] = "@parameter.inner",
 			},
 		},
-		disable = function(lang, bufnr)
-			return vim.api.nvim_buf_line_count(bufnr) > 1000
-		end,
+		disable = disable_large_files,
 	},
 	autotag = {
 		enable = true,
@@ -56,21 +59,15 @@ treesitter.setup({
 	refactor = {
 		highlight_definitions = {
 			enable = true,
-			disable = function(lang, bufnr)
-				return vim.api.nvim_buf_line_count(bufnr) > 1000
-			end,
+			disable = disable_large_files,
 		},
 		highlight_current_scope = {
 			enable = false,
-			disable = function(lang, bufnr)
-				return vim.api.nvim_buf_line_count(bufnr) > 1000
-			end,
+			disable = disable_large_files,
 		},
 		smart_rename = {
 			enable = true,
-			disable = function(lang, bufnr)
-				return vim.api.nvim_buf_line_count(bufnr) > 1000
-			end,
+			disable = disable_large_files,
 			keymaps = {
 				smart_rename = "<Space>rr",
 			},

@@ -13,9 +13,6 @@ local M = {}
 
 M.diagnostics_config = {
 	virtual_text = false,
-	signs = {
-		active = signs,
-	},
 	update_in_insert = true,
 	underline = true,
 	severity_sort = true,
@@ -41,7 +38,7 @@ M.handlers = {
 }
 
 function M.lsp_keymaps(bufnr)
-	opts = {}
+	local opts = {}
 	bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	bmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
