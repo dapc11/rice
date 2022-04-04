@@ -50,7 +50,6 @@ do
 end
 
 vim.bo.matchpairs = "(:),{:},[:],<:>"
--- require("colorbuddy").colorscheme("onebuddy")
 vim.cmd([[
 set path+=**
 nnoremap <SPACE> <Nop>

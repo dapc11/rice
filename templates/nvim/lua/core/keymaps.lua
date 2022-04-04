@@ -69,6 +69,7 @@ map(
 )
 map("n", "<C-p>", ":Telescope projects<CR>")
 map("n", "<C-f>", ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>')
+map("n", "<C-j>", ':lua require("telescope.builtin").jumplist()<CR>')
 
 -- Harpoon
 map("n", "<A-m>", ":lua require('harpoon.mark').add_file()<CR>")
