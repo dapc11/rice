@@ -159,4 +159,8 @@
         "command": "-editor.action.rename",
         "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
+    {
+        "key": "ctrl+m",
+        "command": "workbench.action.toggleMaximizedPanel"
+    }
 ]

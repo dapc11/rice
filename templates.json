@@ -7,7 +7,6 @@
     { "template": "Code/User/keybindings.json" },
     { "template": "Code/User/settings.json" },
     { "template": "alacritty/alacritty.yml" },
-    { "template": "awesome/bar.lua" },
     { "template": "awesome/icons", "onlyCopy": true },
     { "template": "awesome/rc.lua" },
     { "template": "awesome/sysact", "executable": true },

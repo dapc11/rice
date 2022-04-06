@@ -68,7 +68,11 @@ class Template:
 
     @property
     def content(self):
-        t = self.env.get_template(self.template)
+        try:
+            t = self.env.get_template(self.template)
+        except Exception:
+            print(f"Could not render {self.template}")
+            sys.exit(1)
         return t.render(self.context)
 
     def __repr__(self) -> str:

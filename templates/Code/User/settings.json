@@ -178,5 +178,13 @@
     ],
     "git.detectSubmodules": false,
     "git.autoRepositoryDetection": "openEditors",
-    "python.analysis.completeFunctionParens": true
+    "python.analysis.completeFunctionParens": true,
+    "[lua]": {
+        "editor.defaultFormatter": "yinfei.luahelper"
+    },
+    "Lua.telemetry.enable": false,
+    "Lua.workspace.library": [
+        "/usr/share/awesome/lib",
+        "/usr/local/share/nvim/runtime/lua/"
+    ]
 }

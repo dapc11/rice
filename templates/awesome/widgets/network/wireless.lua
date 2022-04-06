@@ -3,10 +3,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local gears = require("gears")
-local cairo = require("lgi").cairo
-local module_path = (...):match("(.+/)[^/]+$") or ""
 
-local theme = beautiful.get()
 
 function dbg(message)
     naughty.notify({
@@ -20,7 +17,7 @@ local wireless = {}
 local function worker(args)
     local args = args or {}
 
-    widgets_table = {}
+    local widgets_table = {}
     local connected = false
 
     -- Settings
@@ -33,8 +30,6 @@ local function worker(args)
     local onclick = args.onclick
     local widget = args.widget == nil and wibox.layout.fixed.horizontal() or
                        args.widget == false and nil or args.widget
-    local indent = args.indent or 3
-    local main_color = args.main_color or beautiful.fg_color
 
     local net_text = wibox.widget.textbox()
     net_text.font = font
@@ -56,10 +51,6 @@ local function worker(args)
     end
 
     net_update()
-    local timer = gears.timer.start_new(timeout, function()
-        net_update()
-        return true
-    end)
 
     widgets_table["textbox"] = net_text
     if widget then
@@ -77,7 +68,7 @@ local function worker(args)
             local inet = "N/A"
 
             -- Use iw/ip
-            f = io.popen("iw dev " .. interface .. " link")
+            local f = io.popen("iw dev " .. interface .. " link")
             for line in f:lines() do
                 -- Connected to 00:01:8e:11:45:ac (on wlp1s0)
                 mac = string.match(line, "Connected to ([0-f:]+)") or mac
@@ -94,7 +85,7 @@ local function worker(args)
             end
             f:close()
 
-            signal = ""
+            local signal = ""
             if popup_signal then
                 signal = "├Strength\t" .. signal_level .. "\n"
             end
@@ -136,7 +127,6 @@ end
 function wireless:attach(widget, args)
     local args = args or {}
     local onclick = args.onclick
-    -- Bind onclick event function
     if onclick then
         widget:buttons(awful.util.table.join(
                            awful.button({}, 1, function()
