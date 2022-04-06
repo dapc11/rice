@@ -113,7 +113,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 --  Wibar
 -- Create a textclock widget
-local mytextclock = wibox.widget.textclock("  %Y-%m-%d  %H:%M:%S ", 1)
+local mytextclock = wibox.widget.textclock("    %Y-%m-%d    %H:%M:%S  ", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -208,8 +208,22 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create a taglist widget
 	s.mytaglist = awful.widget.taglist({
 		screen = s,
-		filter = awful.widget.taglist.filter.all,
+		filter = awful.widget.taglist.filter.noempty,
 		buttons = taglist_buttons,
+		style = {
+			fg_focus = "{{base06}}",
+			bg_focus = "{{base03}}",
+			fg_urgent = "{{base02}}",
+			bg_urgent = "{{base08}}",
+			bg_occupied = "{{base01}}",
+			fg_occupied = "{{base05}}",
+			bg_empty = nil,
+			fg_empty = nil,
+			bg_volatile = "{{base0D}}",
+			fg_volatile = "{{base01}}",
+			spacing = 2,
+			shape = gears.shape.rounded_rect,
+		},
 	})
 
 	-- Create a tasklist widget
@@ -217,6 +231,19 @@ awful.screen.connect_for_each_screen(function(s)
 		screen = s,
 		filter = awful.widget.tasklist.filter.currenttags,
 		buttons = tasklist_buttons,
+		style = {
+			fg_normal = "{{base03}}",
+			bg_normal = "{{base01}}",
+			fg_focus = "{{base06}}",
+			bg_focus = "{{base01}}",
+			fg_urgent = "{{base02}}",
+			bg_urgent = "{{base08}}",
+			fg_minimize = "{{base01}}",
+			bg_minimize = "{{base01}}",
+			spacing = 1,
+			tasklist_disable_icon = true,
+			shape = gears.shape.rounded_rect,
+		},
 	})
 
 	-- Create the wibox
@@ -228,18 +255,22 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Add widgets to the wibox
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
+		expand = "none",
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			mylauncher,
+			spacing = 100,
 			s.mytaglist,
 			s.mypromptbox,
 		},
-		s.mytasklist, -- Middle widget
+		{
+			layout = wibox.layout.flex.horizontal,
+			s.mytasklist, -- Middle widget
+		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			wibox.widget.systray(),
 			mytextclock,
 			s.mylayoutbox,
+			wibox.widget.systray(),
 		},
 	})
 end)
@@ -744,6 +775,7 @@ awful.rules.rules = { -- All clients will match this rule.
 --  Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
+    c.shape = gears.shape.rounded_rect
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
@@ -807,8 +839,10 @@ end)
 
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
+	c.skip_taskbar = false
 end)
 client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
+	c.skip_taskbar = true
 end)
 --

@@ -6,82 +6,44 @@ local filesystem = require("gears.filesystem")
 local themes_path = filesystem.get_themes_dir()
 
 local theme = {}
-local font_size = 10
+local font_size = 11
 theme.font = "{{font}} " .. font_size
-
-theme.bg_normal = "{{base00}}"
-theme.taglist_bg_occupied = "{{base01}}"
-theme.tasklist_bg_focus = "{{base01}}"
+-- Background
+theme.bg_normal = "{{base01}}"
+theme.bg_dark = "{{base00}}"
 theme.bg_focus = "{{base02}}"
 theme.bg_urgent = "{{base08}}"
 theme.bg_minimize = "{{base03}}"
-theme.bg_systray = theme.bg_normal
 
+-- Foreground
 theme.fg_normal = "{{base06}}"
-theme.fg_focus = "{{base06}}"
-theme.fg_urgent = "{{base06}}"
-theme.fg_minimize = "{{base09}}"
+theme.fg_focus = ""
+theme.fg_urgent = "{{base00}}"
+theme.fg_minimize = "{{base05}}"
 
-theme.useless_gap = dpi(0)
+-- Window Gap Distance
+theme.useless_gap = dpi(7)
+
+-- Do Not Show Gaps if Only One Client is Visible
+theme.gap_single_client = false
+
+-- Window Borders
 theme.border_width = dpi(1)
-theme.border_normal = "{{base01}}"
-theme.border_focus = "{{base03}}"
-theme.border_marked = "{{base08}}"
-theme.wallpaper = os.getenv("HOME") .. "/.local/background.jpg"
+theme.border_normal = theme.bg_normal
+theme.border_focus = "{{base02}}"
+theme.border_marked = theme.fg_urgent
 
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+-- Tasklist
+theme.tasklist_font = theme.font
 
-theme.titlebar_close_button_normal = nil
-theme.titlebar_close_button_focus = nil
+-- Notification Sizing
+theme.notification_max_width = dpi(350)
 
-theme.titlebar_minimize_button_normal = nil
-theme.titlebar_minimize_button_focus = nil
+-- System Tray
+theme.bg_systray = theme.bg_normal
+theme.systray_icon_spacing = dpi(5)
 
-theme.titlebar_ontop_button_normal_inactive = nil
-theme.titlebar_ontop_button_focus_inactive = nil
-theme.titlebar_ontop_button_normal_active = nil
-theme.titlebar_ontop_button_focus_active = nil
-
-theme.titlebar_sticky_button_normal_inactive = nil
-theme.titlebar_sticky_button_focus_inactive = nil
-theme.titlebar_sticky_button_normal_active = nil
-theme.titlebar_sticky_button_focus_active = nil
-
-theme.titlebar_floating_button_normal_inactive = nil
-theme.titlebar_floating_button_focus_inactive = nil
-theme.titlebar_floating_button_normal_active = nil
-theme.titlebar_floating_button_focus_active = nil
-
-theme.titlebar_maximized_button_normal_inactive = nil
-theme.titlebar_maximized_button_focus_inactive = nil
-theme.titlebar_maximized_button_normal_active = nil
-theme.titlebar_maximized_button_focus_active = nil
-
--- You can use your own layout icons like this:
-theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
-theme.layout_fairv = themes_path .. "default/layouts/fairvw.png"
-theme.layout_floating = themes_path .. "default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path .. "default/layouts/magnifierw.png"
-theme.layout_max = themes_path .. "default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path .. "default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path .. "default/layouts/tilebottomw.png"
-theme.layout_tileleft = themes_path .. "default/layouts/tileleftw.png"
-theme.layout_tile = themes_path .. "default/layouts/tilew.png"
-theme.layout_tiletop = themes_path .. "default/layouts/tiletopw.png"
-theme.layout_spiral = themes_path .. "default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path .. "default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path .. "default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
-
--- Generate Awesome icon:
-theme.awesome_icon = nil
-
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+-- Titlebars
+theme.titlebars_enabled = false
 
 return theme
