@@ -186,5 +186,9 @@
     "Lua.workspace.library": [
         "/usr/share/awesome/lib",
         "/usr/local/share/nvim/runtime/lua/"
-    ]
+    ],
+    "terminal.explorerKind": "external",
+    "terminal.integrated.drawBoldTextInBrightColors": false,
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.gpuAcceleration": "canvas",
 }
