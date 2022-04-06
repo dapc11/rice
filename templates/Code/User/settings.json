@@ -6,7 +6,7 @@
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.inheritEnv": true,
-    "editor.fontFamily": "'Iosevka Term Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "terminal.integrated.fontFamily": "Iosevka Term Extended",
     "editor.fontSize": 12,
     "editor.formatOnPaste": true,

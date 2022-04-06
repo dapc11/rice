@@ -18,13 +18,13 @@ scrolling:
 
 font:
   normal:
-    family: "Iosevka Term Extended"
+    family: "Iosevka Term"
     style: Extended
   bold:
     style: Bold
   italic:
     style: Italic
-  size: 10.5
+  size: 10.0
 
   offset:
     x: 0

@@ -60,14 +60,14 @@ match Todo /TODO/
 endfunc
 
 set background=dark
-colorscheme onedark
+colorscheme {{nvim_theme}}
 
 augroup dapc
 autocmd!
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 autocmd BufNewFile,BufRead *.tpl set filetype=gotmpl
-autocmd BufNewFile,BufRead *.yaml if search('{{.*}}', 'nw') | setlocal filetype=gotmpl | endif
+autocmd BufNewFile,BufRead *.yaml if search('\{\{.*}}', 'nw') | setlocal filetype=gotmpl | endif
 " Yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufReadPost,BufNewFile * :call HighlightTodo()

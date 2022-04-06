@@ -28,7 +28,8 @@ volume master {
 }
 
 wireless {{wifi_if}} {
-        format_up = " %essid %ip"
+        #format_up = " %essid %ip"
+        format_up = " %essid"
         format_down = " : down"
 }
 
