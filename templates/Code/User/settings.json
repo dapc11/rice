@@ -180,7 +180,7 @@
     "git.autoRepositoryDetection": "openEditors",
     "python.analysis.completeFunctionParens": true,
     "[lua]": {
-        "editor.defaultFormatter": "yinfei.luahelper"
+        "editor.defaultFormatter": "JohnnyMorganz.stylua"
     },
     "Lua.telemetry.enable": false,
     "Lua.workspace.library": [

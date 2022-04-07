@@ -1,9 +1,5 @@
-local assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-
-local filesystem = require("gears.filesystem")
-local themes_path = filesystem.get_themes_dir()
 
 local theme = {}
 local font_size = 11

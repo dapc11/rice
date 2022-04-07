@@ -20,6 +20,12 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local xrandr = require("xrandr")
 
+-- Widgets
+local battery_widget = require("widgets.battery-widget.battery")
+local docker_widget = require("widgets.docker-widget.docker")
+local volume_widget = require('widgets.volume-widget.volume')
+local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
+
 --  Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -102,18 +108,13 @@ local mymainmenu = awful.menu({
 	items = { { "awesome", myawesomemenu, beautiful.awesome_icon }, { "open terminal", terminal } },
 })
 
-local mylauncher = awful.widget.launcher({
-	image = beautiful.awesome_icon,
-	menu = mymainmenu,
-})
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 --
 
 --  Wibar
 -- Create a textclock widget
-local mytextclock = wibox.widget.textclock("    %Y-%m-%d    %H:%M:%S  ", 1)
+local mytextclock = wibox.widget.textclock("   %Y-%m-%d  %H:%M:%S", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -178,6 +179,16 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
+
+local separator = wibox.widget({
+	font = font,
+	text = "|",
+	opacity = 0.3,
+	forced_width = 10,
+	valign = "center",
+	align = "center",
+	widget = wibox.widget.textbox,
+})
 
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
@@ -268,8 +279,24 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			volume_widget({
+				font = "{{font}} 11",
+				unselected = "{{base03}}",
+				selected = "{{base08}}"
+			}),
+			separator,
+			docker_widget({}),
+			separator,
+			battery_widget({
+				font = "{{font}} 11",
+				show_current_level = true,
+			}),
+			separator,
 			mytextclock,
+			separator,
 			s.mylayoutbox,
+			separator,
+			logout_menu_widget(),
 			wibox.widget.systray(),
 		},
 	})
@@ -775,7 +802,7 @@ awful.rules.rules = { -- All clients will match this rule.
 --  Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
-    c.shape = gears.shape.rounded_rect
+	c.shape = gears.shape.rounded_rect
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
