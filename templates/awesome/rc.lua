@@ -23,7 +23,7 @@ local xrandr = require("xrandr")
 -- Widgets
 local battery_widget = require("widgets.battery-widget.battery")
 local docker_widget = require("widgets.docker-widget.docker")
-local volume_widget = require('widgets.volume-widget.volume')
+local volume_widget = require("widgets.volume-widget.volume")
 local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
 
 --  Error handling
@@ -74,14 +74,10 @@ local modkey = "Mod4"
 
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.tile.left,
 	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
 	awful.layout.suit.floating,
 	awful.layout.suit.fair,
-	awful.layout.suit.spiral,
 	awful.layout.suit.max,
-	awful.layout.suit.max.fullscreen,
 	awful.layout.suit.magnifier,
 }
 --  Menu
@@ -176,7 +172,6 @@ local function set_wallpaper(s)
 		gears.wallpaper.maximized(wallpaper, s, true)
 	end
 end
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -269,7 +264,7 @@ awful.screen.connect_for_each_screen(function(s)
 		expand = "none",
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			spacing = 100,
+			spacing = 20,
 			s.mytaglist,
 			s.mypromptbox,
 		},
@@ -282,7 +277,7 @@ awful.screen.connect_for_each_screen(function(s)
 			volume_widget({
 				font = "{{font}} 11",
 				unselected = "{{base03}}",
-				selected = "{{base08}}"
+				selected = "{{base08}}",
 			}),
 			separator,
 			docker_widget({}),
@@ -466,7 +461,10 @@ local globalkeys = gears.table.join(
 	end, {
 		description = "restore minimized",
 		group = "client",
-	})
+	}),
+	awful.key({ modkey }, "r", function()
+		awful.screen.focused().mypromptbox:run()
+	end)
 )
 local clientkeys = gears.table.join(
 	awful.key({ modkey }, "f", function(c)
@@ -802,7 +800,6 @@ awful.rules.rules = { -- All clients will match this rule.
 --  Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
-	c.shape = gears.shape.rounded_rect
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
@@ -811,6 +808,24 @@ client.connect_signal("manage", function(c)
 		-- Prevent clients from being unreachable after screen count changes.
 		awful.placement.no_offscreen(c)
 	end
+end)
+
+-- No border for maximized clients
+local function border_adjust(c)
+	if c.maximized then -- no borders if only 1 client visible
+		c.border_width = 0
+		c.shape = gears.shape.rectangle
+	elseif #awful.screen.focused().clients > 1 then
+		c.border_width = beautiful.border_width
+		c.border_color = beautiful.border_focus
+		c.shape = gears.shape.rounded_rect
+	end
+end
+
+client.connect_signal("focus", border_adjust)
+client.connect_signal("property::maximized", border_adjust)
+client.connect_signal("unfocus", function(c)
+	c.border_color = beautiful.border_normal
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -872,4 +887,6 @@ client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
 	c.skip_taskbar = true
 end)
---
+
+awful.spawn.with_shell("dunst")
+awful.spawn.with_shell("nm-applet")

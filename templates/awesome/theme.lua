@@ -4,6 +4,7 @@ local dpi = xresources.apply_dpi
 local theme = {}
 local font_size = 11
 theme.font = "{{font}} " .. font_size
+theme.wallpaper = os.getenv("HOME") .. "/.local/background.jpg"
 -- Background
 theme.bg_normal = "{{base01}}"
 theme.bg_dark = "{{base00}}"
