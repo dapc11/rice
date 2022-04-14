@@ -1,8 +1,8 @@
 {
     "bg": "atom_onedark.jpg",
     "nvim_theme": "onedark",
-    "base00": "#282c34",
-    "base01": "#353b45",
+    "base00": "#21252b",
+    "base01": "#282c34",
     "base02": "#3e4451",
     "base03": "#545862",
     "base04": "#6a707e",

@@ -18,8 +18,7 @@ scrolling:
 
 font:
   normal:
-    family: "Iosevka Term"
-    style: Extended
+    family: "MesloLGS NF"
   bold:
     style: Bold
   italic:
