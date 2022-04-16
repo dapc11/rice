@@ -225,10 +225,48 @@ awful.screen.connect_for_each_screen(function(s)
 			fg_occupied = "{{base05}}",
 			bg_empty = nil,
 			fg_empty = nil,
+			spacing = 3,
 			bg_volatile = "{{base0D}}",
 			fg_volatile = "{{base01}}",
-			spacing = 2,
-			shape = gears.shape.rounded_rect,
+			shape = gears.shape.circle,
+		},
+		widget_template = {
+			{
+				{
+					{
+						{
+							id = "icon_role",
+							widget = wibox.widget.imagebox,
+						},
+						widget = wibox.container.margin,
+					},
+					{
+						id = "text_role",
+						widget = wibox.widget.textbox,
+					},
+					layout = wibox.layout.fixed.horizontal,
+				},
+				left = 7,
+				right = 7,
+				widget = wibox.container.margin,
+			},
+			id = "background_role",
+			widget = wibox.container.background,
+			-- Add support for hover colors and an index label
+			create_callback = function(self, c3, index, objects) --luacheck: no unused args
+				self:connect_signal("mouse::enter", function()
+					if self.bg ~= "{{base04}}" then
+						self.backup = self.bg
+						self.has_backup = true
+					end
+					self.bg = "{{base04}}"
+				end)
+				self:connect_signal("mouse::leave", function()
+					if self.has_backup then
+						self.bg = self.backup
+					end
+				end)
+			end,
 		},
 	})
 
