@@ -1,4 +1,5 @@
 local xresources = require("beautiful.xresources")
+local gears = require("gears")
 local dpi = xresources.apply_dpi
 
 local theme = {}
@@ -27,14 +28,20 @@ theme.gap_single_client = false
 -- Window Borders
 theme.border_width = dpi(1)
 theme.border_normal = theme.bg_normal
-theme.border_focus = "{{base02}}"
+theme.border_focus = "{{base04}}"
 theme.border_marked = theme.fg_urgent
 
 -- Tasklist
 theme.tasklist_font = theme.font
 
--- Notification Sizing
+-- Notifications
 theme.notification_max_width = dpi(350)
+theme.notification_border_width = dpi(3)
+theme.notification_border_color = "{{base04}}"
+theme.notification_shape = gears.shape.rounded_rect
+theme.notification_height = dpi(75)
+theme.notification_width = dpi(150)
+theme.notification_font = theme.font
 
 -- System Tray
 theme.bg_systray = theme.bg_normal

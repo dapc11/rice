@@ -67,7 +67,7 @@ local function build_rows(args, devices, on_checkbox_click, device_type)
 			checked = device.is_default,
 			color = args.unselected,
 			paddings = 2,
-            font = args.font,
+			font = args.font,
 			shape = gears.shape.circle,
 			forced_width = 20,
 			forced_height = 20,

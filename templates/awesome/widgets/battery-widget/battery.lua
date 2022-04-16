@@ -148,7 +148,12 @@ local function worker(user_args)
 				charge = charge + batt.charge * capacities[i]
 			end
 		end
+
 		charge = charge / capacity
+
+		if charge == 0 then
+			charge = 100
+		end
 
 		if show_current_level then
 			level_widget.text = string.format("%d%%", charge)
@@ -192,9 +197,11 @@ local function worker(user_args)
 			naughty.destroy(notification)
 		end)
 	elseif display_notification_onClick then
-		battery_widget:connect_signal("button::press", function(_,_,_,button)
-            if (button == 1) then show_battery_status(batteryType) end
-        end)
+		battery_widget:connect_signal("button::press", function(_, _, _, button)
+			if button == 1 then
+				show_battery_status(batteryType)
+			end
+		end)
 		battery_widget:connect_signal("mouse::leave", function()
 			naughty.destroy(notification)
 		end)
