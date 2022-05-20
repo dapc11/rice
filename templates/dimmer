@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import sys
-import subprocess
 import argparse
+import subprocess
+import sys
+
+
+def change_brightness(display_name: str, brightness: int):
+    run(f"xrandr --output {display_name} --brightness {brightness}")
 
 
 def run(command):
@@ -9,15 +13,18 @@ def run(command):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", action='store_true')
-parser.add_argument("-d", action='store_true')
+parser.add_argument("-i", action="store_true")
+parser.add_argument("-d", action="store_true")
 args = parser.parse_args()
 
 try:
-    with open("/tmp/.dapc_brightness", "r") as brightness_file:
-        current_brightness = float(brightness_file.readlines()[0].replace('\n', ''))
+    with open("/tmp/.dapc_brightness", "r", encoding="utf-8") as brightness_file:
+        current_brightness = float(brightness_file.readlines()[0].replace("\n", ""))
         if current_brightness < 1 or current_brightness > 0.1:
-            display_name = run('xrandr | grep " connected" |  cut -f1 -d" "').replace('\n', '')
+            display_name = run('xrandr | grep " connected" |  cut -f1 -d" "').replace(
+                "\n",
+                "",
+            )
 
             if args.i:
                 current_brightness += 0.1
@@ -26,11 +33,11 @@ try:
 
         if (current_brightness > 0.9 and args.i) or (current_brightness < 0 and args.d):
             sys.exit(1)
-        run('xrandr --output {0} --brightness {1}'.format(display_name, current_brightness + 0.1))
+        change_brightness(display_name, current_brightness + 0.1)
         print(current_brightness)
 except IOError:
     current_brightness = 1
 
-with open("/tmp/.dapc_brightness", "w+") as brightness_file:
+with open("/tmp/.dapc_brightness", "w+", encoding="utf-8") as brightness_file:
     brightness_file.write(str(current_brightness))
 sys.exit(0)

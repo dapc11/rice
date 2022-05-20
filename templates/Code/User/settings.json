@@ -6,8 +6,8 @@
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.inheritEnv": true,
-    "editor.fontFamily": "'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "terminal.integrated.fontFamily": "Iosevka Term Extended",
+    "editor.fontFamily": "'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
     "editor.fontSize": 12,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false,
@@ -19,7 +19,7 @@
     ],
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.allowChords": false,
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "One Dark Pro",
     "go.toolsManagement.autoUpdate": true,
     "terminal.integrated.env.linux": {
         "EDITOR": "vim",
@@ -191,4 +191,11 @@
     "terminal.integrated.drawBoldTextInBrightColors": false,
     "terminal.integrated.enablePersistentSessions": false,
     "terminal.integrated.gpuAcceleration": "canvas",
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnSave": true,
+    "workbench.startupEditor": "none",
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled"
+    },
 }
