@@ -12,6 +12,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 floating_modifier $mod
+hide_edge_borders smart
 font pango:{{font}} 11
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -49,15 +50,10 @@ bar {
 ###########################################################
 
 assign [class=".volution"] $ws1
-assign [class=".irefox"] $ws2
-assign [class=".oogle-chrome"] $ws2
 assign [instance=".fica"] $ws6
 assign [class=".fica"] $ws6
-assign [instance=".ibreoffice-writer"] $ws7
 assign [class=".eams-for-linux"] $ws9
 for_window [class=".volution"] move container to workspace $ws1
-for_window [class=".irefox"] move container to workspace $ws2
-for_window [class=".oogle-chrome"] move container to workspace $ws2
 for_window [instance=".fica"] move container to workspace $ws6
 for_window [instance=".ibreoffice"] move container to workspace $ws7
 for_window [class=".hunar"] floating enable
@@ -71,10 +67,6 @@ for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 for_window [title="Microsoft Teams Notification" class=".icrosoft .eams - .review"] floating enable
 for_window [class="^.*"] border pixel 1
-for_window [workspace=$ws1] layout
-for_window [workspace=$ws2] layout
-for_window [workspace=$ws3] layout
-for_window [workspace=$ws9] layout
 
 ############################################################
 #
@@ -116,7 +108,7 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-bindsym $mod+Ctrl+r mode "resize"
+bindsym $mod+r mode "resize"
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
@@ -161,8 +153,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+r exec i3-msg rename workspace to $(rofi -lines 1 -eh 1 -p 'New workspace name')
-
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Ctrl+comma exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -186,12 +176,18 @@ bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{ba
 
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
-bindsym $mod+Ctrl+greater move workspace to output right
-bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+greater move workspace to output right
+bindsym $mod+Ctrl+greater move workspace to output left
 
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
-bindsym $mod+m exec nightmode
 bindsym $mod+w exec x-www-browser
 bindsym $mod+p exec arandr
+
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
