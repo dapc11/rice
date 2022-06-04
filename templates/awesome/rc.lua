@@ -502,7 +502,8 @@ local globalkeys = gears.table.join(
 	}),
 	awful.key({ modkey }, "r", function()
 		awful.screen.focused().mypromptbox:run()
-	end)
+	end),
+	awful.key({ modkey }, "h", hotkeys_popup.show_help, { description = "show help", group = "awesome" })
 )
 local clientkeys = gears.table.join(
 	awful.key({ modkey }, "f", function(c)
