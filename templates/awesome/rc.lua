@@ -67,8 +67,8 @@ if not beautiful.init(theme_path) then
 	error("Unable to load " .. theme_path)
 end
 
-local terminal = "{{terminal}}"
-local editor = os.getenv("EDITOR") or "{{editor}}"
+local terminal = "alacritty"
+local editor = os.getenv("EDITOR") or "vim"
 local editor_cmd = terminal .. " -e " .. editor
 local modkey = "Mod4"
 
@@ -365,10 +365,10 @@ local globalkeys = gears.table.join(
 		group = "client",
 	}),
 	awful.key({ modkey }, "w", function()
-		awful.spawn("{{browser}}")
+		awful.spawn("firefox")
 	end, {
-		description = "show main menu",
-		group = "awesome",
+		description = "launch browser",
+		group = "launcher",
 	}), -- Layout manipulation
 	awful.key({ modkey, "Shift" }, "Down", function()
 		awful.client.swap.byidx(1)
@@ -503,7 +503,7 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "r", function()
 		awful.screen.focused().mypromptbox:run()
 	end),
-	awful.key({ modkey }, "h", hotkeys_popup.show_help, { description = "show help", group = "awesome" })
+	awful.key({ modkey }, "i", hotkeys_popup.show_help, { description = "show help", group = "awesome" })
 )
 local clientkeys = gears.table.join(
 	awful.key({ modkey }, "f", function(c)
@@ -523,7 +523,7 @@ local clientkeys = gears.table.join(
 		description = "toggle floating",
 		group = "client",
 	}),
-	awful.key({ modkey, "Control" }, "Return", function(c)
+	awful.key({ modkey }, "m", function(c)
 		c:swap(awful.client.getmaster())
 	end, {
 		description = "move to master",
@@ -541,31 +541,10 @@ local clientkeys = gears.table.join(
 		description = "toggle keep on top",
 		group = "client",
 	}),
-	awful.key({ modkey }, "m", function(c)
-		c.maximized = not c.maximized
-		c:raise()
-	end, {
-		description = "(un)maximize",
-		group = "client",
-	}),
-	awful.key({ modkey, "Control" }, "m", function(c)
-		c.maximized_vertical = not c.maximized_vertical
-		c:raise()
-	end, {
-		description = "(un)maximize vertically",
-		group = "client",
-	}),
 	awful.key({ modkey, "Control" }, "<", function(c)
 		c:move_to_screen()
 	end, {
 		description = "move to screen",
-		group = "client",
-	}),
-	awful.key({ modkey, "Shift" }, "m", function(c)
-		c.maximized_horizontal = not c.maximized_horizontal
-		c:raise()
-	end, {
-		description = "(un)maximize horizontally",
 		group = "client",
 	})
 )
@@ -702,7 +681,7 @@ awful.rules.rules = { -- All clients will match this rule.
 			type = { "normal", "dialog" },
 		},
 		properties = {
-			titlebars_enabled = false,
+			titlebars_enabled = true,
 		},
 	},
 	{
@@ -830,11 +809,8 @@ awful.rules.rules = { -- All clients will match this rule.
 			screen = 1,
 			tag = "9",
 		},
-	}, -- Set Firefox to always map on the tag named "2" on screen 1.
-	-- { rule = { class = "Firefox" },
-	--   properties = { screen = 1, tag = "2" } },
+	},
 }
---
 
 --  Signals
 -- Signal function to execute when a new client appears.
@@ -929,3 +905,4 @@ end)
 
 awful.spawn.with_shell("dunst")
 awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("picom")

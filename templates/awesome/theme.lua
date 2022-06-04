@@ -2,6 +2,9 @@ local xresources = require("beautiful.xresources")
 local gears = require("gears")
 local dpi = xresources.apply_dpi
 
+local gfs = require("gears.filesystem")
+local themes_path = gfs.get_themes_dir() .. "/icons/"
+
 local theme = {}
 local font_size = 11
 theme.font = "{{font}} " .. font_size
@@ -48,6 +51,30 @@ theme.bg_systray = theme.bg_normal
 theme.systray_icon_spacing = dpi(5)
 
 -- Titlebars
-theme.titlebars_enabled = false
+theme.titlebar_close_button_normal = themes_path .. "titlebar/close_normal.png"
+theme.titlebar_close_button_focus = themes_path .. "titlebar/close_focus.png"
+
+theme.titlebar_minimize_button_normal = themes_path .. "titlebar/minimize_normal.png"
+theme.titlebar_minimize_button_focus = themes_path .. "titlebar/minimize_focus.png"
+
+theme.titlebar_ontop_button_normal_inactive = themes_path .. "titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive = themes_path .. "titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = themes_path .. "titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active = themes_path .. "titlebar/ontop_focus_active.png"
+
+theme.titlebar_sticky_button_normal_inactive = themes_path .. "titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive = themes_path .. "titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = themes_path .. "titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active = themes_path .. "titlebar/sticky_focus_active.png"
+
+theme.titlebar_floating_button_normal_inactive = themes_path .. "titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive = themes_path .. "titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = themes_path .. "titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active = themes_path .. "titlebar/floating_focus_active.png"
+
+theme.titlebar_maximized_button_normal_inactive = themes_path .. "titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive = themes_path .. "titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = themes_path .. "titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active = themes_path .. "titlebar/maximized_focus_active.png"
 
 return theme
