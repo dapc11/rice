@@ -10,6 +10,8 @@
     { "template": "awesome/icons", "onlyCopy": true },
     { "template": "awesome/rc.lua" },
     { "template": "awesome/keybinds.lua" },
+    { "template": "awesome/tasklist.lua" },
+    { "template": "awesome/taglist.lua" },
     { "template": "awesome/sysact", "executable": true },
     { "template": "awesome/theme.lua" },
     { "template": "awesome/widgets", "onlyCopy": true },

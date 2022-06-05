@@ -14,11 +14,9 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-local xrandr = require("xrandr")
 
 -- Widgets
 local battery_widget = require("widgets.battery-widget.battery")
@@ -86,30 +84,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock("   %Y-%m-%d  %H:%M:%S", 1)
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-	awful.button({}, 1, function(t)
-		t:view_only()
-	end),
-	awful.button({ modkey }, 1, function(t)
-		if client.focus then
-			client.focus:move_to_tag(t)
-		end
-	end),
-	awful.button({}, 3, awful.tag.viewtoggle),
-	awful.button({ modkey }, 3, function(t)
-		if client.focus then
-			client.focus:toggle_tag(t)
-		end
-	end),
-	awful.button({}, 4, function(t)
-		awful.tag.viewnext(t.screen)
-	end),
-	awful.button({}, 5, function(t)
-		awful.tag.viewprev(t.screen)
-	end)
-)
-
 local function set_wallpaper(s)
 	if beautiful.wallpaper then
 		local wallpaper = beautiful.wallpaper
@@ -158,64 +132,7 @@ awful.screen.connect_for_each_screen(function(s)
 		end)
 	))
 
-	s.mytaglist = awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.noempty,
-		buttons = taglist_buttons,
-		style = {
-			fg_focus = "{{base06}}",
-			bg_focus = "{{base03}}",
-			fg_urgent = "{{base02}}",
-			bg_urgent = "{{base08}}",
-			bg_occupied = "{{base01}}",
-			fg_occupied = "{{base05}}",
-			bg_empty = nil,
-			fg_empty = nil,
-			spacing = 3,
-			bg_volatile = "{{base0D}}",
-			fg_volatile = "{{base01}}",
-			shape = gears.shape.circle,
-		},
-		widget_template = {
-			{
-				{
-					{
-						{
-							id = "icon_role",
-							widget = wibox.widget.imagebox,
-						},
-						widget = wibox.container.margin,
-					},
-					{
-						id = "text_role",
-						widget = wibox.widget.textbox,
-					},
-					layout = wibox.layout.fixed.horizontal,
-				},
-				left = 7,
-				right = 7,
-				widget = wibox.container.margin,
-			},
-			id = "background_role",
-			widget = wibox.container.background,
-			-- Add support for hover colors and an index label
-			create_callback = function(self, _, _, _)
-				self:connect_signal("mouse::enter", function()
-					if self.bg ~= "{{base04}}" then
-						self.backup = self.bg
-						self.has_backup = true
-					end
-					self.bg = "{{base04}}"
-				end)
-				self:connect_signal("mouse::leave", function()
-					if self.has_backup then
-						self.bg = self.backup
-					end
-				end)
-			end,
-		},
-	})
-
+	s.mytaglist = require("taglist").create(s)
 	s.mytasklist = awful.widget.tasklist({
 		screen = s,
 		filter = awful.widget.tasklist.filter.currenttags,
