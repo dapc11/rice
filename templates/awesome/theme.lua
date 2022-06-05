@@ -7,6 +7,9 @@ local themes_path = gfs.get_themes_dir() .. "/icons/"
 
 local theme = {}
 local font_size = 11
+theme.modkey = "Mod4"
+theme.terminal = "alacritty"
+
 theme.font = "{{font}} " .. font_size
 theme.wallpaper = os.getenv("HOME") .. "/.local/background.jpg"
 -- Background
@@ -51,6 +54,8 @@ theme.bg_systray = theme.bg_normal
 theme.systray_icon_spacing = dpi(5)
 
 -- Titlebars
+theme.titlebars_enabled = false
+-- Define the image to load
 theme.titlebar_close_button_normal = themes_path .. "titlebar/close_normal.png"
 theme.titlebar_close_button_focus = themes_path .. "titlebar/close_focus.png"
 
