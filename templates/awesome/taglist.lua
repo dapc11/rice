@@ -1,6 +1,5 @@
 local gears = require("gears")
 local awful = require("awful")
-local awful = require("awful")
 local wibox = require("wibox")
 local theme = require("theme")
 local m = {}

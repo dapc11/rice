@@ -107,16 +107,16 @@ local separator = wibox.widget({
 	widget = wibox.widget.textbox,
 })
 
-awful.screen.connect_for_each_screen(function(s)
-	set_wallpaper(s)
+awful.screen.connect_for_each_screen(function(screen)
+	set_wallpaper(screen)
 
 	-- Each screen has its own tag table.
-	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-	s.mypromptbox = awful.widget.prompt()
+	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, screen, awful.layout.layouts[1])
+	screen.mypromptbox = awful.widget.prompt()
 	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
-	s.mylayoutbox = awful.widget.layoutbox(s)
-	s.mylayoutbox:buttons(gears.table.join(
+	screen.mylayoutbox = awful.widget.layoutbox(screen)
+	screen.mylayoutbox:buttons(gears.table.join(
 		awful.button({}, 1, function()
 			awful.layout.inc(1)
 		end),
@@ -131,45 +131,28 @@ awful.screen.connect_for_each_screen(function(s)
 		end)
 	))
 
-	s.mytaglist = require("taglist").create(s)
-	s.mytasklist = awful.widget.tasklist({
-		screen = s,
-		filter = awful.widget.tasklist.filter.currenttags,
-		buttons = tasklist_buttons,
-		style = {
-			fg_normal = "{{base03}}",
-			bg_normal = "{{base01}}",
-			fg_focus = "{{base06}}",
-			bg_focus = "{{base01}}",
-			fg_urgent = "{{base02}}",
-			bg_urgent = "{{base08}}",
-			fg_minimize = "{{base01}}",
-			bg_minimize = "{{base01}}",
-			spacing = 1,
-			tasklist_disable_icon = true,
-			shape = gears.shape.rounded_rect,
-		},
-	})
+	screen.mytaglist = require("taglist").create(screen)
+	screen.mytasklist = require("tasklist").create(screen)
 
-	s.mywibox = awful.wibar({
+	screen.mywibox = awful.wibar({
 		position = "top",
-		screen = s,
+		screen = screen,
 	})
 
 	-- Add widgets to the wibox
-	s.mywibox:setup({
+	screen.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
 		expand = "none",
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			spacing = 20,
 			{ layout = wibox.layout.fixed.horizontal },
-			{ layout = wibox.layout.fixed.horizontal, spacing = 5, s.mylayoutbox, s.mytaglist },
-			s.mypromptbox,
+			{ layout = wibox.layout.fixed.horizontal, spacing = 5, screen.mylayoutbox, screen.mytaglist },
+			screen.mypromptbox,
 		},
 		{
 			layout = wibox.layout.flex.horizontal,
-			s.mytasklist, -- Middle widget
+			screen.mytasklist, -- Middle widget
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
