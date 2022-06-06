@@ -32,6 +32,7 @@
     { "template": "polybar/weather.sh", "executable": true },
     { "template": "qtile/config.py" },
     { "template": "ranger/rc.conf" },
+    { "template": "picom/picom.conf" },
     { "template": "rofi/colors.rasi" },
     { "template": "rofi/config.rasi" },
     { "template": "rofi/powermenu.rasi" },
