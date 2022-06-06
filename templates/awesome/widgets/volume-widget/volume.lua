@@ -176,6 +176,12 @@ local function rebuild_popup(args)
 		)
 
 		popup:setup(rows)
+
+		popup:connect_signal("mouse::leave", function()
+			if popup.visible then
+				popup.visible = not popup.visible
+			end
+		end)
 	end)
 end
 
