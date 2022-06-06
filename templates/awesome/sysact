@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-import subprocess as sp
 import getpass
-from subprocess import check_output, PIPE
+import subprocess as sp
+from subprocess import PIPE, check_output
 
 
 def get_pid():
@@ -10,12 +10,10 @@ def get_pid():
 
 
 if __name__ == "__main__":
-
-    user = getpass.getuser()
     pid = get_pid().decode("utf-8")
     commands = {
-        " Exit": "kill -TERM {}".format(pid),
-        " Renew": "kill -HUP {}".format(pid),
+        " Exit": f"kill -TERM {pid}",
+        " Renew": f"kill -HUP {pid}",
         " Lock": "slock",
         " Suspend": "systemctl suspend",
         " Hibernate": "systemctl hibernate",
@@ -25,7 +23,7 @@ if __name__ == "__main__":
 
     options = commands.keys()
     title = "rofi-power"
-    rofi = f"rofi -normal-window -dmenu -i -theme /home/{user}/.config/rofi/config -lines 7 -width 20 -p {title}".split()
+    rofi = f"rofi -normal-window -dmenu -i -theme /home/{getpass.getpass()}/.config/rofi/config -lines 7 -width 20 -p {title}".split()
     rofi_input = "\n".join(x for x in options)
 
     cp = sp.run(rofi, input=rofi_input, encoding="utf-8", stdout=PIPE, stderr=PIPE)
