@@ -1,11 +1,11 @@
 local awful = require("awful")
+local gears = require("gears")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local gfs = require("gears.filesystem")
 local gs = require("gears.shape")
-local dpi = require("beautiful").xresources.apply_dpi
 
 -- acpi sample outputs
 -- Battery 0: Discharging, 75%, 01:51:38 remaining
@@ -19,7 +19,6 @@ local battery_widget = {}
 local function worker(user_args)
 	local args = user_args or {}
 
-	local font = args.font or "Play 11"
 	local path_to_icons = ICON_DIR
 	local show_current_level = args.show_current_level or false
 	local margin_left = args.margin_left or 0
@@ -27,7 +26,6 @@ local function worker(user_args)
 
 	local display_notification = args.display_notification or false
 	local display_notification_onClick = args.display_notification_onClick or true
-	local position = args.notification_position or "top_right"
 	local timeout = args.timeout or 10
 
 	local warning_msg_title = args.warning_msg_title or "Huston, we have a problem"
@@ -57,7 +55,6 @@ local function worker(user_args)
 		layout = wibox.container.place,
 	})
 	local level_widget = wibox.widget({
-		font = font,
 		widget = wibox.widget.textbox,
 	})
 
@@ -68,39 +65,98 @@ local function worker(user_args)
 	})
 	-- Popup with battery info
 	-- One way of creating a pop-up notification - naughty.notify
+	local popup = awful.popup({
+		ontop = true,
+		visible = false,
+		shape = function(cr, width, height)
+			gears.shape.rounded_rect(cr, width, height)
+		end,
+		border_width = 1,
+		border_color = beautiful.bg_focus,
+		maximum_width = 400,
+		offset = { y = 5 },
+		widget = {},
+	})
 	local notification
+	local function build_header_row(text)
+		return wibox.widget({
+			{
+				text = text,
+				align = "center",
+				widget = wibox.widget.textbox,
+			},
+			bg = beautiful.bg_normal,
+			widget = wibox.container.background,
+		})
+	end
 	local function show_battery_status(batteryType)
+		local rows = { layout = wibox.layout.fixed.vertical }
+
 		awful.spawn.easy_async([[bash -c 'acpi']], function(stdout, _, _, _)
-			naughty.destroy(notification)
-			notification = naughty.notify({
-				font = font,
-				shape = gs.rounded_rect,
-				text = stdout,
-				title = "Battery status",
-				icon = path_to_icons .. batteryType .. ".svg",
-				border_width = 1,
-				border_color = beautiful.bg_focus,
-				position = position,
-				timeout = 5,
-				hover_timeout = 1,
-				width = 200,
-				max_height = 65,
-				screen = mouse.screen,
+			for i = 0, #rows do
+				rows[i] = nil
+			end
+
+			table.insert(rows, build_header_row("Battery Status"))
+
+			local row = wibox.widget({
+				{
+					{
+						{
+							image = path_to_icons .. batteryType .. ".svg",
+							resize = false,
+							widget = wibox.widget.imagebox,
+						},
+						{
+							text = stdout,
+							widget = wibox.widget.textbox,
+						},
+						spacing = 12,
+						layout = wibox.layout.fixed.horizontal,
+					},
+					margins = 8,
+					layout = wibox.container.margin,
+				},
+				bg = beautiful.bg_normal,
+				widget = wibox.container.background,
 			})
+
+			row:connect_signal("mouse::enter", function(c)
+				c:set_bg(beautiful.bg_focus)
+			end)
+			row:connect_signal("mouse::leave", function(c)
+				c:set_bg(beautiful.bg_normal)
+			end)
+
+			local old_cursor, old_wibox
+			row:connect_signal("mouse::enter", function()
+				local wb = mouse.current_wibox
+				old_cursor, old_wibox = wb.cursor, wb
+				wb.cursor = "hand1"
+			end)
+			row:connect_signal("mouse::leave", function()
+				if old_wibox then
+					old_wibox.cursor = old_cursor
+					old_wibox = nil
+				end
+			end)
+
+			row:buttons(awful.util.table.join(awful.button({}, 1, function()
+				popup.visible = not popup.visible
+			end)))
+
+			table.insert(rows, row)
+			popup:setup(rows)
+			popup:connect_signal("mouse::leave", function()
+				if popup.visible then
+					popup.visible = not popup.visible
+				end
+			end)
 		end)
 	end
 
-	-- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-	--battery_popup = awful.tooltip({objects = {battery_widget}})
-
-	-- To use colors from beautiful theme put
-	-- following lines in rc.lua before require("battery"):
-	-- beautiful.tooltip_fg = beautiful.fg_normal
-	-- beautiful.tooltip_bg = beautiful.bg_normal
-
 	local function show_battery_warning()
 		naughty.notify({
-			font = font,
 			shape = gs.rounded_rect,
 			icon = warning_msg_icon,
 			icon_size = 100,
@@ -206,6 +262,19 @@ local function worker(user_args)
 			naughty.destroy(notification)
 		end)
 	end
+
+	battery_widget:buttons(awful.util.table.join(awful.button({}, 1, function()
+		if popup.visible then
+			popup.visible = not popup.visible
+		else
+			popup:move_next_to(mouse.current_widget_geometry)
+		end
+	end)))
+	battery_widget:connect_signal("mouse::leave", function()
+		if popup.visible then
+			popup.visible = not popup.visible
+		end
+	end)
 
 	return wibox.container.margin(battery_widget, margin_left, margin_right)
 end

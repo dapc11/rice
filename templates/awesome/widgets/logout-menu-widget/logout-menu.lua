@@ -118,6 +118,11 @@ local function worker(user_args)
 		table.insert(rows, row)
 	end
 	popup:setup(rows)
+	popup:connect_signal("mouse::leave", function()
+		if popup.visible then
+			popup.visible = not popup.visible
+		end
+	end)
 
 	logout_menu_widget:buttons(awful.util.table.join(awful.button({}, 1, function()
 		if popup.visible then

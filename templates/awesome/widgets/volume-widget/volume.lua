@@ -67,7 +67,6 @@ local function build_rows(args, devices, on_checkbox_click, device_type)
 			checked = device.is_default,
 			color = args.unselected,
 			paddings = 2,
-			font = args.font,
 			shape = gears.shape.circle,
 			forced_width = 20,
 			forced_height = 20,
@@ -160,14 +159,14 @@ local function rebuild_popup(args)
 			rows[i] = nil
 		end
 
-		table.insert(rows, build_header_row("SINKS"))
+		table.insert(rows, build_header_row("Sinks"))
 		table.insert(
 			rows,
 			build_rows(args, sinks, function()
 				rebuild_popup()
 			end, "sink")
 		)
-		table.insert(rows, build_header_row("SOURCES"))
+		table.insert(rows, build_header_row("Sources"))
 		table.insert(
 			rows,
 			build_rows(args, sources, function()
