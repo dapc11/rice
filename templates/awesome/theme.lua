@@ -41,12 +41,9 @@ theme.border_marked = theme.fg_urgent
 theme.tasklist_font = theme.font
 
 -- Notifications
-theme.notification_max_width = dpi(350)
-theme.notification_border_width = dpi(3)
-theme.notification_border_color = "{{base04}}"
+theme.notification_max_width = dpi(500)
+theme.notification_bg = "{{base01}}"
 theme.notification_shape = gears.shape.rounded_rect
-theme.notification_height = dpi(75)
-theme.notification_width = dpi(150)
 theme.notification_font = theme.font
 
 -- System Tray

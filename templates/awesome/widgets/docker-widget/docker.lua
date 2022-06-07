@@ -25,7 +25,6 @@ local LIST_CONTAINERS_CMD = [[bash -c "docker container ls -a -s -n %s]]
 --- Utility function to show warning messages
 local function show_warning(message)
 	naughty.notify({
-		preset = naughty.config.presets.critical,
 		title = "Docker Widget",
 		text = message,
 	})
@@ -35,8 +34,6 @@ local popup = awful.popup({
 	ontop = true,
 	visible = false,
 	shape = gears.shape.rounded_rect,
-	border_width = 1,
-	border_color = beautiful.bg_focus,
 	maximum_width = 400,
 	offset = { y = 5 },
 	widget = {},

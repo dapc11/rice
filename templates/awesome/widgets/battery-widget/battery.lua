@@ -41,7 +41,6 @@ local function worker(user_args)
 		naughty.notify({
 			title = "Battery Widget",
 			text = "Folder with icons doesn't exist: " .. path_to_icons,
-			preset = naughty.config.presets.critical,
 		})
 	end
 
@@ -71,8 +70,6 @@ local function worker(user_args)
 		shape = function(cr, width, height)
 			gears.shape.rounded_rect(cr, width, height)
 		end,
-		border_width = 1,
-		border_color = beautiful.bg_focus,
 		maximum_width = 400,
 		offset = { y = 5 },
 		widget = {},

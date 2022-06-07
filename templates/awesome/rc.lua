@@ -18,18 +18,11 @@ local menubar = require("menubar")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- Widgets
-local battery_widget = require("widgets.battery-widget.battery")
-local docker_widget = require("widgets.docker-widget.docker")
-local volume_widget = require("widgets.volume-widget.volume")
-local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
-
 --  Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
 	naughty.notify({
-		preset = naughty.config.presets.critical,
 		title = "Oops, there were errors during startup!",
 		text = awesome.startup_errors,
 	})
@@ -46,14 +39,18 @@ do
 		in_error = true
 
 		naughty.notify({
-			preset = naughty.config.presets.critical,
+			preset = naughty.config.presets.normal,
 			title = "Oops, an error happened!",
 			text = tostring(err),
 		})
 		in_error = false
 	end)
 end
---
+-- Widgets
+local battery = require("widgets.battery-widget.battery")
+local docker = require("widgets.docker-widget.docker")
+local volume = require("widgets.volume-widget.volume")
+local logout_menu = require("widgets.logout-menu-widget.logout-menu")
 
 --  Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -65,15 +62,14 @@ if not beautiful.init(theme_path) then
 	error("Unable to load " .. theme_path)
 end
 local theme = require("theme")
+beautiful.font = theme.font
 local terminal = "alacritty"
 
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.floating,
-	awful.layout.suit.fair,
 	awful.layout.suit.max,
-	awful.layout.suit.magnifier,
+	awful.layout.suit.floating,
+	awful.layout.suit.tile.bottom,
 }
 
 -- Menubar configuration
@@ -156,15 +152,15 @@ awful.screen.connect_for_each_screen(function(screen)
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			volume_widget({
+			volume({
 				font = "{{font}} 11",
 				unselected = "{{base03}}",
 				selected = "{{base08}}",
 			}),
 			separator,
-			docker_widget({}),
+			docker({}),
 			separator,
-			battery_widget({
+			battery({
 				font = "{{font}} 11",
 				show_current_level = true,
 			}),
@@ -173,7 +169,7 @@ awful.screen.connect_for_each_screen(function(screen)
 			separator,
 			wibox.widget.systray(),
 			separator,
-			logout_menu_widget(),
+			logout_menu(),
 		},
 	})
 end)
