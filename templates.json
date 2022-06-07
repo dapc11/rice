@@ -12,6 +12,7 @@
     { "template": "awesome/keybinds.lua" },
     { "template": "awesome/tasklist.lua" },
     { "template": "awesome/taglist.lua" },
+    { "template": "awesome/utils.lua" },
     { "template": "awesome/sysact", "executable": true },
     { "template": "awesome/theme.lua" },
     { "template": "awesome/widgets", "onlyCopy": true },

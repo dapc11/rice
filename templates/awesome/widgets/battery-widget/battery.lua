@@ -6,6 +6,7 @@ local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local gfs = require("gears.filesystem")
 local gs = require("gears.shape")
+local gutils = require("utils")
 
 -- acpi sample outputs
 -- Battery 0: Discharging, 75%, 01:51:38 remaining
@@ -79,10 +80,12 @@ local function worker(user_args)
 		return wibox.widget({
 			{
 				text = text,
+				font = beautiful.font .. ", bold",
 				align = "center",
 				widget = wibox.widget.textbox,
 			},
 			bg = beautiful.bg_normal,
+			fg = beautiful.fg_normal,
 			widget = wibox.container.background,
 		})
 	end
@@ -106,6 +109,7 @@ local function worker(user_args)
 						},
 						{
 							text = stdout,
+							font = beautiful.font,
 							widget = wibox.widget.textbox,
 						},
 						spacing = 12,
@@ -115,6 +119,7 @@ local function worker(user_args)
 					layout = wibox.container.margin,
 				},
 				bg = beautiful.bg_normal,
+				fg = beautiful.fg_normal,
 				widget = wibox.container.background,
 			})
 
@@ -162,8 +167,6 @@ local function worker(user_args)
 			timeout = 25, -- show the warning for a longer time
 			hover_timeout = 0.5,
 			position = warning_msg_position,
-			border_width = 1,
-			border_color = beautiful.bg_focus,
 			width = 300,
 			screen = mouse.screen,
 		})
@@ -269,6 +272,7 @@ local function worker(user_args)
 	end)))
 	battery_widget:connect_signal("mouse::leave", function()
 		if popup.visible then
+			gutils.sleep(5)
 			popup.visible = not popup.visible
 		end
 	end)

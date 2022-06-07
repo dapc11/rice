@@ -14,6 +14,7 @@ local spawn = require("awful.spawn")
 local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
+local utils = require("utils")
 
 local HOME_DIR = os.getenv("HOME")
 local WIDGET_DIR = HOME_DIR .. "/.config/awesome/widgets/docker-widget"
@@ -147,7 +148,7 @@ local function worker(user_args)
 				})
 				local old_cursor, old_wibox
 				start_stop_button:connect_signal("mouse::enter", function(c)
-					c:set_bg("#3B4252")
+					c:set_bg(beautiful.border_focus)
 
 					local wb = mouse.current_wibox
 					old_cursor, old_wibox = wb.cursor, wb
@@ -390,6 +391,14 @@ local function worker(user_args)
 			end)
 		end
 	end)))
+
+	docker_widget:connect_signal("mouse::leave", function()
+		docker_widget:set_bg("#00000000")
+		if popup.visible then
+			utils.sleep(5)
+			popup.visible = not popup.visible
+		end
+	end)
 
 	return docker_widget
 end

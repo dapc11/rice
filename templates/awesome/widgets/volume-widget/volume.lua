@@ -14,6 +14,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local watch = require("awful.widget.watch")
 local utils = require("widgets.volume-widget.utils")
+local gutils = require("utils")
 
 local LIST_DEVICES_CMD = [[sh -c "pacmd list-sinks; pacmd list-sources"]]
 local function GET_VOLUME_CMD(device)
@@ -45,8 +46,6 @@ local popup = awful.popup({
 	ontop = true,
 	visible = false,
 	shape = gears.shape.rounded_rect,
-	border_width = 1,
-	border_color = beautiful.bg_focus,
 	maximum_width = 400,
 	offset = { y = 5 },
 	widget = {},
@@ -91,6 +90,7 @@ local function build_rows(args, devices, on_checkbox_click, device_type)
 					{
 						{
 							text = build_main_line(device),
+							font = beautiful.font,
 							align = "left",
 							widget = wibox.widget.textbox,
 						},
@@ -104,6 +104,7 @@ local function build_rows(args, devices, on_checkbox_click, device_type)
 				layout = wibox.container.margin,
 			},
 			bg = beautiful.bg_normal,
+			fg = beautiful.fg_normal,
 			widget = wibox.container.background,
 		})
 
@@ -143,9 +144,11 @@ local function build_header_row(text)
 	return wibox.widget({
 		{
 			text = text,
+			font = beautiful.font .. ", bold",
 			align = "center",
 			widget = wibox.widget.textbox,
 		},
+		fg = beautiful.fg_normal,
 		bg = beautiful.bg_normal,
 		widget = wibox.container.background,
 	})
@@ -257,6 +260,12 @@ local function worker(user_args)
 			volume:toggle()
 		end)
 	))
+	volume.widget:connect_signal("mouse::leave", function()
+		if popup.visible then
+			gutils.sleep(5)
+			popup.visible = not popup.visible
+		end
+	end)
 
 	watch(GET_VOLUME_CMD(device), refresh_rate, update_graphic, volume.widget)
 
