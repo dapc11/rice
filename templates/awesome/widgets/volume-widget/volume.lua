@@ -260,12 +260,6 @@ local function worker(user_args)
 			volume:toggle()
 		end)
 	))
-	volume.widget:connect_signal("mouse::leave", function()
-		if popup.visible then
-			gutils.sleep(5)
-			popup.visible = not popup.visible
-		end
-	end)
 
 	watch(GET_VOLUME_CMD(device), refresh_rate, update_graphic, volume.widget)
 

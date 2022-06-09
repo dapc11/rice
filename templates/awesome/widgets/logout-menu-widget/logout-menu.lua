@@ -136,10 +136,6 @@ local function worker(user_args)
 
 	logout_menu_widget:connect_signal("mouse::leave", function()
 		logout_menu_widget:set_bg("#00000000")
-		if popup.visible then
-			utils.sleep(5)
-			popup.visible = not popup.visible
-		end
 	end)
 
 	return logout_menu_widget
