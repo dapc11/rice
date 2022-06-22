@@ -9,6 +9,8 @@
     { "template": "alacritty/alacritty.yml" },
     { "template": "awesome/icons", "onlyCopy": true },
     { "template": "awesome/rc.lua" },
+    { "template": "awesome/cycle.lua" },
+    { "template": "awesome/revelation.lua" },
     { "template": "awesome/keybinds.lua" },
     { "template": "awesome/tasklist.lua" },
     { "template": "awesome/taglist.lua" },

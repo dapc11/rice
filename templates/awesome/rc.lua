@@ -14,6 +14,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local revelation = require("revelation")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -61,6 +63,7 @@ local theme_path = os.getenv("HOME") .. "/.config/awesome/theme.lua"
 if not beautiful.init(theme_path) then
 	error("Unable to load " .. theme_path)
 end
+revelation.init()
 local theme = require("theme")
 beautiful.font = theme.font
 local terminal = "alacritty"
