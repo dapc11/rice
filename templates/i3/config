@@ -170,7 +170,9 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 3%+ unmute
 bindsym XF86MonBrightnessDown exec dimmer -d
 bindsym XF86MonBrightnessUp exec dimmer -i
 
-bindsym $mod+d exec rofi -show drun -modi drun
+# bindsym $mod+d exec rofi -show drun -modi drun
+bindsym $mod+d exec --no-startup-id alacritty -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
+for_window [title="fzf-menu"] floating enable
 bindsym $mod+s exec rofi -show window -modi window
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
 
@@ -190,4 +192,3 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
 # read 1 character and go to the window with the character
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
-

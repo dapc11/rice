@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# The preview window will "log tail" the pod
+# Holding on to a large amount of log will consume a lot of memory. So we limited the initial log amount with --tail=10000.
+# execute bindings allow you to run any command without leaving fzf
+# Press enter key on a pod to kubectl exec into it
+# Press CTRL-O to open the log in your editor
+# Press CTRL-R to reload the pod list
+# Press CTRL-/ repeatedly to to rotate through a different sets of preview window options
+# 80%,border-bottom
+# hidden
+# Empty string after | translates to the default options from --preview-window
+
+FZF_DEFAULT_COMMAND="kubectl get pods --all-namespaces"
+fzf --info=inline --layout=reverse --header-lines=1 \
+    --prompt "$(kubectl config current-context | sed 's/-context$//')> " \
+    --header $'╱ Enter (kubectl exec) ╱ CTRL-O (open log in editor) ╱ CTRL-R (reload) ╱\n\n' \
+    --bind 'ctrl-/:change-preview-window(80%,border-bottom|hidden|)' \
+    --bind 'enter:execute:kubectl exec -it --namespace {1} {2} -- bash > /dev/tty' \
+    --bind 'ctrl-o:execute:${EDITOR:-vim} <(kubectl logs --all-containers --namespace {1} {2}) > /dev/tty' \
+    --bind 'ctrl-r:reload:$FZF_DEFAULT_COMMAND' \
+    --preview-window up:follow \
+    --preview 'kubectl logs --follow --all-containers --tail=10000 --namespace {1} {2}' "$@"

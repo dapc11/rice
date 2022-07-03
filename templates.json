@@ -42,6 +42,8 @@
     { "template": "rofi/rofi-power", "executable": true },
     { "template": "rofi/rofi-randr", "executable": true },
     { "template": "sysact", "executable": true, "destination": "~/.local/bin" },
+    { "template": "rfzf", "executable": true, "destination": "~/.local/bin" },
+    { "template": "pods", "executable": true, "destination": "~/.local/bin" },
     { "template": "wezterm/wezterm.lua", "executable": true },
     { "template": "yamllint/config" }
 ]
