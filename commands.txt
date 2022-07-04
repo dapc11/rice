@@ -1,0 +1,23 @@
+pip3 install --user --requirement .requirements.txt
+git config advice.addEmptyPathspec false
+git config --global user.name "Daniel Tingelöf"
+git config --global core.editor nvim
+git config --global color.status auto
+git config --global color.diff auto
+git config --global color.branch auto
+git config --global color.interactive auto
+git config --global color.grep auto
+git config --global color.ui auto
+git config --global alias.a "!git add \$(gf)"
+git config --global alias.d diff
+git config --global alias.co "!git checkout \$(gb)"
+git config --global alias.ci commit
+git config --global alias.ca commit -a
+git config --global alias.ps "!git push origin \$(git rev-parse --abbrev-ref HEAD)"
+git config --global alias.pl "!git pull origin \$(git rev-parse --abbrev-ref HEAD)"
+git config --global alias.st status
+git config --global alias.df "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+git config --global alias.hist log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+git config --global alias.llog log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+git config --global alias.fixup "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+git config --global alias.irebase "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git rebase -i"
