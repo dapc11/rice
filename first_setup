@@ -32,7 +32,7 @@ function setup_alacritty
 function setup_nvim
 {
     wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    sudo mv nvim.appimage /usr/bin/nvim 
+    sudo mv nvim.appimage /usr/bin/nvim
     sudo chmod +x /usr/bin/nvim
 }
 
@@ -147,9 +147,5 @@ setup_nvim
 ## setup_polybar
 #generate_dotfiles ocean
 #[[ -n ${DISPLAY} ]] && xrdb ~/.Xresources
-#git config --global alias.st status
-#git config --global alias.ci 'commit -v'
-## git config --global user.email "daniel.tingelof@gmail.com"
-#git config --global user.name "Daniel Tingelöf"
 echo -e "\nDone"
 exit 0
