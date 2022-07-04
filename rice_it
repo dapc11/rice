@@ -132,6 +132,19 @@ class TemplateController:
                     if template.executable:
                         template.make_executable()
 
+    def run_commands(self) -> None:
+        if not os.path.exists("commands.txt"):
+            return
+        with open("commands.txt", mode="r", encoding="utf-8") as commands:
+            for command in commands.readlines():
+                command = command.replace("\n", "")
+                print(f"Running command: '{command}'", end="")
+                try:
+                    os.system(command)
+                    print()
+                except Exception as e:
+                    print("Failed, continuing...")
+
 
 def setup_argparser() -> argparse.ArgumentParser:
     """Setup the arguments of the program."""
@@ -165,6 +178,7 @@ def main():
     tc = ThemeController(args)
     theme = tc.get_theme()
     controller = TemplateController(theme, args.overwrite)
+    controller.run_commands()
     controller.render_templates()
 
     sys.exit(0)
