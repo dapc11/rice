@@ -24,10 +24,6 @@ e.g. `base0B` (green by default) could be replaced with red.
 There are some general guidelines below that stipulate which `base0B` should be used to
 highlight each construct when designing templates for editors.
 
-Since describing syntax highlighting can be tricky, please see base16-vim and base16-textmate for reference.
-Though it should be noted that each editor will have some discrepancies due the fact that
-editors generally have different syntax highlighting engines.
-
 Colors `base00` to `base07` are typically variations of a shade and run from darkest to lightest.base
 These colors are used for foreground and background, status bars, line highlighting and such.
 Colors `base08` to `base0F` are typically individual colors used for types, operators, names and variables.
