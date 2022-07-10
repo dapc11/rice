@@ -1,31 +1,8 @@
-# Dapc11 Ricer
+# Ricer
 
-## Getting started
+Manager for stream lining color schemes across multiple applications. Templates are stores under `./templates/` and will be rendered with colors set in `./themes/`.
 
-Make __first_setup__ executable and invoke it as following to setuo your environment:
-
-```shell
-bash first_setup
-```
-
-One can at any time after first setup invoke __rice_it__ to re-generate dotfiles, see below for usage.
-
-### Usage
-
-```
-❯ python3 rice_it -h
-usage: rice_it [-h] [-o] [-t THEME] [-l]
-
-Dapc ricer, make your environment consistent from a color perspective with a declarative approach.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -o, --overwrite       Make rice_it overwrite existing dotfiles in your home directory, use with
-                        caution!
-  -t THEME, --theme THEME
-                        Specify which theme the context will be loaded from.
-  -l, --list            List available themes
-```
+Themes are defined according to Chris Kempsons [Base16 framework](https://github.com/chriskempson/base16).
 
 ## Base 16
 
@@ -56,6 +33,3 @@ Colors base00 to base07 are typically variations of a shade and run from darkest
 
 ### Onedark
 <img src="./samples/onedarker.png" alt="onedarker" width="400px">
-
-
-## TODO
