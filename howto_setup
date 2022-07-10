@@ -1,6 +1,0 @@
-pip3 install yamllint
-pip3 install python-language-server
-pip3 install flake8
-pip3 install isort
-npm install -g pyright
-export PYTHONPATH="${HOME}/dev/:${HOME}/repos/adp-gs-wcdbcd/cassandra/python/src:${HOME}/repos/adp-gs-wcdbcd/cassandra/python/test"echo $PYTHONPATH

@@ -13,7 +13,6 @@ dmenu
 dunst
 fonts-font-awesome
 fonts-hack-ttf
-fzf
 git
 gvim
 i3-wm

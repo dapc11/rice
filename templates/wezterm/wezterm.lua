@@ -41,8 +41,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-	font = wezterm.font("{{font}}"),
-	font_size = 12,
+	font = wezterm.font("MesloLGS NF"),
+	font_size = 10,
 	window_close_confirmation = "NeverPrompt",
 	window_padding = { left = 5, right = 5, top = 5, bottom = 5 },
 	tab_max_width = 25,
@@ -120,6 +120,6 @@ return {
 	show_tab_index_in_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	exit_behavior = "Close",
-	window_background_opacity = 0.5,
+	window_background_opacity = 0.92,
 	default_prog = { "{{shell}}" },
 }
