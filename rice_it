@@ -48,6 +48,8 @@ class Template:
     @property
     def target(self) -> Path:
         target = self.metadata.get("destination")
+        if "utils/" in self.template:
+            return Path(f"{target}".replace("~", f"/home/{getpass.getuser()}"))
         if not self.overwrite or not target:
             target = (
                 f"/home/{getpass.getuser()}/.config" if self.overwrite else f"{os.getcwd()}/target"
@@ -132,7 +134,8 @@ class TemplateController:
                     if template.executable:
                         template.make_executable()
 
-    def run_commands(self) -> None:
+    @staticmethod
+    def run_commands() -> None:
         if not os.path.exists("commands.txt"):
             return
         with open("commands.txt", mode="r", encoding="utf-8") as commands:
