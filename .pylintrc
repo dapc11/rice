@@ -16,4 +16,4 @@ max-line-length=99
 [MESSAGES CONTROL]
 # Disable duplicate-code check due to issues with disabling the check in
 # individual files, see https://github.com/PyCQA/pylint/issues/214
-disable=R0801,invalid-name,C0114,C0115,C0116,E0401
+disable=R0801,invalid-name,C0114,C0115,C0116,E0401,C0301
