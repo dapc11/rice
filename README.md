@@ -1,4 +1,4 @@
-# Ricer
+# Rice
 
 Manager for stream lining color schemes across applications by utilizing Jinja2 templates.
 
