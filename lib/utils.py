@@ -7,9 +7,10 @@ import os
 def get_context(theme):
     """Load context of the given theme that should be used when ricing."""
 
-    with open(f"themes/{theme}.json", "r") as colors_context, open(
+    with open(f"themes/{theme}.json", "r", encoding="utf-8") as colors_context, open(
         "themes/settings.json",
         "r",
+        encoding="utf-8",
     ) as settings_context:
         theme_path = os.path.abspath(theme)
         print(f"Using context: '{theme_path}.json'")
@@ -21,7 +22,7 @@ def get_context(theme):
 
 def get_wireless_if():
     """Read wireless data for obtaining wireless network interface."""
-    with open("/proc/net/wireless", "r") as wireless:
+    with open("/proc/net/wireless", "r", encoding="utf-8") as wireless:
         try:
             interface = wireless.readlines()[2:][0].split(":")[0]
             print(f"Wireless network interface: {interface}")
