@@ -135,11 +135,12 @@ class TemplateController:
                         template.make_executable()
 
     @staticmethod
-    def run_commands() -> None:
-        if not os.path.exists("commands.txt"):
+    def run_commands(commands_file_path) -> None:
+        """Potentially dangerous feature, make sure that you know what's in the commands file."""
+        if not os.path.exists(commands_file_path):
             return
-        with open("commands.txt", mode="r", encoding="utf-8") as commands:
-            for command in commands.readlines():
+        with open(commands_file_path, mode="r", encoding="utf-8") as commands_file:
+            for command in commands_file.readlines():
                 command = command.replace("\n", "")
                 print(f"Running command: '{command}'", end="")
                 try:
@@ -163,11 +164,18 @@ def setup_argparser() -> argparse.ArgumentParser:
         default=False,
     )
     arg_parser.add_argument(
+        "-c",
+        "--commands",
+        action="store",
+        dest="commands",
+        help="Specify path to commands declaration",
+    )
+    arg_parser.add_argument(
         "-t",
         "--theme",
         action="store",
         dest="theme",
-        help="Specify which theme the context will be loaded from.",
+        help="specify which theme the context will be loaded from.",
     )
     arg_parser.add_argument("-l", "--list", action="store_true", help="List available themes")
 
@@ -181,7 +189,7 @@ def main():
     tc = ThemeController(args)
     theme = tc.get_theme()
     controller = TemplateController(theme, args.overwrite)
-    controller.run_commands()
+    controller.run_commands(args.commands)
     controller.render_templates()
 
     sys.exit(0)
