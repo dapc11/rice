@@ -137,7 +137,7 @@ class TemplateController:
     @staticmethod
     def run_commands(commands_file_path) -> None:
         """Potentially dangerous feature, make sure that you know what's in the commands file."""
-        if not os.path.exists(commands_file_path):
+        if not commands_file_path or os.path.exists(commands_file_path):
             return
         with open(commands_file_path, mode="r", encoding="utf-8") as commands_file:
             for command in commands_file.readlines():
