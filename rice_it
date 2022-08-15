@@ -146,7 +146,7 @@ class TemplateController:
                 try:
                     os.system(command)
                     print()
-                except Exception as e:
+                except Exception:
                     print("Failed, continuing...")
 
 
