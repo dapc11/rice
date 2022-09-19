@@ -3,7 +3,7 @@
     "shell": "/usr/bin/zsh",
     "terminal": "alacritty",
     "browser": "firefox",
-    "editor": "vim",
+    "editor": "/usr/bin/nvim",
     "keymap": "se",
     "zsh_theme": "afowler",
     "gtk_theme": "Yaru",

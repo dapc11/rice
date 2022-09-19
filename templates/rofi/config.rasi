@@ -83,7 +83,7 @@ configuration {
 }
 window {
     background-color: @xbg;
-    border: 0px;
+    border: 1px;
     border-color: @x4;
     border-radius: 0;
     padding: 20;

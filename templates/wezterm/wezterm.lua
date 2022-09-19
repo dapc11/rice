@@ -41,7 +41,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-	font = wezterm.font("MesloLGS NF"),
+	font = wezterm.font("Sauce Code Pro Nerd Font"),
 	font_size = 10,
 	window_close_confirmation = "NeverPrompt",
 	window_padding = { left = 5, right = 5, top = 5, bottom = 5 },

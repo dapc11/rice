@@ -11,8 +11,14 @@ How the templates will be renedred is configured in `./templates.json`.
 
 ## Commands
 
-The user has the possibility to automate the setup of ones envrionemnt.
+The user has the possibility to automate the setup of ones environemnt.
 This is done by declaring commands, one per line, in `./commands.txt`.
+
+## Font
+
+1. Download SourceCodePro.zip from [ Nerd font ]( https://github.com/ryanoasis/nerd-fonts/releases )
+2. Extract to `~/.local/share/fonts/`
+3. Invoke `fc-cache -v -f`
 
 ## Base 16
 
