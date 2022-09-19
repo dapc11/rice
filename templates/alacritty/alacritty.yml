@@ -3,8 +3,8 @@ window:
     columns: 0
     lines: 0
   padding:
-    x: 3
-    y: 3
+    x: 0
+    y: 0
   dynamic_padding: true
   decorations: full
   title: alacritty
@@ -27,7 +27,7 @@ font:
 
   offset:
     x: 0
-    y: -2
+    y: 0
 
   glyph_offset:
     x: 0
