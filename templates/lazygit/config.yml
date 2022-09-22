@@ -113,7 +113,7 @@ keybinding:
     scrollDownMain-alt2: '<c-d>' # main panel scroll down
     executeCustomCommand: ':'
     createRebaseOptionsMenu: 'm'
-    pushFiles: 'P'
+    pushFiles: '<c-p>'
     pullFiles: 'p'
     refresh: 'R'
     createPatchOptionsMenu: '<c-p>'
@@ -137,10 +137,10 @@ keybinding:
     checkForUpdate: 'u'
     recentRepos: '<enter>'
   files:
-    commitChanges: 'c'
+    commitChanges: 'C'
     commitChangesWithoutHook: 'w' # commit changes without pre-commit hook
     amendLastCommit: 'A'
-    commitChangesWithEditor: 'C'
+    commitChangesWithEditor: 'c'
     ignoreFile: 'i'
     refreshFiles: 'r'
     stashAllChanges: 's'
@@ -196,9 +196,17 @@ keybinding:
     update: 'u'
     bulkMenu: 'b'
 customCommands:
-  - key: 'x'
-    command: 'git push origin HEAD:refs/for/master'
+  - key: 'P'
+    prompts:
+      - type: 'menu'
+        title: 'Where to push?'
+        options:
+          - name: 'gerrit'
+            description: 'origin HEAD:refs/for/master'
+            value: 'origin HEAD:refs/for/master'
+          - name: 'remote'
+            description: 'regular push'
+            value: ''
+    command: "git push {{index .PromptResponses 0}}"
     context: 'commits'
-  - key: 'X'
-    command: 'git push'
-    context: 'commits'
+    loadingText: 'Pushing...'
