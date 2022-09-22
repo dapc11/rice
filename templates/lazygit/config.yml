@@ -95,8 +95,7 @@ keybinding:
     jumpToBlock: ['1', '2', '3', '4', '5'] # goto the Nth block / panel
     nextMatch: 'n'
     prevMatch: 'N'
-    optionMenu: 'x' # show help menu
-    optionMenu-alt1: '?' # show help menu
+    optionMenu: '?' # show help menu
     select: '<space>'
     goInto: '<enter>'
     openRecentRepos: '<c-r>'
@@ -196,7 +195,10 @@ keybinding:
     init: 'i'
     update: 'u'
     bulkMenu: 'b'
-  customCommands:
-    - key: 'P'
-      command: 'git push origin HEAD:refs/for/master'
-      context: 'commits'
+customCommands:
+  - key: 'x'
+    command: 'git push origin HEAD:refs/for/master'
+    context: 'commits'
+  - key: 'X'
+    command: 'git push'
+    context: 'commits'
