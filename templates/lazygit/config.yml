@@ -202,8 +202,8 @@ customCommands:
           - name: 'gerrit'
             description: 'origin HEAD:refs/for/master'
             value: 'origin HEAD:refs/for/master'
-          - name: 'remote'
-            description: 'regular push'
+          - name: 'regular'
+            description: 'push'
             value: ''
     command: "git push {{index .PromptResponses 0}}"
     context: 'commits'
