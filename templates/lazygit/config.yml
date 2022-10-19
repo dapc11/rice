@@ -101,6 +101,8 @@ keybinding:
     openRecentRepos: '<c-r>'
     confirm: '<enter>'
     confirm-alt1: 'y'
+    pushFiles: '<f1>'
+    pullFiles: '<f2>'
     remove: 'd'
     new: 'n'
     edit: 'e'
