@@ -181,5 +181,38 @@ ex ()
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-zstyle ':completion:*' menu select
+setopt prompt_subst
+setopt auto_menu
+setopt always_to_end
+setopt complete_in_word
+unsetopt flow_control
+unsetopt menu_complete
+
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats       '%B%u %c %B%F{magenta} %b'
+zstyle ':vcs_info:git:*' actionformats '%B%u %c %B%F{magenta} %b'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' get-revision true
+zstyle ':vcs_info:git:*' stagedstr '%F{green}✓'
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}±'
+function p() {
+  # The directory where we expect the projects to be in.
+  proj_dir=${PROJ_DIR:-~/dev}
+
+  project=$(/bin/ls $proj_dir | fzf --prompt "Switch to project: ")
+  [ -n "$project" ] && cd $proj_dir/$project
+}
+
+# Easily switch between tmux session.
+function sw() {
+  session=$(tmux ls -F "#S" | fzf --prompt "Switch to tmux session: ")
+
+  [ -n "$session" ] && tmux switch-client -t $session
+}
 fpath+=~/.zfunc
