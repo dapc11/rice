@@ -50,5 +50,6 @@
     { "template": "git/scripts/git-easy-tags", "executable": true, "destination": "~/.config/git/scripts/git-easy-tags", "onlyCopy": true },
     { "template": "git/scripts/git-easy-stash", "executable": true, "destination": "~/.config/git/scripts/git-easy-stash", "onlyCopy": true },
     { "template": "git/scripts/git-easy-all", "executable": true, "destination": "~/.config/git/scripts/git-easy-all", "onlyCopy": true },
+    { "template": "git/scripts/git-easy-unstaged", "executable": true, "destination": "~/.config/git/scripts/git-easy-unstaged", "onlyCopy": true },
     { "template": "yamllint/config" }
 ]
