@@ -1,0 +1,67 @@
+theme = "onedark"
+
+# At most one section each of 'keys.normal', 'keys.insert' and 'keys.select'
+[keys.normal]
+C-s = ":w"
+C-q = ":buffer-close!"
+C-right = ":buffer-next"
+C-left = ":buffer-previous"
+"ret" = [
+    "move_line_down",
+    "goto_first_nonwhitespace",
+] # Maps the enter key to move to start of next line
+g = { a = "code_action", o = "goto_last_accessed_file" }
+">" = { d = "goto_prev_diag", D = "goto_first_diag", f = "goto_prev_function", t = "goto_prev_class", a = "goto_prev_parameter", c = "goto_prev_comment", T = "goto_prev_test", p = "goto_prev_paragraph", g = "goto_prev_change", G = "goto_first_change", "space" = "add_newline_above" }
+"<" = { d = "goto_next_diag", D = "goto_last_diag", f = "goto_next_function", t = "goto_next_class", a = "goto_next_parameter", c = "goto_next_comment", T = "goto_next_test", p = "goto_next_paragraph", g = "goto_next_change", G = "goto_last_change", "space" = "add_newline_below" }
+tab = "indent"
+S-tab = "unindent"
+0 = "goto_line_start"
+"$" = "goto_line_end"
+
+[keys.select]
+">" = { d = "goto_prev_diag", D = "goto_first_diag", f = "goto_prev_function", t = "goto_prev_class", a = "goto_prev_parameter", c = "goto_prev_comment", T = "goto_prev_test", p = "goto_prev_paragraph", g = "goto_prev_change", G = "goto_first_change", "space" = "add_newline_above" }
+"<" = { d = "goto_next_diag", D = "goto_last_diag", f = "goto_next_function", t = "goto_next_class", a = "goto_next_parameter", c = "goto_next_comment", T = "goto_next_test", p = "goto_next_paragraph", g = "goto_next_change", G = "goto_last_change", "space" = "add_newline_below" }
+0 = "goto_line_start"
+"$" = "goto_line_end"
+
+[keys.insert]
+C-space = "completion"
+
+[editor]
+line-number = "relative"
+scroll-lines = 1
+cursorline = true
+auto-save = true
+completion-trigger-len = 1
+true-color = true
+color-modes = true
+auto-pairs = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+
+[editor.lsp]
+display-messages = true
+
+[editor.statusline]
+left = [
+    "mode",
+    "spinner",
+    "file-name",
+    "file-type",
+    "total-line-numbers",
+    "file-encoding",
+]
+center = [
+    "selections",
+    "primary-selection-length",
+    "position",
+    "position-percentage",
+]
+right = ["diagnostics", "workspace-diagnostics"]
