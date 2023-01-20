@@ -31,6 +31,7 @@
     { "template": "utils/pods", "executable": true, "destination": "~/.local/bin/pods", "onlyCopy": true },
     { "template": "utils/colortest", "executable": true, "destination": "~/.local/bin/colortest", "onlyCopy": true },
     { "template": "utils/dimmer", "executable": true, "destination": "~/.local/bin/dimmer", "onlyCopy": true },
+    { "template": "utils/tmux-sessionizer", "executable": true, "destination": "~/.local/bin/tmux-sessionizer", "onlyCopy": true },
     { "template": "utils/nightmode", "executable": true, "destination": "~/.local/bin/nightmode", "onlyCopy": true },
     { "template": "wezterm/wezterm.lua", "executable": true },
     { "template": "git/scripts/git-easy-branch", "executable": true },
