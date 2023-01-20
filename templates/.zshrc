@@ -81,6 +81,7 @@ bindkey "^[[F" end-of-line
 # Aliases
 alias n="nvim"
 alias vim="nvim"
+alias wezterm='flatpak run org.wezfurlong.wezterm'
 alias ssh='TERM=xterm-color ssh'
 alias sshk="ssh -o ServerAliveInterval=60"
 alias ducks="du -cks * | sort -rn | head | column -t"
