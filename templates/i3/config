@@ -186,7 +186,7 @@ bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+w exec x-www-browser
 bindsym $mod+p exec arandr
-bindsym $mod+section exec ~/.local/bin/hifi_sound
+bindsym $mod+grave exec ~/.local/bin/hifi_sound
 
 # read 1 character and mark the current window with this character
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
