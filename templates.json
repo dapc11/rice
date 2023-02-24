@@ -33,6 +33,7 @@
     { "template": "utils/dimmer", "executable": true, "destination": "~/.local/bin/dimmer", "onlyCopy": true },
     { "template": "utils/tmux-sessionizer", "executable": true, "destination": "~/.local/bin/tmux-sessionizer", "onlyCopy": true },
     { "template": "utils/nightmode", "executable": true, "destination": "~/.local/bin/nightmode", "onlyCopy": true },
+    { "template": "utils/hifi_sound", "executable": true, "destination": "~/.local/bin/hifi_sound", "onlyCopy": true },
     { "template": "wezterm/wezterm.lua", "executable": true },
     { "template": "git/scripts/git-easy-branch", "executable": true },
     { "template": "git/scripts/git-easy-log", "executable": true },

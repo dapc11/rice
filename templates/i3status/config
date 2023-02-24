@@ -12,7 +12,7 @@ general {
         color_degraded = "{{base0A}}"
 }
 
-# order += "disk /"
+order += "disk /"
 order += "wireless {{wifi_if}}"
 # order += "ethernet eth0"
 order += "battery 0"

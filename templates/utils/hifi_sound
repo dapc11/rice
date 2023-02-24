@@ -1,0 +1,4 @@
+#!/bin/bash
+
+index=$(pacmd list-cards | grep index | tail -1 | xargs | cut -d" " -f 2)
+pactl set-card-profile ${index} a2dp_sink

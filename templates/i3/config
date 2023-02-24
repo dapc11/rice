@@ -110,7 +110,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 bindsym $mod+Left focus left
@@ -170,9 +170,9 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 3%+ unmute
 bindsym XF86MonBrightnessDown exec dimmer -d
 bindsym XF86MonBrightnessUp exec dimmer -i
 
-# bindsym $mod+d exec rofi -show drun -modi drun
-bindsym $mod+d exec --no-startup-id alacritty -t 'fzf-menu' -e 'i3-dmenu-desktop --dmenu=fzf'
-for_window [title="fzf-menu"] floating enable
+bindsym $mod+d exec rofi -show drun -modi drun
+# bindsym $mod+d exec alacritty --class floating-term -e ~/.local/bin/fzf-menu
+for_window [class="Alacritty" instance="floating-term"] floating enable sticky enable focus_follows_mouse yes
 bindsym $mod+s exec rofi -show window -modi window
 bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
 
@@ -186,6 +186,7 @@ bindsym $mod+l exec ~/.config/rofi/rofi-power
 bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+w exec x-www-browser
 bindsym $mod+p exec arandr
+bindsym $mod+section exec ~/.local/bin/hifi_sound
 
 # read 1 character and mark the current window with this character
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
