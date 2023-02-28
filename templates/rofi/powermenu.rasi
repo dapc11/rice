@@ -1,89 +1,111 @@
 * {
-    /* General */
-    icon-font:                   "Hurmit Nerd Font Mono 28";
-    icon-font-small:             "Hurmit Nerd Font Mono 20";
-    menu-window-padding:         10px 10px;
-    menu-inputbar-margin:        10px 0px;
-    menu-prompt-padding:         10px 20px 10px 20px;
-    menu-prompt-margin:          1px 0px 0px -5px;
-    menu-element-padding:        6px 0px 6px 6px;
-    selected-normal-foreground:  rgba ( 52, 60, 72, 100 % );
-    foreground:                  rgba ( 224, 224, 224, 100 % );
-    normal-foreground:           @foreground;
-    alternate-normal-background: rgba ( 52, 60, 72, 100 % );
-    red:                         rgba ( 220, 50, 47, 100 % );
-    selected-urgent-foreground:  rgba ( 224, 224, 224, 100 % );
-    blue:                        rgba ( 38, 139, 210, 100 % );
-    urgent-foreground:           rgba ( 240, 98, 146, 100 % );
-    alternate-urgent-background: rgba ( 52, 60, 72, 100 % );
-    active-foreground:           rgba ( 224, 224, 224, 100 % );
-    lightbg:                     rgba ( 238, 232, 213, 100 % );
-    selected-active-foreground:  rgba ( 52, 60, 72, 100 % );
-    alternate-active-background: rgba ( 52, 60, 72, 100 % );
-    background:                  rgba ( 52, 60, 72, 100 % );
-    alternate-normal-foreground: @foreground;
-    normal-background:           rgba ( 52, 60, 72, 100 % );
-    lightfg:                     rgba ( 88, 104, 117, 100 % );
-    selected-normal-background:  rgba ( 224, 224, 224, 100 % );
-    border-color:                rgba ( 240, 98, 146, 100 % );
-    spacing:                     2;
-    separatorcolor:              rgba ( 224, 224, 224, 100 % );
-    urgent-background:           rgba ( 52, 60, 72, 100 % );
-    selected-urgent-background:  rgba ( 240, 98, 146, 100 % );
-    alternate-urgent-foreground: @urgent-foreground;
-    background-color:            rgba ( 0, 0, 0, 0 % );
-    alternate-active-foreground: @active-foreground;
-    active-background:           rgba ( 52, 60, 72, 100 % );
-    selected-active-background:  rgba ( 224, 224, 224, 100 % );
-    font: @icon-font;
-    font: "{{font}} 12";
+  font:   "Iosevka Nerd Font Medium 11";
+
+  bg0     : {{base01}};
+  bg1     : {{base02}};
+  bg2     : {{base03}};
+  bg3     : {{base04}};
+  fg0     : {{base06}};
+  fg1     : {{base07}};
+  fg2     : {{base07}};
+  red     : {{base08}};
+  green   : {{base0B}};
+  yellow  : {{base0A}};
+  blue    : {{base0D}};
+  magenta : {{base0E}};
+  cyan    : {{base0C}};
+
+  accent: @blue;
+  urgent: @yellow;
+
+  background-color : transparent;
+  text-color       : @fg0;
+
+  margin  : 0;
+  padding : 0;
+  spacing : 0;
 }
 
-horibox {
-  children: [ listview ];
-}
-listview {
-  layout: horizontal;
+element-icon, element-text, scrollbar {
+  cursor: pointer;
 }
 
 window {
-    padding: @menu-window-padding;
-    children: [ inputbar, horibox ];
-    border: 2px;
-    border-color: @x4;
-    border-radius: 0;
-    width: 585px;
-    height: 160px;
-}
-inputbar {
-    children: [ textbox-prompt-colon, prompt ];
-    margin: @menu-inputbar-margin;
-}
-prompt,
-textbox-prompt-colon {
-    padding: @menu-prompt-padding;
-    border: 2px;
-    border-color: {{base04}};
-}
-prompt {
-    spacing:    0;
-    border:     0;
-    text-color: @xfg;
-}
-textbox-prompt-colon {
-    str: "Uptime";
-    expand:     false;
-    margin:     0px 0.3000em 0.0000em 0.0000em ;
-    text-color: inherit;
-}
-listview {
-    spacing: @option-6-listview-spacing;
-    lines: 6;
-}
-element {
-    font: @icon-font;
-    padding: @menu-element-padding;
-    horizontal-align: 0.5;
+  location : northwest;
+  width    : 280px;
+  x-offset : 4px;
+  y-offset : 32px;
+
+  background-color: @bg0;
+  border: 1px;
+  border-color: @bg3;
+  border-radius: 0px;
 }
 
-@import "colors.rasi"
+inputbar {
+  spacing  : 8px;
+  padding  : 4px 8px;
+  children : [ icon-search, entry ];
+
+  background-color: @bg0;
+}
+
+icon-search, entry, element-icon, element-text {
+  vertical-align: 0.5;
+}
+
+icon-search {
+  expand   : false;
+  filename : "search-symbolic";
+  size     : 14px;
+}
+
+textbox {
+  padding          : 4px 8px;
+  background-color : @bg2;
+}
+
+listview {
+  padding      : 4px 0px;
+  lines        : 12;
+  columns      : 1;
+  scrollbar    : false;
+  fixed-height : false;
+  dynamic      : true;
+}
+
+element {
+  padding : 4px 8px;
+  spacing : 8px;
+}
+
+element normal urgent {
+  text-color: @urgent;
+}
+
+element normal active {
+  text-color: @accent;
+}
+
+element selected {
+  text-color       : @bg1;
+  background-color : @accent;
+}
+
+element selected urgent {
+  background-color: @urgent;
+}
+
+element-icon {
+  size: 2em;
+}
+
+element-text {
+  text-color: inherit;
+}
+
+scrollbar {
+  handle-width : 4px;
+  handle-color : @fg2;
+  padding      : 0 4px;
+}
