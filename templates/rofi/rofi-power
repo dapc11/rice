@@ -12,7 +12,7 @@ shutdown=' Power Off'
 # Variable passed to rofi
 options="$exit\n$renew\n$lock\n$suspend\n$shutdown"
 
-chosen="$(echo -e "$options" | $rofi_command -p "$uptime" -dmenu -selected-row 2)"
+chosen="$(echo -e "$options" | $rofi_command -p "$uptime" -dmenu -i)"
 case $chosen in
     $shutdown)
         systemctl poweroff

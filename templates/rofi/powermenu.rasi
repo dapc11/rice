@@ -26,13 +26,9 @@
   spacing : 0;
 }
 
-element-icon, element-text, scrollbar {
-  cursor: pointer;
-}
-
 window {
-  location : northwest;
   width    : 280px;
+  height   : 250px;
   x-offset : 4px;
   y-offset : 32px;
 
