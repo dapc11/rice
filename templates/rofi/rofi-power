@@ -6,11 +6,11 @@ uptime=$(uptime -p | sed -e 's/up //g')
 exit=' Exit'
 renew=' Refresh'
 lock=' Lock'
-suspend='  Sleep'
+suspend=' Sleep'
 shutdown=' Power Off'
 
 # Variable passed to rofi
-options="$exit\n$renew\n$lock\n$suspend\n$shutdown"
+options="$lock\n$suspend\n$exit\n$renew\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "$uptime" -dmenu -i)"
 case $chosen in
