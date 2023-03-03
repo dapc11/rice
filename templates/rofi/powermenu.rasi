@@ -1,5 +1,5 @@
 * {
-  font:   "Iosevka Nerd Font Medium 11";
+  font:   "Iosevka Nerd Font Medium 14";
 
   bg0     : {{base01}};
   bg1     : {{base02}};
