@@ -88,7 +88,7 @@ class Template:
         print(f"Writing to {self.target}")
 
         try:
-            with open(self.target, "w") as target:
+            with open(self.target, "w", encoding="UTF-8") as target:
                 target.write(self.content)
         except TemplateNotFound:
             print(f"Template not found {self.template}")
