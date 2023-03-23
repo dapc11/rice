@@ -65,15 +65,16 @@
     },
     "[git-commit]": {
         "editor.rulers": [
-            50
+            50,
+            72
         ]
     },
+    "git.inputValidationSubjectLength": 50,
+    "git.inputValidationLength": 72,
     "workbench.editorAssociations": {
         "viewType": "default",
         "filenamePattern": "default"
     },
-    "git.inputValidationSubjectLength": 50,
-    "git.inputValidationLength": 72,
     "workbench.colorCustomizations": {
         "statusBar.background": "{{base01}}",
         "terminal.foreground": "{{base06}}",
