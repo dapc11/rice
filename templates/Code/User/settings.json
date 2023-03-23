@@ -1,5 +1,4 @@
 {
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.external.linuxExec": "{{terminal}}",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "window.titleBarStyle": "custom",
@@ -17,7 +16,7 @@
         100,
         120
     ],
-    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontSize": 12,
     "terminal.integrated.allowChords": false,
     "workbench.colorTheme": "Atom One Dark",
     "go.toolsManagement.autoUpdate": true,
@@ -33,7 +32,7 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.formatting.provider": "black",
-    "python.sortImports.args": [
+    "isort.args": [
         "-w",
         "99",
     ],
@@ -70,9 +69,11 @@
         ]
     },
     "workbench.editorAssociations": {
-        "viewType": "jupyter.notebook.ipynb",
-        "filenamePattern": "*.ipynb"
+        "viewType": "default",
+        "filenamePattern": "default"
     },
+    "git.inputValidationSubjectLength": 50,
+    "git.inputValidationLength": 72,
     "workbench.colorCustomizations": {
         "statusBar.background": "{{base01}}",
         "terminal.foreground": "{{base06}}",
@@ -207,4 +208,9 @@
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.mouseSelectionStartVisualMode": true,
     "telemetry.telemetryLevel": "off",
+    "explorer.confirmDelete": false,
+    "search.mode": "reuseEditor",
+    "search.collapseResults": "auto",
+    "search.showLineNumbers": true,
+    "search.smartCase": true,
 }
