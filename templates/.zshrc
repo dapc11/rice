@@ -15,12 +15,42 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH=$PATH:/usr/local/go/bin:"$HOME/.config/git/scripts"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# Default programs:
+export NVM_DIR="$HOME/.nvm"
+export GOPATH=$HOME/go
+export EDITOR="$(which lvim)"
+export GIT_EDITOR="$(which lvim)"
+export KUBE_EDITOR="$(which lvim)"
+export TERMINAL="{{terminal}}"
+export BROWSER="{{browser}}"
+export SHELL="{{shell}}"
+export TERM="xterm-256color"
+
+# Other program settings:
+export PYTHONDONTWRITEBYTECODE=1
+export LESSHISTFILE="-"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+
+[ -s "${HOME}/.local/share/JetBrains/Toolbox/scripts" ] && export PATH="$PATH:${HOME}/.local/share/JetBrains/Toolbox/scripts"
+[ -s "/usr/bin/python3" ] && export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+[ -s "${HOME}/.env" ] && export WORKON_HOME="${HOME}/.envs"
+[ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && export VIRTUALENVWRAPPER_SCRIPT="${HOME}/.local/bin/virtualenvwrapper.sh"
+[ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && source ${HOME}/.local/bin/virtualenvwrapper.sh
+
 plugins=(
     git
     zsh-autosuggestions
     helm
     kubectl
+    docker
     fd
+    ripgrep
+    virtualenvwrapper
 )
 
 
@@ -89,6 +119,7 @@ alias ducks="du -cks * | sort -rn | head | column -t"
 alias gsf="git status --porcelain | cut -d' ' -f3 | xargs"
 alias watch="watch "
 alias git-clean="git checkout -- \$(gsf)"
+alias icat="kitty +kitten icat"
 
 # interactive cd
 unalias g 2> /dev/null

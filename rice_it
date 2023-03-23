@@ -60,8 +60,7 @@ class Template:
 
     @property
     def executable(self) -> bool:
-        executable = self.metadata.get("executable")
-        return executable if executable else False
+        return self.metadata.get("executable")
 
     @property
     def onlyCopy(self) -> bool:
@@ -94,7 +93,7 @@ class Template:
             print(f"Template not found {self.template}")
 
     def make_executable(self):
-        """Make given file executeable."""
+        """Make target file executeable."""
         mode = os.stat(self.target).st_mode
         mode |= (mode & 0o444) >> 2  # copy R bits to X
         os.chmod(self.target, mode)

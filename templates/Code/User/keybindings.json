@@ -162,5 +162,26 @@
     {
         "key": "ctrl+m",
         "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+k v",
+        "command": "workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+k h",
+        "command": "workbench.action.splitEditorDown"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.openRecent",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
     }
 ]
