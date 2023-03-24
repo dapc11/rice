@@ -111,7 +111,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec {{terminal}}
 bindsym $mod+q kill
 
 bindsym $mod+Left focus left

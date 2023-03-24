@@ -214,4 +214,5 @@
     "search.collapseResults": "auto",
     "search.showLineNumbers": true,
     "search.smartCase": true,
+    "files.autoSave": "onFocusChange",
 }

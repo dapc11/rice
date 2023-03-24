@@ -9,6 +9,7 @@
     { "template": "compton/compton.conf" },
     { "template": "dunst/dunstrc" },
     { "template": "kitty/kitty.conf" },
+    { "template": "kitty/pager.sh" },
     { "template": "i3/config" },
     { "template": "i3status/config" },
     { "template": "lazygit/config.yml", "onlyCopy": true },
