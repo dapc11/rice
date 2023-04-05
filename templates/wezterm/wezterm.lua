@@ -15,6 +15,14 @@ local colors = {
 	cursor = "{{base66}}",
 }
 
+function make_mouse_binding(dir, streak, button, mods, action)
+  return {
+    event = { [dir] = { streak = streak, button = button } },
+    mods = mods,
+    action = action,
+  }
+end
+
 return {
 	font = wezterm.font_with_fallback({
 		"Liga SFMono Nerd Font",
@@ -145,4 +153,12 @@ return {
 			format = "https://example.com/tasks/?t=$1",
 		},
 	},
+  mouse_bindings = {
+    make_mouse_binding('Up', 1, 'Left', 'NONE', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+    make_mouse_binding('Up', 1, 'Left', 'SHIFT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+    make_mouse_binding('Up', 1, 'Left', 'ALT', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+    make_mouse_binding('Up', 1, 'Left', 'SHIFT|ALT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+    make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+    make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+  },
 }
