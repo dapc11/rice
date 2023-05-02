@@ -30,6 +30,7 @@ return {
 		"SF Pro Display",
 		"Apple Color Emoji",
 	}),
+	adjust_window_size_when_changing_font_size = false,
 	color_scheme = "OneDark (base16)",
 	hide_tab_bar_if_only_one_tab = true,
 	exit_behavior = "Close",

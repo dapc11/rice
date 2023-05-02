@@ -34,7 +34,7 @@
     "python.formatting.provider": "black",
     "isort.args": [
         "-w",
-        "99",
+        "99"
     ],
     "python.linting.pylintArgs": [
         "--disable",
@@ -53,14 +53,14 @@
         ],
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
-            "source.formatOnSave": true,
+            "source.formatOnSave": true
         }
     },
     "yaml.completion": true,
     "yaml.schemas": {
         "kubernetes": [
             "templates/*.yaml",
-            "*.tpl",
+            "*.tpl"
         ]
     },
     "[git-commit]": {
@@ -206,8 +206,6 @@
     "editor.stickyTabStops": true,
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-    "vscode-neovim.mouseSelectionStartVisualMode": true,
     "telemetry.telemetryLevel": "off",
     "explorer.confirmDelete": false,
     "search.mode": "reuseEditor",
@@ -215,4 +213,62 @@
     "search.showLineNumbers": true,
     "search.smartCase": true,
     "files.autoSave": "onFocusChange",
+    "vim.easymotion": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "vim.replaceWithRegister": true,
+    "vim.sneakReplacesF": true,
+    "vim.sneak": true,
+    "vim.smartRelativeLine": true,
+    "vim.targets.enable": true,
+    "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "vim.argumentObjectClosingDelimiters": [
+        ")",
+        "]"
+    ],
+    "vim.argumentObjectOpeningDelimiters": [
+        "(",
+        "["
+    ],
+    "vim.handleKeys": {
+        "<Space": false,
+        "<c-c>": false,
+        "<c-v>": false,
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-y>": false,
+        "<C-f>": false
+    },
+    "vim.leader": "<Space>",
+    "go.useLanguageServer": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.languageServerExperimentalFeatures": {
+        "diagnostics": true // for build and vet errors as you type
+    },
+    "[go]": {
+        "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "gopls": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "buildFlags": [
+            "-tags",
+            "mage"
+        ]
+    },
+    "go.liveErrors": {
+        "enabled": true,
+        "delay": 500
+    },
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "gitlens.advanced.messages": {
+        "suppressFileNotUnderSourceControlWarning": true
+    },
+    "editor.inlineSuggest.enabled": true,
 }
