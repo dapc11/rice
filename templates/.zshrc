@@ -10,12 +10,33 @@ export ZSH="$HOME/.oh-my-zsh"
 [[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt prompt_subst
+setopt auto_menu
+setopt always_to_end
+setopt complete_in_word
+unsetopt flow_control
+unsetopt menu_complete
+
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats       '%B%u %c %B%F{magenta} %b'
+zstyle ':vcs_info:git:*' actionformats '%B%u %c %B%F{magenta} %b'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' get-revision true
+zstyle ':vcs_info:git:*' stagedstr '%F{green}✓'
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}±'
+
 ZLE_RPROMPT_INDENT=0
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | grep -v pycache | tr '\n' ':' | sed 's/:*$//')"
 export PATH=$PATH:/usr/local/go/bin:"$HOME/.config/git/scripts"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
@@ -43,25 +64,24 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 [ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && source ${HOME}/.local/bin/virtualenvwrapper.sh
 
 plugins=(
-    git
-    zsh-autosuggestions
-    helm
-    kubectl
-    docker
-    fd
-    ripgrep
-    virtualenvwrapper
+  git
+  zsh-autosuggestions
+  helm
+  kubectl
+  docker
+  fd
+  ripgrep
+  virtualenvwrapper
 )
 
-
 if type rg &> /dev/null; then
-    # --files: List files that would be searched but do not search
-    # --no-ignore: Do not respect .gitignore, etc...
-    # --hidden: Search hidden files and folders
-    # --follow: Follow symlinks
-    # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-    export FZF_DEFAULT_OPTS='-m --height 50% --border --layout=reverse'
+  # --files: List files that would be searched but do not search
+  # --no-ignore: Do not respect .gitignore, etc...
+  # --hidden: Search hidden files and folders
+  # --follow: Follow symlinks
+  # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border --layout=reverse'
 fi
 
 _gen_fzf_default_opts() {
@@ -104,9 +124,15 @@ _fzf_compgen_dir() {
 _gen_fzf_default_opts
 
 set -g hist_ignore_dups
-# Enable Home & End in rxvt-unicode-256color
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+
+function clear-scrollback-and-screen () {
+  zle clear-screen
+  tmux clear-history
+}
+zle -N clear-scrollback-and-screen
+bindkey -v '^L' clear-scrollback-and-screen
 
 # Aliases
 alias n="nvim"
@@ -121,40 +147,7 @@ alias watch="watch "
 alias git-clean="git checkout -- \$(gsf)"
 alias icat="kitty +kitten icat"
 
-# interactive cd
-unalias g 2> /dev/null
-g() {
-    if [ $# -eq 0 ] ; then
-        path_to_cd=$(fd --type d --hidden --follow --exclude .git 2>/dev/null | fzf )
-        [[ -z "$path_to_cd" ]] && return || cd "$path_to_cd"
-    else
-        cd $@
-    fi
-}
-
-# interactive edit
-unalias e 2> /dev/null
-e() {
-    if [ $# -eq 0 ] ; then
-        path_to_cd=$(fd --type f --hidden --follow --exclude .git 2>/dev/null | fzf )
-        [[ -z "$path_to_cd" ]] && return || vim "$path_to_cd"
-    else
-        cd $@
-    fi
-}
-
-pb-kill-line() {
-  zle kill-line
-  echo -n $CUTBUFFER | xclip -selection clipboard
-}
-
-zle -N pb-kill-line
-bindkey '^K' pb-kill-line
-
 eval "$(zoxide init zsh)"
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm bash_completion
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
@@ -181,11 +174,44 @@ compdef __start_kubectl k
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
-export HISTORY_IGNORE="(ls|cd|pwd|exit|vim|sudo reboot|history|cd -|cd ..)"
+export HISTORY_IGNORE="(ls|ll|cd|pwd|exit|vim|sudo reboot|history|cd -|cd ..)"
 
-### ARCHIVE EXTRACTION
-# usage: ex <file>
-ex ()
+# Utility Functions
+## Interactive CD
+unalias g 2> /dev/null
+function g() {
+  if [ $# -eq 0 ] ; then
+    path_to_cd=$(fd --type d --hidden --follow --exclude .git 2>/dev/null | fzf )
+    [[ -z "$path_to_cd" ]] && return || cd "$path_to_cd"
+  else
+    cd $@
+  fi
+}
+
+## Interactive Edit
+unalias e 2> /dev/null
+function e() {
+  if [ $# -eq 0 ] ; then
+    path_to_cd=$(fd --type f --hidden --follow --exclude .git 2>/dev/null | fzf )
+    [[ -z "$path_to_cd" ]] && return || vim "$path_to_cd"
+  else
+    cd $@
+  fi
+}
+
+## Kill Line Ctrl+k in Bash
+function pb-kill-line() {
+  zle kill-line
+  echo -n $CUTBUFFER | xclip -selection clipboard
+}
+
+zle -N pb-kill-line
+bindkey '^K' pb-kill-line
+bindkey -e
+
+## Archive Extraction
+### usage: ex <file>
+function ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
@@ -210,42 +236,24 @@ ex ()
   fi
 }
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-setopt prompt_subst
-setopt auto_menu
-setopt always_to_end
-setopt complete_in_word
-unsetopt flow_control
-unsetopt menu_complete
-
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats       '%B%u %c %B%F{magenta} %b'
-zstyle ':vcs_info:git:*' actionformats '%B%u %c %B%F{magenta} %b'
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' get-revision true
-zstyle ':vcs_info:git:*' stagedstr '%F{green}✓'
-zstyle ':vcs_info:git:*' unstagedstr '%F{red}±'
+## Repo switcher
 function p() {
   # The directory where we expect the projects to be in.
-  proj_dir=${PROJ_DIR:-~/dev}
+  proj_dir=${PROJ_DIR:-~/repos}
 
   project=$(/bin/ls $proj_dir | fzf --prompt "Switch to project: ")
   [ -n "$project" ] && cd $proj_dir/$project
 }
 
-# Easily switch between tmux session.
+## Easily switch between tmux session.
 function sw() {
   session=$(tmux ls -F "#S" | fzf --prompt "Switch to tmux session: ")
 
   [ -n "$session" ] && tmux switch-client -t $session
 }
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 fpath+=~/.zfunc
