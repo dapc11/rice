@@ -1,0 +1,23 @@
+#!/bin/bash
+
+pod_name=$1
+container_name=$2
+
+if [ -z "$pod_name" ]; then
+  echo "Error: Pod name argument is required."
+  exit 1
+fi
+
+command_string="kubectl exec -it $pod_name"
+
+if [ -n "$container_name" ]; then
+  command_string+=" -c $container_name"
+fi
+
+bash -c "${command_string} -- bash -c '$(cat <<EOF
+  set -a
+  ll() { ls -l \$@; }
+  ff() { find / -name \$@ 2>/dev/null; }
+  bash
+EOF
+)'"

@@ -171,6 +171,49 @@ _3pp_tool_completion() {
 compdef _3pp_tool_completion 3pp_tool
 compdef __start_kubectl k
 
+_attach_completion() {
+    local cur_word
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    local prev_word
+    prev_word="${COMP_WORDS[COMP_CWORD-1]}"
+    local options
+
+    case "$prev_word" in
+        -n)
+            # Provide completion for namespace names
+            options=$(kubectl get namespaces -o jsonpath='{.items[*].metadata.name}')
+            COMPREPLY=($(compgen -W "${options}" -- "${cur_word}"))
+            return
+            ;;
+        *)
+            local namespace_flag
+            namespace_flag=$(printf '%s\n' "${COMP_WORDS[@]}" | grep -e '\(-n\|--namespace\)')
+            if [[ "$prev_word" == "-n" || "$prev_word" == "attach" ]]; then
+                # Provide completion for pod names
+                if [[ -n "$namespace_flag" ]]; then
+                    options=$(kubectl get pods --namespace "${prev_word}" --no-headers -o custom-columns=":metadata.name")
+                else
+                    options=$(kubectl get pods --no-headers -o custom-columns=":metadata.name")
+                fi
+                COMPREPLY=($(compgen -W "${options}" -- "${cur_word}"))
+                return
+            else
+                local pod_name
+                pod_name="$prev_word"
+                if [[ -n "$namespace_flag" ]]; then
+                    options=$(kubectl get pods --namespace "${COMP_WORDS[COMP_CWORD-2]}" $pod_name --no-headers -o jsonpath="{.spec.containers[*].name}")
+                else
+                    options=$(kubectl get pods $pod_name --no-headers -o jsonpath="{.spec.containers[*].name}")
+                fi
+                COMPREPLY=($(compgen -W "${options}" -- "${cur_word}"))
+                return
+            fi
+            ;;
+    esac
+}
+
+complete -F _attach_completion attach
+
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
