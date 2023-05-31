@@ -188,7 +188,7 @@ _attach_completion() {
         *)
             local namespace_flag
             namespace_flag=$(printf '%s\n' "${COMP_WORDS[@]}" | grep -e '\(-n\|--namespace\)')
-            if [[ "$prev_word" == "-n" || "$prev_word" == "attach" ]]; then
+            if [[ "${COMP_WORDS[COMP_CWORD-2]}" == "-n" || "$prev_word" == "attach" ]]; then
                 # Provide completion for pod names
                 if [[ -n "$namespace_flag" ]]; then
                     options=$(kubectl get pods --namespace "${prev_word}" --no-headers -o custom-columns=":metadata.name")
