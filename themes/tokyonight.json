@@ -1,0 +1,20 @@
+{
+    "bg": "abstract.png",
+    "nvim_theme": "tokynight",
+    "base00": "#24292e",
+    "base01": "#282c34",
+    "base02": "#414868",
+    "base03": "#545c7e",
+    "base04": "#3b4261",
+    "base05": "#a9b1d6",
+    "base06": "#c0caf5",
+    "base07": "#c8d3f5",
+    "base08": "#c53b53",
+    "base09": "#ff9e64",
+    "base0A": "#e0af68",
+    "base0B": "#9ece6a",
+    "base0C": "#7aa2f7",
+    "base0D": "#7dcfff",
+    "base0E": "#bb9af7",
+    "base0F": "#b2555b"
+}

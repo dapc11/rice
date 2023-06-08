@@ -1,17 +1,23 @@
 [[language]]
 name = "python"
-scope = "source.python"
-injection-regex = "python"
-file-types = ["py"]
-shebangs = ["python"]
-roots = []
-comment-token = "#"
-language-server = { command = "pyls" }
-# TODO: pyls needs utf-8 offsets
-indent = { tab-width = 4, unit = "    " }
+roots = ["pyproject.toml", "setup.py", ".git"]
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = {}
 auto-format = true
 formatter = { command = "black", args = ["-", "-q"] }
 
-[[grammar]]
-name = "python"
-source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "de221eccf9a221f5b85474a553474a69b4b5784d" }
+[language.debugger]
+name = "debugpy"
+transport = "stdio"
+command = "python"
+args = ["-m", "debugpy"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+args = { mode = "debug", program = "{0}" }
+
+[[language]]
+name = "java"
+language-server = { command = "jdtls", args = ["-data", "~/.cache/jdtls/my_project"] }

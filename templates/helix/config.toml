@@ -50,18 +50,11 @@ character = "▏"
 display-messages = true
 
 [editor.statusline]
-left = [
-    "mode",
-    "spinner",
-    "file-name",
-    "file-type",
-    "total-line-numbers",
-    "file-encoding",
-]
-center = [
-    "selections",
-    "primary-selection-length",
-    "position",
-    "position-percentage",
-]
-right = ["diagnostics", "workspace-diagnostics"]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
