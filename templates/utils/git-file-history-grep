@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+if [ $# -lt 2 ]; then
+  echo "Requires an input paramter to search for. and which file."
+  echo "usage: $(basename "${0}") <file> <string>"
+  exit 1
+fi
+file=$1
+input=$2
+
+git rev-list --all | GIT_PAGER=cat xargs -n 1 -i{} bash -c "git grep --heading -A5 --color=always '${input}' {} ${file} | sed -e s/:${file}/\ / && exit 255" 2>/dev/null
