@@ -12,7 +12,7 @@ local colors = {
 	magenta = "{{base0E}}",
 	cyan = "{{base0D}}",
 	white = "{{base07}}",
-	cursor = "{{base66}}",
+	cursor = "{{base06}}",
 }
 
 function make_mouse_binding(dir, streak, button, mods, action)
@@ -28,6 +28,7 @@ return {
 		"Liga SFMono Nerd Font",
 		"SauceCodePro Nerd Font",
 		"SF Pro Display",
+		"JetBrains Mono",
 		"Apple Color Emoji",
 	}),
 	adjust_window_size_when_changing_font_size = false,
@@ -38,7 +39,7 @@ return {
 	default_prog = { "{{shell}}" },
 	font_size = 11,
 	max_fps = 120,
-	scrollback_lines = 9999,
+	scrollback_lines = 99999,
 	enable_wayland = false,
 	pane_focus_follows_mouse = true,
 	warn_about_missing_glyphs = false,
@@ -87,18 +88,17 @@ return {
 			},
 		},
 	},
+	mouse_bindings = {
+    make_mouse_binding("Up", 1, "Left", "NONE", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
+		make_mouse_binding("Up", 1, "Left", "SHIFT", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
+		make_mouse_binding("Up", 1, "Left", "ALT", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
+		make_mouse_binding("Up", 1, "Left", "SHIFT|ALT", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
+		make_mouse_binding("Up", 2, "Left", "NONE", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
+		make_mouse_binding("Up", 3, "Left", "NONE", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
+	},
 	keys = {
-		{ key = "a", mods = "ALT", action = wezterm.action({ SendString = "\x01" }) },
-		{
-			key = "s",
-			mods = "ALT",
-			action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
-		},
-		{
-			key = "v",
-			mods = "ALT",
-			action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
-		},
+		{ key = "s", mods = "ALT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+		{ key = "v", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
 		{ key = "z", mods = "ALT", action = "TogglePaneZoomState" },
 		{ key = "+", mods = "ALT", action = "IncreaseFontSize" },
 		{ key = "l", mods = "ALT", action = wezterm.action({ ClearScrollback = "ScrollbackAndViewport" }) },
@@ -122,10 +122,12 @@ return {
 		{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 		{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
 		{ key = "&", mods = "ALT|SHIFT", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
-		{ key = "q", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
+		{ key = "q", mods = "CTRL|ALT", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
 		{ key = "Tab", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+		{ key = "t", mods = "ALT", action = act.SpawnTab("CurrentPaneDomain") },
 		{ key = "b", mods = "CTRL", action = act.RotatePanes("CounterClockwise") },
+		{ key = "z", mods = "ALT", action = wezterm.action.TogglePaneZoomState },
 		{ key = "n", mods = "CTRL", action = act.RotatePanes("Clockwise") },
 	},
 	hyperlink_rules = {

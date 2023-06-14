@@ -215,8 +215,6 @@ _attach_completion() {
 complete -F _attach_completion attach
 
 export FZF_COMPLETION_TRIGGER=''
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
 export HISTORY_IGNORE="(ls|ll|cd|pwd|exit|vim|sudo reboot|history|cd -|cd ..)"
 
 # Utility Functions
