@@ -129,6 +129,7 @@ return {
 		{ key = "b", mods = "CTRL", action = act.RotatePanes("CounterClockwise") },
 		{ key = "z", mods = "ALT", action = wezterm.action.TogglePaneZoomState },
 		{ key = "n", mods = "CTRL", action = act.RotatePanes("Clockwise") },
+    { key = "w", mods = "CTRL", action = wezterm.action.CloseCurrentPane { confirm = true } },
 	},
 	hyperlink_rules = {
 		{
