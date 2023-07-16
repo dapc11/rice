@@ -293,6 +293,20 @@ function sw() {
   [ -n "$session" ] && tmux switch-client -t $session
 }
 
+hxs() {
+        RG_PREFIX="rg -i --hidden --files-with-matches"
+        local files
+        files="$(
+                FZF_DEFAULT_COMMAND_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+                        fzf --multi 3 --print0 --sort --preview="[[ ! -z {} ]] && rg --hidden --pretty --ignore-case --context 5 {q} {}" \
+                                --phony -i -q "$1" \
+                                --bind "change:reload:$RG_PREFIX {q}" \
+                                --preview-window="70%:wrap" \
+                                --bind 'ctrl-a:select-all'
+        )"
+        [[ "$files" ]] && hx --vsplit $(echo $files | tr \\0 " ")
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
