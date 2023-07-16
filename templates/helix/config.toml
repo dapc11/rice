@@ -1,16 +1,41 @@
 theme = "onedark"
 
-# At most one section each of 'keys.normal', 'keys.insert' and 'keys.select'
+[keys.normal."+"]
+m = ":run-shell-command make"
+# c = ":run-shell-command cargo build"
+t = ":run-shell-command cargo test"
+
 [keys.normal]
+# Use system clipboard
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_before"
+g.c = "goto_line_start"
+g.s = "goto_file_start"
+g.t = "goto_file_end"
+g.r = "goto_line_end"
+g.i = "goto_first_nonwhitespace"
+g.h = "no_op"
+g.l = "no_op"
+g.o = "goto_last_accessed_file"
+g.D = "goto_reference"
+G.c = "extend_to_line_start"
+G.i = "extend_to_first_nonwhitespace"
+G.r = "extend_to_line_end"
+
+C-k = "split_selection_on_newline"
+
+# flip anchor and cursor
+space.space = "flip_selections"
+
 C-s = ":w"
 C-q = ":buffer-close!"
+C-p = ":run-shell-command tmux-sessionizer"
 C-right = ":buffer-next"
 C-left = ":buffer-previous"
 "ret" = [
     "move_line_down",
     "goto_first_nonwhitespace",
 ] # Maps the enter key to move to start of next line
-g = { a = "code_action", o = "goto_last_accessed_file" }
 ">" = { d = "goto_prev_diag", D = "goto_first_diag", f = "goto_prev_function", t = "goto_prev_class", a = "goto_prev_parameter", c = "goto_prev_comment", T = "goto_prev_test", p = "goto_prev_paragraph", g = "goto_prev_change", G = "goto_first_change", "space" = "add_newline_above" }
 "<" = { d = "goto_next_diag", D = "goto_last_diag", f = "goto_next_function", t = "goto_next_class", a = "goto_next_parameter", c = "goto_next_comment", T = "goto_next_test", p = "goto_next_paragraph", g = "goto_next_change", G = "goto_last_change", "space" = "add_newline_below" }
 tab = "indent"
@@ -33,9 +58,6 @@ scroll-lines = 1
 cursorline = true
 auto-save = true
 completion-trigger-len = 1
-true-color = true
-color-modes = true
-auto-pairs = true
 
 [editor.cursor-shape]
 insert = "bar"

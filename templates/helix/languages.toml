@@ -1,15 +1,39 @@
 [[language]]
 name = "python"
-roots = ["pyproject.toml", "setup.py", ".git"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = {}
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py","pyi","py3","pyw","ptl",".pythonstartup",".pythonrc","SConstruct"]
+shebangs = ["python"]
+roots = []
+comment-token = "#"
+auto-format = false
+language-server = { command = "pylsp" }
+indent = { tab-width = 4, unit = "    " }
+
+[language.config.pylsp.plugins]
+flake8 = {enabled = true}
+autopep8 = {enabled = true}
+mccabe = {enabled = true}
+pycodestyle = {enabled = true}
+pyflakes = {enabled = true}
+pylint = {enabled = true}
+yapf = {enabled = false}
+ruff = {enabled = false}
+
+[[language]]
+name = "python"
+formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = true
-formatter = { command = "black", args = ["-", "-q"] }
+
+[[language]]
+name = "python"
+formatter = { command = "isort", args = ["-"] }
+auto-format = true
 
 [language.debugger]
 name = "debugpy"
 transport = "stdio"
-command = "python"
+command = "python3"
 args = ["-m", "debugpy"]
 
 [[language.debugger.templates]]
