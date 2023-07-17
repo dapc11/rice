@@ -28,6 +28,7 @@ C-k = "split_selection_on_newline"
 space.space = "flip_selections"
 
 C-s = ":w"
+C-f = "search"
 C-q = ":buffer-close!"
 C-p = ":run-shell-command tmux-sessionizer"
 C-right = ":buffer-next"

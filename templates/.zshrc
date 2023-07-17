@@ -81,7 +81,7 @@ if type rg &> /dev/null; then
   # --follow: Follow symlinks
   # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-  export FZF_DEFAULT_OPTS="-m --height 50% --layout=reverse"
+  export FZF_DEFAULT_OPTS='-m --height 50% --layout=reverse'
 fi
 
 _gen_fzf_default_opts() {
@@ -292,19 +292,29 @@ function sw() {
 }
 
 hxs() {
-        RG_PREFIX="rg -i --hidden --files-with-matches"
-        local files
-        files="$(
-                FZF_DEFAULT_COMMAND_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-                        fzf --multi 3 --print0 --sort --preview="[[ ! -z {} ]] && rg --hidden --pretty --ignore-case --context 5 {q} {}" \
-                                --phony -i -q "$1" \
-                                --bind "change:reload:$RG_PREFIX {q}" \
-                                --preview-window="70%:wrap" \
-                                --bind 'ctrl-a:select-all'
-        )"
-        [[ "$files" ]] && hx --vsplit $(echo $files | tr \\0 " ")
+  RG_PREFIX="rg -i --hidden --files-with-matches"
+  local files
+  files="$(
+    FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+      fzf --multi 3 --print0 --sort --preview="[[ ! -z {} ]] && rg --hidden --pretty --ignore-case --context 5 {q} {}" \
+        --phony -i -q "$1" \
+        --bind "change:reload:$RG_PREFIX {q}" \
+        --preview-window="70%:wrap" \
+        --bind 'ctrl-a:select-all'
+  )"
+  [[ "$files" ]] && hx --vsplit $(echo $files | tr \\0 " ")
 }
 
+hxa() {
+  RG_PREFIX="rg -i --hidden --files"
+  local files
+  files="$(
+    rg -i --hidden --files |\
+      fzf --sort
+  )"
+  [[ "$files" ]] && hx --vsplit $(echo $files | tr \\0 " ")
+}
+ 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
