@@ -3,7 +3,7 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 # Enable autocompletionsource ~/powerlevel10k/powerlevel10k.zsh-theme
 autoload -Uz compinit; compinit
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -32,20 +32,20 @@ zstyle ':vcs_info:git:*' stagedstr '%F{green}✓'
 zstyle ':vcs_info:git:*' unstagedstr '%F{red}±'
 
 ZLE_RPROMPT_INDENT=0
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="$PATH:$HOME/bin:$(du "$HOME/.local/bin/" | cut -f2 | grep -v pycache | tr '\n' ':' | sed 's/:*$//')"
-export PATH=$PATH:/usr/local/go/bin:"$HOME/.config/git/scripts"
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH="${PATH}:${HOME}/bin:$(du "${HOME}/.local/bin/" | cut -f2 | grep -v pycache | tr '\n' ':' | sed 's/:*$//')"
+export PATH=${PATH}:/usr/local/go/bin:"${HOME}/.config/git/scripts"
+export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
 
 # Default programs:
-export NVM_DIR="$HOME/.nvm"
-export GOPATH=$HOME/go
-export EDITOR="$(which lvim)"
-export GIT_EDITOR="$(which lvim)"
-export KUBE_EDITOR="$(which lvim)"
+export NVM_DIR="${HOME}/.nvm"
+export GOPATH="${HOME}/go"
+export EDITOR="{{editor}}"
+export GIT_EDITOR="${EDITOR}"
+export KUBE_EDITOR="${EDITOR}"
 export TERMINAL="{{terminal}}"
 export BROWSER="{{browser}}"
 export SHELL="{{shell}}"
@@ -57,7 +57,7 @@ export LESSHISTFILE="-"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
-[ -s "${HOME}/.local/share/JetBrains/Toolbox/scripts" ] && export PATH="$PATH:${HOME}/.local/share/JetBrains/Toolbox/scripts"
+[ -s "${HOME}/.local/share/JetBrains/Toolbox/scripts" ] && export PATH="${PATH}:${HOME}/.local/share/JetBrains/Toolbox/scripts"
 [ -s "/usr/bin/python3" ] && export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 [ -s "${HOME}/.env" ] && export WORKON_HOME="${HOME}/.envs"
 [ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && export VIRTUALENVWRAPPER_SCRIPT="${HOME}/.local/bin/virtualenvwrapper.sh"
@@ -81,31 +81,29 @@ if type rg &> /dev/null; then
   # --follow: Follow symlinks
   # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border --layout=reverse'
+  export FZF_DEFAULT_OPTS="-m --height 50% --layout=reverse"
 fi
 
 _gen_fzf_default_opts() {
+  local color01='{{base01}}'
+  local color02='{{base02}}'
+  local color03='{{base03}}'
+  local color04='{{base04}}'
+  local color05='{{base05}}'
+  local color06='{{base06}}'
+  local color07='{{base07}}'
+  local color08='{{base08}}'
+  local color09='{{base09}}'
+  local color0A='{{base0A}}'
+  local color0B='{{base0B}}'
+  local color0C='{{base0C}}'
+  local color0D='{{base0D}}'
+  local color0E='{{base0E}}'
+  local color0F='{{base0F}}'
 
-local color00='{{base00}}'
-local color01='{{base01}}'
-local color02='{{base02}}'
-local color03='{{base03}}'
-local color04='{{base04}}'
-local color05='{{base05}}'
-local color06='{{base06}}'
-local color07='{{base07}}'
-local color08='{{base08}}'
-local color09='{{base09}}'
-local color0A='{{base0A}}'
-local color0B='{{base0B}}'
-local color0C='{{base0C}}'
-local color0D='{{base0D}}'
-local color0E='{{base0E}}'
-local color0F='{{base0F}}'
-
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
-" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
+" --color=fg:$color03,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
 }
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -308,7 +306,7 @@ hxs() {
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
 fpath+=~/.zfunc
