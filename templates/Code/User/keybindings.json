@@ -183,5 +183,74 @@
     {
         "key": "ctrl+p",
         "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "[IntlBackslash] d",
+        "command": "editor.action.marker.next",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+f8",
+        "command": "-editor.action.marker.next",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+[IntlBackslash] d",
+        "command": "editor.action.marker.prev",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+f8",
+        "command": "-editor.action.marker.prev",
+        "when": "editorFocus"
+    },
+    {
+        "key": "down",
+        "command": "search.action.focusNextSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "f4",
+        "command": "-search.action.focusNextSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "up",
+        "command": "search.action.focusPreviousSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "shift+f4",
+        "command": "-search.action.focusPreviousSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "unknown",
+        "command": "workbench.action.tasks.runTask",
+        "when": "taskCommandsRegistered && !terminalFocus"
+    },
+    {
+        "key": "shift+alt+f10",
+        "command": "-workbench.action.tasks.runTask",
+        "when": "taskCommandsRegistered && !terminalFocus"
+    },
+    {
+        "key": "meta+[Period]",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "args": {
+            "commands": [
+                {
+                    "args": {
+                        "command": "rgf"
+                    },
+                    "command": "command-runner.run",
+                },
+                "workbench.action.terminal.focus"
+            ]
+        },
+        "command": "runCommands",
+        "key": "ctrl+shift+a"
     }
 ]

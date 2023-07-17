@@ -5,7 +5,7 @@
     "workbench.iconTheme": "vs-minimal",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.inheritEnv": true,
-    "editor.fontFamily": "'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Fira Code Retina', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "terminal.integrated.fontFamily": "Sauce Code Pro Nerd Font",
     "editor.fontSize": 12,
     "editor.formatOnPaste": true,
@@ -32,6 +32,9 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintCategorySeverity.warning": "Error",
     "python.formatting.provider": "black",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": ["-vvv"],
+    "git."
     "isort.args": [
         "-w",
         "99"
@@ -242,7 +245,6 @@
     },
     "vim.leader": "<Space>",
     "go.useLanguageServer": true,
-    "go.useCodeSnippetsOnFunctionSuggest": true,
     "go.languageServerExperimentalFeatures": {
         "diagnostics": true // for build and vet errors as you type
     },
@@ -254,6 +256,7 @@
         }
     },
     "gopls": {
+        "ui.completion.usePlaceholders": true,
         "usePlaceholders": true,
         "completeUnimported": true,
         "buildFlags": [
@@ -261,14 +264,13 @@
             "mage"
         ]
     },
-    "go.liveErrors": {
-        "enabled": true,
-        "delay": 500
-    },
     "go.lintTool": "golangci-lint",
     "go.lintOnSave": "package",
     "gitlens.advanced.messages": {
         "suppressFileNotUnderSourceControlWarning": true
     },
     "editor.inlineSuggest.enabled": true,
+    "command-runner.commands": {
+        "rgf": "rgf; exit"
+    }
 }
