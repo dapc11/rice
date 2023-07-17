@@ -58,10 +58,6 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
 [ -s "${HOME}/.local/share/JetBrains/Toolbox/scripts" ] && export PATH="${PATH}:${HOME}/.local/share/JetBrains/Toolbox/scripts"
-[ -s "/usr/bin/python3" ] && export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-[ -s "${HOME}/.env" ] && export WORKON_HOME="${HOME}/.envs"
-[ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && export VIRTUALENVWRAPPER_SCRIPT="${HOME}/.local/bin/virtualenvwrapper.sh"
-[ -s "${HOME}/.local/bin/virtualenvwrapper.sh" ] && source ${HOME}/.local/bin/virtualenvwrapper.sh
 
 plugins=(
   git
@@ -71,7 +67,6 @@ plugins=(
   docker
   fd
   ripgrep
-  virtualenvwrapper
 )
 
 if type rg &> /dev/null; then

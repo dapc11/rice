@@ -1,11 +1,8 @@
 {
     "font": "SF Pro Display",
     "shell": "/usr/bin/zsh",
+    "editor": "nvim",
     "terminal": "wezterm",
     "browser": "firefox",
-    "editor": "/usr/bin/nvim",
-    "keymap": "se",
-    "zsh_theme": "afowler",
-    "gtk_theme": "Yaru",
     "window_manager": "i3"
 }
