@@ -75,7 +75,7 @@ if type rg &> /dev/null; then
   # --hidden: Search hidden files and folders
   # --follow: Follow symlinks
   # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+  export FZF_DEFAULT_COMMAND='rg --no-binary --files --no-ignore --hidden --follow --glob "!.git/*"'
   export FZF_DEFAULT_OPTS='-m --height 50% --layout=reverse'
 fi
 
@@ -287,7 +287,7 @@ function sw() {
 }
 
 hxs() {
-  RG_PREFIX="rg -i --hidden --files-with-matches"
+  RG_PREFIX="rg -i --no-binary --hidden --files-with-matches"
   local files
   files="$(
     FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
@@ -301,7 +301,7 @@ hxs() {
 }
 
 hxa() {
-  RG_PREFIX="rg -i --hidden --files"
+  RG_PREFIX="rg --no-binary -i --hidden --files"
   local files
   files="$(
     rg -i --hidden --files |\
