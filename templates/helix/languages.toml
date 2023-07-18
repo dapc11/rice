@@ -6,9 +6,10 @@ file-types = ["py","pyi","py3","pyw","ptl",".pythonstartup",".pythonrc","SConstr
 shebangs = ["python"]
 roots = []
 comment-token = "#"
-auto-format = false
 language-server = { command = "pylsp" }
 indent = { tab-width = 4, unit = "    " }
+auto-format = true
+formatter = { command = "sh", args = ["-c", "black --quiet - | isort -"]}
 
 [language.config.pylsp.plugins]
 flake8 = {enabled = true}
@@ -19,16 +20,6 @@ pyflakes = {enabled = true}
 pylint = {enabled = true}
 yapf = {enabled = false}
 ruff = {enabled = false}
-
-[[language]]
-name = "python"
-formatter = { command = "black", args = ["--quiet", "-"] }
-auto-format = true
-
-[[language]]
-name = "python"
-formatter = { command = "isort", args = ["-"] }
-auto-format = true
 
 [language.debugger]
 name = "debugpy"
