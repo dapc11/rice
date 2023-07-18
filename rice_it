@@ -28,7 +28,9 @@ class Templates:
     def __enter__(self):
         with open(self.templates_path, "r", encoding="utf-8") as file:
             templates = json.load(file)
-            return [Template(t, self.overwrite, self.env, self.context) for t in templates]
+            return [
+                Template(t, self.overwrite, self.env, self.context) for t in templates
+            ]
 
     def __exit__(self, *_):
         pass
@@ -52,10 +54,13 @@ class Template:
             return Path(f"{target}".replace("~", f"/home/{getpass.getuser()}"))
         if not self.overwrite or not target:
             target = (
-                f"/home/{getpass.getuser()}/.config" if self.overwrite else f"{os.getcwd()}/target"
+                f"/home/{getpass.getuser()}/.config"
+                if self.overwrite
+                else f"{os.getcwd()}/target"
             )
+        f = f"{target}/{self.template}"
         return Path(
-            f"{target}/{self.template}".replace("~", f"/home/{getpass.getuser()}"),
+            f.replace("~", f"/home/{getpass.getuser()}"),
         )
 
     @property
@@ -176,7 +181,9 @@ def setup_argparser() -> argparse.ArgumentParser:
         dest="theme",
         help="specify which theme the context will be loaded from.",
     )
-    arg_parser.add_argument("-l", "--list", action="store_true", help="List available themes")
+    arg_parser.add_argument(
+        "-l", "--list", action="store_true", help="List available themes"
+    )
 
     return arg_parser
 
