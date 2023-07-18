@@ -15,7 +15,7 @@ local colors = {
 	cursor = "{{base06}}",
 }
 
-function make_mouse_binding(dir, streak, button, mods, action)
+local function make_mouse_binding(dir, streak, button, mods, action)
 	return {
 		event = { [dir] = { streak = streak, button = button } },
 		mods = mods,
@@ -88,14 +88,6 @@ return {
 			},
 		},
 	},
-	mouse_bindings = {
-    make_mouse_binding("Up", 1, "Left", "NONE", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
-		make_mouse_binding("Up", 1, "Left", "SHIFT", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
-		make_mouse_binding("Up", 1, "Left", "ALT", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
-		make_mouse_binding("Up", 1, "Left", "SHIFT|ALT", wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection")),
-		make_mouse_binding("Up", 2, "Left", "NONE", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
-		make_mouse_binding("Up", 3, "Left", "NONE", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
-	},
 	keys = {
 		{ key = "s", mods = "ALT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
 		{ key = "v", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
@@ -129,7 +121,7 @@ return {
 		{ key = "b", mods = "CTRL", action = act.RotatePanes("CounterClockwise") },
 		{ key = "z", mods = "ALT", action = wezterm.action.TogglePaneZoomState },
 		{ key = "n", mods = "CTRL", action = act.RotatePanes("Clockwise") },
-    { key = "w", mods = "CTRL", action = wezterm.action.CloseCurrentPane { confirm = true } },
+		{ key = "w", mods = "ALT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	},
 	hyperlink_rules = {
 		{
