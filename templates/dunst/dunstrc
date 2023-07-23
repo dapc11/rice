@@ -164,7 +164,7 @@ per_monitor_dpi = false
 
 [shortcuts]
 # Close notification.
-close = ctrl+space
+close = ctrl+x
 
 # Close all notifications.
 close_all = ctrl+shift+space
