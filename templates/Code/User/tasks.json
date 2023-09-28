@@ -1,0 +1,52 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Lazygit",
+            "type": "shell",
+            "command": "lazygit",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Open file in browser",
+            "type": "process",
+            "command": "x-www-browser",
+            "args": [
+                "${file}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "runFile",
+            "command": "node",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "problemMatcher": "$jshint",
+            "args": [
+                "${file}"
+            ]
+        }
+    ]
+}

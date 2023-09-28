@@ -6,6 +6,7 @@
     { "template": ".nvim_editor.lua", "destination": "~" },
     { "template": "Code/User/keybindings.json" },
     { "template": "Code/User/settings.json" },
+    { "template": "Code/User/tasks.json" },
     { "template": "alacritty/alacritty.yml" },
     { "template": "compton/compton.conf" },
     { "template": "dunst/dunstrc" },

@@ -1,86 +1,4 @@
 {
-  "terminal.external.linuxExec": "{{terminal}}",
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "window.titleBarStyle": "custom",
-  "workbench.iconTheme": "vs-minimal",
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.inheritEnv": true,
-  "editor.fontFamily": "'Fira Code Retina', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "terminal.integrated.fontFamily": "Sauce Code Pro Nerd Font",
-  "editor.fontSize": 12,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": false,
-  "editor.formatOnType": true,
-  "editor.suggestSelection": "first",
-  "editor.rulers": [
-    100,
-    120
-  ],
-  "terminal.integrated.fontSize": 12,
-  "terminal.integrated.allowChords": false,
-  "workbench.colorTheme": "Atom One Dark",
-  "go.toolsManagement.autoUpdate": true,
-  "terminal.integrated.env.linux": {
-    "EDITOR": "lvim",
-    "VISUAL": "lvim",
-    "PATH": "${env:HOME}/.local/bin/:${env:PATH}"
-  },
-  "python.languageServer": "Pylance",
-  "python.envFile": "${workspaceFolder}/.env",
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintCategorySeverity.warning": "Error",
-  "python.formatting.provider": "black",
-  "python.testing.pytestEnabled": true,
-  "python.testing.pytestArgs": [
-    "-vvv"
-  ],
-  "isort.args": [
-    "-w",
-    "99"
-  ],
-  "python.linting.pylintArgs": [
-    "--disable",
-    "C0115,C0301,C0114,W0611",
-    "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
-  ],
-  "python.linting.flake8Args": [
-    "--extend-ignore=W503",
-    "--format='pylint'"
-  ],
-  "Lua.diagnostics.globals": [
-    "vim"
-  ],
-  "[python]": {
-    "editor.rulers": [
-      100,
-      120
-    ],
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.formatOnSave": true
-    }
-  },
-  "yaml.completion": true,
-  "yaml.schemas": {
-    "kubernetes": [
-      "templates/*.yaml",
-      "*.tpl"
-    ]
-  },
-  "[git-commit]": {
-    "editor.rulers": [
-      50,
-      72
-    ]
-  },
-  "git.inputValidationSubjectLength": 50,
-  "git.inputValidationLength": 72,
-  "workbench.editorAssociations": {
-    "viewType": "default",
-    "filenamePattern": "default"
-  },
   "workbench.colorCustomizations": {
     "statusBar.background": "{{base01}}",
     "terminal.foreground": "{{base06}}",
@@ -173,6 +91,82 @@
       ]
     }
   },
+  "terminal.external.linuxExec": "{{terminal}}",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "window.titleBarStyle": "custom",
+  "workbench.iconTheme": null,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.inheritEnv": true,
+  "editor.fontFamily": "'Fira Code Retina', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "terminal.integrated.fontFamily": "Sauce Code Pro Nerd Font",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": true,
+  "editor.suggestSelection": "first",
+  "editor.rulers": [
+    100,
+    120
+  ],
+  "terminal.integrated.allowChords": false,
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "go.toolsManagement.autoUpdate": true,
+  "terminal.integrated.env.linux": {
+    "EDITOR": "lvim",
+    "VISUAL": "lvim",
+    "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
+  },
+  "python.languageServer": "Pylance",
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "-vvv"
+  ],
+  "isort.args": [
+    "-w",
+    "99"
+  ],
+  "pylint.args": [
+    "--disable",
+    "C0115,C0301,C0114,W0611",
+    "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
+  ],
+  "flake8.args": [
+    "--extend-ignore=W503",
+    "--format='pylint'"
+  ],
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.rulers": [
+      100,
+      120
+    ],
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.formatOnSave": true
+    }
+  },
+  "yaml.completion": true,
+  "yaml.schemas": {
+    "kubernetes": [
+      "templates/*.yaml",
+      "*.tpl"
+    ]
+  },
+  "[git-commit]": {
+    "editor.rulers": [
+      50,
+      72
+    ]
+  },
+  "git.inputValidationSubjectLength": 50,
+  "git.inputValidationLength": 72,
+  "workbench.editorAssociations": {
+    "viewType": "default",
+    "filenamePattern": "default"
+  },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -180,7 +174,7 @@
     "**/bob/*/**": true,
     "**/.bob/*/**": true,
     "**/.idea/*/**": true,
-    "**/.vscode/*/**": true
+    "**/.vscode/*/**": true,
   },
   "git.ignoredRepositories": [
     "bob"
@@ -191,31 +185,26 @@
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
   },
-  "Lua.telemetry.enable": false,
   "Lua.workspace.library": [
     "/usr/share/awesome/lib",
+    "~/.local/share/nvim/lazy/",
     "/usr/local/share/nvim/runtime/lua/"
   ],
   "terminal.explorerKind": "external",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.enablePersistentSessions": false,
-  "terminal.integrated.gpuAcceleration": "canvas",
   "files.trimTrailingWhitespace": true,
   "editor.formatOnSaveMode": "modifications",
-  "workbench.startupEditor": "none",
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "disabled"
   },
   "workbench.statusBar.visible": false,
-  "files.maxMemoryForLargeFilesMB": 16384,
   "editor.stickyScroll.enabled": true,
   "editor.stickyTabStops": true,
   "editor.smoothScrolling": true,
   "terminal.integrated.smoothScrolling": true,
   "telemetry.telemetryLevel": "off",
   "explorer.confirmDelete": false,
-  "search.mode": "reuseEditor",
-  "search.collapseResults": "auto",
   "search.showLineNumbers": true,
   "search.smartCase": true,
   "files.autoSave": "onFocusChange",
@@ -248,9 +237,6 @@
   },
   "vim.leader": "<Space>",
   "go.useLanguageServer": true,
-  "go.languageServerExperimentalFeatures": {
-    "diagnostics": true
-  },
   "[go]": {
     "editor.snippetSuggestions": "none",
     "editor.formatOnSave": true,
@@ -260,7 +246,6 @@
   },
   "gopls": {
     "ui.completion.usePlaceholders": true,
-    "usePlaceholders": true,
     "completeUnimported": true,
     "buildFlags": [
       "-tags",
@@ -273,7 +258,9 @@
     "suppressFileNotUnderSourceControlWarning": true
   },
   "editor.inlineSuggest.enabled": true,
-  "command-runner.commands": {
-    "rgf": "rgf; exit"
-  }
+  "search.mode": "newEditor",
+  "search.defaultViewMode": "tree",
+  "search.collapseResults": "alwaysCollapse",
+  "window.zoomLevel": -1,
+  "security.workspace.trust.untrustedFiles": "open"
 }

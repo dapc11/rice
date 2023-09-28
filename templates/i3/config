@@ -58,7 +58,9 @@ for_window [instance=".fica"] move container to workspace $ws6
 for_window [instance=".ibreoffice"] move container to workspace $ws7
 for_window [class=".hunar"] floating enable
 for_window [class=".autilus"] floating enable
-for_window [title="GlobalProtect"] floating enable
+for_window [class="PanGPUI"] floating disable
+for_window [class="PanGPUI"] sticky enable
+for_window [class=".avucontrol"] floating enable resize set 1280 1024
 for_window [class=".randr"] floating enable resize set 800 380
 for_window [class=".volution-alarm-notify"] floating enable
 for_window [class="teams-for-linux"] move container to workspace $ws9
@@ -122,8 +124,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+v split h
+bindsym $mod+s split v
 bindsym $mod+x [urgent=latest] focus
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
@@ -168,14 +170,10 @@ bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 3%- unmute
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 3%+ unmute
-bindsym XF86MonBrightnessDown exec dimmer -d
-bindsym XF86MonBrightnessUp exec dimmer -i
 
 bindsym $mod+d exec rofi -show drun -modi drun
-# bindsym $mod+d exec alacritty --class floating-term -e ~/.local/bin/fzf-menu
-for_window [class="Alacritty" instance="floating-term"] floating enable sticky enable focus_follows_mouse yes
-bindsym $mod+s exec rofi -show window -modi window
-bindsym $mod+Shift+d exec dmenu_run -fn '{{font}}-10' -nb '{{base01}}' -sf '{{base06}}' -sb '{{base02}}' -nf '{{base06}}'
+bindsym $mod+x exec rofi -show window -modi window
+bindsym $mod+Shift+d exec dmenu_run -fn 'SF Pro Display-10' -nb '#2d333b' -sf '#c9d1d9' -sb '#484f58' -nf '#c9d1d9'
 
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
@@ -184,13 +182,8 @@ bindsym $mod+Ctrl+greater move workspace to output left
 
 bindsym $mod+plus scratchpad show
 bindsym $mod+l exec ~/.config/rofi/rofi-power
-bindsym $mod+backspace exec ~/.config/rofi/rofi-power
 bindsym $mod+w exec x-www-browser
-bindsym $mod+p exec arandr
-bindsym $mod+grave exec ~/.local/bin/hifi_sound
-
-# read 1 character and mark the current window with this character
-bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
-
-# read 1 character and go to the window with the character
-bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+bindsym $mod+o exec arandr
+bindsym $mod+p exec gnome-control-center sound
+bindsym $mod+i exec ~/.local/bin/hifi_sound
+bindsym $mod+Shift+i exec ~/.local/bin/hifi_sound teams
