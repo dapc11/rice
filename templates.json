@@ -3,6 +3,7 @@
     { "template": ".tmux.conf", "destination": "~" },
     { "template": ".xprofile", "destination": "~" },
     { "template": ".zshrc", "destination": "~" },
+    { "template": ".nvim_editor.lua", "destination": "~" },
     { "template": "Code/User/keybindings.json" },
     { "template": "Code/User/settings.json" },
     { "template": "alacritty/alacritty.yml" },
