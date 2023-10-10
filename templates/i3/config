@@ -18,6 +18,7 @@ font pango:{{font}} 11
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id /usr/bin/gnome-screensaver
 # exec_always --no-startup-id ~/.config/polybar/startup.sh -k $HOME/.config/polybar/config top
 
 bar {
@@ -126,7 +127,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 bindsym $mod+v split h
 bindsym $mod+s split v
-bindsym $mod+x [urgent=latest] focus
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
