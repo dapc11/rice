@@ -262,5 +262,30 @@
   "search.defaultViewMode": "tree",
   "search.collapseResults": "alwaysCollapse",
   "window.zoomLevel": -1,
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+  "todohighlight.keywords": [
+    {
+      "text": "\"severity\": \"error\"",
+      "backgroundColor": "",
+      "color": "{{base08}}"
+    },
+    {
+      "text": "\"severity\": \"warn\"",
+      "backgroundColor": "",
+      "color": "{{base0A}}"
+    },
+    {
+      "text": "\"severity\": \"error\"",
+      "backgroundColor": "",
+      "color": "{{base08}}"
+    },
+    {
+      "text": "\"severity\": \"warn\"",
+      "backgroundColor": "",
+      "color": "{{base0A}}"
+    },
+  ],
+  "files.associations": {
+    "*.txt": "jsonl"
+  }
 }
