@@ -1,4 +1,5 @@
 _gen_fzf_default_opts() {
+  local color00='{{base00}}'
   local color01='{{base01}}'
   local color02='{{base02}}'
   local color03='{{base03}}'
