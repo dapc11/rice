@@ -1,0 +1,17 @@
+#!/bin/bash
+
+find ~/Downloads -type f -size +5M -delete
+go clean -modcache
+docker image prune -a --filter "until=24h"
+docker container prune --filter "until=24h"
+docker volume prune --filter "label!=keep"
+docker network prune --filter "until=24h"
+
+rm -rf ~/.config/google-chrome/Profile\ 1/Service\ Worker/CacheStorage/*
+rm -rf ~/.config/Microsoft/Microsoft Teams/Service Worker/CacheStorage/*
+
+
+find ~/ -type f -name "defensics-report.zip" -exec rm {}\;
+find ~/ -type f -name "defensics_scan_report_wcdbcd_6_x.zip" -exec rm {}\;
+find ~/ -type f -name "Defensics\ Scan\ Report\ for\ WCDBCD\ 6.x.zip" -exec rm {}\;
+
