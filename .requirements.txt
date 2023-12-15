@@ -4,6 +4,6 @@ black~=22.1
 isort~=5.10
 iwlib~=1.7
 Jinja2~=2.11
-pip~=21.1
+pip>=23.3
 pylint~=2.6
 pywal~=3.3
