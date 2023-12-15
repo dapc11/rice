@@ -15,7 +15,7 @@ zstyle ':vcs_info:git:*' get-revision      true
 zstyle ':vcs_info:git:*' stagedstr         '%F{green}✓'
 zstyle ':vcs_info:git:*' unstagedstr       '%F{red}±'
 
-export PROMPT=$'┌──${debian_chroot:+($debian_chroot)──}%B%F{%(#.red.blue)}%n%(#.💀.@)%m%b%F{%(#.blue.green)} %B%F{reset}[%(6~.%-1~/…/%4~.%5~)$vcs_info_msg_0_%f] %(?..%?%F{red}%B⨯%b%F{reset})\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
+export PROMPT=$'%B┌── %b${debian_chroot:+($debian_chroot)──}%B%F{%(#.red.blue)}%n%(#.💀.@)%m%b%F{%(#.blue.green)} %B%F{reset}[%(6~.%-1~/…/%4~.%5~)$vcs_info_msg_0_%f] %(?..%?%F{red}%B⨯%b%F{reset})\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
 
 # Options ===============================================
 setopt prompt_subst auto_menu always_to_end complete_in_word share_history autocd
