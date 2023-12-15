@@ -18,14 +18,14 @@ class MyModuleTests(unittest.TestCase):
             "setting1": "value1",
             "setting2": "value2",
             "color1": "#ffffff",
-            "color2": "#000000"
+            "color2": "#000000",
         }
 
         with patch("lib.utils.get_wireless_if", return_value="wlan0"):
             with patch("builtins.open") as mock_open:
                 mock_open.side_effect = [
                     StringIO(json.dumps({"setting1": "value1", "setting2": "value2"})),
-                    StringIO(json.dumps({"color1": "#ffffff", "color2": "#000000"}))
+                    StringIO(json.dumps({"color1": "#ffffff", "color2": "#000000"})),
                 ]
                 context = get_context(theme)
 
@@ -65,9 +65,7 @@ class MyModuleTests(unittest.TestCase):
         ]
 
         with patch("builtins.open") as mock_open:
-            mock_open.return_value.__enter__.return_value.readlines.return_value = (
-                wireless_data
-            )
+            mock_open.return_value.__enter__.return_value.readlines.return_value = wireless_data
             interface = get_wireless_if()
 
         self.assertEqual(interface, expected_interface)
@@ -81,9 +79,7 @@ class MyModuleTests(unittest.TestCase):
         ]
 
         with patch("builtins.open") as mock_open:
-            mock_open.return_value.__enter__.return_value.readlines.return_value = (
-                wireless_data
-            )
+            mock_open.return_value.__enter__.return_value.readlines.return_value = wireless_data
             interface = get_wireless_if()
 
         self.assertEqual(interface, expected_interface)

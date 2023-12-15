@@ -151,7 +151,7 @@ def setup_argparser() -> argparse.ArgumentParser:
     """Setup the arguments of the program."""
     arg_parser = argparse.ArgumentParser(
         prog="rice_it",
-        description="Dapc ricer, make your environment consistent from a color perspective with a declarative approach.",
+        description="Render dotfile templates based on base16 theme",
     )
     arg_parser.add_argument(
         "-o",
