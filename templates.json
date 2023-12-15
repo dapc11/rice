@@ -2,7 +2,7 @@
     { "template": ".Xresources", "destination": "~" },
     { "template": ".tmux.conf", "destination": "~" },
     { "template": ".xprofile", "destination": "~" },
-    { "template": ".zshrc", "destination": "~" },
+    { "template": ".zshrc", "destination": "~", "onlyCopy": true },
     { "template": ".zsh/colors.zsh", "destination": "~/.zsh/" },
     { "template": ".nvim_editor.lua", "destination": "~" },
     { "template": "Code/User/keybindings.json" },
