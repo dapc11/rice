@@ -21,7 +21,6 @@
     { "template": "polybar/startup.sh", "executable": true },
     { "template": "polybar/updates.sh", "executable": true },
     { "template": "polybar/weather.sh", "executable": true },
-    { "template": "qtile/config.py" },
     { "template": "ranger/rc.conf" },
     { "template": "picom/picom.conf" },
     { "template": "rofi/colors.rasi" },
