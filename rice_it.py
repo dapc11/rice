@@ -28,9 +28,7 @@ class Templates:
     def __enter__(self):
         with open(self.templates_path, "r", encoding="utf-8") as file:
             templates = json.load(file)
-            return [
-                Template(t, self.overwrite, self.env, self.context) for t in templates
-            ]
+            return [Template(t, self.overwrite, self.env, self.context) for t in templates]
 
     def __exit__(self, *_):
         pass
@@ -54,9 +52,7 @@ class Template:
             return Path(f"{target}".replace("~", f"/home/{getpass.getuser()}"))
         if not self.overwrite or not target:
             target = (
-                f"/home/{getpass.getuser()}/.config"
-                if self.overwrite
-                else f"{os.getcwd()}/target"
+                f"/home/{getpass.getuser()}/.config" if self.overwrite else f"{os.getcwd()}/target"
             )
         f = f"{target}/{self.template}"
         return Path(
@@ -76,7 +72,7 @@ class Template:
     def content(self):
         try:
             t = self.env.get_template(self.template)
-        except Exception:
+        except jinja2.exceptions.TemplateSyntaxError:
             print(f"Could not render {self.template}")
             sys.exit(1)
         return t.render(self.context)
@@ -147,11 +143,8 @@ class TemplateController:
             for command in commands_file.readlines():
                 command = command.replace("\n", "")
                 print(f"Running command: '{command}'", end="")
-                try:
-                    os.system(command)
-                    print()
-                except Exception:
-                    print("Failed, continuing...")
+                os.system(command)
+                print()
 
 
 def setup_argparser() -> argparse.ArgumentParser:
@@ -181,9 +174,7 @@ def setup_argparser() -> argparse.ArgumentParser:
         dest="theme",
         help="specify which theme the context will be loaded from.",
     )
-    arg_parser.add_argument(
-        "-l", "--list", action="store_true", help="List available themes"
-    )
+    arg_parser.add_argument("-l", "--list", action="store_true", help="List available themes")
 
     return arg_parser
 
