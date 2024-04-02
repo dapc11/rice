@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scrot --line style=dash,width=3 --select ~/Pictures/scrot_$(date +%x-%H%M%S).png

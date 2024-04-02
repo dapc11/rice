@@ -1,20 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local colors = {
-	bg = "{{base00}}",
-	fg = "{{base06}}",
-	black = "{{base00}}",
-	red = "{{base08}}",
-	green = "{{base0B}}",
-	yellow = "{{base0A}}",
-	blue = "{{base0C}}",
-	magenta = "{{base0E}}",
-	cyan = "{{base0D}}",
-	white = "{{base07}}",
-	cursor = "{{base06}}",
-}
-
 local function make_mouse_binding(dir, streak, button, mods, action)
 	return {
 		event = { [dir] = { streak = streak, button = button } },
@@ -25,19 +11,20 @@ end
 
 return {
 	font = wezterm.font_with_fallback({
+		"JetBrainsMono",
 		"Liga SFMono Nerd Font",
 		"SauceCodePro Nerd Font",
 		"SF Pro Display",
-		"JetBrains Mono",
 		"Apple Color Emoji",
 	}),
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	adjust_window_size_when_changing_font_size = false,
-	color_scheme = "OneDark (base16)",
+	color_scheme = "Tokyo Night Moon",
 	hide_tab_bar_if_only_one_tab = true,
 	exit_behavior = "Close",
 	window_background_opacity = 1,
-	default_prog = { "{{shell}}" },
-	font_size = 11,
+	default_prog = { "/usr/bin/zsh" },
+	font_size = 13,
 	max_fps = 120,
 	scrollback_lines = 99999,
 	enable_wayland = false,
@@ -45,12 +32,11 @@ return {
 	warn_about_missing_glyphs = false,
 	show_update_window = false,
 	check_for_updates = false,
-	window_decorations = "RESIZE",
 	audible_bell = "Disabled",
 	window_padding = {
-		left = 0,
-		right = 0,
-		top = 0,
+		left = 5,
+		right = 5,
+		top = 10,
 		bottom = 0,
 	},
 	initial_cols = 110,
@@ -59,41 +45,33 @@ return {
 		saturation = 1.0,
 		brightness = 0.90,
 	},
-	enable_scroll_bar = true,
-	tab_bar_at_bottom = true,
+	enable_scroll_bar = false,
+	tab_bar_at_bottom = false,
 	use_fancy_tab_bar = false,
 	show_new_tab_button_in_tab_bar = true,
 	tab_max_width = 50,
 	disable_default_key_bindings = false,
 	window_close_confirmation = "NeverPrompt",
-	colors = {
-		background = colors.bg,
-		tab_bar = {
-			background = colors.bg,
-			active_tab = {
-				bg_color = "{{base02}}",
-				fg_color = colors.fg,
-				intensity = "Bold",
-				underline = "None",
-				italic = false,
-				strikethrough = false,
-			},
-			inactive_tab = {
-				bg_color = colors.bg,
-				fg_color = colors.fg,
-			},
-			inactive_tab_hover = {
-				bg_color = "{{base02}}",
-				fg_color = colors.fg,
-			},
-		},
-	},
+	selection_word_boundary = " \t\n{[}]():\"'",
 	keys = {
-		{ key = "s", mods = "ALT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-		{ key = "v", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+		{
+			key = "s",
+			mods = "ALT",
+			action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
+		},
+		{
+			key = "v",
+			mods = "ALT",
+			action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+		},
 		{ key = "z", mods = "ALT", action = "TogglePaneZoomState" },
 		{ key = "+", mods = "ALT", action = "IncreaseFontSize" },
-		{ key = "l", mods = "ALT", action = wezterm.action({ ClearScrollback = "ScrollbackAndViewport" }) },
+		{ key = "-", mods = "ALT", action = "DecreaseFontSize" },
+		{
+			key = "l",
+			mods = "ALT",
+			action = wezterm.action({ ClearScrollback = "ScrollbackAndViewport" }),
+		},
 		{ key = "LeftArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
 		{ key = "DownArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 		{ key = "UpArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
@@ -119,8 +97,9 @@ return {
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
 		{ key = "t", mods = "ALT", action = act.SpawnTab("CurrentPaneDomain") },
 		{ key = "b", mods = "CTRL", action = act.RotatePanes("CounterClockwise") },
+		{ key = "-", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "z", mods = "ALT", action = wezterm.action.TogglePaneZoomState },
-		{ key = "n", mods = "CTRL", action = act.RotatePanes("Clockwise") },
+		{ key = "n", mods = "CTRL|SHIFT", action = act.RotatePanes("Clockwise") },
 		{ key = "w", mods = "ALT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	},
 	hyperlink_rules = {

@@ -169,8 +169,6 @@ close = ctrl+x
 # Close all notifications.
 close_all = ctrl+shift+space
 
-history = ctrl+grave
-
 # Context menu.
 context = ctrl+shift+period
 
