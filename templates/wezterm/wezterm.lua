@@ -19,12 +19,12 @@ return {
 	}),
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	adjust_window_size_when_changing_font_size = false,
-	color_scheme = "Tokyo Night Moon",
+	color_scheme = "OneDark (base16)",
 	hide_tab_bar_if_only_one_tab = true,
 	exit_behavior = "Close",
 	window_background_opacity = 1,
 	default_prog = { "/usr/bin/zsh" },
-	font_size = 13,
+	font_size = 12,
 	max_fps = 120,
 	scrollback_lines = 99999,
 	enable_wayland = false,
@@ -34,9 +34,9 @@ return {
 	check_for_updates = false,
 	audible_bell = "Disabled",
 	window_padding = {
-		left = 5,
-		right = 5,
-		top = 10,
+		left = 0,
+		right = 0,
+		top = 0,
 		bottom = 0,
 	},
 	initial_cols = 110,
@@ -52,7 +52,7 @@ return {
 	tab_max_width = 50,
 	disable_default_key_bindings = false,
 	window_close_confirmation = "NeverPrompt",
-	selection_word_boundary = " \t\n{[}]():\"'",
+	selection_word_boundary = " \t\n*?_-.[]~=&;!#$%^(){}<>\"'",
 	keys = {
 		{
 			key = "s",
@@ -124,8 +124,12 @@ return {
 			format = "$0",
 		},
 		{
-			regex = [[\b[tT](\d+)\b]],
-			format = "https://example.com/tasks/?t=$1",
+			regex = [[\b(ADPPRG-\d+)\b]],
+			format = "https://eteamproject.internal.ericsson.com/browse/$0",
+		},
+		{
+			regex = [[\bChange-Id: ([\d\a-z]+)\b]],
+			format = "https://gerrit.ericsson.se/#/q/$1",
 		},
 	},
 	mouse_bindings = {

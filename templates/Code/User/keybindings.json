@@ -24,10 +24,6 @@
         "command": "-workbench.action.closeActiveEditor"
     },
     {
-        "key": "ctrl+e",
-        "command": "workbench.action.toggleSidebarVisibility"
-    },
-    {
         "key": "alt+numpad1",
         "command": "-workbench.view.explorer",
         "when": "editorFocus"
@@ -122,10 +118,6 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+alt+v",
-        "command": "python.refactorExtractVariable"
-    },
-    {
         "key": "ctrl+s",
         "command": "-workbench.action.files.saveAll"
     },
@@ -173,8 +165,7 @@
     },
     {
         "key": "ctrl+p",
-        "command": "workbench.action.openRecent",
-        "when": "editorFocus"
+        "command": "workbench.action.openRecent"
     },
     {
         "key": "ctrl+r",
@@ -185,29 +176,9 @@
         "command": "-workbench.action.quickOpen"
     },
     {
-        "key": "[IntlBackslash] d",
-        "command": "editor.action.marker.next",
-        "when": "editorFocus"
-    },
-    {
-        "key": "alt+f8",
-        "command": "-editor.action.marker.next",
-        "when": "editorFocus"
-    },
-    {
-        "key": "shift+[IntlBackslash] d",
-        "command": "editor.action.marker.prev",
-        "when": "editorFocus"
-    },
-    {
-        "key": "shift+alt+f8",
-        "command": "-editor.action.marker.prev",
-        "when": "editorFocus"
-    },
-    {
         "key": "down",
         "command": "search.action.focusNextSearchResult",
-        "when": "hasSearchResult || inSearchEditor"
+        "when": "inSearchEditor"
     },
     {
         "key": "f4",
@@ -217,7 +188,7 @@
     {
         "key": "up",
         "command": "search.action.focusPreviousSearchResult",
-        "when": "hasSearchResult || inSearchEditor"
+        "when": "inSearchEditor"
     },
     {
         "key": "shift+f4",
@@ -341,5 +312,140 @@
     {
         "key": "ctrl+y",
         "command": "editor.action.duplicateSelection"
+    },
+    {
+        "key": "f8",
+        "command": "-editor.action.marker.nextInFiles",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "alt+insert",
+        "command": "-workbench.action.files.newUntitledFile",
+        "when": "!editorTextFocus || editorTextFocus && !editorHasCodeActionsProvider"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFileFolder",
+        "when": "isMacNative && openFolderWorkspaceSupport"
+    },
+    {
+        "key": "backspace",
+        "command": "-extension.vim_backspace",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "-editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+w",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+left",
+        "command": "-editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-command-runner.run"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "-json.shortcut"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "editor.action.joinLines"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "-editor.action.defineKeybinding",
+        "when": "resource == 'vscode-userdata:/home/epedape/.config/Code/User/keybindings.json'"
+    },
+    {
+        "key": "shift+alt+f5",
+        "command": "-workbench.action.compareEditor.previousChange",
+        "when": "textCompareEditorVisible"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "welcome.showNewFileEntries"
+    },
+    {
+        "key": "ctrl+alt+meta+n",
+        "command": "-welcome.showNewFileEntries"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile",
+        "when": "true"
+    },
+    {
+        "key": "ctrl+alt+n",
+        "command": "find-it-faster.findFiles"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "-find-it-faster.findFiles"
+    },
+    {
+        "key": "ctrl+alt+u",
+        "command": "find-it-faster.findWithinFiles"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "-find-it-faster.findWithinFiles"
     }
 ]

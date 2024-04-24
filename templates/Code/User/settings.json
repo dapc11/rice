@@ -91,31 +91,26 @@
       ]
     }
   },
-  "terminal.external.linuxExec": "{{terminal}}",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "window.titleBarStyle": "custom",
-  "workbench.iconTheme": null,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.inheritEnv": true,
-  "editor.fontFamily": "'Fira Code Retina', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "terminal.integrated.fontFamily": "Sauce Code Pro Nerd Font",
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": false,
-  "editor.formatOnType": true,
-  "editor.suggestSelection": "first",
+  "editor.fontFamily": "'JetBrainsMono', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', 'Droid Sans Fallback'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono', 'Sauce Code Pro Nerd Font', 'MesloLGS NF', 'Iosevka Extended', 'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', 'Droid Sans Fallback'",
+  "editor.formatOnPaste": false,
   "editor.rulers": [
     100,
     120
   ],
   "terminal.integrated.allowChords": false,
-  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.colorTheme": "GitHub Dark",
   "go.toolsManagement.autoUpdate": true,
   "terminal.integrated.env.linux": {
-    "EDITOR": "lvim",
-    "VISUAL": "lvim",
+    "EDITOR": "code",
+    "VISUAL": "code",
     "PATH": "${env:HOME}/.local/bin/:${env:PATH}",
   },
-  "python.languageServer": "Pylance",
+  "python.languageServer": "Default",
   "python.envFile": "${workspaceFolder}/.env",
   "python.testing.pytestEnabled": true,
   "python.testing.pytestArgs": [
@@ -127,7 +122,7 @@
   ],
   "pylint.args": [
     "--disable",
-    "C0115,C0301,C0114,W0611",
+    "C0115,C0301,C0114,W0611,E0401",
     "--msg-template={msg_id}:{line:3d},{column}: {obj}: {msg}"
   ],
   "flake8.args": [
@@ -144,8 +139,8 @@
       120
     ],
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.formatOnSave": true
+      "source.organizeImports": "explicit",
+      "source.formatOnSave": "explicit"
     }
   },
   "yaml.completion": true,
@@ -190,15 +185,10 @@
     "~/.local/share/nvim/lazy/",
     "/usr/local/share/nvim/runtime/lua/"
   ],
-  "terminal.explorerKind": "external",
-  "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.enablePersistentSessions": false,
   "files.trimTrailingWhitespace": true,
-  "editor.formatOnSaveMode": "modifications",
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "disabled"
   },
-  "workbench.statusBar.visible": false,
   "editor.stickyScroll.enabled": true,
   "editor.stickyTabStops": true,
   "editor.smoothScrolling": true,
@@ -208,40 +198,13 @@
   "search.showLineNumbers": true,
   "search.smartCase": true,
   "files.autoSave": "onFocusChange",
-  "vim.easymotion": true,
-  "vim.neovimPath": "/usr/bin/nvim",
-  "vim.replaceWithRegister": true,
-  "vim.sneakReplacesF": true,
-  "vim.sneak": true,
-  "vim.smartRelativeLine": true,
-  "vim.targets.enable": true,
-  "vim.useSystemClipboard": true,
-  "vim.visualstar": true,
-  "vim.argumentObjectClosingDelimiters": [
-    ")",
-    "]"
-  ],
-  "vim.argumentObjectOpeningDelimiters": [
-    "(",
-    "["
-  ],
-  "vim.handleKeys": {
-    "<Space": false,
-    "<c-c>": false,
-    "<c-v>": false,
-    "<C-d>": true,
-    "<C-s>": false,
-    "<C-z>": false,
-    "<C-y>": false,
-    "<C-f>": false
-  },
-  "vim.leader": "<Space>",
   "go.useLanguageServer": true,
   "[go]": {
-    "editor.snippetSuggestions": "none",
+    "editor.snippetSuggestions": "inline",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
     }
   },
   "gopls": {
@@ -250,18 +213,14 @@
     "buildFlags": [
       "-tags",
       "mage"
-    ]
+    ],
+    "formatting.gofumpt": true,
   },
-  "go.lintTool": "golangci-lint",
   "go.lintOnSave": "package",
   "gitlens.advanced.messages": {
     "suppressFileNotUnderSourceControlWarning": true
   },
   "editor.inlineSuggest.enabled": true,
-  "search.mode": "newEditor",
-  "search.defaultViewMode": "tree",
-  "search.collapseResults": "alwaysCollapse",
-  "window.zoomLevel": -1,
   "security.workspace.trust.untrustedFiles": "open",
   "todohighlight.keywords": [
     {
@@ -287,5 +246,51 @@
   ],
   "files.associations": {
     "*.txt": "jsonl"
-  }
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "workbench.startupEditor": "none",
+  "window.menuBarVisibility": "compact",
+  "editor.codeActionsOnSave": {},
+  "editor.minimap.showSlider": "always",
+  "editor.fontSize": 15,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "debug.console.fontFamily": "JetbrainsMono",
+  "debug.console.fontSize": 15,
+  "debug.console.lineHeight": 21,
+  "go.coverageOptions": "showCoveredCodeOnly",
+  "go.showWelcome": false,
+  "go.editorContextMenuCommands": {
+    "fillStruct": true,
+    "testPackage": true,
+    "playground": false
+  },
+  "go.delveConfig": {
+    "dlvLoadConfig": {
+      "followPointers": true,
+      "maxVariableRecurse": 1,
+      "maxStringLen": 10000,
+      "maxArrayValues": 10000,
+      "maxStructFields": -1
+    }
+  },
+  "gitlens.autolinks": [
+    {
+      "prefix": "ADPPRG-",
+      "url": "https://eteamproject.internal.ericsson.com/browse/ADPPRG-<num>"
+    },
+    {
+      "prefix": "Change-Id: "
+    }
+  ],
+  "editor.formatOnSaveMode": "modifications",
+  "terminal.integrated.scrollback": 30000,
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?."
 }
