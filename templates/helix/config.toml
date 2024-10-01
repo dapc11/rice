@@ -1,4 +1,5 @@
 theme = "onedark"
+"ui.selection" = { bg = "#64005c" }
 
 [keys.normal."+"]
 m = ":run-shell-command make"
